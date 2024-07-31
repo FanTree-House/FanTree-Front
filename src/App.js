@@ -1,23 +1,30 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import CreateCommunityFeed from './components/CreateCommunityFeed';
-import CommunityFeeds from './components/CommunityFeeds';
-import AddPostPage from './components/AddPostPage'; // 새 페이지 추가
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import ArtistCreatePage from './components/ArtistCreatePage';
+import EntertainerPage from './components/EntertainerPage';
+import './App.css';
+import HomePage from './components/HomePage'; // 새로 추가할 홈 페이지 컴포넌트
 
-const App = () => {
+function App() {
     return (
         <Router>
-            <Routes>
-                <Route path="/" element={
-                    <div>
-                        <CreateCommunityFeed />
-                        <CommunityFeeds />
-                    </div>
-                } />
-                <Route path="/add-post" element={<AddPostPage />} /> {/* 새 경로 추가 */}
-            </Routes>
+            <div className="App">
+                <nav>
+                    <ul>
+                        <li><Link to="/">처음화면으로</Link></li>
+                        <li><Link to="/create-artist">아티스트 계정생성</Link></li>
+                        <li><Link to="/entertainer-page">엔터테이너먼트 공지사항</Link></li>
+                        <li><Link to="/"/*아티스트 프로필 조회 및 전체 조회*/></Link></li>
+                    </ul>
+                </nav>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/create-artist" element={<ArtistCreatePage />} />
+                    <Route path="/entertainer-page" element={<EntertainerPage />} />
+                </Routes>
+            </div>
         </Router>
     );
-};
+}
 
 export default App;
