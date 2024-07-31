@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 const GroupSchedule = () => {
     const [schedules, setSchedules] = useState([]);
@@ -7,7 +6,11 @@ const GroupSchedule = () => {
     useEffect(() => {
         // 예제 데이터 사용
         const fetchSchedules = async () => {
-            const response = await axios.get('/api/schedules'); // 실제 API 엔드포인트로 변경
+            const response = { data: [
+                    { groupName: "그룹 1", event: "스케줄 1" },
+                    { groupName: "그룹 2", event: "스케줄 2" },
+                    { groupName: "그룹 3", event: "스케줄 3" }
+                ]}; // 예제 데이터
             setSchedules(response.data);
         };
 
