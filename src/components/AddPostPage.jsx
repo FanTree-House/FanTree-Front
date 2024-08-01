@@ -30,7 +30,8 @@ const AddPostPage = () => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>파일 업로드:</label>
-                    <input type="file" onChange={handleFileChange} />
+                    <input type="file" onChange={handleFileChange}/>
+                    <img src="/upload_icon.png" alt="Upload Icon"/>
                 </div>
                 <div>
                     <label>내용:</label>

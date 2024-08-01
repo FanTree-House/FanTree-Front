@@ -7,15 +7,24 @@ const ArtistCreatePage = () => {
     const [photo, setPhoto] = useState(null);
     const [message, setMessage] = useState('');
 
+
+    const handleArtistNameChange = (e) => {
+        setArtistName(e.target.value);
+    };
+
     const handlePhotoChange = (e) => {
         setPhoto(e.target.files[0]);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        const formData = new FormData();
+        formData.append("artistName", artistName);
+        formData.append('file', photo);
+        console.log('아티스트계정 : ' + artistName)
+        console.log('파일 : ' + photo)
         try {
-            const responseMessage = await createArtist(artistName, photo);
+            const responseMessage = await createArtist(formData);
             setMessage(responseMessage);
         } catch (error) {
             setMessage(error.message);
@@ -27,26 +36,23 @@ const ArtistCreatePage = () => {
             <h1>Artist 계정 생성</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Artist Name:</label>
+                    <label>아티스트 계정 이름 : </label>
                     <input
                         type="text"
                         value={artistName}
-                        onChange={(e) => setArtistName(e.target.value)}
+                        onChange={handleArtistNameChange}
                     />
                 </div>
                 <div className="form-group">
                     <label className="upload-icon">
                         <input
                             type="file"
-                            onChange={handlePhotoChange}
-                            style={{ display: 'none' }}
-                        />
-                        <img src="/upload_icon.png" alt="Upload Icon" />
+                            onChange={handlePhotoChange}/>
+                        <img src="/upload_icon.png" alt="Upload Icon"/>
                     </label>
                 </div>
-                <button type="submit">Create Artist</button>
+                <button type="submit">아티스트 계정생성</button>
             </form>
-            {message && <p>{message}</p>}
         </div>
     );
 };

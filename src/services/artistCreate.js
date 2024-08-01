@@ -2,17 +2,12 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:8080/artist';
 
-export const createArtist = async (artistName, photo) => {
-    const formData = new FormData();
-    formData.append('artistName', artistName);
-    // formData.append('photo', photo);
-
+export const createArtist = async (artistData) => {
     try {
-        const response = await axios.post(`${API_URL}`, formData, {
-            headers: {
-                headers: { Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJBUlRJU1QiLCJzdGF0dXMiOiJBQ1RJVkVfVVNFUiIsImV4cCI6MTcyMjQ0NDI2MSwiaWF0IjoxNzIyNDQyNDYxfQ.2FBbOLbOR-UX4chYXmhAeh5gu1kGmBC9qkCtmvrNKRE" },
-                withCredentials: true
-            }
+        const response = await axios.post(`${API_URL}`, artistData, {
+            headers: {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJBUlRJU1QiLCJzdGF0dXMiOiJBQ1RJVkVfVVNFUiIsImV4cCI6MTcyMjQ4NjcwOCwiaWF0IjoxNzIyNDg0OTA4fQ.eUiR6QR6N5FSt46weYiLrrDw9I8ZUSgHYTFtp23JzCc"},
+
+            withCredentials: true
         });
         return response.data;
     } catch (error) {
