@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // API URL 정의
 const API_URL = 'http://localhost:8080/enter';
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWVudGVyMSIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI0NzI2MTAsImlhdCI6MTcyMjQ3MDgxMH0.U2LqSA-d0fuuEAzNrotJqWAGNwflfC_7GipqhqG-4v8'; // 직접 입력한 JWT 토큰
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWVudGVyMSIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI1MjE3OTIsImlhdCI6MTcyMjUxOTk5Mn0.9b9trQ0OplLkfduww9Nnb6zkIdukGvApGBPDK4FOiEU'; // 직접 입력한 JWT 토큰
 
 // 엔터테인먼트 생성 함수
 export const createEntertainment = async (enterData) => {

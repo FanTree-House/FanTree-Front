@@ -67,7 +67,7 @@ function App() {
             <Routes>
                 <Route path="/create-entertainment" element={<EntertainmentCreatePage onEnterCreate={handleEntertainmentCreation} />} />
                 <Route path="/group/:groupName" element={<GroupPage enterName={enterName} />} />
-                <Route path="/creategroup/:enterName" element={<ArtistGroupCreatePage />} />
+                <Route path="/creategroup" element={<ArtistGroupCreatePage />} />
                 <Route path="/creatArtistFeed" element={<CreateArtistFeedPage />} />
             </Routes>
 

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
 // 그룹 조회니까 구독한 유저, 그룹에 속해있는 아티스트 토큰
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWVudGVyMSIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI1MTk5NjQsImlhdCI6MTcyMjUxODE2NH0.Qix_5EibKflJyu2Efp7s58zFrjXRYNRTx4nsY6W7PvU'; // JWT 토큰
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWVudGVyMSIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI1MjE3OTIsImlhdCI6MTcyMjUxOTk5Mn0.9b9trQ0OplLkfduww9Nnb6zkIdukGvApGBPDK4FOiEU'; // JWT 토큰
 
 export const fetchEnterName = async () => {
     try {
