@@ -1,0 +1,180 @@
+/* 메인 페이지 전체 스타일 */
+.main-page {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f3f4f6;
+}
+
+/* 헤더 스타일 */
+.header {
+    display: flex;
+    justify-content: center; /* 헤더의 내용을 가운데 정렬 */
+    align-items: center;
+    background-color: #4a90e2;
+    color: white;
+    padding: 15px 40px; /* 좌우 패딩을 늘려서 안쪽으로 이동 */
+    position: relative; /* 자식 요소의 절대 위치를 기준으로 함 */
+}
+
+.logo {
+    position: absolute; /* 로고를 절대 위치로 설정 */
+    left: 40px; /* 왼쪽 여백을 늘려서 안쪽으로 이동 */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-container {
+    display: flex; /* 플렉스 박스로 설정 */
+    align-items: center; /* 세로 가운데 정렬 */
+    margin-left: 20px; /* 검색창을 오른쪽으로 이동 */
+}
+
+.search-input {
+    width: 150px; /* 검색창 너비 조정 */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 0; /* 아이콘과 버튼과의 간격 조정 */
+}
+
+.search-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    background-color: #007bff; /* 버튼 색상 */
+    margin-left: 5px; /* 검색창과 버튼 사이의 간격 조정 */
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+    position: absolute; /* 인증 버튼을 절대 위치로 설정 */
+    right: 40px; /* 오른쪽 여백을 늘려서 안쪽으로 이동 */
+}
+
+.login-button, .signup-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.login-button {
+    background-color: #007bff;
+}
+
+.signup-button {
+    background-color: #28a745;
+}
+
+
+/* 랭킹 섹션 스타일 */
+.ranking-section {
+    margin: 20px 0;
+    text-align: center; /* 전체 랭킹 섹션 가운데 정렬 */
+}
+
+.ranking-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* 여러 줄로 배치 */
+    justify-content: center; /* 항목을 가운데 정렬 */
+}
+
+/* 항목 기본 스타일 */
+.ranking-item {
+    display: flex;
+    flex-direction: column; /* 세로로 배치 */
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 10px; /* 간격 조정 */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: calc(40% - 20px); /* 한 줄에 2개씩 나오도록 너비 조정 (40%로 변경) */
+}
+
+.artist-image {
+    width: 100%; /* 기본 이미지가 화면의 가로를 꽉 차게 */
+    height: auto; /* 비율 유지 */
+    border-radius: 5px; /* 네모 형태 */
+}
+
+.ranking-item.first .artist-image {
+    width: 100%; /* 1위의 사진은 화면 가로를 꽉 차게 */
+}
+
+.ranking-position {
+    font-size: 1.5em; /* 기본 글씨 크기 조정 */
+    font-weight: bold;
+}
+
+.group-name {
+    font-size: 1.2em; /* 그룹 이름 글씨 크기 조정 */
+}
+
+/* 1위 스타일 */
+.ranking-item.first {
+    font-size: 2em; /* 1위 글씨 크기 조정 */
+    background-color: #f0f8ff; /* 배경색 변경 */
+    border: 2px solid #008b8b; /* 테두리 색상 변경 */
+    width: 100%; /* 1위 항목은 화면 가로를 꽉 차게 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+    .ranking-item {
+        width: 100%; /* 작은 화면에서는 가로폭을 100%로 */
+        margin: 5px 0; /* 세로 간격 조정 */
+    }
+}
+
+
+/* 프로필 섹션 스타일 */
+.profile-section {
+    margin: 20px 0;
+}
+
+.profile-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* 여러 줄로 배치 */
+    justify-content: space-between; /* 항목 간격 조정 */
+}
+
+.profile-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 10px; /* 간격 조정 */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 20px); /* 3개씩 배치, 간격 고려 */
+    box-sizing: border-box; /* 패딩과 마진을 포함하여 너비 계산 */
+}
+
+.artist-profile-image {
+    width: 70px; /* 프로필 사진 크기 조정 */
+    height: 70px; /* 프로필 사진 크기 조정 */
+    border-radius: 5px; /* 네모 형태 */
+    margin-bottom: 5px;
+}
+
+.profile-group-name {
+    text-align: center; /* 그룹 이름 중앙 정렬 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+    .profile-item {
+        width: 100%; /* 작은 화면에서는 가로폭을 100%로 */
+        margin: 5px 0; /* 세로 간격 조정 */
+    }
+}
