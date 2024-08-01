@@ -1,34 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { fetchSchedule, createNotice } from '../services/entertainer';
+import React, {useState, useEffect} from 'react';
+import {fetchSchedule, createNotice, fetchNotices} from '../services/entertainer';
 import Notices from './EnterNotice';
 import EnterSchedule from './EnterSchedule';
-import EnterHeader from "./EnterHeader";
+import EnterHeader from './EnterHeader'; // 경로가 정확한지 확인하세요
+import './EntertainerPage.css';
 
-function App() {
+const EnterPage = () => {
     const [notices, setNotices] = useState([]);
     const [schedules, setSchedules] = useState([]);
+    const enterName = ""; //그룹네임 하이브지정
+
 
     useEffect(() => {
         const loadNotices = async () => {
             try {
-                const data = await fetchSchedule();
-                if (Array.isArray(data)) {
-                    setSchedules(data);
-                } else {
-                    console.error('Fetched data is not an array:', data);
-                    setSchedules([]); // 비정상적인 데이터 형식 처리
-                }
+                const data = await fetchNotices(enterName);
+                setNotices(data);
             } catch (error) {
-                console.error('Error loading schedules:', error);
-                setSchedules([]); // 오류 발생 시 빈 배열 설정
+                console.error('Error loading notices:', error);
             }
         };
 
-        loadNotices();
-    }, []);
 
+        const loadSchedules = async (enterName) => {
+            try {
+                const data = await fetchSchedule(enterName); // enterName을 전달
+                setSchedules(data);
+            } catch (error) {
+                console.error('Error loading schedules:', error);
+            }
+        };
+        loadNotices(enterName);
+        loadSchedules(enterName); // enterName을 전달
+    }, [enterName]);
 
-    const handleAddNotice = async (newNotice) => {
+    const handleCreateNotice = async (newNotice) => {
         try {
             const createdNotice = await createNotice(newNotice);
             setNotices(prevNotices => [...prevNotices, createdNotice]);
@@ -37,12 +43,13 @@ function App() {
         }
     };
 
-return (
-    <div className="App">
-        <EnterHeader />
-        <Notices notices={notices} onAddNotice={handleAddNotice} />
-        <EnterSchedule schedules={schedules} />
-    </div>
-);
-}
-export default App;
+    return (
+        <div className="App">
+            <EnterHeader/>
+            <Notices notices={notices} onAddNotice={handleCreateNotice}/>
+            <EnterSchedule schedules={schedules}/>
+        </div>
+    );
+};
+
+export default EnterPage;

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import NoticeModal from './NoticeModal'; // Make sure to adjust the import path if necessary
+import CreateNotice from './CreateNotice'; // Make sure to adjust the import path if necessary
+import './EntertainerPage.css';
+
 
 function Notices({ notices, onAddNotice }) {
+    console.log('Notices prop:', notices);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
@@ -27,11 +30,14 @@ function Notices({ notices, onAddNotice }) {
                     <li>No notices available</li>
                 ) : (
                     notices.map(notice => (
-                        <li key={notice.id}>{notice.title}</li>
+                        <li key={notice.id} className="notice-item">
+                            <h3>{notice.title}</h3>
+                            <p>{notice.contents}</p>
+                        </li>
                     ))
                 )}
             </ul>
-            <NoticeModal
+            <CreateNotice
                 isOpen={isModalOpen}
                 onClose={closeModal}
                 onSubmit={handleAddNotice}

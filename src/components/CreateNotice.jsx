@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
-import './NoticeModalCss.css'; // 스타일 시트 추가
+import './NoticeModalCss.css';
+import {createNotice} from "../services/entertainer";
 
-function NoticeModal({ isOpen, onClose, onSubmit }) {
+function CreateNotice({ isOpen, onClose }) {
     const [title, setTitle] = useState('');
+    const [contents, setContents] = useState('');
     const [category, setCategory] = useState('Notice'); // 기본값 설정
-    const [description, setDescription] = useState('');
+    const [message, setMessage] = useState(''); // 기본값 설정
 
-    const handleSubmit = (e) => {
+    const handleNoticeTitle = (e) => {setTitle(e.target.value);};
+    const handleContents = (e) => {setContents(e.target.value);};
+    const handleCategory = (e) => {setCategory(e.target.value);};
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const newNotice = { title, category, description };
-        onSubmit(newNotice);
+        try {
+            const responseMessage = await createNotice({
+                title,
+                contents
+            });
+            setMessage(responseMessage);
+        } catch (error) {
+            setMessage(error.message);
+        }
     };
 
     if (!isOpen) return null;
@@ -26,8 +39,18 @@ function NoticeModal({ isOpen, onClose, onSubmit }) {
                             type="text"
                             id="title"
                             value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            required
+                            onChange={handleNoticeTitle}
+                            placeholder="제목을 입력하세요"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="contents">공지사항</label>
+                        <input
+                            type="text"
+                            id="contents"
+                            value={contents}
+                            onChange={handleContents}
+                            placeholder="공지사항을 입력하세요"
                         />
                     </div>
                     <div className="form-group">
@@ -35,20 +58,11 @@ function NoticeModal({ isOpen, onClose, onSubmit }) {
                         <select
                             id="category"
                             value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            required
+                            onChange={handleCategory}
                         >
                             <option value="Notice">Notice</option>
                             <option value="Schedule">Schedule</option>
                         </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="description">설명</label>
-                        <textarea
-                            id="description"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
                     </div>
                     <button type="submit" className="submit-btn">제출</button>
                 </form>
@@ -57,4 +71,4 @@ function NoticeModal({ isOpen, onClose, onSubmit }) {
     );
 }
 
-export default NoticeModal;
+export default CreateNotice;

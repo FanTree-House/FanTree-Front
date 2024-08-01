@@ -1,7 +1,65 @@
+/* 기본 위치 설정 */
 .calendar-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: fixed;
+    bottom: 10px; /* 기본 위치 */
+    right: 150px; /* 기본 위치 */
+    width: 400px; /* 달력의 너비 조정 */
+    z-index: 1000; /* 다른 요소들보다 위에 위치하게 설정 */
+    background-color: #ffffff; /* 배경색 설정 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+/* 화면 크기가 작을 때 위치 조정 */
+@media (max-width: 768px) {
+    .calendar-container {
+        bottom: 5px; /* 작은 화면에서 아래 위치를 조정 */
+        right: 5px; /* 작은 화면에서 오른쪽 위치를 조정 */
+        width: 300px; /* 작은 화면에서 너비 조정 */
+    }
+}
+
+
+.react-calendar {
+    width: 100%; /* 달력의 너비를 컨테이너의 너비에 맞춤 */
+    border: 1px solid #ddd; /* 경계선 추가 */
+    border-radius: 4px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    background-color: #ffffff; /* 배경 색상 흰색으로 설정 */
+}
+
+.react-calendar__tile {
+    background-color: #f0f0f0; /* 날짜 셀 배경 색상 */
+    color: #333; /* 날짜 텍스트 색상 */
+}
+
+.react-calendar__tile:active,
+.react-calendar__tile:focus {
+    background-color: #e0e0e0; /* 활성화 및 포커스된 날짜 셀 배경 색상 */
+}
+
+.react-calendar__month-view__days__day {
+    color: #333; /* 요일 텍스트 색상 */
+}
+
+.react-calendar__navigation {
+    background-color: #f0f0f0; /* 네비게이션 바 배경 색상 */
+    border-bottom: 1px solid #ddd; /* 네비게이션 바 경계선 */
+}
+
+.react-calendar__navigation__label {
+    color: #000; /* 네비게이션 바 레이블 텍스트 색상 */
+}
+
+.react-calendar__tile--active {
+    background-color: #007bff; /* 활성 날짜 셀 배경 색상 */
+    color: #fff; /* 활성 날짜 셀 텍스트 색상 */
+    border-radius: 4px; /* 활성 날짜 셀 모서리 둥글게 */
+}
+
+.react-calendar__tile--now {
+    border: 2px solid #007bff; /* 현재 날짜의 경계선 색상 */
+    border-radius: 4px; /* 현재 날짜의 경계선 모서리 둥글게 */
 }
 
 .schedule-details {
@@ -12,6 +70,7 @@
 
 .schedule-details h3 {
     margin-bottom: 10px;
+    color: #333; /* 제목 텍스트 색상 */
 }
 
 .schedule-details ul {
@@ -25,18 +84,4 @@
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 5px;
-}
-
-.calendar-container {
-    position: fixed; /* 페이지 스크롤과 상관없이 위치 고정 */
-    bottom: 10px; /* 화면 아래로부터의 거리 */
-    right: 150px; /* 화면 오른쪽으로부터의 거리 */
-    width: 400px; /* 달력의 너비 조정 */
-}
-
-.react-calendar {
-    width: 100%; /* 달력의 너비를 컨테이너의 너비에 맞춤 */
-    border: 1px solid #ddd; /* 경계선 추가 */
-    border-radius: 4px; /* 모서리 둥글게 */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
 }
