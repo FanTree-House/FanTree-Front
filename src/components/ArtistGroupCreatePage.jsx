@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { createArtistGroup, getAllArtistGroups } from '../services/groupService';
+import './ArtistGroupCreatePage.css'; // 스타일 시트 임포트
 
 const ArtistGroupCreatePage = () => {
-    const { enterName } = useParams();  // URL 파라미터에서 enterName 가져오기
+    const { enterName } = useParams();
     const [groupName, setGroupName] = useState('');
     const [artistProfilePicture, setArtistProfilePicture] = useState('');
     const [groupInfo, setGroupInfo] = useState('');
@@ -26,7 +27,6 @@ const ArtistGroupCreatePage = () => {
         try {
             await createArtistGroup(enterName, groupData);
             fetchArtistGroups();
-            // 입력 필드 초기화
             setGroupName('');
             setArtistProfilePicture('');
             setGroupInfo('');
@@ -55,34 +55,38 @@ const ArtistGroupCreatePage = () => {
     }, [enterName]);
 
     return (
-        <div>
+        <div className="container">
             <h2>Artist Group Manager for {enterName}</h2>
             <input
                 type="text"
                 placeholder="Group Name"
                 value={groupName}
                 onChange={(e) => setGroupName(e.target.value)}
+                className="input-field"
             />
             <input
                 type="text"
                 placeholder="Profile Picture URL"
                 value={artistProfilePicture}
                 onChange={(e) => setArtistProfilePicture(e.target.value)}
+                className="input-field"
             />
             <textarea
                 placeholder="Group Info"
                 value={groupInfo}
                 onChange={(e) => setGroupInfo(e.target.value)}
+                className="textarea-field"
             />
             <input
                 type="text"
                 placeholder="Artist IDs (comma-separated)"
                 value={artistIds.join(', ')}
                 onChange={(e) => setArtistIds(e.target.value.split(',').map(id => id.trim()).filter(id => id))}
+                className="input-field"
             />
-            <button onClick={handleCreateGroup}>Create Artist Group</button>
+            <button onClick={handleCreateGroup} className="submit-button">Create Artist Group</button>
             <h3>Existing Artist Groups</h3>
-            <ul>
+            <ul className="group-list">
                 {artistGroups.map((group) => (
                     <li key={group.id}>{group.groupName}</li>
                 ))}

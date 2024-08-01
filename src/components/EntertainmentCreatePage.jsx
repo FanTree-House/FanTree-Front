@@ -1,7 +1,6 @@
-// 엔터 생성 페이지
-
 import React, { useState } from 'react';
 import { createEntertainment } from '../services/entertainmentService';
+import './EntertainmentCreatePage.css'; // 스타일 시트 임포트
 
 const EntertainmentCreatePage = () => {
     const [enterNumber, setEnterNumber] = useState('');
@@ -12,7 +11,7 @@ const EntertainmentCreatePage = () => {
         e.preventDefault();
 
         const enterData = {
-            enterNumber: Number(enterNumber), // 숫자로 변환
+            enterNumber: Number(enterNumber),
             enterName: enterName,
             enterLogo: enterLogo,
         };
@@ -20,43 +19,43 @@ const EntertainmentCreatePage = () => {
         try {
             const result = await createEntertainment(enterData);
             console.log('Created Entertainment:', result);
-            // 성공 메시지나 페이지 리다이렉션 등의 추가 작업
         } catch (error) {
             console.error('Error during entertainment creation:', error);
-            // 에러 처리
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form onSubmit={handleSubmit} className="form-container">
+            <div className="form-group">
                 <label>사업자 번호:</label>
                 <input
                     type="number"
                     value={enterNumber}
                     onChange={(e) => setEnterNumber(e.target.value)}
                     required
+                    className="input-field"
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label>소속사 이름:</label>
                 <input
                     type="text"
                     value={enterName}
                     onChange={(e) => setEnterName(e.target.value)}
                     required
+                    className="input-field"
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label>소속사 로고:</label>
                 <input
-                    type="file" // 또는 파일 업로드를 원하시면 type="file"로 변경
-                    value={enterLogo}
+                    type="file"
                     onChange={(e) => setEnterLogo(e.target.value)}
                     required
+                    className="input-field"
                 />
             </div>
-            <button type="submit">엔터 생성</button>
+            <button type="submit" className="submit-button">엔터 생성</button>
         </form>
     );
 };

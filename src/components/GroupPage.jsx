@@ -1,12 +1,15 @@
-// 그룹 페이지
 import React, { useEffect, useState } from 'react';
 import { fetchGroupDetails, fetchArtistFeeds, subscribeToGroup } from '../services/groupService';
+import FeedPopup from './FeedPopup';
 import './GroupPage.css';
 
-const GroupPage = ({ enterName, groupName }) => {
+const GroupPage = () => {
+    const enterName = 'SM'; // 엔터 이름을 직접 선언
+    const groupName = 'easpa'; // 그룹 이름을 직접 선언
     const [groupDetails, setGroupDetails] = useState(null);
     const [artistFeeds, setArtistFeeds] = useState([]);
     const [isSubscribed, setIsSubscribed] = useState(false);
+    const [selectedFeed, setSelectedFeed] = useState(null); // 선택된 피드
 
     useEffect(() => {
         const loadGroupDetails = async () => {
@@ -14,7 +17,7 @@ const GroupPage = ({ enterName, groupName }) => {
                 const details = await fetchGroupDetails(enterName, groupName);
                 setGroupDetails(details);
             } catch (error) {
-                alert(error.message); // 에러 메시지 표시
+                alert(error.message);
             }
         };
 
@@ -23,21 +26,29 @@ const GroupPage = ({ enterName, groupName }) => {
                 const feeds = await fetchArtistFeeds(groupName);
                 setArtistFeeds(feeds);
             } catch (error) {
-                alert(error.message); // 에러 메시지 표시
+                alert(error.message);
             }
         };
 
         loadGroupDetails();
         loadArtistFeeds();
-    }, [enterName, groupName]); // enterName과 groupName을 의존성 배열에 추가
+    }, [enterName, groupName]);
 
     const handleSubscribe = async () => {
         try {
             await subscribeToGroup(groupName);
             setIsSubscribed(true);
         } catch (error) {
-            alert(error.message); // 에러 메시지 표시
+            alert(error.message);
         }
+    };
+
+    const openFeedPopup = (feed) => {
+        setSelectedFeed(feed);
+    };
+
+    const closeFeedPopup = () => {
+        setSelectedFeed(null);
     };
 
     if (!groupDetails) return <div>Loading...</div>;
@@ -63,7 +74,7 @@ const GroupPage = ({ enterName, groupName }) => {
             </div>
             <div className="artist-feeds">
                 {artistFeeds.map((feed) => (
-                    <div className="feed" key={feed.id}>
+                    <div className="feed" key={feed.id} onClick={() => openFeedPopup(feed)}>
                         <div className="feed-header">
                             <img src={feed.artist.imageUrl} alt={`${feed.artist.name} 이미지`} />
                             <span>{feed.artist.name}</span>
@@ -88,6 +99,9 @@ const GroupPage = ({ enterName, groupName }) => {
                     </div>
                 ))}
             </div>
+            {selectedFeed && (
+                <FeedPopup feed={selectedFeed} onClose={closeFeedPopup} isSubscribed={isSubscribed} />
+            )}
         </div>
     );
 };

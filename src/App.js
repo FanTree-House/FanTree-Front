@@ -1,12 +1,11 @@
-// App.js
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, NavLink, useNavigate } from 'react-router-dom';
 import EntertainmentCreatePage from './components/EntertainmentCreatePage';
-import CreateGroupPage from "./components/ArtistGroupCreatePage";
-import GroupPage from './components/GroupPage';
-import { getAllArtistGroups, fetchGroupDetails, fetchArtistFeeds, subscribeToGroup } from './services/groupService';
 import ArtistGroupCreatePage from "./components/ArtistGroupCreatePage";
+import GroupPage from './components/GroupPage';
 import CreateArtistFeedPage from "./components/CreateArtistFeedPage";
+import { getAllArtistGroups } from './services/groupService';
+import './App.css'; // 스타일링을 위한 CSS 파일 추가
 
 function App() {
     const [enterName, setEnterName] = useState('');
@@ -30,12 +29,25 @@ function App() {
 
     const handleEntertainmentCreation = (createdEnterName) => {
         setEnterName(createdEnterName);
-        // 생성된 엔터테인먼트로 이동할 로직 추가 필요시
         navigate(`/group/${createdEnterName}`);
     };
 
     return (
         <div className="App">
+            <nav className="navbar">
+                <ul>
+                    <li>
+                        <NavLink to="/create-entertainment" activeClassName="active-link">Create Entertainment</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/creategroup/:enterName" activeClassName="active-link">Create Group</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/creatArtistFeed" activeClassName="active-link">Create Artist Feed</NavLink>
+                    </li>
+                </ul>
+            </nav>
+
             <Routes>
                 <Route
                     path="/create-entertainment"
@@ -45,14 +57,15 @@ function App() {
                 <Route path="/creategroup/:enterName" element={<ArtistGroupCreatePage />} />
                 <Route path="/creatArtistFeed" element={<CreateArtistFeedPage />} />
             </Routes>
+
             <div>
                 <h2>Existing Artist Groups</h2>
                 <ul>
                     {artistGroups.map((group) => (
                         <li key={group.id}>
-                            <a href={`/group/${group.groupName}`}>
+                            <NavLink to={`/group/${group.groupName}`}>
                                 {group.groupName}
-                            </a>
+                            </NavLink>
                         </li>
                     ))}
                 </ul>
