@@ -4,8 +4,8 @@ import EntertainmentCreatePage from './components/EntertainmentCreatePage';
 import ArtistGroupCreatePage from "./components/ArtistGroupCreatePage";
 import GroupPage from './components/GroupPage';
 import CreateArtistFeedPage from "./components/CreateArtistFeedPage";
-import { getAllArtistGroups } from './services/groupService';
-import './App.css'; // 스타일링을 위한 CSS 파일 추가
+import { getAllArtistGroups } from './services/createGroupService';
+import './App.css';
 
 function App() {
     const [enterName, setEnterName] = useState('');
@@ -17,7 +17,12 @@ function App() {
             if (enterName) {
                 try {
                     const groups = await getAllArtistGroups(enterName);
-                    setArtistGroups(groups);
+                    if (Array.isArray(groups)) {
+                        setArtistGroups(groups);
+                    } else {
+                        console.error('Fetched groups is not an array:', groups);
+                        setArtistGroups([]);
+                    }
                 } catch (error) {
                     console.error('그룹 불러오기 실패:', error);
                 }
@@ -37,22 +42,30 @@ function App() {
             <nav className="navbar">
                 <ul>
                     <li>
-                        <NavLink to="/create-entertainment" activeClassName="active-link">Create Entertainment</NavLink>
+                        <NavLink to="/create-entertainment" className={({ isActive }) => (isActive ? "active-link" : "")}>
+                            Create Entertainment
+                        </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/creategroup/:enterName" activeClassName="active-link">Create Group</NavLink>
+                        <NavLink to={`/creategroup/${enterName}`} className={({ isActive }) => (isActive ? "active-link" : "")}>
+                            Create Group
+                        </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/creatArtistFeed" activeClassName="active-link">Create Artist Feed</NavLink>
+                        <NavLink to="/creatArtistFeed" className={({ isActive }) => (isActive ? "active-link" : "")}>
+                            Create Artist Feed
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to={`/group/${enterName}`} className={({ isActive }) => (isActive ? "active-link" : "")}>
+                            Artist Groups
+                        </NavLink>
                     </li>
                 </ul>
             </nav>
 
             <Routes>
-                <Route
-                    path="/create-entertainment"
-                    element={<EntertainmentCreatePage onEnterCreate={handleEntertainmentCreation} />}
-                />
+                <Route path="/create-entertainment" element={<EntertainmentCreatePage onEnterCreate={handleEntertainmentCreation} />} />
                 <Route path="/group/:groupName" element={<GroupPage enterName={enterName} />} />
                 <Route path="/creategroup/:enterName" element={<ArtistGroupCreatePage />} />
                 <Route path="/creatArtistFeed" element={<CreateArtistFeedPage />} />

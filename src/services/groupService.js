@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWVudGVyMSIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI0ODA2MTgsImlhdCI6MTcyMjQ3ODgxOH0.OszWV0AD7r2_JXpTJLroQEcCthJhmscoGrHbF_l48wg'; // JWT 토큰
+// 그룹 조회니까 구독한 유저, 그룹에 속해있는 아티스트 토큰
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWVudGVyMSIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI1MTk5NjQsImlhdCI6MTcyMjUxODE2NH0.Qix_5EibKflJyu2Efp7s58zFrjXRYNRTx4nsY6W7PvU'; // JWT 토큰
 
 export const fetchEnterName = async () => {
     try {
@@ -17,21 +18,6 @@ export const fetchEnterName = async () => {
     }
 };
 
-export const createArtistGroup = async (enterName, groupData) => {
-    try {
-        const response = await axios.post(`${API_BASE_URL}/entertainments/${enterName}`, groupData, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            withCredentials: true
-        });
-        return response.data;
-    } catch (error) {
-        console.error('Error creating artist group:', error);
-        throw error;
-    }
-};
 
 export const fetchGroupDetails = async (enterName, groupName) => {
     try {
@@ -47,15 +33,24 @@ export const fetchGroupDetails = async (enterName, groupName) => {
     }
 };
 
-export const getAllArtistGroups = async (enterName) => {
+
+export const getAllArtistGroups = async () => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/entertainments/${enterName}/groups`);
+        const response = await axios.get(`${API_BASE_URL}/artistgroup`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            withCredentials: true
+        });
         return response.data;
     } catch (error) {
         console.error('Error fetching artist groups:', error);
         throw error;
     }
 };
+
+// 다른 서비스 함수들도 여기에 추가
+
 
 export const fetchArtistFeeds = async (groupName, page = 0) => {
     try {

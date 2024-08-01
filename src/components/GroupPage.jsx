@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { fetchGroupDetails, fetchArtistFeeds, subscribeToGroup } from '../services/groupService';
+import { useParams } from 'react-router-dom';
+import { fetchGroupDetails, fetchArtistFeeds, subscribeToGroup, likeFeed } from '../services/groupService'; // likeFeed 추가
 import FeedPopup from './FeedPopup';
 import './GroupPage.css';
 
 const GroupPage = () => {
+    const { groupName } = useParams();
     const enterName = 'SM'; // 엔터 이름을 직접 선언
-    const groupName = 'easpa'; // 그룹 이름을 직접 선언
     const [groupDetails, setGroupDetails] = useState(null);
     const [artistFeeds, setArtistFeeds] = useState([]);
     const [isSubscribed, setIsSubscribed] = useState(false);
@@ -51,6 +52,20 @@ const GroupPage = () => {
         setSelectedFeed(null);
     };
 
+    const handleLike = async (feedId, index) => {
+        try {
+            await likeFeed(feedId);
+            // 좋아요 수 증가
+            setArtistFeeds((prevFeeds) => {
+                const newFeeds = [...prevFeeds];
+                newFeeds[index].likeCount += 1; // likes 필드를 증가시킵니다.
+                return newFeeds;
+            });
+        } catch (error) {
+            alert('Error liking feed: ', error.message);
+        }
+    };
+
     if (!groupDetails) return <div>Loading...</div>;
 
     return (
@@ -73,7 +88,7 @@ const GroupPage = () => {
                 </div>
             </div>
             <div className="artist-feeds">
-                {artistFeeds.map((feed) => (
+                {artistFeeds.map((feed, index) => (
                     <div className="feed" key={feed.id} onClick={() => openFeedPopup(feed)}>
                         <div className="feed-header">
                             <img src={feed.artist.imageUrl} alt={`${feed.artist.name} 이미지`} />
@@ -93,8 +108,9 @@ const GroupPage = () => {
                             {feed.imageUrl && <img src={feed.imageUrl} alt="게시물 이미지" />}
                         </div>
                         <div className="feed-footer">
-                            <span>❤️ {feed.likeCount}</span>
+                            <span>❤️ {feed.likeCount}</span> {/* 좋아요 수 표시 */}
                             <span>💬 {feed.commentCount}</span>
+                            <button onClick={(e) => { e.stopPropagation(); handleLike(feed.id, index); }}>좋아요</button> {/* 좋아요 버튼 */}
                         </div>
                     </div>
                 ))}
