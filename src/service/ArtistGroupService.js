@@ -16,7 +16,6 @@ const ArtistGroupService = {
     getAllArtistGroups: async () => {
         try {
             const response = await axios.get(BASE_URL);
-            console.log("consolelog--------", response.data.data);
             return response.data.data; // 모든 아티스트 그룹 목록 반환
         } catch (error) {
             console.error('Error fetching all artist groups:', error);
