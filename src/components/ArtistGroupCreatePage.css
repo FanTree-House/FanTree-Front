@@ -1,0 +1,74 @@
+/* ArtistGroupCreatePage.css */
+.artist-group-create-page {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.create-group-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-group-button:hover {
+    background-color: #0056b3;
+}
+
+.existing-groups-title {
+    margin-top: 30px;
+    font-size: 1.2em;
+}
+
+.artist-groups-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.artist-group-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.artist-group-item:last-child {
+    border-bottom: none;
+}
