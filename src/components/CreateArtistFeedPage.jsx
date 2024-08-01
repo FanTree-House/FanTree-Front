@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'; // 그룹 이름을 URL 파라미터로 받기 위해 사용
 import styled from 'styled-components';
-import { createFeed } from '../services/feedService';
+import { createFeed } from '../service/feedService';
 
 // 스타일 정의
 const Container = styled.div`

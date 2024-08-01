@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchGroupDetails, fetchArtistFeeds, subscribeToGroup, likeFeed } from '../services/groupService'; // likeFeed 추가
+import { fetchGroupDetails, fetchArtistFeeds, subscribeToGroup, likeFeed } from '../service/groupService'; // likeFeed 추가
 import FeedPopup from './FeedPopup';
 import './GroupPage.css';
 

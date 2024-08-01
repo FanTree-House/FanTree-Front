@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchFeedComments, postComment, likeFeed } from '../services/groupService';
+import { fetchFeedComments, postComment, likeFeed } from '../service/groupService';
 import './FeedPopup.css';
 
 const FeedPopup = ({ feed, onClose, isSubscribed }) => {
