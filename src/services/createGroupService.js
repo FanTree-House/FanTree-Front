@@ -1,12 +1,11 @@
 import axios from "axios";
 
 const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWVudGVyMSIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI1MjE3OTIsImlhdCI6MTcyMjUxOTk5Mn0.9b9trQ0OplLkfduww9Nnb6zkIdukGvApGBPDK4FOiEU'; // JWT 토큰을 여기에 삽입하세요.
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWVudGVyMSIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI1NjQ5MTMsImlhdCI6MTcyMjU2MzExM30.LbJTmPJKEqiUJM30DKFAmHNwEpBnRmJe1DZBBROs_LU'; // JWT 토큰을 여기에 삽입하세요.
 
-export const createArtistGroup = async (enterName, groupData) => {
+export const createArtistGroup = async (groupData) => {
     try {
         const data = {
-            enterName,
             ...groupData // 나머지 그룹 데이터
         };
 
@@ -39,7 +38,7 @@ export const getAllArtistGroups = async () => {
     }
 };
 
-/*
+
 // 새로운 함수: 모든 아티스트 가져오기
 export const getAllArtists = async () => {
     try {
@@ -55,4 +54,3 @@ export const getAllArtists = async () => {
         throw error;
     }
 };
-*/

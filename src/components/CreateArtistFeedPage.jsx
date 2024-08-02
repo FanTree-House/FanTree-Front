@@ -59,13 +59,18 @@ const CreateArtistFeedPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // 콘텐츠가 비어있지 않은지 확인
+        if (!content.trim()) {
+            alert('내용을 입력해 주세요.');
+            return;
+        }
+
         try {
             const response = await createFeed(groupName, content, image);
             console.log('Feed created successfully:', response);
             alert('피드가 성공적으로 작성되었습니다!');
-            // 피드 작성 후 초기화 또는 다른 페이지로 이동 로직 추가
-            setContent('');
-            setImage(null);
+            setContent(''); // 컨텐츠 초기화
+            setImage(null); // 이미지 초기화
         } catch (error) {
             console.error('There was an error creating the feed:', error);
             alert('피드 작성에 실패했습니다.');

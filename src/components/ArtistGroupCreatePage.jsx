@@ -8,9 +8,8 @@ const ArtistGroupCreatePage = () => {
     const [groupName, setGroupName] = useState('');
     const [artistProfilePicture, setArtistProfilePicture] = useState('');
     const [groupInfo, setGroupInfo] = useState('');
-    const [artistIds, setArtistIds] = useState([]); // 아티스트 ID 리스트 상태 추가
-    const [availableArtists, setAvailableArtists] = useState([]); // 선택 가능한 아티스트 리스트
-    const [artistGroups, setArtistGroups] = useState([]); // 초기값을 빈 배열로 설정
+    const [artistIdsInput, setArtistIdsInput] = useState(''); // 쉼표로 구분된 아티스트 ID 입력값
+    const [artistGroups, setArtistGroups] = useState([]);
 
     const handleCreateGroup = async () => {
         if (!enterName || !groupName || !artistProfilePicture || !groupInfo) {
@@ -18,22 +17,25 @@ const ArtistGroupCreatePage = () => {
             return;
         }
 
+        // 쉼표로 구분된 ID를 배열로 변환
+        const artistIds = artistIdsInput.split(',').map(id => id.trim());
+
         const groupData = {
             enterName,
             groupName,
             artistProfilePicture,
             groupInfo,
-            artistIds, // artistIds로 설정
+            artistIds, // 변환된 artistIdsInput 사용
         };
 
         try {
-            await createArtistGroup(enterName, groupData);
-            fetchArtistGroups();
+            await createArtistGroup(groupData);
+            // fetchArtistGroups();
             setEnterName('');
             setGroupName('');
             setArtistProfilePicture('');
             setGroupInfo('');
-            setArtistIds([]); // 리스트 초기화
+            setArtistIdsInput(''); // 입력 초기화
         } catch (error) {
             console.error("Failed to create artist group:", error);
         }
@@ -42,36 +44,16 @@ const ArtistGroupCreatePage = () => {
     const fetchArtistGroups = async () => {
         try {
             const groups = await getAllArtistGroups();
-            setArtistGroups(groups); // groups가 배열인지 확인
+            setArtistGroups(groups);
         } catch (error) {
             console.error("Failed to fetch artist groups:", error);
         }
     };
 
-   /* const fetchAvailableArtists = async () => {
-        // 아티스트 리스트를 가져오는 API 호출 (예시)
-        try {
-            const response = await getAllArtists(); // 이 함수는 아티스트를 가져오는 API 호출을 수행해야 함
-            setAvailableArtists(response);
-        } catch (error) {
-            console.error("Failed to fetch available artists:", error);
-        }
-    };*/
-
-/*    useEffect(() => {
+    /*useEffect(() => {
         fetchArtistGroups();
-        fetchAvailableArtists(); // 아티스트 리스트 가져오기
-    }, []);*/
-
-    const handleArtistIdChange = (e) => {
-        const value = e.target.value;
-        if (artistIds.includes(value)) {
-            setArtistIds(artistIds.filter(id => id !== value)); // 이미 선택된 경우 제거
-        } else {
-            setArtistIds([...artistIds, value]); // 새로 선택된 경우 추가
-        }
-    };
-
+    }, []);
+*/
     return (
         <div className="container">
             <h2>Artist Group Manager</h2>
@@ -102,22 +84,12 @@ const ArtistGroupCreatePage = () => {
                 onChange={(e) => setGroupInfo(e.target.value)}
                 className="textarea-field"
             />
-            <h3>Select Artist IDs</h3>
-            <ul>
-                {availableArtists.map((artist) => (
-                    <li key={artist.id}>
-                        <label>
-                            <input
-                                type="checkbox"
-                                value={artist.id}
-                                checked={artistIds.includes(artist.id)}
-                                onChange={handleArtistIdChange}
-                            />
-                            {artist.name} {/* 아티스트 이름 표시 */}
-                        </label>
-                    </li>
-                ))}
-            </ul>
+            <textarea
+                placeholder="Enter Artist IDs, separated by commas"
+                value={artistIdsInput}
+                onChange={(e) => setArtistIdsInput(e.target.value)}
+                className="textarea-field"
+            />
             <button onClick={handleCreateGroup} className="submit-button">Create Artist Group</button>
             <h3>Existing Artist Groups</h3>
             <ul className="group-list">

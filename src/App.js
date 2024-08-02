@@ -9,28 +9,9 @@ import './App.css';
 
 function App() {
     const [enterName, setEnterName] = useState('');
-    const [artistGroups, setArtistGroups] = useState([]);
+    const [groupName, setGroupName] = useState();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchArtistGroups = async () => {
-            if (enterName) {
-                try {
-                    const groups = await getAllArtistGroups(enterName);
-                    if (Array.isArray(groups)) {
-                        setArtistGroups(groups);
-                    } else {
-                        console.error('Fetched groups is not an array:', groups);
-                        setArtistGroups([]);
-                    }
-                } catch (error) {
-                    console.error('그룹 불러오기 실패:', error);
-                }
-            }
-        };
-
-        fetchArtistGroups();
-    }, [enterName]);
 
     const handleEntertainmentCreation = (createdEnterName) => {
         setEnterName(createdEnterName);
@@ -52,7 +33,7 @@ function App() {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/creatArtistFeed" className={({ isActive }) => (isActive ? "active-link" : "")}>
+                        <NavLink to={`/artistgroup/${groupName}/feed`} className={({ isActive }) => (isActive ? "active-link" : "")}>
                             Create Artist Feed
                         </NavLink>
                     </li>
@@ -68,21 +49,9 @@ function App() {
                 <Route path="/create-entertainment" element={<EntertainmentCreatePage onEnterCreate={handleEntertainmentCreation} />} />
                 <Route path="/group/:groupName" element={<GroupPage enterName={enterName} />} />
                 <Route path="/creategroup" element={<ArtistGroupCreatePage />} />
-                <Route path="/creatArtistFeed" element={<CreateArtistFeedPage />} />
+                <Route path="/artistgroup/:groupName/feed" element={<CreateArtistFeedPage />} />
             </Routes>
 
-            <div>
-                <h2>Existing Artist Groups</h2>
-                <ul>
-                    {artistGroups.map((group) => (
-                        <li key={group.id}>
-                            <NavLink to={`/group/${group.groupName}`}>
-                                {group.groupName}
-                            </NavLink>
-                        </li>
-                    ))}
-                </ul>
-            </div>
         </div>
     );
 }
