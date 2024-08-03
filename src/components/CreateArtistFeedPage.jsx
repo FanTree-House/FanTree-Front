@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom'; // 그룹 이름을 URL 파라미터로 받기 위해 사용
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { createFeed } from '../services/feedService';
+import { createFeed } from '../services/feedService'; // 실제로 createFeed가 정의된 파일로 수정
 
 // 스타일 정의
 const Container = styled.div`
@@ -62,6 +62,13 @@ const CreateArtistFeedPage = () => {
         // 콘텐츠가 비어있지 않은지 확인
         if (!content.trim()) {
             alert('내용을 입력해 주세요.');
+            return;
+        }
+
+        // groupName이 유효한지 확인
+        if (!groupName) {
+            console.error('groupName is undefined');
+            alert('유효한 그룹 이름을 제공해 주세요.');
             return;
         }
 

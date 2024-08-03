@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, NavLink, useNavigate } from 'react-router-dom';
 import EntertainmentCreatePage from './components/EntertainmentCreatePage';
 import ArtistGroupCreatePage from "./components/ArtistGroupCreatePage";
-import GroupPage from './components/GroupPage';
 import CreateArtistFeedPage from "./components/CreateArtistFeedPage";
 import { getAllArtistGroups } from './services/createGroupService';
 import './App.css';
@@ -37,17 +36,11 @@ function App() {
                             Create Artist Feed
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to={`/group/${enterName}`} className={({ isActive }) => (isActive ? "active-link" : "")}>
-                            Artist Groups
-                        </NavLink>
-                    </li>
                 </ul>
             </nav>
 
             <Routes>
                 <Route path="/create-entertainment" element={<EntertainmentCreatePage onEnterCreate={handleEntertainmentCreation} />} />
-                <Route path="/group/:groupName" element={<GroupPage enterName={enterName} />} />
                 <Route path="/creategroup" element={<ArtistGroupCreatePage />} />
                 <Route path="/artistgroup/:groupName/feed" element={<CreateArtistFeedPage />} />
             </Routes>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { getAllArtistGroups } from '../services/groupService';
+import { getAllArtistGroups } from '../services/createGroupService'; // 경로 수정
 import { createArtistGroup } from "../services/createGroupService";
 import './ArtistGroupCreatePage.css';
+
 
 const ArtistGroupCreatePage = () => {
     const [enterName, setEnterName] = useState('');

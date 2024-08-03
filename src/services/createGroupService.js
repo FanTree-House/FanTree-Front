@@ -38,7 +38,6 @@ export const getAllArtistGroups = async () => {
     }
 };
 
-
 // 새로운 함수: 모든 아티스트 가져오기
 export const getAllArtists = async () => {
     try {
