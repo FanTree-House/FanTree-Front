@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; // Link 임포트
-import ArtistGroupService from '../service/ArtistGroupService'; // 서비스 임포트
-import './MainPage.css'; // 기존 스타일 파일
+import { Link, useNavigate } from 'react-router-dom'; // Import Link along with useNavigate
+import ArtistGroupService from '../service/ArtistGroupService';
+import './MainPage.css';
 
 const MainPage = () => {
     const [artistGroups, setArtistGroups] = useState([]);
     const [artistProfiles, setArtistProfiles] = useState([]);
+    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect(() => {
         const fetchArtistGroups = async () => {
             try {
-                const data = await ArtistGroupService.getArtistGroups('', 0, 15); // 페이지 0, 크기 15로 호출
+                const data = await ArtistGroupService.getArtistGroups('', 0, 15);
                 console.log(data);
-                setArtistGroups(data); // 상태 업데이트
+                setArtistGroups(data);
             } catch (error) {
                 console.error('Error fetching artist groups:', error);
             }
@@ -20,9 +21,9 @@ const MainPage = () => {
 
         const fetchAllArtistGroups = async () => {
             try {
-                const data = await ArtistGroupService.getAllArtistGroups(); // 모든 아티스트 그룹 조회
+                const data = await ArtistGroupService.getAllArtistGroups();
                 console.log(data);
-                setArtistProfiles(data); // 모든 아티스트 그룹 저장
+                setArtistProfiles(data);
             } catch (error) {
                 console.error('Error fetching all artist groups:', error);
             }
@@ -41,15 +42,14 @@ const MainPage = () => {
                     <button className="search-button">검색</button>
                 </div>
                 <div className="auth-buttons">
-                    <button className="login-button">로그인</button>
-                    <button className="signup-button">회원가입</button>
+                    <button className="login-button" onClick={() => navigate('/login')}>로그인</button> {/* Navigate to LoginPage */}
+                    <button className="signup-button" onClick={() => navigate('/signup')}>회원가입</button> {/* Navigate to SignupForm */}
                 </div>
             </header>
             <div className="ranking-section">
                 <h2>아티스트 그룹 랭킹</h2>
                 <div className="ranking-section">
                     <ul className="ranking-list">
-                        {/* 1위 항목 */}
                         <li key={artistGroups[0]?.id} className="ranking-item first">
                             <span className="ranking-position">1위</span>
                             <img src={artistGroups[0]?.artistGroupProfileImageUrl} alt={artistGroups[0]?.groupName}
@@ -58,7 +58,6 @@ const MainPage = () => {
                         </li>
                     </ul>
                     <ul className="ranking-list">
-                        {/* 2위부터 15위까지 항목 */}
                         {artistGroups.slice(1, 15).map((group, index) => (
                             <li key={group?.id} className="ranking-item">
                                 <span className="ranking-position">{index + 2}위</span>
@@ -75,7 +74,7 @@ const MainPage = () => {
                     {artistProfiles.length > 0 ? (
                         artistProfiles.map((artist) => (
                             <Link
-                                to={`/group/${artist.groupName}`} // 그룹 페이지로의 링크
+                                to={`/group/${artist.groupName}`}
                                 key={artist?.id}
                                 className="profile-item"
                             >
