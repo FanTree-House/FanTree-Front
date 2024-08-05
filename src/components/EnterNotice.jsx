@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import CreateNotice from './CreateNotice'; // Make sure to adjust the import path if necessary
-import NoticePopup from './NoticePopup'; // 팝업창 컴포넌트
+import CreateNotice from './CreateNotice'; // 경로 확인
+import NoticePopup from './NoticePopup'; // 경로 확인
 import './EntertainerPage.css';
-import { fetchNotices } from '../services/entertainer'; // 공지사항 목록을 가져오는 함수
+import { fetchNotices } from '../services/entertainer';
+import entertainerPage from "./EntertainerPage"; // 경로 확인
 
 function Notices() {
     const [notices, setNotices] = useState([]);
@@ -26,11 +27,13 @@ function Notices() {
     const closeModal = () => setIsModalOpen(false);
 
     const openPopup = (notice) => {
+        console.log('Selected notice:', notice); // 선택된 데이터 확인
         setSelectedNotice(notice);
     };
 
     const handleAddNotice = (newNotice) => {
         setNotices(prevNotices => [...prevNotices, newNotice]);
+        closeModal(); // 모달을 닫습니다
     };
 
     if (!Array.isArray(notices)) {

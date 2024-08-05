@@ -45,8 +45,10 @@ const EnterPage = () => {
     const handleCreateSchedule = async (newSchedule) => {
         try {
             const createdSchedule = await createSchedule(newSchedule);
+            console.log("Created schedule:", createdSchedule);  // 추가된 로그
             setSchedules(prevSchedules => {
                 const updatedSchedules = [...prevSchedules, createdSchedule];
+                console.log("Updated schedules:", updatedSchedules);  // 추가된 로그
                 return updatedSchedules;
             });
         } catch (error) {

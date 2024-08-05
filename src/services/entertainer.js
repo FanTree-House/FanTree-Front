@@ -8,7 +8,7 @@ export const createNotice = async ({title, contents}) => {
             title, contents
         }, {
             headers: {
-                Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI4NjU2NTMsImlhdCI6MTcyMjg2Mzg1M30.VGe75tNxosUK3EsDGO_mOHLpEEeH76SdAIqd9DBk-Fs"
+                Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI4NzgxMDYsImlhdCI6MTcyMjg3NjMwNn0.EPQODBbdlHE5rSfqjHes36OpxWTUQNeOVIXOlQhYADw"
             } ,withCredentials: true
         });
         if (response.status !== 200 && response.status !== 201) {
@@ -26,7 +26,7 @@ export const createSchedule = async ({ title, contents, date  }) => {
         const response = await axios.post(`${API_URL}/hybe/schedule`, {
                 title, contents, date },
             {headers:
-                {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI4NjU2NTMsImlhdCI6MTcyMjg2Mzg1M30.VGe75tNxosUK3EsDGO_mOHLpEEeH76SdAIqd9DBk-Fs"
+                {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI4NzgxMDYsImlhdCI6MTcyMjg3NjMwNn0.EPQODBbdlHE5rSfqjHes36OpxWTUQNeOVIXOlQhYADw"
             }, withCredentials: true});
         // if (response.status !== 200 && response.status !== 201) {
         //     throw new Error('일정을 추가하지 못했습니다.');
@@ -42,6 +42,7 @@ export const createSchedule = async ({ title, contents, date  }) => {
 export const fetchNotices = async () => {
     try {
         const response = await axios.get(`${API_URL}/hybe/notice`);
+        console.log('Server response data:', response.data); // 응답 데이터 확인
         if (Array.isArray(response.data)) {
             return response.data;
         } else if (response.data && typeof response.data === 'object') {
@@ -53,6 +54,7 @@ export const fetchNotices = async () => {
             return [];
         }
     } catch (error) {
+        console.error('Error fetching notices:', error);
         throw error;
     }
 };

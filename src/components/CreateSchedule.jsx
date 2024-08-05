@@ -1,39 +1,52 @@
-import React, {useState} from 'react';
-import {createSchedule} from '../services/entertainer';
+import React, { useState, useEffect } from 'react';
+import { createSchedule } from '../services/entertainer';
 
-function AddScheduleModal({selectedDate, onClose}) {
-    const [contents, setContents] = useState('');
-    const [date, setDate] = useState(selectedDate.toISOString().split('T')[0]); // yyyy-mm-dd 형식
+function AddScheduleModal({ selectedDate, onClose }) {
     const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('Schedule'); // 기본값 설정
+    const [contents, setContents] = useState('');
+    const [date, setDate] = useState('');
+    const [category, setCategory] = useState('Schedule');
     const [message, setMessage] = useState('');
 
+    useEffect(() => {
+        if (selectedDate) {
+            setDate(selectedDate.toISOString().split('T')[0]);
+        }
+    }, [selectedDate]);
 
     const handleContentsChange = (e) => {
         setContents(e.target.value);
     };
+
     const handleDateChange = (e) => {
         setDate(e.target.value);
-    }
+    };
+
     const handleScheduleTitle = (e) => {
         setTitle(e.target.value);
     };
+
     const handleCategory = (e) => {
         setCategory(e.target.value);
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const responseMessage = await createSchedule({
+            const response = await createSchedule({
                 title,
                 contents,
-                date
+                date,
+                category
             });
-            setMessage(responseMessage);
+            if (typeof response === 'object') {
+                setMessage(response.message || '일정이 추가되었습니다.');
+            } else {
+                setMessage('일정이 추가되었습니다.');
+            }
+            onClose(); // 스케줄 추가 후 모달 닫기
         } catch (error) {
-            setMessage(error.message);
+            setMessage(error.message || '알 수 없는 오류가 발생했습니다.');
         }
     };
 
@@ -46,7 +59,9 @@ function AddScheduleModal({selectedDate, onClose}) {
                         <label htmlFor="category">카테고리</label>
                         <select
                             id="category"
-                            value={category} onChange={handleCategory}>
+                            value={category}
+                            onChange={handleCategory}
+                        >
                             <option value="Notice">Notice</option>
                             <option value="Schedule">Schedule</option>
                         </select>
@@ -59,28 +74,36 @@ function AddScheduleModal({selectedDate, onClose}) {
                             value={title}
                             onChange={handleScheduleTitle}
                             placeholder="제목을 입력하세요"
+                            required
                         />
                     </div>
-                    <label htmlFor="contents">일정:</label>
-                    <input
-                        type="text"
-                        id="contents"
-                        name="contents"
-                        value={contents}
-                        onChange={handleContentsChange}
-                        placeholder="일정을 입력해주세요"
-                    />
-                    <label htmlFor="date">날짜:</label>
-                    <input
-                        type="date"
-                        id="date"
-                        name="date"
-                        value={date}
-                        onChange={handleDateChange}
-                    />
+                    <div className="form-group">
+                        <label htmlFor="contents">일정</label>
+                        <input
+                            type="text"
+                            id="contents"
+                            name="contents"
+                            value={contents}
+                            onChange={handleContentsChange}
+                            placeholder="일정을 입력해주세요"
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="date">날짜</label>
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            value={date}
+                            onChange={handleDateChange}
+                            required
+                        />
+                    </div>
                     <button type="submit">추가하기</button>
                     <button type="button" onClick={onClose}>닫기</button>
                 </form>
+                {message && <p>{typeof message === 'string' ? message : '오류가 발생했습니다.'}</p>}
             </div>
         </div>
     );

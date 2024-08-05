@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import { useFloating, autoPlacement } from '@floating-ui/react';
-import { fetchSchedule } from '../services/entertainer'; // 백엔드 통신 함수
+import { fetchSchedule, createSchedule } from '../services/entertainer'; // 백엔드 통신 함수
 import './CalendarCss.css'; // 스타일 시트
+import AddScheduleModal from './CreateSchedule'; // 스케줄 생성 모달 컴포넌트
 
 function ScheduleCalendar() {
     const [schedules, setSchedules] = useState([]);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [tooltipContent, setTooltipContent] = useState(null);
     const [tooltipCoords, setTooltipCoords] = useState({ top: 0, left: 0 });
-
-    const { x, y, reference, floating, strategy } = useFloating({
-        placement: 'top',
-        middleware: [autoPlacement()],
-    });
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        // 컴포넌트가 마운트될 때 스케줄 데이터를 가져옴
         const loadSchedules = async () => {
             const schedulesData = await fetchSchedule();
             setSchedules(schedulesData);
@@ -57,6 +52,16 @@ function ScheduleCalendar() {
         return null;
     };
 
+    const handleAddSchedule = async (newSchedule) => {
+        try {
+            const createdSchedule = await createSchedule(newSchedule);
+            setSchedules(prevSchedules => [...prevSchedules, createdSchedule]);
+            setIsModalOpen(false); // 스케줄 추가 후 모달 닫기
+        } catch (error) {
+            console.error('Error creating schedule:', error);
+        }
+    };
+
     return (
         <div className="calendar-container">
             <Calendar
@@ -73,7 +78,6 @@ function ScheduleCalendar() {
                                         className="schedule-dot"
                                         onMouseEnter={(event) => showTooltip(date, event)}
                                         onMouseLeave={() => setTooltipContent(null)}
-                                        ref={reference}
                                     />
                                 )}
                             </div>
@@ -84,17 +88,25 @@ function ScheduleCalendar() {
             />
             {tooltipContent && (
                 <div
-                    ref={floating}
                     style={{
-                        position: strategy,
-                        top: y ?? 0,
-                        left: x ?? 0,
+                        position: 'absolute',
+                        top: tooltipCoords.top,
+                        left: tooltipCoords.left,
                         zIndex: 2000,
                     }}
                     className="tooltip"
                 >
                     {tooltipContent}
                 </div>
+            )}
+            <button className="add-schedule-btn" onClick={() => setIsModalOpen(true)}>
+                스케줄 생성하기
+            </button>
+            {isModalOpen && (
+                <AddScheduleModal
+                    selectedDate={selectedDate}
+                    onClose={() => setIsModalOpen(false)}
+                />
             )}
         </div>
     );

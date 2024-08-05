@@ -20,6 +20,7 @@
     width: 90%;
     max-width: 500px;
     position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 모달에 그림자 추가 */
 }
 
 /* 모달 닫기 버튼 스타일 */
@@ -39,29 +40,39 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.3s ease; /* 부드러운 색상 변경 */
+}
+
+.modal-close:hover {
+    background-color: #c62828; /* 버튼 호버 시 색상 변경 */
 }
 
 /* 제목, 카테고리, 설명 입력 필드 스타일 */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* 입력 필드 간의 간격을 늘림 */
 }
 
 .form-group label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-weight: 600; /* 레이블을 더 두드러지게 */
+    margin-bottom: 8px;
+    color: #333; /* 레이블 텍스트 색상 */
 }
 
-.form-group input, .form-group select, .form-group textarea {
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px; /* 입력 필드의 패딩을 늘림 */
     border: 1px solid #ddd;
     border-radius: 4px;
+    box-sizing: border-box; /* 패딩이 전체 너비에 포함되도록 설정 */
+    font-size: 16px; /* 입력 텍스트 크기 설정 */
 }
 
 .form-group textarea {
     resize: vertical;
-    height: 100px;
+    height: 120px; /* 텍스트 영역의 높이를 늘림 */
 }
 
 /* 제출 버튼 스타일 */
@@ -69,13 +80,14 @@
     background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 12px 20px; /* 버튼 패딩을 늘림 */
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* 부드러운 색상 변경 */
 }
 
 .submit-btn:hover {
