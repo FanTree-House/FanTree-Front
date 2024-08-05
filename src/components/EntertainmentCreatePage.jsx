@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createEntertainment } from '../service/entertainmentService';
+import { createEntertainment } from '../service/EntertainmentService';
 import './EntertainmentCreatePage.css'; // 스타일 시트 임포트
 
 const EntertainmentCreatePage = () => {

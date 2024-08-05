@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Link 임포트
 import ArtistGroupService from '../service/ArtistGroupService'; // 서비스 임포트
 import './MainPage.css'; // 기존 스타일 파일
 
@@ -10,6 +11,7 @@ const MainPage = () => {
         const fetchArtistGroups = async () => {
             try {
                 const data = await ArtistGroupService.getArtistGroups('', 0, 15); // 페이지 0, 크기 15로 호출
+                console.log(data);
                 setArtistGroups(data); // 상태 업데이트
             } catch (error) {
                 console.error('Error fetching artist groups:', error);
@@ -19,9 +21,8 @@ const MainPage = () => {
         const fetchAllArtistGroups = async () => {
             try {
                 const data = await ArtistGroupService.getAllArtistGroups(); // 모든 아티스트 그룹 조회
-                console.log(data)
+                console.log(data);
                 setArtistProfiles(data); // 모든 아티스트 그룹 저장
-
             } catch (error) {
                 console.error('Error fetching all artist groups:', error);
             }
@@ -51,7 +52,7 @@ const MainPage = () => {
                         {/* 1위 항목 */}
                         <li key={artistGroups[0]?.id} className="ranking-item first">
                             <span className="ranking-position">1위</span>
-                            <img src={artistGroups[0]?.artistProfilePicture} alt={artistGroups[0]?.groupName}
+                            <img src={artistGroups[0]?.artistGroupProfileImageUrl} alt={artistGroups[0]?.groupName}
                                  className="artist-image"/>
                             <span className="group-name">{artistGroups[0]?.groupName}</span>
                         </li>
@@ -61,7 +62,7 @@ const MainPage = () => {
                         {artistGroups.slice(1, 15).map((group, index) => (
                             <li key={group?.id} className="ranking-item">
                                 <span className="ranking-position">{index + 2}위</span>
-                                <img src={group?.artistProfilePicture} alt={group?.groupName} className="artist-image"/>
+                                <img src={group?.artistGroupProfileImageUrl} alt={group?.groupName} className="artist-image"/>
                                 <span className="group-name">{group?.groupName}</span>
                             </li>
                         ))}
@@ -73,11 +74,15 @@ const MainPage = () => {
                 <ul className="profile-list">
                     {artistProfiles.length > 0 ? (
                         artistProfiles.map((artist) => (
-                            <li key={artist?.id} className="profile-item">
-                                <img src={artist?.artistProfilePicture} alt={artist?.artistName}
+                            <Link
+                                to={`/group/${artist.groupName}`} // 그룹 페이지로의 링크
+                                key={artist?.id}
+                                className="profile-item"
+                            >
+                                <img src={artist?.artistGroupProfileImageUrl} alt={artist?.artistName}
                                      className="artist-profile-image"/>
                                 <span className="profile-group-name">{artist?.groupName}</span>
-                            </li>
+                            </Link>
                         ))
                     ) : (
                         <li>아티스트 프로필이 없습니다.</li>

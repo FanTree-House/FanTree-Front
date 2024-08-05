@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getAllArtistGroups } from '../service/groupService';
-import { createArtistGroup } from "../service/createGroupService";
+import { getAllArtistGroups } from '../service/GroupService';
+import { createArtistGroup } from "../service/CreateGroupService";
 import './ArtistGroupCreatePage.css';
 
 const ArtistGroupCreatePage = () => {
