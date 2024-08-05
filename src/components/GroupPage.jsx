@@ -60,21 +60,6 @@ const GroupPage = () => {
         }
     };
 
-    // 아티스트 피드 상세팝업창 열기
-/*    const openFeedPopup = async (feedId) => {
-        try {
-            const feed = await fetchArtistFeed(groupName, feedId); // 특정 피드 불러오기
-            setSelectedFeed(feed); // 선택된 피드 설정
-        } catch (error) {
-            alert(error.message);
-        }
-    };*/
-
-    // 아티스트 피드 상세팝업창 닫기
- /*   const closeFeedPopup = () => {
-        setSelectedFeed(null);
-    };*/
-
     if (!groupDetails) return <div>Loading...</div>;
 
     return (
@@ -124,9 +109,6 @@ const GroupPage = () => {
                     </div>
                 ))}
             </div>
-            {/*{selectedFeed && ( // 선택된 피드가 있을 때 FeedPopup을 렌더링
-                <FeedPopup feed={selectedFeed} onClose={closeFeedPopup} isSubscribed={isSubscribed} />
-            )}*/}
         </div>
     );
 };

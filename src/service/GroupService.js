@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
 // 그룹 조회니까 구독한 유저, 그룹에 속해있는 아티스트 토큰
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnRpc3QxIiwiYXV0aCI6IkFSVElTVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIyODIwMDg3LCJpYXQiOjE3MjI4MTgyODd9.p2Bx9BuAoWCHtXNl87g6iQr7vISMfTQR_zN-4JP8cIU'; // JWT 토큰
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImF1dGgiOiJVU0VSIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI4NjQ5MjgsImlhdCI6MTcyMjg2MzEyOH0.DuSBAx29AbMYcf531JUjW531xBMzQWQdB63yIAyZQJM'; // JWT 토큰
 
 // 아티스트 그룹 불러오기
 export const fetchGroupDetails = async (groupName) => {
@@ -57,9 +57,9 @@ export const fetchFeedComments = async (groupName, feedId, page = 0) => {
 };
 
 // 댓글 생성
-export const postComment = async (groupName, feedId, commentText) => {
+export const postComment = async (groupName, feedId, newComment) => {
     try {
-        await axios.post(`${API_BASE_URL}/${groupName}/feeds/${feedId}/comment`, { text: commentText }, {
+        await axios.post(`${API_BASE_URL}/${groupName}/feed/${feedId}/comment`, { "contents" : newComment }, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`

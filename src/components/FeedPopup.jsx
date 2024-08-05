@@ -13,10 +13,8 @@ const FeedPopup = () => {
         const loadFeed = async () => {
             try {
                 const loadedFeed = await fetchArtistFeed(groupName, feedId); // groupName과 feed.id를 사용하여 데이터 가져오기
-                console.log(loadedFeed);
                 setFeedData(loadedFeed);
                 const loadedComments = await fetchFeedComments(groupName, feedId);
-                console.log(loadedComments);
                 setComments(loadedComments);
             } catch (error) {
                 console.error('Error fetching feed:', error);
@@ -85,7 +83,7 @@ const FeedPopup = () => {
                                 onChange={handleCommentChange}
                                 placeholder="Write a comment..."
                             />
-                            <button onClick={handleCommentSubmit}>Post Comment</button>
+                            <button onClick={handleCommentSubmit}>게시글 작성</button>
                         </div>
                     )}
                 </div>
