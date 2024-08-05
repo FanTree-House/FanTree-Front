@@ -1,15 +1,14 @@
-import React, {useState, useEffect} from 'react';
-import {fetchSchedule, createNotice, fetchNotices} from '../services/entertainer';
+import React, { useState, useEffect } from 'react';
+import { createSchedule, createNotice, fetchSchedule, fetchNotices } from '../services/entertainer';
 import Notices from './EnterNotice';
-import EnterSchedule from './EnterSchedule';
-import EnterHeader from './EnterHeader'; // 경로가 정확한지 확인하세요
+import ScheduleCalendar from './EnterSchedule'; // 실제 파일 이름에 맞게 수정
+import EnterHeader from './EnterHeader';
 import './EntertainerPage.css';
 
 const EnterPage = () => {
     const [notices, setNotices] = useState([]);
     const [schedules, setSchedules] = useState([]);
-    const enterName = ""; //그룹네임 하이브지정
-
+    const enterName = ""; // 그룹네임 하이브지정
 
     useEffect(() => {
         const loadNotices = async () => {
@@ -21,17 +20,17 @@ const EnterPage = () => {
             }
         };
 
-
-        const loadSchedules = async (enterName) => {
+        const loadSchedules = async () => {
             try {
-                const data = await fetchSchedule(enterName); // enterName을 전달
+                const data = await fetchSchedule(enterName);
                 setSchedules(data);
             } catch (error) {
                 console.error('Error loading schedules:', error);
             }
         };
-        loadNotices(enterName);
-        loadSchedules(enterName); // enterName을 전달
+
+        loadNotices();
+        loadSchedules();
     }, [enterName]);
 
     const handleCreateNotice = async (newNotice) => {
@@ -43,11 +42,26 @@ const EnterPage = () => {
         }
     };
 
+    const handleCreateSchedule = async (newSchedule) => {
+        try {
+            const createdSchedule = await createSchedule(newSchedule);
+            setSchedules(prevSchedules => {
+                const updatedSchedules = [...prevSchedules, createdSchedule];
+                return updatedSchedules;
+            });
+        } catch (error) {
+            console.error('Error creating schedule:', error);
+        }
+    };
+
     return (
         <div className="App">
             <EnterHeader/>
             <Notices notices={notices} onAddNotice={handleCreateNotice}/>
-            <EnterSchedule schedules={schedules}/>
+            <ScheduleCalendar
+                schedules={schedules}
+                onAddSchedule={handleCreateSchedule}
+            />
         </div>
     );
 };

@@ -4,6 +4,7 @@ import './ArtistCreatePageCss.css'; // CSS 파일을 import 합니다.
 
 const ArtistCreatePage = () => {
     const [artistName, setArtistName] = useState('');
+    const [introduction, setIntroduction] = useState('');
     const [photo, setPhoto] = useState(null);
     const [message, setMessage] = useState('');
 
@@ -11,6 +12,10 @@ const ArtistCreatePage = () => {
     const handleArtistNameChange = (e) => {
         setArtistName(e.target.value);
     };
+
+    const handleIntroductionChange = (e) => {
+        setIntroduction(e.target.value)
+    }
 
     const handlePhotoChange = (e) => {
         setPhoto(e.target.files[0]);
@@ -20,9 +25,9 @@ const ArtistCreatePage = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("artistName", artistName);
+        formData.append("introduction", introduction )
         formData.append('file', photo);
-        console.log('아티스트계정 : ' + artistName)
-        console.log('파일 : ' + photo)
+
         try {
             const responseMessage = await createArtist(formData);
             setMessage(responseMessage);
@@ -41,6 +46,14 @@ const ArtistCreatePage = () => {
                         type="text"
                         value={artistName}
                         onChange={handleArtistNameChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>아티스트 소개 : </label>
+                    <input
+                        type="text"
+                        value={introduction}
+                        onChange={handleIntroductionChange}
                     />
                 </div>
                 <div className="form-group">

@@ -15,8 +15,6 @@ const AddPostPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // 파일 및 내용 제출 로직 추가
-        console.log('파일:', file);
-        console.log('내용:', content);
     };
 
     const handleCancel = () => {

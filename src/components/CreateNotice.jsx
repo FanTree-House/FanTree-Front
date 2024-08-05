@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import './NoticeModalCss.css';
-import {createNotice} from "../services/entertainer";
+import { createNotice } from '../services/entertainer'; // API 호출 함수
 
-function CreateNotice({ isOpen, onClose }) {
+function CreateNotice({ isOpen, onClose, onSubmit }) {
     const [title, setTitle] = useState('');
     const [contents, setContents] = useState('');
-    const [category, setCategory] = useState('Notice'); // 기본값 설정
-    const [message, setMessage] = useState(''); // 기본값 설정
+    const [category, setCategory] = useState('Notice');
+    const [message, setMessage] = useState('');
 
-    const handleNoticeTitle = (e) => {setTitle(e.target.value);};
-    const handleContents = (e) => {setContents(e.target.value);};
-    const handleCategory = (e) => {setCategory(e.target.value);};
+    const handleNoticeTitle = (e) => { setTitle(e.target.value); };
+    const handleContents = (e) => { setContents(e.target.value); };
+    const handleCategory = (e) => { setCategory(e.target.value); };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const responseMessage = await createNotice({
-                title,
-                contents
-            });
-            setMessage(responseMessage);
+            const newNotice = await createNotice({ title, contents, category });
+            setMessage('공지사항이 등록되었습니다.');
+            // 제출 후 모달을 닫고, 부모 컴포넌트의 공지사항 목록을 새로고침합니다.
+            onSubmit(newNotice);
+            onClose();
         } catch (error) {
-            setMessage(error.message);
+            setMessage('공지사항 등록에 실패했습니다.');
         }
     };
 
@@ -66,6 +66,7 @@ function CreateNotice({ isOpen, onClose }) {
                     </div>
                     <button type="submit" className="submit-btn">제출</button>
                 </form>
+                {message && <p>{message}</p>}
             </div>
         </div>
     );

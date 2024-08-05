@@ -14,13 +14,14 @@
 }
 
 .logo img {
-    width: 100px;
-    height: auto;
-    margin-right: 20px;
+    width: 400px;
+    height: 100px;
+    left: 100px;
 }
 
 .company-intro {
     flex-grow: 1;
+    margin-left: 200px;
     text-align: center;
 }
 
@@ -97,4 +98,13 @@
     border: none;
     bottom: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.schedule-dot {
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%;
+    display: block;
+    margin: 2px auto;
 }
