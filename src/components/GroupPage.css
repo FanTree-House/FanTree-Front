@@ -1,88 +1,122 @@
-/*
-!* styles/GroupPage.css *!
 .group-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: #f5f5f5;
     padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .group-header {
     display: flex;
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 20px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.group-image {
+    flex: 0 0 150px;
+    margin-right: 20px;
 }
 
 .group-image img {
-    max-width: 100%;
+    width: 100%;
     border-radius: 8px;
 }
 
 .group-info {
-    margin-left: 20px;
+    flex: 1;
 }
 
 .group-info h1 {
-    font-size: 2em;
-    margin: 0;
+    font-size: 24px;
+    margin: 0 0 10px;
+    color: #333;
 }
 
 .group-info button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.group-info button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.group-info button:hover:not(:disabled) {
+    background-color: #0056b3;
 }
 
 .group-info p {
-    margin-top: 10px;
-}
-
-.group-info ul {
-    margin-top: 10px;
-    list-style-type: none;
-    padding: 0;
-}
-
-.group-info ul li {
-    margin-bottom: 5px;
+    margin: 10px 0;
+    color: #555;
 }
 
 .artist-feeds {
-    width: 100%;
-    max-width: 800px;
+    margin-top: 20px;
+}
+
+.artist-feeds h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
 }
 
 .feed {
-    border: 1px solid #ddd;
+    background-color: #fff;
     border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
 }
 
-.feed-header {
-    display: flex;
-    align-items: center;
+.feed:hover {
+    transform: translateY(-2px);
 }
 
-.feed-header img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.feed-content p {
+.feed-content {
     margin: 10px 0;
 }
 
-.feed-content img {
-    max-width: 100%;
-    border-radius: 8px;
+.feed-content p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #444;
 }
 
 .feed-footer {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
-}*/
+    align-items: center;
+}
+
+.feed-footer span {
+    font-size: 14px;
+    color: #888;
+}
+
+.feed-footer button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.feed-footer button:hover {
+    background-color: #ff4c4c;
+}
+
+.more {
+    color: #007bff;
+    cursor: pointer;
+}

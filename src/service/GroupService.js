@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
 // 그룹 조회니까 구독한 유저, 그룹에 속해있는 아티스트 토큰
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImF1dGgiOiJVU0VSIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI4NjQ5MjgsImlhdCI6MTcyMjg2MzEyOH0.DuSBAx29AbMYcf531JUjW531xBMzQWQdB63yIAyZQJM'; // JWT 토큰
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImF1dGgiOiJVU0VSIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI4NjY4NTgsImlhdCI6MTcyMjg2NTA1OH0.b6pAjXBH79FY8woPsXiWN6jRkta_ManwgTecu1c_RF0'; // JWT 토큰
 
 // 아티스트 그룹 불러오기
 export const fetchGroupDetails = async (groupName) => {
@@ -85,9 +85,26 @@ export const getAllArtistGroups = async () => {
     }
 };
 
-export const subscribeToGroup = async (artistGroupName) => {
+// 구독
+export const subscribeToGroup = async (groupName) => {
     try {
-        await axios.post(`${API_BASE_URL}/artistGroup/subscript/${artistGroupName}`);
+        await axios.post(`${API_BASE_URL}/artistGroup/subscript/${groupName}`, {
+            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true
+        });
+    } catch (error) {
+        console.error('Error subscribing to group:', error);
+        throw error;
+    }
+};
+
+// 구독 취소
+export const cancelSubscribe = async (groupName) => {
+    try {
+        await axios.delete(`${API_BASE_URL}/artistGroup/subscript/${groupName}`, {
+            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true
+        });
     } catch (error) {
         console.error('Error subscribing to group:', error);
         throw error;

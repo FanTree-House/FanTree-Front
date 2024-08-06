@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {fetchArtistFeeds, fetchGroupDetails, likeFeed, subscribeToGroup} from '../service/GroupService';
+import {fetchArtistFeeds, fetchGroupDetails, likeFeed, subscribeToGroup, cancelSubscribe} from '../service/GroupService';
 import './GroupPage.css';
 
 const GroupPage = () => {
@@ -8,7 +8,7 @@ const GroupPage = () => {
     const { groupName } = useParams();
     const [groupDetails, setGroupDetails] = useState(null);
     const [artistFeeds, setArtistFeeds] = useState([]);
-    const [isSubscribed, setIsSubscribed] = useState(false);
+    const [Subscribe, setSubscribe] = useState(false);
 
     useEffect(() => {
         const loadGroupDetails = async () => {
@@ -23,7 +23,6 @@ const GroupPage = () => {
         const loadArtistFeeds = async () => {
             try {
                 const feeds = await fetchArtistFeeds(groupName);
-                console.log(feeds);
                 setArtistFeeds(feeds);
             } catch (error) {
                 alert(error.message);
@@ -34,14 +33,20 @@ const GroupPage = () => {
         loadArtistFeeds();
     }, [groupName]);
 
+    // Feed 상세 페이지
     const openFeedPopup = (feedId) => {
         navigate(`/group/${groupName}/feed/${feedId}`); // 피드 ID에 따라 URL 변경
     };
 
+    // 구독버튼
     const handleSubscribe = async () => {
         try {
-            await subscribeToGroup(groupName);
-            setIsSubscribed(true);
+            if (Subscribe === false){
+                await subscribeToGroup(groupName);
+            } else {
+                await cancelSubscribe(groupName);
+            }
+            setSubscribe(!Subscribe);
         } catch (error) {
             alert(error.message);
         }
@@ -70,8 +75,8 @@ const GroupPage = () => {
                 </div>
                 <div className="group-info">
                     <h1>{groupDetails.name}</h1>
-                    <button onClick={handleSubscribe} disabled={isSubscribed}>
-                        {isSubscribed ? 'Subscribed' : 'Subscribe'}
+                    <button onClick={handleSubscribe} disabled={Subscribe}>
+                        {Subscribe ? 'Cancel a subscription' : 'Subscribe'}
                     </button>
                     <p>{groupDetails.info}</p>
                     <ul>
