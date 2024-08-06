@@ -8,6 +8,7 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,13 +16,11 @@ function LoginPage() {
     try {
       const response = await login(id, password);
       console.log('로그인 성공:', response);
-      // 로그인 성공 후 처리 (예: 리다이렉트)
+      navigate('/');
     } catch (error) {
       setError(error.message || '로그인에 실패했습니다.');
     }
   };
-
-
 
 
   const handleKakaoLogin = async () => {
