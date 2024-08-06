@@ -1,25 +1,25 @@
-// 엔터 생성 서비스
-
+// src/services/entertainmentService.js
 import axios from 'axios';
 
-// API URL 정의
 const API_URL = 'http://localhost:8080/enter';
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWVudGVyMSIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI1MjE3OTIsImlhdCI6MTcyMjUxOTk5Mn0.9b9trQ0OplLkfduww9Nnb6zkIdukGvApGBPDK4FOiEU'; // 직접 입력한 JWT 토큰
 
-// 엔터테인먼트 생성 함수
-export const createEntertainment = async (enterData) => {
+export const createEntertainment = async (enterData, token) => {
     try {
-        const response = await axios.post(API_URL, enterData, {
+        const formData = new FormData();
+        formData.append('file', enterData.file);
+        formData.append('enterName', enterData.enterName);
+        formData.append('enterNumber', enterData.enterNumber);
+
+        const response = await axios.post(API_URL, formData, {
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` // JWT 토큰 추가
+                // 'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}` // 여기에 토큰을 사용합니다
             },
-            withCredentials: true // 쿠키를 포함한 요청
         });
 
-        return response.data; // 생성된 데이터 반환
+        return response.data;
     } catch (error) {
         console.error('Error creating entertainment:', error);
-        throw error; // 오류 전달
+        throw error;
     }
 };

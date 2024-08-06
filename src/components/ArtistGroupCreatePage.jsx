@@ -1,39 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { getAllArtistGroups } from '../service/GroupService';
-import { createArtistGroup } from "../service/CreateGroupService";
+import { getAllArtistGroups, createArtistGroup } from '../service/CreateGroupService';
 import './ArtistGroupCreatePage.css';
 
 const ArtistGroupCreatePage = () => {
     const [enterName, setEnterName] = useState('');
     const [groupName, setGroupName] = useState('');
-    const [artistProfilePicture, setArtistProfilePicture] = useState('');
+    const [artistProfilePicture, setArtistProfilePicture] = useState(null);
     const [groupInfo, setGroupInfo] = useState('');
-    const [artistIds, setArtistIds] = useState([]); // 아티스트 ID 리스트 상태 추가
-    const [availableArtists, setAvailableArtists] = useState([]); // 선택 가능한 아티스트 리스트
-    const [artistGroups, setArtistGroups] = useState([]); // 초기값을 빈 배열로 설정
+    const [artistIdsInput, setArtistIdsInput] = useState(''); // 쉼표로 구분된 아티스트 ID 입력값
+    const [artistGroups, setArtistGroups] = useState([]);
 
     const handleCreateGroup = async () => {
-        if (!enterName || !groupName || !artistProfilePicture || !groupInfo) {
+        if (!enterName || !groupName || !artistProfilePicture) {
             alert("모든 필드를 입력해 주세요.");
             return;
         }
 
-        const groupData = {
-            enterName,
-            groupName,
-            artistProfilePicture,
-            groupInfo,
-            artistIds, // artistIds로 설정
-        };
+        // 쉼표로 구분된 ID를 배열로 변환
+        const artistIds = artistIdsInput.trim();
+
+        // FormData 객체 생성
+        const formData = new FormData();
+        formData.append('enterName', enterName);
+        formData.append('groupName', groupName);
+        formData.append('groupInfo', groupInfo);
+        formData.append('file', artistProfilePicture);
+        formData.append('artistIds', artistIds); // 배열을 JSON 문자열로 변환하여 추가
 
         try {
-            await createArtistGroup(enterName, groupData);
-            fetchArtistGroups();
+            await createArtistGroup(formData);
             setEnterName('');
             setGroupName('');
-            setArtistProfilePicture('');
+            setArtistProfilePicture(null);
             setGroupInfo('');
-            setArtistIds([]); // 리스트 초기화
+            setArtistIdsInput(''); // 입력 초기화
+            fetchArtistGroups(); // 그룹 목록 새로고침
         } catch (error) {
             console.error("Failed to create artist group:", error);
         }
@@ -42,35 +43,15 @@ const ArtistGroupCreatePage = () => {
     const fetchArtistGroups = async () => {
         try {
             const groups = await getAllArtistGroups();
-            setArtistGroups(groups); // groups가 배열인지 확인
+            setArtistGroups(groups);
         } catch (error) {
             console.error("Failed to fetch artist groups:", error);
         }
     };
 
-   /* const fetchAvailableArtists = async () => {
-        // 아티스트 리스트를 가져오는 API 호출 (예시)
-        try {
-            const response = await getAllArtists(); // 이 함수는 아티스트를 가져오는 API 호출을 수행해야 함
-            setAvailableArtists(response);
-        } catch (error) {
-            console.error("Failed to fetch available artists:", error);
-        }
-    };*/
-
-/*    useEffect(() => {
+    useEffect(() => {
         fetchArtistGroups();
-        fetchAvailableArtists(); // 아티스트 리스트 가져오기
-    }, []);*/
-
-    const handleArtistIdChange = (e) => {
-        const value = e.target.value;
-        if (artistIds.includes(value)) {
-            setArtistIds(artistIds.filter(id => id !== value)); // 이미 선택된 경우 제거
-        } else {
-            setArtistIds([...artistIds, value]); // 새로 선택된 경우 추가
-        }
-    };
+    }, []);
 
     return (
         <div className="container">
@@ -90,11 +71,10 @@ const ArtistGroupCreatePage = () => {
                 className="input-field"
             />
             <input
-                type="text"
-                placeholder="Profile Picture URL"
-                value={artistProfilePicture}
-                onChange={(e) => setArtistProfilePicture(e.target.value)}
+                type="file"
+                onChange={(e) => setArtistProfilePicture(e.target.files[0])}
                 className="input-field"
+                accept="image/*"
             />
             <textarea
                 placeholder="Group Info"
@@ -102,22 +82,12 @@ const ArtistGroupCreatePage = () => {
                 onChange={(e) => setGroupInfo(e.target.value)}
                 className="textarea-field"
             />
-            <h3>Select Artist IDs</h3>
-            <ul>
-                {availableArtists.map((artist) => (
-                    <li key={artist.id}>
-                        <label>
-                            <input
-                                type="checkbox"
-                                value={artist.id}
-                                checked={artistIds.includes(artist.id)}
-                                onChange={handleArtistIdChange}
-                            />
-                            {artist.name} {/* 아티스트 이름 표시 */}
-                        </label>
-                    </li>
-                ))}
-            </ul>
+            <textarea
+                placeholder="Enter Artist IDs, separated by commas"
+                value={artistIdsInput}
+                onChange={(e) => setArtistIdsInput(e.target.value)}
+                className="textarea-field"
+            />
             <button onClick={handleCreateGroup} className="submit-button">Create Artist Group</button>
             <h3>Existing Artist Groups</h3>
             <ul className="group-list">

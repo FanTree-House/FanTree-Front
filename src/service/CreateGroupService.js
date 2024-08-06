@@ -1,21 +1,20 @@
 import axios from "axios";
 
 const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWVudGVyMSIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI1MjE3OTIsImlhdCI6MTcyMjUxOTk5Mn0.9b9trQ0OplLkfduww9Nnb6zkIdukGvApGBPDK4FOiEU'; // JWT 토큰을 여기에 삽입하세요.
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbnRlcjEiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIyOTE5NDM0LCJpYXQiOjE3MjI5MTc2MzR9.HPOprE7SKh8vTR76TtdP45k6EwW5lWcgprtaShlVJX8'; // JWT 토큰을 여기에 삽입하세요.
 
-export const createArtistGroup = async (enterName, groupData) => {
+export const createArtistGroup = async (groupData) => {
     try {
-        const data = {
-            enterName,
-            ...groupData // 나머지 그룹 데이터
-        };
 
-        const response = await axios.post(`${API_BASE_URL}/artistgroup`, data, {
+        for (let key of groupData.keys()) {
+            console.log(key, ":", groupData.get(key));
+        }
+        const response = await axios.post(`${API_BASE_URL}/artistgroup`, groupData, {
             headers: {
-                'Content-Type': 'application/json',
+                // 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}`
             },
-            withCredentials: true
+            // withCredentials: true
         });
         return response.data;
     } catch (error) {
@@ -39,7 +38,6 @@ export const getAllArtistGroups = async () => {
     }
 };
 
-/*
 // 새로운 함수: 모든 아티스트 가져오기
 export const getAllArtists = async () => {
     try {
@@ -55,4 +53,3 @@ export const getAllArtists = async () => {
         throw error;
     }
 };
-*/

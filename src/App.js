@@ -6,7 +6,8 @@ import FeedPopup from './components/FeedPopup';
 import LoginPage from './components/LoginPage'; // Import the LoginPage component
 import SignupForm from './components/SignupForm';
 import EntertainmentCreatePage from "./components/EntertainmentCreatePage";
-import ArtistGroupCreatePage from "./components/ArtistGroupCreatePage"; // Import the SignupForm component
+import ArtistGroupCreatePage from "./components/ArtistGroupCreatePage";
+import CreateArtistFeedPage from "./components/CreateArtistFeedPage"; // Import the SignupForm component
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/signup" element={<SignupForm />} />
             <Route path="/createenter" element={<EntertainmentCreatePage />} />
             <Route path="/creategroup" element={<ArtistGroupCreatePage />} />
+            <Route path="/artistgroup/:groupName/feed" element={<CreateArtistFeedPage />} />
         </Routes>
     );
 };
