@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:8080/artist';
 export const createArtist = async (artistData) => {
     try {
         const response = await axios.post(`${API_URL}`, artistData, {
-            headers: {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzIiwiYXV0aCI6IkFSVElTVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIyODU1NDkzLCJpYXQiOjE3MjI4NTM2OTN9.dEJdWmh7cfbVjHdt1wgwe86rqPneVQmvzjPVEIFiKY0"},
+            headers: {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MSIsImF1dGgiOiJBUlRJU1QiLCJzdGF0dXMiOiJBQ1RJVkVfVVNFUiIsImV4cCI6MTcyMjkxMzgwNSwiaWF0IjoxNzIyOTEyMDA1fQ.f2RZ8gFcD1DDjTbgA_5S0tHTVMFOxMlsJ8iMH5O5XSk"},
             withCredentials: true
         });
         return response.data;

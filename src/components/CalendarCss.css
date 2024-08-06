@@ -76,13 +76,11 @@
 /* 툴팁 스타일 */
 .tooltip {
     background: #333;
-    color: #fff;
     padding: 10px;
     border-radius: 4px;
     position: absolute;
     z-index: 2000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정 */
 }
 
 /* 모달 스타일 */

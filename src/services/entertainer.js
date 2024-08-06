@@ -8,7 +8,7 @@ export const createNotice = async ({title, contents}) => {
             title, contents
         }, {
             headers: {
-                Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI4NzgxMDYsImlhdCI6MTcyMjg3NjMwNn0.EPQODBbdlHE5rSfqjHes36OpxWTUQNeOVIXOlQhYADw"
+                Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI5NDYwMjMsImlhdCI6MTcyMjk0NDIyM30.3FXuKZ8KHlkVe0z6aH-XLOnDUs7yJExdxrVJE-iurCI"
             } ,withCredentials: true
         });
         if (response.status !== 200 && response.status !== 201) {
@@ -26,7 +26,7 @@ export const createSchedule = async ({ title, contents, date  }) => {
         const response = await axios.post(`${API_URL}/hybe/schedule`, {
                 title, contents, date },
             {headers:
-                {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI4NzgxMDYsImlhdCI6MTcyMjg3NjMwNn0.EPQODBbdlHE5rSfqjHes36OpxWTUQNeOVIXOlQhYADw"
+                {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI5NDYwMjMsImlhdCI6MTcyMjk0NDIyM30.3FXuKZ8KHlkVe0z6aH-XLOnDUs7yJExdxrVJE-iurCI"
             }, withCredentials: true});
         // if (response.status !== 200 && response.status !== 201) {
         //     throw new Error('일정을 추가하지 못했습니다.');
@@ -62,8 +62,9 @@ export const fetchNotices = async () => {
 export const fetchSchedule = async () => {
     try {
         const response = await axios.get(`${API_URL}/hybe/schedule`);
-        if (Array.isArray(response.data)) {
-            return response.data;
+        console.log(response.data); console.log(Array.isArray(response.data.data)); console.log(typeof response.data);
+        if (Array.isArray(response.data.data)) {
+            return response.data.data;
         } else {
             console.warn('Schedule data is not an array:', response.data);
             return [];

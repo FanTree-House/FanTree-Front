@@ -23,6 +23,7 @@ const EnterPage = () => {
         const loadSchedules = async () => {
             try {
                 const data = await fetchSchedule(enterName);
+                console.log(JSON.stringify(data));
                 setSchedules(data);
             } catch (error) {
                 console.error('Error loading schedules:', error);
@@ -31,6 +32,7 @@ const EnterPage = () => {
 
         loadNotices();
         loadSchedules();
+        console.log("구해줘")
     }, [enterName]);
 
     const handleCreateNotice = async (newNotice) => {

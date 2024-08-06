@@ -51,7 +51,7 @@ function Notices() {
                     <li>No notices available</li>
                 ) : (
                     notices.map(notice => (
-                        <li key={notice.id} className="notice-item" onClick={() => openPopup(notice)}>
+                        <li key={`notice-item_${notice.id}`} className="notice-item" onClick={() => openPopup(notice)}>
                             <h3>{notice.title}</h3>
                             <p>{notice.contents}</p>
                         </li>
