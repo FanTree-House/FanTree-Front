@@ -8,12 +8,13 @@ const GroupPage = () => {
     const { groupName } = useParams();
     const [groupDetails, setGroupDetails] = useState(null);
     const [artistFeeds, setArtistFeeds] = useState([]);
-    const [Subscribe, setSubscribe] = useState(false);
+    const [isSubscribed, setIsSubscribed] = useState(false);
 
     useEffect(() => {
         const loadGroupDetails = async () => {
             try {
                 const details = await fetchGroupDetails(groupName);
+                console.log(details);
                 setGroupDetails(details);
             } catch (error) {
                 alert(error.message);
@@ -41,12 +42,12 @@ const GroupPage = () => {
     // 구독버튼
     const handleSubscribe = async () => {
         try {
-            if (Subscribe === false){
+            if (isSubscribed === false){
                 await subscribeToGroup(groupName);
             } else {
                 await cancelSubscribe(groupName);
             }
-            setSubscribe(!Subscribe);
+            setIsSubscribed(!isSubscribed);
         } catch (error) {
             alert(error.message);
         }
@@ -75,13 +76,13 @@ const GroupPage = () => {
                 </div>
                 <div className="group-info">
                     <h1>{groupDetails.name}</h1>
-                    <button onClick={handleSubscribe} disabled={Subscribe}>
-                        {Subscribe ? 'Cancel a subscription' : 'Subscribe'}
+                    <button onClick={handleSubscribe} disabled={isSubscribed}>
+                        {isSubscribed ? '구독중' : '구독'}
                     </button>
                     <p>{groupDetails.info}</p>
                     <ul>
                         {groupDetails.artistDtos.map((artist) => (
-                            <li key={artist.id}>{artist.name}</li>
+                            <li key={artist.id}>{artist.artistName}</li>
                         ))}
                     </ul>
                 </div>
