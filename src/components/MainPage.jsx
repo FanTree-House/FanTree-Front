@@ -12,10 +12,8 @@ const MainPage = () => {
         const fetchArtistGroups = async () => {
             try {
                 const data = await ArtistGroupService.getArtistGroups('', 0, 15); // 페이지 0, 크기 15로 호출
-                setArtistGroups(data); // 상태 업데이트
-                const data = await ArtistGroupService.getArtistGroups('', 0, 15);
                 console.log(data);
-                setArtistGroups(data);
+                setArtistGroups(data); // 상태 업데이트
             } catch (error) {
                 console.error('Error fetching artist groups:', error);
             }
@@ -24,10 +22,8 @@ const MainPage = () => {
         const fetchAllArtistGroups = async () => {
             try {
                 const data = await ArtistGroupService.getAllArtistGroups(); // 모든 아티스트 그룹 조회
-                setArtistProfiles(data); // 모든 아티스트 그룹 저장
-                const data = await ArtistGroupService.getAllArtistGroups();
                 console.log(data);
-                setArtistProfiles(data);
+                setArtistProfiles(data); // 모든 아티스트 그룹 저장
             } catch (error) {
                 console.error('Error fetching all artist groups:', error);
             }
