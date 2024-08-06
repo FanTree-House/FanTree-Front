@@ -9,10 +9,13 @@ export const login = async (id, password) => {
       password
     });
 
-    if (response.data.success) {
+    if (response.data.status === 200) {
       // 로그인 성공 시 처리
       // 예: 토큰 저장
-      localStorage.setItem('token', response.data.token);
+      const token = response.headers.get("authorization")
+      console.log(token)
+      console.log(response.headers['authorization']);
+      localStorage.setItem('token', token);
       return response.data;
     } else {
       throw new Error(response.data.message || '로그인 실패');
