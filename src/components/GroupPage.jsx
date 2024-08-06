@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {fetchArtistFeeds, fetchGroupDetails, likeFeed, subscribeToGroup} from '../service/GroupService';
+import {fetchArtistFeeds, fetchGroupDetails, likeFeed, subscribeToGroup, cancelSubscribe} from '../service/GroupService';
 import './GroupPage.css';
 
 const GroupPage = () => {
@@ -14,6 +14,7 @@ const GroupPage = () => {
         const loadGroupDetails = async () => {
             try {
                 const details = await fetchGroupDetails(groupName);
+                console.log(details);
                 setGroupDetails(details);
             } catch (error) {
                 alert(error.message);
@@ -23,7 +24,6 @@ const GroupPage = () => {
         const loadArtistFeeds = async () => {
             try {
                 const feeds = await fetchArtistFeeds(groupName);
-                console.log(feeds);
                 setArtistFeeds(feeds);
             } catch (error) {
                 alert(error.message);
@@ -34,14 +34,20 @@ const GroupPage = () => {
         loadArtistFeeds();
     }, [groupName]);
 
+    // Feed 상세 페이지
     const openFeedPopup = (feedId) => {
         navigate(`/group/${groupName}/feed/${feedId}`); // 피드 ID에 따라 URL 변경
     };
 
+    // 구독버튼
     const handleSubscribe = async () => {
         try {
-            await subscribeToGroup(groupName);
-            setIsSubscribed(true);
+            if (isSubscribed === false){
+                await subscribeToGroup(groupName);
+            } else {
+                await cancelSubscribe(groupName);
+            }
+            setIsSubscribed(!isSubscribed);
         } catch (error) {
             alert(error.message);
         }
@@ -60,21 +66,6 @@ const GroupPage = () => {
         }
     };
 
-    // 아티스트 피드 상세팝업창 열기
-/*    const openFeedPopup = async (feedId) => {
-        try {
-            const feed = await fetchArtistFeed(groupName, feedId); // 특정 피드 불러오기
-            setSelectedFeed(feed); // 선택된 피드 설정
-        } catch (error) {
-            alert(error.message);
-        }
-    };*/
-
-    // 아티스트 피드 상세팝업창 닫기
- /*   const closeFeedPopup = () => {
-        setSelectedFeed(null);
-    };*/
-
     if (!groupDetails) return <div>Loading...</div>;
 
     return (
@@ -86,12 +77,12 @@ const GroupPage = () => {
                 <div className="group-info">
                     <h1>{groupDetails.name}</h1>
                     <button onClick={handleSubscribe} disabled={isSubscribed}>
-                        {isSubscribed ? 'Subscribed' : 'Subscribe'}
+                        {isSubscribed ? '구독중' : '구독'}
                     </button>
                     <p>{groupDetails.info}</p>
                     <ul>
                         {groupDetails.artistDtos.map((artist) => (
-                            <li key={artist.id}>{artist.name}</li>
+                            <li key={artist.id}>{artist.artistName}</li>
                         ))}
                     </ul>
                 </div>
@@ -124,9 +115,6 @@ const GroupPage = () => {
                     </div>
                 ))}
             </div>
-            {/*{selectedFeed && ( // 선택된 피드가 있을 때 FeedPopup을 렌더링
-                <FeedPopup feed={selectedFeed} onClose={closeFeedPopup} isSubscribed={isSubscribed} />
-            )}*/}
         </div>
     );
 };
