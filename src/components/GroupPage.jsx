@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {fetchArtistFeeds, fetchGroupDetails, likeFeed, subscribeToGroup, cancelSubscribe} from '../service/GroupService';
+import {fetchArtistFeeds, fetchGroupDetails, likeFeed, subscribeToGroup, cancelSubscribe, getIsSubscribed, fetchFeedLikes, getIsLiked } from '../service/GroupService';
 import './GroupPage.css';
 
 const GroupPage = () => {
@@ -9,12 +9,12 @@ const GroupPage = () => {
     const [groupDetails, setGroupDetails] = useState(null);
     const [artistFeeds, setArtistFeeds] = useState([]);
     const [isSubscribed, setIsSubscribed] = useState(false);
+    const [likedFeeds, setLikedFeeds] = useState({}); // 좋아요 상태를 저장할 객체
 
     useEffect(() => {
         const loadGroupDetails = async () => {
             try {
                 const details = await fetchGroupDetails(groupName);
-                console.log(details);
                 setGroupDetails(details);
             } catch (error) {
                 alert(error.message);
@@ -25,13 +25,37 @@ const GroupPage = () => {
             try {
                 const feeds = await fetchArtistFeeds(groupName);
                 setArtistFeeds(feeds);
+                // 피드의 좋아요 수를 가져오는 추가 로직
+                await Promise.all(feeds.map(async (feed) => {
+                    const likesCount = await fetchFeedLikes(groupName, feed.id);
+                    feed.likesCount = likesCount; // 가져온 좋아요 수를 feed에 설정
+
+                    // 각 피드의 좋아요 여부를 확인
+                    const liked = await getIsLiked(groupName, feed.id);
+                    setLikedFeeds(prevState => ({
+                        ...prevState,
+                        [feed.id]: liked // 피드 ID를 키로 하여 좋아요 상태 저장
+                    }));
+                }));
             } catch (error) {
                 alert(error.message);
             }
         };
 
+        // 구독 유무
+        const checkSubscriptionStatus = async () => {
+            try {
+                const subscribed = await getIsSubscribed(groupName);
+                setIsSubscribed(subscribed);
+            } catch (error) {
+                alert(error.message);
+            }
+        };
+
+
         loadGroupDetails();
         loadArtistFeeds();
+        checkSubscriptionStatus();
     }, [groupName]);
 
     // Feed 상세 페이지
@@ -42,27 +66,38 @@ const GroupPage = () => {
     // 구독버튼
     const handleSubscribe = async () => {
         try {
-            if (isSubscribed === false){
+            if (!isSubscribed){
                 await subscribeToGroup(groupName);
             } else {
                 await cancelSubscribe(groupName);
             }
-            setIsSubscribed(!isSubscribed);
+            // 구독 상태를 다시 확인하여 새로고침
+            const subscribed = await getIsSubscribed(groupName);
+            setIsSubscribed(subscribed);
         } catch (error) {
             alert(error.message);
         }
     };
 
-    const handleLike = async (feedId, index) => {
+    // 좋아요 or 좋아요 취소
+    const handleLike = async (feedId) => {
         try {
-            await likeFeed(feedId);
-            setArtistFeeds((prevFeeds) => {
-                const newFeeds = [...prevFeeds];
-                newFeeds[index].likesCount += 1; // likesCount 필드를 증가시킵니다.
-                return newFeeds;
-            });
+            await likeFeed(groupName, feedId);
+            // 좋아요 수를 다시 가져와서 업데이트
+            const likesCount = await fetchFeedLikes(groupName, feedId);
+            setArtistFeeds(prevFeeds =>
+                prevFeeds.map(feed =>
+                    feed.id === feedId ? { ...feed, likesCount } : feed
+                )
+            );
+
+            // 좋아요 상태 반전
+            setLikedFeeds(prevState => ({
+                ...prevState,
+                [feedId]: !prevState[feedId] // 현재 상태 반전
+            }));
         } catch (error) {
-            alert('Error liking feed: ', error.message);
+            alert(error.message);
         }
     };
 
@@ -76,7 +111,7 @@ const GroupPage = () => {
                 </div>
                 <div className="group-info">
                     <h1>{groupDetails.name}</h1>
-                    <button onClick={handleSubscribe} disabled={isSubscribed}>
+                    <button onClick={handleSubscribe} >
                         {isSubscribed ? '구독중' : '구독'}
                     </button>
                     <p>{groupDetails.info}</p>
@@ -89,7 +124,7 @@ const GroupPage = () => {
             </div>
             <div className="artist-feeds">
                 <h2>Feed</h2>
-                {artistFeeds.map((feed, index) => (
+                {artistFeeds.map((feed) => (
                     <div className="feed" key={feed.id} onClick={() => openFeedPopup(feed.id)}> {/* 클릭 이벤트 추가 */}
                         <div className="feed-header">
                             {/* 피드 헤더 내용 */}
@@ -108,9 +143,14 @@ const GroupPage = () => {
                             {feed.imageUrls && <img src={feed.imageUrls} alt="게시물 이미지" />}
                         </div>
                         <div className="feed-footer">
-                            <span>❤️ {feed.likesCount}</span>
+                            <button onClick={(e) => {
+                                e.stopPropagation();
+                                handleLike(feed.id);
+                            }}>
+                                {likedFeeds[feed.id] ? '❤️' : '🤍'} {feed.likesCount}
+                            </button>
                             <span>💬 {feed.commentCount}</span>
-                            <button onClick={(e) => { e.stopPropagation(); handleLike(feed.id, index); }}>좋아요</button>
+                            {/*<button onClick={(e) => { e.stopPropagation(); handleLike(feed.id); }}>좋아요</button>*/}
                         </div>
                     </div>
                 ))}
