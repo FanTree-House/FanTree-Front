@@ -68,7 +68,6 @@ input[type="password"] {
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  margin-left: 10px;
 }
 
 .submit-button {
@@ -104,20 +103,6 @@ input[type="password"] {
   object-fit: cover;
   border: 2px solid #ddd;
 }
-
-/*!* 프로필 이미지 플레이스홀더 스타일 *!
-.profile-image-placeholder {
-  width: 100px;
-  height: 100px;
-  background-color: #f0f0f0;
-  border-radius: 50%;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  color: #ccc;
-}*/
 
 /* 반응형 디자인을 위한 미디어 쿼리 */
 @media (max-width: 600px) {
