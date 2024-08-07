@@ -71,14 +71,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-
-
-
-
-
-
-
-
-
-![image](https://github.com/user-attachments/assets/b0bc6cea-3265-4d09-9bf9-4141df19b970)
-
