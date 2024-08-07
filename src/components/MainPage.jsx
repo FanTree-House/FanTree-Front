@@ -11,9 +11,9 @@ const MainPage = () => {
     useEffect(() => {
         const fetchArtistGroups = async () => {
             try {
-                const data = await ArtistGroupService.getArtistGroups('', 0, 15);
+                const data = await ArtistGroupService.getArtistGroups('', 0, 15); // 페이지 0, 크기 15로 호출
                 console.log(data);
-                setArtistGroups(data);
+                setArtistGroups(data); // 상태 업데이트
             } catch (error) {
                 console.error('Error fetching artist groups:', error);
             }
@@ -21,9 +21,10 @@ const MainPage = () => {
 
         const fetchAllArtistGroups = async () => {
             try {
-                const data = await ArtistGroupService.getAllArtistGroups();
+                const data = await ArtistGroupService.getAllArtistGroups(); // 모든 아티스트 그룹 조회
                 console.log(data);
-                setArtistProfiles(data);
+
+                setArtistProfiles(data); // 모든 아티스트 그룹 저장
             } catch (error) {
                 console.error('Error fetching all artist groups:', error);
             }
@@ -50,6 +51,7 @@ const MainPage = () => {
                 <h2>아티스트 그룹 랭킹</h2>
                 <div className="ranking-section">
                     <ul className="ranking-list">
+                        {/* 1위 항목 */}
                         <li key={artistGroups[0]?.id} className="ranking-item first">
                             <span className="ranking-position">1위</span>
                             <img src={artistGroups[0]?.artistGroupProfileImageUrl} alt={artistGroups[0]?.groupName}
@@ -58,6 +60,7 @@ const MainPage = () => {
                         </li>
                     </ul>
                     <ul className="ranking-list">
+                        {/* 2위부터 15위까지 항목 */}
                         {artistGroups.slice(1, 15).map((group, index) => (
                             <li key={group?.id} className="ranking-item">
                                 <span className="ranking-position">{index + 2}위</span>

@@ -3,11 +3,14 @@ import { Routes, Route } from 'react-router-dom';
 import MainPage from './components/MainPage';
 import GroupPage from './components/GroupPage';
 import FeedPopup from './components/FeedPopup';
-import LoginPage from './components/LoginPage'; // Import the LoginPage component
+import LoginPage from './components/LoginPage';
 import SignupForm from './components/SignupForm';
 import EntertainmentCreatePage from "./components/EntertainmentCreatePage";
 import ArtistGroupCreatePage from "./components/ArtistGroupCreatePage";
-import CreateArtistFeedPage from "./components/CreateArtistFeedPage"; // Import the SignupForm component
+import CreateArtistFeedPage from "./components/CreateArtistFeedPage";
+import EnterSignup from "./components/EnterSignup";
+import ArtistSignup from "./components/ArtistSignup";
+import AdminSignup from "./components/AdminSignup";
 
 const App = () => {
     return (
@@ -17,6 +20,9 @@ const App = () => {
             <Route path="/group/:groupName/feed/:feedId" element={<FeedPopup />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupForm />} />
+            <Route path="/enterSignup" element={<EnterSignup />} />
+            <Route path="/artistSignup" element={<ArtistSignup />} />
+            <Route path="/adminSignup" element={<AdminSignup />} />
             <Route path="/createenter" element={<EntertainmentCreatePage />} />
             <Route path="/creategroup" element={<ArtistGroupCreatePage />} />
             <Route path="/artistgroup/:groupName/feed" element={<CreateArtistFeedPage />} />

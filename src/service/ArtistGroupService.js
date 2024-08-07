@@ -3,6 +3,7 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:8080/artistgroup';
 
 const ArtistGroupService = {
+    // 아티스트 그룹 랭킹
     getArtistGroups: async (groupName = '', page = 0, size = 15) => {
         try {
             const response = await axios.get(`${BASE_URL}/search?groupName=${groupName}&page=${page}&size=${size}`);
@@ -13,6 +14,7 @@ const ArtistGroupService = {
         }
     },
 
+    //아티스트 프로필 조회
     getAllArtistGroups: async () => {
         try {
             const response = await axios.get(BASE_URL);
