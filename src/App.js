@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import ArtistCreatePage from './components/ArtistCreatePage';
+import ArtistCreatePage from './components/ArtistAccount/ArtistCreatePage';
 import EntertainerPage from './components/Enter/EntertainerPage';
 import HomePage from './components/Enter/HomePage';
 import ArtistProfile from './components/Enter/ArtistProfile'; // 새로 추가할 아티스트 프로필 컴포넌트
