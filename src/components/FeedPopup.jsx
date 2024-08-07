@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchFeedComments, postComment, likeFeed, fetchArtistFeed } from '../service/GroupService';
+import { fetchFeedComments, postComment, likeFeed, fetchArtistFeed, fetchFeedLikes, getIsLiked } from '../service/GroupService';
 import './FeedPopup.css';
 import { useParams } from "react-router-dom";
 
@@ -8,6 +8,7 @@ const FeedPopup = () => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [feedData, setFeedData] = useState(null);
+    const [isLiked, setIsLiked] = useState(false);
 
     useEffect(() => {
         const loadFeed = async () => {
@@ -16,6 +17,10 @@ const FeedPopup = () => {
                 setFeedData(loadedFeed);
                 const loadedComments = await fetchFeedComments(groupName, feedId);
                 setComments(loadedComments);
+
+                // 좋아요 상태 가져오기
+                const liked = await getIsLiked(groupName, feedId);
+                setIsLiked(liked);
             } catch (error) {
                 console.error('Error fetching feed:', error);
             }
@@ -43,7 +48,14 @@ const FeedPopup = () => {
 
     const handleLike = async () => {
         try {
-            await likeFeed(feedId);
+            await likeFeed(groupName, feedId);
+
+            // 좋아요 수를 다시 가져와서 업데이트
+            const likesCount = await fetchFeedLikes(groupName, feedId);
+            setFeedData(prevFeedData => ({
+                ...prevFeedData,
+                likesCount,
+            }));
         } catch (error) {
             console.error('Error liking feed:', error);
         }
@@ -58,8 +70,7 @@ const FeedPopup = () => {
                         <p>{feedData.contents}</p>
                         {feedData.imageUrls && <img src={feedData.imageUrls} alt="게시물 이미지" />}
                         <div className="feed-actions">
-                            <button onClick={handleLike}>❤️ Like</button>
-                            <span>{feedData.likesCount}</span>
+                            <button onClick={handleLike}>{isLiked  ? '❤️' : '🤍'} {feedData.likesCount}</button>
                         </div>
                     </div>
                 ) : (

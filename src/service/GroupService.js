@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
 // 그룹 조회니까 구독한 유저, 그룹에 속해있는 아티스트 토큰
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImF1dGgiOiJVU0VSIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI4NjY4NTgsImlhdCI6MTcyMjg2NTA1OH0.b6pAjXBH79FY8woPsXiWN6jRkta_ManwgTecu1c_RF0'; // JWT 토큰
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImF1dGgiOiJVU0VSIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI5OTI5MjksImlhdCI6MTcyMjk5MTEyOX0.5X-ihr7BXGSRd-W5-3gn8M9smW8mH0w9SHcr6JrpHS8'; // JWT 토큰
 
 // 아티스트 그룹 불러오기
 export const fetchGroupDetails = async (groupName) => {
@@ -72,6 +72,12 @@ export const postComment = async (groupName, feedId, newComment) => {
     }
 };
 
+// 좋아요 수 반환
+export const fetchFeedLikes = async (groupName, artistFeedId) => {
+    const response = await axios.get(`${API_BASE_URL}/${groupName}/feed/${artistFeedId}/likes`);
+    return response.data; // 서버에서 반환된 좋아요 수
+};
+
 export const getAllArtistGroups = async () => {
     try {
         const response = await axios.get(`${API_BASE_URL}/artistgroup`, {
@@ -85,11 +91,31 @@ export const getAllArtistGroups = async () => {
     }
 };
 
-// 구독
+// 현재 그룹에 대한 구독 여부
+export const getIsSubscribed = async (groupName) => {
+    const response = await axios.get(`${API_BASE_URL}/artistGroup/subscript/${groupName}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true
+    });
+    return response.data;
+};
+
+// 좋아요 여부
+export const getIsLiked = async (groupName, artistFeedId) => {
+    const response = await axios.get(`${API_BASE_URL}/${groupName}/feed/${artistFeedId}/check`, {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true
+    });
+    return response.data;
+};
+
+// 구독하기
 export const subscribeToGroup = async (groupName) => {
     try {
-        await axios.post(`${API_BASE_URL}/artistGroup/subscript/${groupName}`, {
-            headers: { Authorization: `Bearer ${token}` },
+        await axios.post(`${API_BASE_URL}/artistGroup/subscript/${groupName}`, {}, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
             withCredentials: true
         });
     } catch (error) {
@@ -111,12 +137,12 @@ export const cancelSubscribe = async (groupName) => {
     }
 };
 
-export const likeFeed = async (feedId) => {
+// 좋아요 or 좋아요 취소
+export const likeFeed = async (groupName, artistFeedId) => {
     try {
-        await axios.post(`${API_BASE_URL}/feeds/${feedId}/like`, {}, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
+        await axios.post(`${API_BASE_URL}/${groupName}/feed/${artistFeedId}`,{}, {
+            headers: { Authorization:  `Bearer ${token}` },
+            withCredentials: true
         });
     } catch (error) {
         console.error('Error liking feed:', error);

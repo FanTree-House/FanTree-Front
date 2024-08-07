@@ -23,6 +23,7 @@ const MainPage = () => {
             try {
                 const data = await ArtistGroupService.getAllArtistGroups(); // 모든 아티스트 그룹 조회
                 console.log(data);
+
                 setArtistProfiles(data); // 모든 아티스트 그룹 저장
             } catch (error) {
                 console.error('Error fetching all artist groups:', error);
