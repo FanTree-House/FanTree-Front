@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Calendar from 'react-calendar';
-import {fetchSchedule, createSchedule} from '../services/entertainer'; // 백엔드 통신 함수
+import {fetchSchedule, createSchedule} from '../../services/entertainer'; // 백엔드 통신 함수
 import './CalendarCss.css'; // 스타일 시트
 import AddScheduleModal from './CreateSchedule'; // 스케줄 생성 모달 컴포넌트
 

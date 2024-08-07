@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createSchedule, createNotice, fetchSchedule, fetchNotices } from '../services/entertainer';
+import { createSchedule, createNotice, fetchSchedule, fetchNotices } from '../../services/entertainer';
 import Notices from './EnterNotice';
 import ScheduleCalendar from './EnterSchedule'; // 실제 파일 이름에 맞게 수정
 import EnterHeader from './EnterHeader';
