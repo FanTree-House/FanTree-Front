@@ -75,9 +75,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-![02 Enter](https://github.com/user-attachments/assets/d60f4b75-9a48-4698-983f-1b68fb65eb8e)
 
 
 
 
+
+![image](https://github.com/user-attachments/assets/b0bc6cea-3265-4d09-9bf9-4141df19b970)
 
