@@ -88,7 +88,24 @@ input[type="password"] {
   background-color: #46b8da;
 }
 
-/* 프로필 이미지 플레이스홀더 스타일 */
+/* 프로필 이미지 관련 */
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+/*!* 프로필 이미지 플레이스홀더 스타일 *!
 .profile-image-placeholder {
   width: 100px;
   height: 100px;
@@ -100,7 +117,7 @@ input[type="password"] {
   justify-content: center;
   font-size: 40px;
   color: #ccc;
-}
+}*/
 
 /* 반응형 디자인을 위한 미디어 쿼리 */
 @media (max-width: 600px) {

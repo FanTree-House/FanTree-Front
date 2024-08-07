@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import {
   registerUser,
   sendEmailVerification,
@@ -86,18 +86,28 @@ const SignupForm = () => {
 
   return (
       <div className="signup-container">
+        <Link to="/" style={{ textDecoration: 'none' }}>
         <h1>FanTree House</h1>
+        </Link>
         <h2>회원 가입</h2>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="form-group">
-            <label htmlFor="file">Profile Image</label>
-            <input
-                type="file"
-                id="file"
-                name="file"
-                onChange={handleImageChange}
-                accept="image/*"
-            />
+            <div className="profile-image-container">
+              <img
+                  src={formData.file ? URL.createObjectURL(formData.file) : 'https://github.com/user-attachments/assets/0b652401-bde8-4ace-8754-1405cd57b3fa'}
+                  alt="Profile"
+                  className="profile-image"
+                  onClick={() => document.getElementById('file').click()}
+              />
+              <input
+                  type="file"
+                  id="file"
+                  name="file"
+                  onChange={handleImageChange}
+                  accept="image/*"
+                  style={{display: 'none'}}
+              />
+            </div>
           </div>
 
           <div className="form-group">

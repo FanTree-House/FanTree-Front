@@ -27,7 +27,7 @@ function LoginPage() {
     try {
       const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=2b0e2842adcacfeb9731a68eb4b42048&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code`;
       window.location.href = kakaoAuthUrl;
-      const token = 'kakao-token'; // 예시 토큰
+      const token = 'kakao-token';
       const response = await kakaoLogin(token);
       console.log('Kakao 로그인 성공:', response);
     } catch (error) {
@@ -37,7 +37,9 @@ function LoginPage() {
 
   return (
       <div className="login-container">
-        <h1>FanTree House</h1>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+        <h1> FanTree House</h1>
+        </Link>
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
           <input
