@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './NoticeModalCss.css';
-import { createNotice } from '../../services/entertainer'; // API 호출 함수
+import { createNotice } from '../../service/Entertainer'; // API 호출 함수
 
 function CreateNotice({ isOpen, onClose, onSubmit }) {
     const [title, setTitle] = useState('');

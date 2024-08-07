@@ -8,7 +8,7 @@ export const createNotice = async ({title, contents}) => {
             title, contents
         }, {
             headers: {
-                Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI5NDYwMjMsImlhdCI6MTcyMjk0NDIyM30.3FXuKZ8KHlkVe0z6aH-XLOnDUs7yJExdxrVJE-iurCI"
+                Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMDM0ODU4LCJpYXQiOjE3MjMwMzMwNTh9.43MC9_6uvTWsM2H28mdFgWVho9Kpa_QiOBkdOWGhPmw"
             } ,withCredentials: true
         });
         if (response.status !== 200 && response.status !== 201) {
@@ -26,7 +26,7 @@ export const createSchedule = async ({ title, contents, date  }) => {
         const response = await axios.post(`${API_URL}/hybe/schedule`, {
                 title, contents, date },
             {headers:
-                {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIzNCIsImF1dGgiOiJFTlRFUlRBSU5NRU5UIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI5NDYwMjMsImlhdCI6MTcyMjk0NDIyM30.3FXuKZ8KHlkVe0z6aH-XLOnDUs7yJExdxrVJE-iurCI"
+                {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMDM0ODU4LCJpYXQiOjE3MjMwMzMwNTh9.43MC9_6uvTWsM2H28mdFgWVho9Kpa_QiOBkdOWGhPmw"
             }, withCredentials: true});
         // if (response.status !== 200 && response.status !== 201) {
         //     throw new Error('일정을 추가하지 못했습니다.');

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createSchedule } from '../../services/entertainer';
+import { createSchedule } from '../../service/Entertainer';
 
 function AddScheduleModal({ selectedDate, onClose }) {
     const [title, setTitle] = useState('');

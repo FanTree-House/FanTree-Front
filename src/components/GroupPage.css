@@ -1,0 +1,177 @@
+.group-page {
+    background-color: #f5f5f5;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav_btn {
+    margin-top: 10px;
+    margin-left: 880px;
+    display: grid;
+    grid-auto-flow: column; /* 버튼들을 가로 방향으로 배치 */
+    gap: 10px; /* 버튼 사이의 간격 */
+    /*display: flex;*/
+    /*gap: 10px;*/
+    position: absolute; /* 인증 버튼을 절대 위치로 설정 */
+    left: 300px; /* 오른쪽 여백을 늘려서 안쪽으로 이동 */
+}
+
+.notice-button {
+    width: 200px;
+    /*padding: 5px 5px;*/
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.community-button{
+    width: 200px;
+    /*padding: 5px 5px;*/
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.subscript-button{
+    width: 200px;
+    /*padding: 5px 5px;*/
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.notice-button {
+    background-color: #007bff;
+}
+
+.subscript-button{
+    background-color: darkred;
+    color: white;
+}
+.community-button {
+    background-color: #28a745;
+}
+
+.h1{
+    margin-bottom: 200px;
+}
+.group-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.group-image {
+    flex: 0 0 150px;
+    margin-right: 0px;
+}
+
+.group-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.group-info {
+    flex: 1;
+}
+
+.group-info h1 {
+    font-size: 24px;
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.group-info button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: px;
+    max-width: 200px;
+    margin-left: 800px;
+    margin-bottom: 200px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.group-info button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.group-info button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.group-info p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.artist-feeds {
+    margin-top: 20px;
+}
+
+.artist-feeds h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.feed {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.feed:hover {
+    transform: translateY(-2px);
+}
+
+.feed-content {
+    margin: 10px 0;
+}
+
+.feed-content p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #444;
+}
+
+.feed-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.feed-footer span {
+    font-size: 14px;
+    color: #888;
+}
+
+.feed-footer button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.feed-footer button:hover {
+    background-color: #ff4c4c;
+}
+
+.more {
+    color: #007bff;
+    cursor: pointer;
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CreateNotice from './CreateNotice'; // 경로 확인
 import NoticePopup from './NoticePopup'; // 경로 확인
 import './EntertainerPage.css';
-import { fetchNotices } from '../../services/entertainer';
+import { fetchNotices } from '../../service/Entertainer';
 import entertainerPage from "./EntertainerPage"; // 경로 확인
 
 function Notices() {

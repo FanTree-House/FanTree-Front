@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/fantreefron.iml" filepath="$PROJECT_DIR$/fantreefron.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../fantreefront.iml" filepath="$PROJECT_DIR$/../fantreefront.iml" />
     </modules>
   </component>
 </project>

@@ -1,9 +1,9 @@
 import React from 'react';
 import './EntertainerPage.css'; // CSS 파일 임포트
 
-function Header() {
+function EnterHeader() {
     return (
-        <header className="header">
+        <header className="Enterheader">
             <div className="logo">
                 <img src="/path-to-your-logo.png" alt="Entertainment Logo" />
             </div>
@@ -15,4 +15,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default EnterHeader;

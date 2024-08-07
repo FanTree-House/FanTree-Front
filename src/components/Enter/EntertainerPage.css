@@ -1,22 +1,42 @@
 .entertainment-page {
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
     position: relative;
-    min-height: 100vh;
+    /*min-height: 100vh;*/
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 50px;
+.Enterheader{
+    max-width: 600px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    min-height: 100px;
+    min-width: 2200px;
+}
+
+.header-title {
+    background-color: #4a90e2;
+    font-size: 36px; /* 원하는 글꼴 크기로 설정 */
+    color: black; /* 원하는 글꼴 색상으로 설정 */
+    text-align: center; /* 텍스트를 중앙 정렬 */
+    margin: 20px 0; /* 위와 아래 여백을 설정 */
+    font-family: 'Arial', sans-serif; /* 글꼴 패밀리 설정 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 텍스트에 그림자 추가 */
+
+}
+
+.Enterpage {
+    width: 2200px;
+    color: white;
+    padding: 15px 40px;
+    position: relative;
 }
 
 .logo img {
     width: 400px;
     height: 100px;
-    left: 100px;
+    margin-left: 300px;
 }
 
 .company-intro {

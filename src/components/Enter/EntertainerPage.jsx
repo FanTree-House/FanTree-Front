@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createSchedule, createNotice, fetchSchedule, fetchNotices } from '../../services/entertainer';
+import { createSchedule, createNotice, fetchSchedule, fetchNotices } from '../../service/Entertainer';
 import Notices from './EnterNotice';
 import ScheduleCalendar from './EnterSchedule'; // 실제 파일 이름에 맞게 수정
 import EnterHeader from './EnterHeader';
@@ -59,7 +59,10 @@ const EnterPage = () => {
     };
 
     return (
-        <div className="App">
+        <div className="EnterPage">
+            <header className="header">
+                <h1 className="header-title">FanTree House</h1> {/* 클래스 추가 */}
+            </header>
             <EnterHeader/>
             <Notices notices={notices} onAddNotice={handleCreateNotice}/>
             <ScheduleCalendar
