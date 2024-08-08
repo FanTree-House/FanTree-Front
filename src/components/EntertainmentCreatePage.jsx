@@ -1,4 +1,3 @@
-// src/components/CreateEntertainment.js
 import React, { useState } from 'react';
 import { createEntertainment } from '../service/EntertainmentService';
 
@@ -7,17 +6,17 @@ const CreateEntertainment = () => {
     const [enterNumber, setEnterNumber] = useState('');
     const [file, setFile] = useState(null);
     const [message, setMessage] = useState('');
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbnRlcjEiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIyOTEzODczLCJpYXQiOjE3MjI5MTIwNzN9.744wf5chJNyiVmobxSja5Pky5L0iaLK3pV8voCe6v7I'; // 로그인 후 받은 실제 토큰
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            // const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옴
-            if (!token) {
-                setMessage('권한이 없습니다. 로그인이 필요합니다.');
-                return;
-            }
+        const token = window.localStorage.getItem('accessToken'); // 로컬 스토리지에서 토큰 가져오기
 
+        if (!token) {
+            setMessage('권한이 없습니다. 로그인이 필요합니다.');
+            return;
+        }
+
+        try {
             const enterData = {
                 enterName,
                 enterNumber: parseInt(enterNumber),
@@ -31,6 +30,7 @@ const CreateEntertainment = () => {
             setEnterNumber('');
             setFile(null);
         } catch (error) {
+            console.error('엔터테인먼트 계정 생성 실패:', error);
             setMessage('엔터테인먼트 계정 생성에 실패했습니다: ' + error.message);
         }
     };
@@ -47,7 +47,6 @@ const CreateEntertainment = () => {
                         value={enterName}
                         onChange={(e) => setEnterName(e.target.value)}
                         required
-                        pattern="^[a-zA-Z0-9]+$"
                         maxLength="20"
                     />
                 </div>
