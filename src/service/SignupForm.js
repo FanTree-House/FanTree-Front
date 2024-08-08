@@ -68,7 +68,11 @@ export const registerArtist = async (userData) => {
 
 export const registerEnter = async (userData) => {
   try {
-    const response = await axios.post(`${API_URL}/users/invite/entertainment`, userData);
+    const response = await axios.post(`${API_URL}/users/invite/entertainment`, userData,{
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    } );
     return response.data;
   } catch (error) {
     throw error.response.data;
