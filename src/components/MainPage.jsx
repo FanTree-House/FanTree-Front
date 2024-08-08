@@ -35,6 +35,7 @@ const MainPage = () => {
     }, []);
 
     const handleLogout = () => {
+        window.localStorage.clear();
         dispatch({ type: 'LOGOUT' }); // Dispatch logout action
         navigate('/'); // Redirect to main page
     };

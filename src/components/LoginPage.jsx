@@ -19,7 +19,6 @@ function LoginPage() {
     setError('');
     try {
       const response = await login(id, password);
-      window.localStorage.setItem("token", Headers.authorization);
       console.log('로그인 성공:', response);
       dispatch({
         type: 'LOGIN',
