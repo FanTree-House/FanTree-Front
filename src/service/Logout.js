@@ -4,7 +4,8 @@ const API_BASE_URL = 'http://localhost:8080';
 
 export const logout = async () => {
     try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('accessToken');
+
 
         if (!token) {
             console.warn('No token found in localStorage');
@@ -18,7 +19,7 @@ export const logout = async () => {
         });
 
         if (response.status === 200) {
-            localStorage.removeItem('token');
+            window.localStorage.clear();
             return true;
         }
         return false;
