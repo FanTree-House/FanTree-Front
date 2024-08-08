@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ArtistGroupService from '../service/ArtistGroupService';
+import { logout } from '../service/Logout';
 import { useAuthState, useAuthDispatch } from '../context/AuthContext'; // Context import
 import './MainPage.css';
 
@@ -34,8 +35,14 @@ const MainPage = () => {
         fetchAllArtistGroups();
     }, []);
 
-    const handleLogout = () => {
-        window.localStorage.clear();
+    const handleLogout = async  () => {
+        try {
+            await logout();
+            window.localStorage.clear();
+        } catch (error) {
+            console.error(error);
+        }
+
         dispatch({ type: 'LOGOUT' }); // Dispatch logout action
         navigate('/'); // Redirect to main page
     };
