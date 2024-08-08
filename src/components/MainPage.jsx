@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import Link along with useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import ArtistGroupService from '../service/ArtistGroupService';
 import './MainPage.css';
 
 const MainPage = () => {
     const [artistGroups, setArtistGroups] = useState([]);
     const [artistProfiles, setArtistProfiles] = useState([]);
-    const navigate = useNavigate(); // Initialize useNavigate
+    const [loginType, setLoginType] = useState(null); // 로그인 타입 상태 추가
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchArtistGroups = async () => {
             try {
-                const data = await ArtistGroupService.getArtistGroups('', 0, 15); // 페이지 0, 크기 15로 호출
-                console.log(data);
-                setArtistGroups(data); // 상태 업데이트
+                const data = await ArtistGroupService.getArtistGroups('', 0, 15);
+                setArtistGroups(data);
             } catch (error) {
                 console.error('Error fetching artist groups:', error);
             }
@@ -21,10 +21,8 @@ const MainPage = () => {
 
         const fetchAllArtistGroups = async () => {
             try {
-                const data = await ArtistGroupService.getAllArtistGroups(); // 모든 아티스트 그룹 조회
-                console.log(data);
-
-                setArtistProfiles(data); // 모든 아티스트 그룹 저장
+                const data = await ArtistGroupService.getAllArtistGroups();
+                setArtistProfiles(data);
             } catch (error) {
                 console.error('Error fetching all artist groups:', error);
             }
@@ -33,6 +31,62 @@ const MainPage = () => {
         fetchArtistGroups();
         fetchAllArtistGroups();
     }, []);
+
+    // 로그인 상태를 업데이트하는 함수 (예시로 사용)
+    const handleLogin = (type) => {
+        setLoginType(type);
+        navigate('/'); // 메인 페이지로 이동
+    };
+
+    const renderAuthButtons = () => {
+        if (!loginType) {
+            return (
+                <>
+                    <button className="login-button" onClick={() => navigate('/login')}>로그인</button>
+                    <button className="signup-button" onClick={() => navigate('/signup')}>회원가입</button>
+                </>
+            );
+        }
+
+        switch (loginType) {
+            case 'USER':
+                return (
+                    <>
+                        <button onClick={() => navigate('/mypage')}>마이 페이지</button>
+                        <button onClick={() => handleLogout()}>로그아웃</button>
+                    </>
+                );
+            case 'ADMIN':
+                return (
+                    <>
+                        <button onClick={() => navigate('/admin')}>관리자 버튼</button>
+                        <button onClick={() => handleLogout()}>로그아웃</button>
+                    </>
+                );
+            case 'ENTER':
+                return (
+                    <>
+                        <button onClick={() => navigate('/create-artist')}>엔터 생성</button>
+                        <button onClick={() => navigate('/create-artist-group')}>아티스트 그룹 생성</button>
+                        <button onClick={() => handleLogout()}>로그아웃</button>
+                    </>
+                );
+            case 'ARTIST':
+                return (
+                    <>
+                        <button onClick={() => navigate('/create-post')}>게시글 작성</button>
+                        <button onClick={() => handleLogout()}>로그아웃</button>
+                    </>
+                );
+            default:
+                return null;
+        }
+    };
+
+    const handleLogout = () => {
+        setLoginType(null); // 로그인 타입 초기화
+        navigate('/'); // 메인 페이지로 이동
+    };
 
     return (
         <div className="main-page">
@@ -43,15 +97,13 @@ const MainPage = () => {
                     <button className="search-button">검색</button>
                 </div>
                 <div className="auth-buttons">
-                    <button className="login-button" onClick={() => navigate('/login')}>로그인</button> {/* Navigate to LoginPage */}
-                    <button className="signup-button" onClick={() => navigate('/signup')}>회원가입</button> {/* Navigate to SignupForm */}
+                    {renderAuthButtons()} {/* 권한별 버튼 렌더링 */}
                 </div>
             </header>
             <div className="ranking-section">
                 <h2>아티스트 그룹 랭킹</h2>
                 <div className="ranking-section">
                     <ul className="ranking-list">
-                        {/* 1위 항목 */}
                         <li key={artistGroups[0]?.id} className="ranking-item first">
                             <span className="ranking-position">1위</span>
                             <img src={artistGroups[0]?.artistGroupProfileImageUrl} alt={artistGroups[0]?.groupName}
@@ -60,7 +112,6 @@ const MainPage = () => {
                         </li>
                     </ul>
                     <ul className="ranking-list">
-                        {/* 2위부터 15위까지 항목 */}
                         {artistGroups.slice(1, 15).map((group, index) => (
                             <li key={group?.id} className="ranking-item">
                                 <span className="ranking-position">{index + 2}위</span>
