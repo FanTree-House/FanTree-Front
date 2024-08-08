@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   sendEmailVerification, verifyAuthNumber,
-  checkDuplicateNickname, checkDuplicateId, registerEnter
+  checkDuplicateNickname, checkDuplicateId, registerEnter,
+    verifyPassword
 } from "../service/SignupForm";
 import './SignupForm.css';
 
@@ -24,6 +25,7 @@ const SignupForm = () => {
   const [availableEmail,setAvailableEmail] = useState(false)
   const [availableId, setAvailableId] = useState(false)
   const [availableNickname, setAvailableNickname] = useState(false)
+  const [availablePassword, setAvailavblePassowrd] = useState(false)
 
   const [errors, setErrors] = useState({});
 
@@ -36,7 +38,7 @@ const SignupForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    if (availableId && availableNickname && availableEmail){
+    if (availableId && availableNickname && availableEmail && availablePassword){
       e.preventDefault();
       const formDataToSend = new FormData();
       for (const key in formData) {
@@ -60,6 +62,9 @@ const SignupForm = () => {
     else if(!availableEmail){
       alert('이메일 인증을 확인해주세요.')
     }
+    else if (!availablePassword){
+      alert('비밀번호가 일치하지 않습니다 확인해주세요.')
+    }
   };
 
   const handleCheckDuplicateId = async () => {
@@ -81,6 +86,16 @@ const SignupForm = () => {
       alert('서버에서 오류가 발생했습니다. 다시 시도해주세요');
     }
   };
+
+  const handleCheckPassword = async () =>{
+    try {
+      const data = await verifyPassword(formData.password, formData.checkPassword);
+      setAvailavblePassowrd(!data.result)
+      alert(data.message)
+    }catch (error){
+      alert('서버에서 오류가 발생했습니다. 다시 시도해주세요');
+    }
+  }
 
   const handleSendEmailVerification = async () => {
     try {
@@ -157,7 +172,7 @@ const SignupForm = () => {
             <label htmlFor="checkPassword">Check Password</label>
             <input type="password" id="checkPassword" name="checkPassword" value={formData.checkPassword}
                    onChange={handleChange} placeholder="비밀번호 재입력" required/>
-            {/*<button type="button" className="check-button">비밀번호 확인</button>*/}
+            <button type="button" className="check-button" onClick={handleCheckPassword}>비밀번호 확인</button>
           </div>
 
           <div className="form-group">
