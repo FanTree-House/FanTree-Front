@@ -83,7 +83,7 @@ const MainPage = () => {
             case 'ARTIST':
                 return (
                     <>
-                        <button onClick={() => navigate('/create-post')}>게시글 작성</button>
+                        <button onClick={() => navigate('/artistgroup/:groupName/feed')}>게시글 작성</button>
                         <button onClick={handleLogout}>로그아웃</button>
                     </>
                 );
