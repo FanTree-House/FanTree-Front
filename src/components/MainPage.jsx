@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ArtistGroupService from '../service/ArtistGroupService';
+import { useAuthState, useAuthDispatch } from '../context/AuthContext'; // Context import
 import './MainPage.css';
 
 const MainPage = () => {
     const [artistGroups, setArtistGroups] = useState([]);
     const [artistProfiles, setArtistProfiles] = useState([]);
-    const [loginType, setLoginType] = useState(null); // 로그인 타입 상태 추가
+    const { user, userRole } = useAuthState(); // userRole도 가져옵니다
+    const dispatch = useAuthDispatch(); // Use context dispatch
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -32,14 +34,13 @@ const MainPage = () => {
         fetchAllArtistGroups();
     }, []);
 
-    // 로그인 상태를 업데이트하는 함수 (예시로 사용)
-    const handleLogin = (type) => {
-        setLoginType(type);
-        navigate('/'); // 메인 페이지로 이동
+    const handleLogout = () => {
+        dispatch({ type: 'LOGOUT' }); // Dispatch logout action
+        navigate('/'); // Redirect to main page
     };
 
     const renderAuthButtons = () => {
-        if (!loginType) {
+        if (!user) {
             return (
                 <>
                     <button className="login-button" onClick={() => navigate('/login')}>로그인</button>
@@ -48,44 +49,40 @@ const MainPage = () => {
             );
         }
 
-        switch (loginType) {
+        switch (userRole) {
             case 'USER':
                 return (
                     <>
                         <button onClick={() => navigate('/mypage')}>마이 페이지</button>
-                        <button onClick={() => handleLogout()}>로그아웃</button>
+                        <button onClick={handleLogout}>로그아웃</button>
                     </>
                 );
             case 'ADMIN':
                 return (
                     <>
                         <button onClick={() => navigate('/admin')}>관리자 버튼</button>
-                        <button onClick={() => handleLogout()}>로그아웃</button>
+                        <button onClick={handleLogout}>로그아웃</button>
                     </>
                 );
-            case 'ENTER':
+            case 'ENTERTAINMENT':
                 return (
                     <>
-                        <button onClick={() => navigate('/create-artist')}>엔터 생성</button>
+                        <button onClick={() => navigate('/create-enter')}>엔터 생성</button>
                         <button onClick={() => navigate('/create-artist-group')}>아티스트 그룹 생성</button>
-                        <button onClick={() => handleLogout()}>로그아웃</button>
+                        <button onClick={() => navigate('/create-notice')}>공지사항 작성</button>
+                        <button onClick={handleLogout}>로그아웃</button>
                     </>
                 );
             case 'ARTIST':
                 return (
                     <>
                         <button onClick={() => navigate('/create-post')}>게시글 작성</button>
-                        <button onClick={() => handleLogout()}>로그아웃</button>
+                        <button onClick={handleLogout}>로그아웃</button>
                     </>
                 );
             default:
                 return null;
         }
-    };
-
-    const handleLogout = () => {
-        setLoginType(null); // 로그인 타입 초기화
-        navigate('/'); // 메인 페이지로 이동
     };
 
     return (
@@ -102,25 +99,21 @@ const MainPage = () => {
             </header>
             <div className="ranking-section">
                 <h2>아티스트 그룹 랭킹</h2>
-                <div className="ranking-section">
-                    <ul className="ranking-list">
-                        <li key={artistGroups[0]?.id} className="ranking-item first">
-                            <span className="ranking-position">1위</span>
-                            <img src={artistGroups[0]?.artistGroupProfileImageUrl} alt={artistGroups[0]?.groupName}
-                                 className="artist-image"/>
-                            <span className="group-name">{artistGroups[0]?.groupName}</span>
+                <ul className="ranking-list">
+                    <li key={artistGroups[0]?.id} className="ranking-item first">
+                        <span className="ranking-position">1위</span>
+                        <img src={artistGroups[0]?.artistGroupProfileImageUrl} alt={artistGroups[0]?.groupName}
+                             className="artist-image"/>
+                        <span className="group-name">{artistGroups[0]?.groupName}</span>
+                    </li>
+                    {artistGroups.slice(1, 15).map((group, index) => (
+                        <li key={group?.id} className="ranking-item">
+                            <span className="ranking-position">{index + 2}위</span>
+                            <img src={group?.artistGroupProfileImageUrl} alt={group?.groupName} className="artist-image"/>
+                            <span className="group-name">{group?.groupName}</span>
                         </li>
-                    </ul>
-                    <ul className="ranking-list">
-                        {artistGroups.slice(1, 15).map((group, index) => (
-                            <li key={group?.id} className="ranking-item">
-                                <span className="ranking-position">{index + 2}위</span>
-                                <img src={group?.artistGroupProfileImageUrl} alt={group?.groupName} className="artist-image"/>
-                                <span className="group-name">{group?.groupName}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                    ))}
+                </ul>
             </div>
             <div className="profile-section">
                 <h2>아티스트 프로필</h2>
