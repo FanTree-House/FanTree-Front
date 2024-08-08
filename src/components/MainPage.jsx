@@ -37,8 +37,7 @@ const MainPage = () => {
 
     const handleLogout = async  () => {
         try {
-            await logout();
-            window.localStorage.clear();
+            const response = await logout();
         } catch (error) {
             console.error(error);
         }
