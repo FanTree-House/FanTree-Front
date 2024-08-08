@@ -4,28 +4,22 @@ const API_BASE_URL = 'http://localhost:8080';
 
 export const login = async (id, password) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/users/login`, {
-      id,
-      password
-    });
+    const response = await axios.post(`${API_BASE_URL}/users/login`, { id, password });
 
-    if (response.data.status === 200) {
-      // 로그인 성공 시 처리
-      // 예: 토큰 저장
-      const token = response.headers.get("authorization")
-      console.log(token)
-      console.log(response.headers['authorization']);
+    if (response.status === 200) { // 상태 코드를 체크하도록 수정
+      const token = response.headers['authorization']; // 헤더를 올바르게 읽어오기
+      console.log('Authorization token:', token);
       localStorage.setItem('token', token);
       return response.data;
     } else {
       throw new Error(response.data.message || '로그인 실패');
     }
   } catch (error) {
-    // 에러 처리
     console.error('Login error:', error);
     throw error;
   }
 };
+
 
 // 소셜 로그인을 위한 추가 함수들
 
