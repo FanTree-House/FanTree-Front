@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   sendEmailVerification, verifyAuthNumber,
-  checkDuplicateNickname, checkDuplicateId, registerAdmin, registerUser
+  checkDuplicateNickname, checkDuplicateId, registerAdmin
 } from "../service/SignupForm";
 import './SignupForm.css';
 
@@ -39,7 +39,7 @@ const SignupForm = () => {
     }
 
     try {
-      await registerUser(formDataToSend);
+      await registerAdmin(formDataToSend);
       alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
       navigate('/');
     } catch (error) {
