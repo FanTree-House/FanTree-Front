@@ -25,8 +25,8 @@ const App = () => {
                 <Route path="/enterSignup" element={<EnterSignup />} />
                 <Route path="/artistSignup" element={<ArtistSignup />} />
                 <Route path="/adminSignup" element={<AdminSignup />} />
-                <Route path="/createenter" element={<EntertainmentCreatePage />} />
-                <Route path="/creategroup" element={<ArtistGroupCreatePage />} />
+                <Route path="/create-enter" element={<EntertainmentCreatePage />} />
+                <Route path="/create-artist-group" element={<ArtistGroupCreatePage />} />
                 <Route path="/artistgroup/:groupName/feed" element={<CreateArtistFeedPage />} />
             </Routes>
         </AuthProvider>
