@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   sendEmailVerification, verifyAuthNumber,
   checkDuplicateNickname, checkDuplicateId, registerEnter,
+  verifyPassword
 } from "../service/SignupForm";
 import './SignupForm.css';
 
@@ -21,6 +22,11 @@ const SignupForm = () => {
     file: null,
   });
 
+  const [availableEmail,setAvailableEmail] = useState(false)
+  const [availableId, setAvailableId] = useState(false)
+  const [availableNickname, setAvailableNickname] = useState(false)
+  const [availablePassword, setAvailavblePassowrd] = useState(false)
+
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -32,39 +38,64 @@ const SignupForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formDataToSend = new FormData();
-    for (const key in formData) {
-      formDataToSend.append(key, formData[key]);
+    if (availableId && availableNickname && availableEmail && availablePassword){
+      e.preventDefault();
+      const formDataToSend = new FormData();
+      for (const key in formData) {
+        formDataToSend.append(key, formData[key]);
+      }
+      try {
+        await registerEnter(formDataToSend);
+        alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
+        navigate('/');
+      } catch (error) {
+        console.error('Registration failed:', error);
+        setErrors({ ...errors, submit: '회원가입에 실패했습니다. 다시 시도해주세요.' });
+      }
     }
-
-    try {
-      await registerEnter(formDataToSend);
-      alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
-      navigate('/');
-    } catch (error) {
-      console.error('Registration failed:', error);
-      setErrors({ ...errors, submit: '회원가입에 실패했습니다. 다시 시도해주세요.' });
+    else if(!availableId) {
+      alert('ID 중복확인을 해주세요.') //새로고침 안되게끔
+    }
+    else if (!availableNickname){
+      alert('닉네임 중복확인을 해주세요.')
+    }
+    else if(!availableEmail){
+      alert('이메일 인증을 확인해주세요.')
+    }
+    else if (!availablePassword){
+      alert('비밀번호가 일치하지 않습니다 확인해주세요.')
     }
   };
 
   const handleCheckDuplicateId = async () => {
     try {
-      await checkDuplicateId(formData.id);
-      alert('아이디가 사용 가능합니다.');
+      const data = await checkDuplicateId(formData.id);
+      setAvailableId(!data.result)
+      alert(data.message)
     } catch (error) {
-      setErrors({ ...errors, id: '이미 사용 중인 아이디입니다.' });
+      alert('서버에서 오류가 발생했습니다. 다시 시도해주세요');
     }
   };
 
   const handleCheckDuplicateNickname = async () => {
     try {
-      await checkDuplicateNickname(formData.nickname);
-      alert('닉네임이 사용 가능합니다.');
+      const data =  await checkDuplicateNickname(formData.nickname);
+      setAvailableNickname(!data.result)
+      alert(data.message)
     } catch (error) {
-      setErrors({ ...errors, nickname: '이미 사용 중인 닉네임입니다.' });
+      alert('서버에서 오류가 발생했습니다. 다시 시도해주세요');
     }
   };
+
+  const handleCheckPassword = async () =>{
+    try {
+      const data = await verifyPassword(formData.password, formData.checkPassword);
+      setAvailavblePassowrd(!data.result)
+      alert(data.message)
+    }catch (error){
+      alert('서버에서 오류가 발생했습니다. 다시 시도해주세요');
+    }
+  }
 
   const handleSendEmailVerification = async () => {
     try {
@@ -77,10 +108,11 @@ const SignupForm = () => {
 
   const handleVerifyAuthNumber = async () => {
     try {
-      await verifyAuthNumber(formData.id, formData.email, formData.authNumber);
-      alert('인증이 완료되었습니다.');
+      const data = await verifyAuthNumber(formData.id, formData.email, formData.authNumber);
+      setAvailableEmail(!data.result)
+      alert(data.message)
     } catch (error) {
-      setErrors({ ...errors, authNumber: '인증 번호가 올바르지 않습니다.' });
+      alert('서버에서 오류가 발생했습니다. 다시 시도해주세요');
     }
   };
 
@@ -140,7 +172,7 @@ const SignupForm = () => {
             <label htmlFor="checkPassword">Check Password</label>
             <input type="password" id="checkPassword" name="checkPassword" value={formData.checkPassword}
                    onChange={handleChange} placeholder="비밀번호 재입력" required/>
-            {/*<button type="button" className="check-button">비밀번호 확인</button>*/}
+            <button type="button" className="check-button" onClick={handleCheckPassword}>비밀번호 확인</button>
           </div>
 
           <div className="form-group">
