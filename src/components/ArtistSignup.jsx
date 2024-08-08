@@ -46,7 +46,7 @@ const SignupForm = () => {
       try {
       await registerArtist(formDataToSend);
         alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
-        navigate('/');
+        navigate('/login');
       } catch (error) {
         console.error('Registration failed:', error);
         setErrors({ ...errors, submit: '회원가입에 실패했습니다. 다시 시도해주세요.' });
@@ -66,7 +66,14 @@ const SignupForm = () => {
     }
   };
 
+
   const handleCheckDuplicateId = async () => {
+    // ID 입력값 검증
+    if (!formData.id.trim()) {
+      alert("ID를 입력해 주세요");
+      return;
+    }
+
     try {
       const data = await checkDuplicateId(formData.id);
       setAvailableId(!data.result)
@@ -77,6 +84,12 @@ const SignupForm = () => {
   };
 
   const handleCheckDuplicateNickname = async () => {
+    // 닉네임 입력값 검증
+    if (!formData.nickname.trim()) {
+      alert("닉네임을 입력해 주세요");
+      return;
+    }
+
     try {
       const data =  await checkDuplicateNickname(formData.nickname);
       setAvailableNickname(!data.result)
@@ -87,6 +100,12 @@ const SignupForm = () => {
   };
 
   const handleCheckPassword = async () =>{
+    // 비밀번호 입력값 검증
+    if (!formData.password.trim() || !formData.checkPassword.trim()) {
+      alert("비밀번호와 확인 비밀번호를 입력해 주세요");
+      return;
+    }
+
     try {
       const data = await verifyPassword(formData.password, formData.checkPassword);
       setAvailavblePassowrd(data.result)
