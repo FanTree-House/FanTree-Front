@@ -91,11 +91,6 @@ const GroupPage = () => {
                 )
             );
 
-            // 좋아요 상태 반전
-            setLikedFeeds(prevState => ({
-                ...prevState,
-                [feedId]: !prevState[feedId] // 현재 상태 반전
-            }));
         } catch (error) {
             alert(error.message);
         }
