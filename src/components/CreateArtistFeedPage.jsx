@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // useNavigate 추가
 import styled from 'styled-components';
 import { createFeed } from '../service/FeedService';
 import Header from '../components/Header';
@@ -80,6 +80,7 @@ const CreateArtistFeedPage = () => {
     const { groupName } = useParams(); // URL 파라미터에서 groupName 가져오기
     const [content, setContent] = useState('');
     const [images, setImages] = useState([]);
+    const navigate = useNavigate(); // useNavigate 훅 추가
 
     const handleContentChange = (e) => {
         setContent(e.target.value);
@@ -107,10 +108,11 @@ const CreateArtistFeedPage = () => {
         }
 
         try {
-            const response = await createFeed(groupName, content, images);
+            await createFeed(groupName, content, images);
             alert('피드가 성공적으로 작성되었습니다!');
             setContent('');
             setImages([]);
+            navigate(`/group/${groupName}`); // 그룹 페이지로 이동
         } catch (error) {
             alert('피드 작성에 실패했습니다.');
         }
