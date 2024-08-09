@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
-const token = window.localStorage.getItem('accessToken');
 
-// 피드 생성
+// 피드 생성 함수
 export const createFeed = async (groupName, content, image) => {
     const formData = new FormData();
 
@@ -17,11 +16,14 @@ export const createFeed = async (groupName, content, image) => {
         formData.append('file', image);
     }
 
+    // 로컬 스토리지에서 JWT 토큰을 가져옵니다.
+    const token = window.localStorage.getItem('accessToken');
+
     try {
         const response = await axios.post(`${API_BASE_URL}/${groupName}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'Authorization': `${token}`
+                'Authorization': `${token}` // 토큰을 Bearer 형식으로 추가
             },
         });
         return response.data;

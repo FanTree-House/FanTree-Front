@@ -13,7 +13,7 @@ export const createEntertainment = async (enterData, token) => {
         const response = await axios.post(API_URL, formData, {
             headers: {
                 // 'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${token}` // 여기에 토큰을 사용합니다
+                'Authorization': `${token}` // 여기에 토큰을 사용합니다
             },
         });
 
