@@ -48,7 +48,7 @@ const MainPage = () => {
 
     return (
         <div className="main-page">
-            <Header /> {/* 헤더 컴포넌트 추가 */}
+            <Header />
             <div className="ranking-section">
                 <h2>아티스트 그룹 랭킹</h2>
                 <ul className="ranking-list">

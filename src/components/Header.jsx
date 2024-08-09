@@ -1,17 +1,21 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuthState, useAuthDispatch } from '../context/AuthContext'; // Context import
-import { logout } from '../service/Logout'; // logout 함수 임포트
+import {Link, useNavigate} from 'react-router-dom';
+import {useAuthState, useAuthDispatch} from '../context/AuthContext'; // Context import
+import {logout} from '../service/Logout'; // logout 함수 임포트
+import './Header.css';
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+
 
 const Header = () => {
-    const { user, userRole } = useAuthState(); // 권한과 사용자 정보 가져오기
+    const {user, userRole} = useAuthState(); // 권한과 사용자 정보 가져오기
     const dispatch = useAuthDispatch();
     const navigate = useNavigate();
 
     const handleLogout = async () => {
         try {
             await logout();
-            dispatch({ type: 'LOGOUT' });
+            dispatch({type: 'LOGOUT'});
             localStorage.removeItem('user'); // 로컬 스토리지에서 사용자 정보만 제거
             navigate('/');
         } catch (error) {
@@ -48,7 +52,7 @@ const Header = () => {
                 return (
                     <>
                         <button onClick={() => navigate('/create-enter')}>엔터 생성</button>
-                        <button onClick={() => navigate('/create-artist-group')}>아티스트 그룹 생성</button>
+                        <button onClick={() => navigate('/create-artist-group')}>그룹 생성 </button>
                         <button onClick={() => navigate('/create-notice')}>공지사항 작성</button>
                         <button onClick={handleLogout}>로그아웃</button>
                     </>
@@ -67,13 +71,13 @@ const Header = () => {
 
     return (
         <header className="header">
-            <div className="logo">FanTree House</div>
+            <Link to="/" className="logo">FanTree House</Link>
             <div className="search-container">
-                <input type="text" placeholder="검색..." className="search-input"/>
+                <input type="text" className="search-input" placeholder="검색..."/>
                 <button className="search-button">검색</button>
             </div>
             <div className="auth-buttons">
-                {renderAuthButtons()} {/* 권한별 버튼 렌더링 */}
+                {renderAuthButtons()}
             </div>
         </header>
     );
