@@ -1,8 +1,16 @@
 /* 메인 페이지 전체 스타일 */
 .main-page {
     font-family: 'Arial', sans-serif;
-    padding: 20px;
+    padding: 0; /* 기본 여백 제거 */
     background-color: #f3f4f6;
+    margin: 0; /* 기본 여백 제거 */
+}
+
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    padding: 20px; /* 콘텐츠 여백 추가 */
+    margin-top: 60px; /* 헤더 높이 만큼 여백 추가 */
 }
 
 /* 랭킹 섹션 스타일 */
@@ -11,6 +19,7 @@
     text-align: center; /* 전체 랭킹 섹션 가운데 정렬 */
 }
 
+/* 랭킹 목록 스타일 */
 .ranking-list {
     list-style-type: none;
     padding: 0;
