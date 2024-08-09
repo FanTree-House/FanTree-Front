@@ -21,6 +21,8 @@ const SignupForm = () => {
     adminToken:'1np0t2ncesuuuud3rTaMeng5'
   });
 
+
+
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -33,7 +35,7 @@ const SignupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formDataToSend = new FormData();
+    const formDataToSend = new FormData()
     for (const key in formData) {
       formDataToSend.append(key, formData[key]);
     }

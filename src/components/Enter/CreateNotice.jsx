@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import './NoticeModalCss.css';
-import { createNotice } from '../../service/Entertainer'; // API 호출 함수
+import { createNotice } from '../../service/Entertainer';
+import {useParams} from "react-router-dom"; // API 호출 함수
 
 function CreateNotice({ isOpen, onClose, onSubmit }) {
     const [title, setTitle] = useState('');
     const [contents, setContents] = useState('');
     const [category, setCategory] = useState('Notice');
     const [message, setMessage] = useState('');
+    const {enterName} = useParams()
 
     const handleNoticeTitle = (e) => { setTitle(e.target.value); };
     const handleContents = (e) => { setContents(e.target.value); };
     const handleCategory = (e) => { setCategory(e.target.value); };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const newNotice = await createNotice({ title, contents, category });
+            const newNotice = await createNotice({ enterName, title, contents, category });
             setMessage('공지사항이 등록되었습니다.');
             // 제출 후 모달을 닫고, 부모 컴포넌트의 공지사항 목록을 새로고침합니다.
             onSubmit(newNotice);

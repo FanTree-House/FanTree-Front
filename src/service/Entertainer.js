@@ -1,14 +1,13 @@
 import axios from 'axios';
+const API_URL = `http://localhost:8080/feed`;
 
-const API_URL = 'http://localhost:8080/feed';
-
-export const createNotice = async ({title, contents}) => {
+export const createNotice = async ({enterName, title, contents}) => {
     try {
-        const response = await axios.post(`${API_URL}/hybe/notice`, {
+        const response = await axios.post(`${API_URL}/${enterName}/notice`, {
             title, contents
         }, {
             headers: {
-                Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMDM0ODU4LCJpYXQiOjE3MjMwMzMwNTh9.43MC9_6uvTWsM2H28mdFgWVho9Kpa_QiOBkdOWGhPmw"
+                Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbnRlcjEiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMTg2NzE5LCJpYXQiOjE3MjMxODQ5MTl9.o9DKhVCapxfbKspxJslK7ITde4uuZ5QbMqCBEwHhCLI"
             } ,withCredentials: true
         });
         if (response.status !== 200 && response.status !== 201) {
@@ -21,13 +20,13 @@ export const createNotice = async ({title, contents}) => {
     }
 }
 
-export const createSchedule = async ({ title, contents, date  }) => {
+export const createSchedule = async ({enterName, title, contents, date  }) => {
     try {
-        const response = await axios.post(`${API_URL}/hybe/schedule`, {
+        const response = await axios.post(`${API_URL}/${enterName}/schedule`, {
                 title, contents, date },
             {headers:
-                {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMDM0ODU4LCJpYXQiOjE3MjMwMzMwNTh9.43MC9_6uvTWsM2H28mdFgWVho9Kpa_QiOBkdOWGhPmw"
-            }, withCredentials: true});
+                    {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbnRlcjEiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMTg2NzE5LCJpYXQiOjE3MjMxODQ5MTl9.o9DKhVCapxfbKspxJslK7ITde4uuZ5QbMqCBEwHhCLI"
+                    }, withCredentials: true});
         // if (response.status !== 200 && response.status !== 201) {
         //     throw new Error('일정을 추가하지 못했습니다.');
         // }
@@ -39,9 +38,9 @@ export const createSchedule = async ({ title, contents, date  }) => {
 };
 
 
-export const fetchNotices = async () => {
+export const fetchNotices = async (enterName) => {
     try {
-        const response = await axios.get(`${API_URL}/hybe/notice`);
+        const response = await axios.get(`${API_URL}/${enterName}/notice`);
         console.log('Server response data:', response.data); // 응답 데이터 확인
         if (Array.isArray(response.data)) {
             return response.data;
@@ -59,10 +58,9 @@ export const fetchNotices = async () => {
     }
 };
 
-export const fetchSchedule = async () => {
+export const fetchSchedule = async (enterName) => {
     try {
-        const response = await axios.get(`${API_URL}/hybe/schedule`);
-        console.log(response.data); console.log(Array.isArray(response.data.data)); console.log(typeof response.data);
+        const response = await axios.get(`${API_URL}/${enterName}/schedule`);
         if (Array.isArray(response.data.data)) {
             return response.data.data;
         } else {

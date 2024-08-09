@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createSchedule } from '../../service/Entertainer';
+import {useParams} from "react-router-dom";
 
 function AddScheduleModal({ selectedDate, onClose }) {
     const [title, setTitle] = useState('');
@@ -7,6 +8,7 @@ function AddScheduleModal({ selectedDate, onClose }) {
     const [date, setDate] = useState('');
     const [category, setCategory] = useState('Schedule');
     const [message, setMessage] = useState('');
+    const {enterName} = useParams()
 
     useEffect(() => {
         if (selectedDate) {
@@ -34,6 +36,7 @@ function AddScheduleModal({ selectedDate, onClose }) {
         e.preventDefault();
         try {
             const response = await createSchedule({
+                enterName,
                 title,
                 contents,
                 date,

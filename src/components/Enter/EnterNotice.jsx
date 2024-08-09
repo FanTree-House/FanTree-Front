@@ -3,20 +3,21 @@ import CreateNotice from './CreateNotice'; // 경로 확인
 import NoticePopup from './NoticePopup'; // 경로 확인
 import './EntertainerPage.css';
 import { fetchNotices } from '../../service/Entertainer';
-import entertainerPage from "./EntertainerPage"; // 경로 확인
+import {useParams} from "react-router-dom"; // 경로 확인
 
 function Notices() {
     const [notices, setNotices] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedNotice, setSelectedNotice] = useState(null);
+    const {enterName} = useParams()
 
     useEffect(() => {
         loadNotices();
-    }, []);
+    }, [enterName]);
 
     const loadNotices = async () => {
         try {
-            const noticesData = await fetchNotices();
+            const noticesData = await fetchNotices(enterName);
             setNotices(noticesData);
         } catch (error) {
             console.error('Error fetching notices:', error);
@@ -27,7 +28,6 @@ function Notices() {
     const closeModal = () => setIsModalOpen(false);
 
     const openPopup = (notice) => {
-        console.log('Selected notice:', notice); // 선택된 데이터 확인
         setSelectedNotice(notice);
     };
 

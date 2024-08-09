@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createArtist } from '../../service/ArtistAccountCreate'; // API 모듈을 import 합니다.
+import { createArtist } from '../../service/ArtistAccount'; // API 모듈을 import 합니다.
 import './ArtistCreatePageCss.css'; // CSS 파일을 import 합니다.
 
 const ArtistCreatePage = () => {

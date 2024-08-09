@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTIiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMDE0OTA5LCJpYXQiOjE3MjMwMTMxMDl9.oz7q-m8rzQcSwRZa3JZloG9mvTl-KmF7jstIw_zdtOM'; // JWT 토큰을 여기에 삽입하세요.
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbnRlcjEiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMTAwMTE3LCJpYXQiOjE3MjMwOTgzMTd9.AoV9BSDmUrvoi1MjCULwfTE8LSJ8nCH3ZWFzg6xCj0M'; // JWT 토큰을 여기에 삽입하세요.
 
 export const createArtistGroup = async (groupData) => {
     try {

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
 // 그룹 조회니까 구독한 유저, 그룹에 속해있는 아티스트 토큰
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImF1dGgiOiJVU0VSIiwic3RhdHVzIjoiQUNUSVZFX1VTRVIiLCJleHAiOjE3MjI5OTI5MjksImlhdCI6MTcyMjk5MTEyOX0.5X-ihr7BXGSRd-W5-3gn8M9smW8mH0w9SHcr6JrpHS8'; // JWT 토큰
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbnRlcjEiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMTg1MDExLCJpYXQiOjE3MjMxODMyMTF9.M-xN85od-smGgNbyLYIFxI9T7fViurQL1FHpw4IykEs'; // JWT 토큰
 
 // 아티스트 그룹 불러오기
 export const fetchGroupDetails = async (groupName) => {
@@ -55,6 +55,7 @@ export const fetchFeedComments = async (groupName, feedId, page = 0) => {
         throw error;
     }
 };
+
 
 // 댓글 생성
 export const postComment = async (groupName, feedId, newComment) => {

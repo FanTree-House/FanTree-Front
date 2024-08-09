@@ -20,14 +20,6 @@ import './App.css';
 const App = () => {
     return (
         <Router>
-            {/*<nav>*/}
-            {/*    <ul>*/}
-            {/*        <li><Link to="/">처음화면으로</Link></li>*/}
-            {/*        <li><Link to="/create-artist">아티스트 계정생성</Link></li>*/}
-            {/*        <li><Link to="/entertainer-page">엔터테이너먼트 공지사항</Link></li>*/}
-            {/*        <li><Link to="/artist-profile/1">아티스트 프로필 조회</Link></li>*/}
-            {/*    </ul>*/}
-            {/*</nav>*/}
             <Routes>
                 <Route path="/" element={<MainPage/>}/>
                 <Route path="/group/:groupName" element={<GroupPage/>}/>
@@ -39,11 +31,10 @@ const App = () => {
                 <Route path="/adminSignup" element={<AdminSignup/>}/>
                 <Route path="/createenter" element={<EntertainmentCreatePage/>}/>
                 <Route path="/creategroup" element={<ArtistGroupCreatePage/>}/>
+                <Route path="/creatArtistAccount" element={<ArtistCreatePage/>}/>
                 <Route path="/artistgroup/:groupName/feed" element={<CreateArtistFeedPage/>}/>
-                <Route path="/create-artist" element={<ArtistCreatePage/>}/>
-                <Route path="/entertainer-page" element={<EntertainerPage/>}/>
-                <Route path="/artist-profile/:id" element={<ArtistProfile/>}/>
-                <Route path="/entertainer-page" element={<EntertainerPage/>}/>
+                <Route path="/group/:groupName/enter/:enterName" element={<EntertainerPage/>}/>
+                <Route path="/artistProfile/:artistId" element={<ArtistProfile />} />
             </Routes>
         </Router>
     );

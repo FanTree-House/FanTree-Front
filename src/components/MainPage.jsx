@@ -77,7 +77,7 @@ const MainPage = () => {
                     {artistProfiles.length > 0 ? (
                         artistProfiles.map((artist) => (
                             <Link
-                                to={`/group/${artist.groupName}`}
+                                to={`/group/${artist.groupName}?enter=${artist.enterName}`}
                                 key={artist?.id}
                                 className="profile-item"
                             >

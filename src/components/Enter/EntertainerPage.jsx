@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { createSchedule, createNotice, fetchSchedule, fetchNotices } from '../../service/Entertainer';
+import React, {useState, useEffect} from 'react';
+import {createSchedule, createNotice, fetchSchedule, fetchNotices} from '../../service/Entertainer';
 import Notices from './EnterNotice';
 import ScheduleCalendar from './EnterSchedule'; // 실제 파일 이름에 맞게 수정
 import EnterHeader from './EnterHeader';
 import './EntertainerPage.css';
+import {useParams} from "react-router-dom";
 
 const EnterPage = () => {
     const [notices, setNotices] = useState([]);
     const [schedules, setSchedules] = useState([]);
-    const enterName = ""; // 그룹네임 하이브지정
+    const {enterName} = useParams();
 
     useEffect(() => {
         const loadNotices = async () => {
@@ -23,16 +24,13 @@ const EnterPage = () => {
         const loadSchedules = async () => {
             try {
                 const data = await fetchSchedule(enterName);
-                console.log(JSON.stringify(data));
                 setSchedules(data);
             } catch (error) {
                 console.error('Error loading schedules:', error);
             }
         };
-
         loadNotices();
         loadSchedules();
-        console.log("구해줘")
     }, [enterName]);
 
     const handleCreateNotice = async (newNotice) => {

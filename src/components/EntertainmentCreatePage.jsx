@@ -7,7 +7,7 @@ const CreateEntertainment = () => {
     const [enterNumber, setEnterNumber] = useState('');
     const [file, setFile] = useState(null);
     const [message, setMessage] = useState('');
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbnRlcjEiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIyOTEzODczLCJpYXQiOjE3MjI5MTIwNzN9.744wf5chJNyiVmobxSja5Pky5L0iaLK3pV8voCe6v7I'; // 로그인 후 받은 실제 토큰
+    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbnRlcjEiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMTAwMTE3LCJpYXQiOjE3MjMwOTgzMTd9.AoV9BSDmUrvoi1MjCULwfTE8LSJ8nCH3ZWFzg6xCj0M'; // 로그인 후 받은 실제 토큰
 
     const handleSubmit = async (e) => {
         e.preventDefault();
