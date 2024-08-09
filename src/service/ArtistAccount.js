@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+const token = window.localStorage.getItem('accessToken');
 // 기본 API URL 설정
 const API_URL = 'http://localhost:8080/artist';
 
@@ -8,7 +8,7 @@ export const createArtist = async (artistData) => {
     try {
         const response = await axios.post(API_URL, artistData, {
             headers: {
-                Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnRpc3QxIiwiYXV0aCI6IkFSVElTVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMTAxMDU4LCJpYXQiOjE3MjMwOTkyNTh9.xi-iImJe1udbDWWERHdEGRohsJWbNaHyGuDk1bUQhI8"
+                'Authorization': `${token}`
             }
         });
         return response.data;

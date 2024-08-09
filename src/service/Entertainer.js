@@ -1,5 +1,6 @@
 import axios from 'axios';
 const API_URL = `http://localhost:8080/feed`;
+const token = window.localStorage.getItem('accessToken');
 
 export const createNotice = async ({enterName, title, contents}) => {
     try {
@@ -7,7 +8,7 @@ export const createNotice = async ({enterName, title, contents}) => {
             title, contents
         }, {
             headers: {
-                Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbnRlcjEiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMTg2NzE5LCJpYXQiOjE3MjMxODQ5MTl9.o9DKhVCapxfbKspxJslK7ITde4uuZ5QbMqCBEwHhCLI"
+                'Authorization': `${token}`
             } ,withCredentials: true
         });
         if (response.status !== 200 && response.status !== 201) {
@@ -24,8 +25,10 @@ export const createSchedule = async ({enterName, title, contents, date  }) => {
     try {
         const response = await axios.post(`${API_URL}/${enterName}/schedule`, {
                 title, contents, date },
-            {headers:
-                    {Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbnRlcjEiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMTg2NzE5LCJpYXQiOjE3MjMxODQ5MTl9.o9DKhVCapxfbKspxJslK7ITde4uuZ5QbMqCBEwHhCLI"
+            {
+                headers:
+                    {
+                        'Authorization': `${token}`
                     }, withCredentials: true});
         // if (response.status !== 200 && response.status !== 201) {
         //     throw new Error('일정을 추가하지 못했습니다.');

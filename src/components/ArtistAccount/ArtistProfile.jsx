@@ -12,7 +12,6 @@ const ArtistProfile = () => {
         const fetchArtist = async () => {
             try {
                 setLoading(true);
-                // artistId를 사용하여 아티스트 정보를 가져옴
                 const response = await axios.get(`http://localhost:8080/artist/${artistId}`);
                 if (response.data) {
                     setArtist(response.data);

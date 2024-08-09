@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import Link along with useNavigate
+import { Link } from 'react-router-dom';
 import ArtistGroupService from '../service/ArtistGroupService';
+import Header from '../components/Header'; // 헤더 컴포넌트 임포트
+import { useAuthDispatch } from '../context/AuthContext';
 import './MainPage.css';
 
 const MainPage = () => {
+
+    const dispatch = useAuthDispatch();
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            dispatch({
+                type: 'LOGIN',
+                payload: user,
+            });
+        }
+    }, [dispatch]);
+
     const [artistGroups, setArtistGroups] = useState([]);
     const [artistProfiles, setArtistProfiles] = useState([]);
-    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect(() => {
         const fetchArtistGroups = async () => {
             try {
-                const data = await ArtistGroupService.getArtistGroups('', 0, 15); // 페이지 0, 크기 15로 호출
-                console.log(data);
-                setArtistGroups(data); // 상태 업데이트
+                const data = await ArtistGroupService.getArtistGroups('', 0, 15);
+                setArtistGroups(data);
             } catch (error) {
                 console.error('Error fetching artist groups:', error);
             }
@@ -21,10 +34,8 @@ const MainPage = () => {
 
         const fetchAllArtistGroups = async () => {
             try {
-                const data = await ArtistGroupService.getAllArtistGroups(); // 모든 아티스트 그룹 조회
-                console.log(data);
-
-                setArtistProfiles(data); // 모든 아티스트 그룹 저장
+                const data = await ArtistGroupService.getAllArtistGroups();
+                setArtistProfiles(data);
             } catch (error) {
                 console.error('Error fetching all artist groups:', error);
             }
@@ -37,30 +48,18 @@ const MainPage = () => {
     return (
         <div className="main-page">
             <header className="header">
-                <div className="logo">FanTree House</div>
-                <div className="search-container">
-                    <input type="text" placeholder="검색..." className="search-input"/>
-                    <button className="search-button">검색</button>
-                </div>
-                <div className="auth-buttons">
-                    <button className="login-button" onClick={() => navigate('/login')}>로그인</button> {/* Navigate to LoginPage */}
-                    <button className="signup-button" onClick={() => navigate('/signup')}>회원가입</button> {/* Navigate to SignupForm */}
-                </div>
+                <Header />
             </header>
-            <div className="ranking-section">
-                <h2>아티스트 그룹 랭킹</h2>
+            <div className="main-content">
                 <div className="ranking-section">
+                    <h2>아티스트 그룹 랭킹</h2>
                     <ul className="ranking-list">
-                        {/* 1위 항목 */}
                         <li key={artistGroups[0]?.id} className="ranking-item first">
                             <span className="ranking-position">1위</span>
                             <img src={artistGroups[0]?.artistGroupProfileImageUrl} alt={artistGroups[0]?.groupName}
                                  className="artist-image"/>
                             <span className="group-name">{artistGroups[0]?.groupName}</span>
                         </li>
-                    </ul>
-                    <ul className="ranking-list">
-                        {/* 2위부터 15위까지 항목 */}
                         {artistGroups.slice(1, 15).map((group, index) => (
                             <li key={group?.id} className="ranking-item">
                                 <span className="ranking-position">{index + 2}위</span>

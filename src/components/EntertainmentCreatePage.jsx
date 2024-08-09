@@ -1,80 +1,100 @@
-// src/components/CreateEntertainment.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createEntertainment } from '../service/EntertainmentService';
+import Header from '../components/Header';
+import './EntertainmentCreatePage.css';
 
 const CreateEntertainment = () => {
     const [enterName, setEnterName] = useState('');
     const [enterNumber, setEnterNumber] = useState('');
     const [file, setFile] = useState(null);
     const [message, setMessage] = useState('');
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbnRlcjEiLCJhdXRoIjoiRU5URVJUQUlOTUVOVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIzMTAwMTE3LCJpYXQiOjE3MjMwOTgzMTd9.AoV9BSDmUrvoi1MjCULwfTE8LSJ8nCH3ZWFzg6xCj0M'; // 로그인 후 받은 실제 토큰
+    const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (!enterName || !enterNumber || !file) {
+            setMessage('모든 필드를 채워주세요.');
+            return;
+        }
+
         try {
-            // const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옴
+            const token = window.localStorage.getItem('accessToken');
             if (!token) {
-                setMessage('권한이 없습니다. 로그인이 필요합니다.');
+                setMessage('로그인이 필요합니다.');
                 return;
             }
 
-            const enterData = {
-                enterName,
-                enterNumber: parseInt(enterNumber),
-                file
-            };
+            const formData = new FormData();
+            formData.append('enterName', enterName);
+            formData.append('enterNumber', enterNumber);
+            formData.append('file', file);
 
-            const response = await createEntertainment(enterData, token);
-            setMessage('엔터테인먼트 계정이 성공적으로 생성되었습니다.');
-            // 폼 초기화
-            setEnterName('');
-            setEnterNumber('');
-            setFile(null);
+            const response = await createEntertainment(formData, token);
+            if (response.ok) {
+                setMessage('엔터테인먼트 생성 성공!');
+                setEnterName('');
+                setEnterNumber('');
+                setFile(null);
+                navigate('/artist-group-create');
+            } else {
+                setMessage('엔터테인먼트 생성 실패');
+            }
         } catch (error) {
-            setMessage('엔터테인먼트 계정 생성에 실패했습니다: ' + error.message);
+            console.error(error);
+            setMessage('엔터테인먼트 생성 실패');
         }
     };
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setFile(file);
+    };
+
     return (
-        <div>
-            <h2>엔터테인먼트 계정 생성</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="enterName">소속사 이름:</label>
+        <>
+            <Header />
+            <div className="container">
+                <h2 className="centered-title">Create Entertainment</h2>
+                <form onSubmit={handleSubmit}>
+                    <label className="image-upload-wrapper centered">
+                        {file ? (
+                            <img
+                                src={URL.createObjectURL(file)}
+                                alt="Uploaded"
+                                className="uploaded-image"
+                            />
+                        ) : (
+                            <div className="image-placeholder">이미지를 넣어주세요</div>
+                        )}
+                        <input
+                            type="file"
+                            onChange={handleImageChange}
+                            className="image-input"
+                            accept="image/*"
+                        />
+                    </label>
                     <input
                         type="text"
-                        id="enterName"
+                        placeholder="Enter Name"
                         value={enterName}
                         onChange={(e) => setEnterName(e.target.value)}
+                        className="input-field centered"
                         required
-                        pattern="^[a-zA-Z0-9]+$"
-                        maxLength="20"
                     />
-                </div>
-                <div>
-                    <label htmlFor="enterNumber">사업자 번호:</label>
                     <input
-                        type="number"
-                        id="enterNumber"
+                        type="text"
+                        placeholder="Enter Number"
                         value={enterNumber}
                         onChange={(e) => setEnterNumber(e.target.value)}
+                        className="input-field centered"
                         required
                     />
-                </div>
-                <div>
-                    <label htmlFor="file">로고 이미지:</label>
-                    <input
-                        type="file"
-                        id="file"
-                        onChange={(e) => setFile(e.target.files[0])}
-                        accept="image/*"
-                        required
-                    />
-                </div>
-                <button type="submit">계정 생성</button>
-            </form>
-            {message && <p>{message}</p>}
-        </div>
+                    <button type="submit" className="submit-button centered">Submit</button>
+                </form>
+                {message && <p className="message centered">{message}</p>}
+            </div>
+        </>
     );
 };
 

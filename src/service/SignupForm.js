@@ -2,15 +2,6 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:8080';
 
-/*export const registerUser = async (userData) => {
-  try {
-    const response = await axios.post(`${API_URL}/users`, userData);
-    return response.data;
-  } catch (error) {
-    throw error.response.data;
-  }
-};*/
-
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/users`, userData, {
@@ -66,6 +57,17 @@ export const verifyAuthNumber = async (id, email, authNumber) => {
   }
 };
 
+export const verifyPassword = async (password, checkPassword) => {
+  try {
+    const response = await axios.post(`${API_URL}/users/checkPassword`
+        , { password, checkPassword }
+        , { withCredentials: true })
+    return response.data;
+  }catch (error){
+    throw error.response.data;
+  }
+}
+
 export const registerArtist = async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/users/invite/artist`, userData);
@@ -77,7 +79,11 @@ export const registerArtist = async (userData) => {
 
 export const registerEnter = async (userData) => {
   try {
-    const response = await axios.post(`${API_URL}/users/invite/entertainment`, userData);
+    const response = await axios.post(`${API_URL}/users/invite/entertainment`, userData,{
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    } );
     return response.data;
   } catch (error) {
     throw error.response.data;

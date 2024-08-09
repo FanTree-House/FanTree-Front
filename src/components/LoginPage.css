@@ -19,14 +19,14 @@ input[type="password"] {
   border-radius: 4px;
 }
 
+/* 버튼 색상 제거 */
 button {
-  width: 100%;
   padding: 10px;
-  background-color: #87CEEB;
-  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  background-color: transparent; /* 배경색 제거 */
+  color: inherit; /* 부모 요소의 글자 색상 사용 */
 }
 
 .social-login {
@@ -39,6 +39,8 @@ button {
   margin: 0 5px;
   border-radius: 50%;
   font-weight: bold;
+  background-color: transparent; /* 배경색 제거 */
+  color: inherit; /* 부모 요소의 글자 색상 사용 */
 }
 
 .links {
