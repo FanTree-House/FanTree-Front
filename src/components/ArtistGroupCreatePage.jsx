@@ -16,6 +16,13 @@ const ArtistGroupCreatePage = () => {
             return;
         }
 
+        // Retrieve token from localStorage
+        const token = window.localStorage.getItem('accessToken');
+        if (!token) {
+            alert("로그인이 필요합니다.");
+            return;
+        }
+
         // 쉼표로 구분된 ID를 배열로 변환
         const artistIds = artistIdsInput.trim();
 
@@ -28,7 +35,7 @@ const ArtistGroupCreatePage = () => {
         formData.append('artistIds', artistIds); // 배열을 JSON 문자열로 변환하여 추가
 
         try {
-            await createArtistGroup(formData);
+            await createArtistGroup(formData, token); // Pass the token to the service function
             setEnterName('');
             setGroupName('');
             setArtistProfilePicture(null);
@@ -42,7 +49,8 @@ const ArtistGroupCreatePage = () => {
 
     const fetchArtistGroups = async () => {
         try {
-            const groups = await getAllArtistGroups();
+            const token = window.localStorage.getItem('accessToken'); // 로컬 스토리지에서 토큰 가져오기
+            const groups = await getAllArtistGroups(token); // 토큰을 전달하여 그룹을 가져옵니다
             setArtistGroups(groups);
         } catch (error) {
             console.error("Failed to fetch artist groups:", error);
