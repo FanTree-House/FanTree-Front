@@ -77,7 +77,7 @@ const SubmitButton = styled.button`
 `;
 
 const CreateArtistFeedPage = () => {
-    const { groupName } = useParams();
+    const { groupName } = useParams(); // URL 파라미터에서 groupName 가져오기
     const [content, setContent] = useState('');
     const [images, setImages] = useState([]);
 

@@ -1,24 +1,41 @@
-import React from 'react';
-import {Link, useNavigate} from 'react-router-dom';
-import {useAuthState, useAuthDispatch} from '../context/AuthContext'; // Context import
-import {logout} from '../service/Logout'; // logout 함수 임포트
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthState, useAuthDispatch } from '../context/AuthContext'; // Context import
+import { logout } from '../service/Logout'; // logout 함수 임포트
+import { getArtistGroupName } from '../service/FeedService'; // 그룹 이름 가져오는 함수 임포트
 import './Header.css';
 
 const Header = () => {
-    const {user, userRole} = useAuthState(); // 권한과 사용자 정보 가져오기
+    const { user, userRole } = useAuthState(); // 권한과 사용자 정보 가져오기
     const dispatch = useAuthDispatch();
     const navigate = useNavigate();
+    const [artistGroupName, setArtistGroupName] = useState('');
 
     const handleLogout = async () => {
         try {
             await logout();
-            dispatch({type: 'LOGOUT'});
+            dispatch({ type: 'LOGOUT' });
             localStorage.removeItem('user'); // 로컬 스토리지에서 사용자 정보만 제거
             navigate('/');
         } catch (error) {
             console.error(error);
         }
     };
+
+    const fetchArtistGroupName = async () => {
+        try {
+            const groupName = await getArtistGroupName();
+            setArtistGroupName(groupName);
+        } catch (error) {
+            console.error('Failed to fetch artist group name:', error);
+        }
+    };
+
+    useEffect(() => {
+        if (userRole === 'ARTIST') {
+            fetchArtistGroupName();
+        }
+    }, [userRole]);
 
     const renderAuthButtons = () => {
         if (!user) {
@@ -57,7 +74,7 @@ const Header = () => {
             case 'ARTIST':
                 return (
                     <>
-                        <button onClick={() => navigate(`/artistgroup/${user.groupName}/feed`)}>게시글 작성</button>
+                        <button onClick={() => navigate(`/artistgroup/${artistGroupName}/feed`)}>게시글 작성</button>
                         <button onClick={handleLogout}>로그아웃</button>
                     </>
                 );
@@ -72,7 +89,7 @@ const Header = () => {
             <nav className="navbar navbar-light">
                 <div className="search-container">
                     <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-custom" type="submit">Search</button>
                     </form>
                 </div>
