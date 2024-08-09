@@ -14,12 +14,38 @@ function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useAuthDispatch();
 
+/*  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    try {
+      const response = await login(id, password);
+      console.log('로그인 성공:', response);
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          user: response.data.userId,
+          userRole: response.data.userRole,
+        },
+      });
+      navigate('/');
+    } catch (error) {
+      setError(error.message || '로그인에 실패했습니다.');
+    }
+  };*/
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
       const response = await login(id, password);
       console.log('로그인 성공:', response);
+
+      // 유저 정보 로컬 스토리지에 저장
+      window.localStorage.setItem('user', JSON.stringify({
+        user: response.data.userId,
+        userRole: response.data.userRole,
+      }));
+
       dispatch({
         type: 'LOGIN',
         payload: {

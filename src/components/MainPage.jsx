@@ -13,6 +13,18 @@ const MainPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        // 로컬 스토리지에서 유저 정보 복원
+        const savedUser = JSON.parse(window.localStorage.getItem('user'));
+        if (savedUser) {
+            dispatch({
+                type: 'LOGIN',
+                payload: {
+                    user: savedUser.user,
+                    userRole: savedUser.userRole,
+                },
+            });
+        }
+
         const fetchArtistGroups = async () => {
             try {
                 const data = await ArtistGroupService.getArtistGroups('', 0, 15);
@@ -33,16 +45,17 @@ const MainPage = () => {
 
         fetchArtistGroups();
         fetchAllArtistGroups();
-    }, []);
+    }, [dispatch]);
 
-    const handleLogout = async  () => {
+    const handleLogout = async () => {
         try {
-            const response = await logout();
+            await logout();
         } catch (error) {
             console.error(error);
         }
 
         dispatch({ type: 'LOGOUT' }); // Dispatch logout action
+        window.localStorage.clear();  // 로컬 스토리지에서 유저 정보 제거
         navigate('/'); // Redirect to main page
     };
 
