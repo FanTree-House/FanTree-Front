@@ -16,8 +16,7 @@ const SignupForm = () => {
     checkPassword: '',
     email: '',
     authNumber: '',
-    artist:true,
-    artistToken:'acRos3knitterUp2eTt1ng5',
+    userRoleEnum: 'ARTIST',
     file: null,
   });
 

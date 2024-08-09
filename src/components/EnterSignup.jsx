@@ -17,8 +17,7 @@ const SignupForm = () => {
     checkPassword: '',
     email: '',
     authNumber: '',
-    entertainment:true,
-    entertainmentToken:'AAABnyxRVklrnYxKz0aHgTBcXukezYGoc',
+    userRoleEnum: 'ENTERTAINMENT',
     file: null,
   });
 
