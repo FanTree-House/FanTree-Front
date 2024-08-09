@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // 페이지 이동을 위한 훅
 import { getAllArtistGroups, createArtistGroup } from '../service/CreateGroupService';
+import Header from '../components/Header'; // 헤더 컴포넌트 임포트
 import './ArtistGroupCreatePage.css';
 
 const ArtistGroupCreatePage = () => {
@@ -9,6 +11,7 @@ const ArtistGroupCreatePage = () => {
     const [groupInfo, setGroupInfo] = useState('');
     const [artistIdsInput, setArtistIdsInput] = useState(''); // 쉼표로 구분된 아티스트 ID 입력값
     const [artistGroups, setArtistGroups] = useState([]);
+    const navigate = useNavigate(); // 페이지 이동을 위한 훅
 
     const handleCreateGroup = async () => {
         if (!enterName || !groupName || !artistProfilePicture) {
@@ -16,25 +19,32 @@ const ArtistGroupCreatePage = () => {
             return;
         }
 
-        // 쉼표로 구분된 ID를 배열로 변환
-        const artistIds = artistIdsInput.trim();
+        const token = window.localStorage.getItem('accessToken');
+        if (!token) {
+            alert("로그인이 필요합니다.");
+            return;
+        }
 
-        // FormData 객체 생성
+        const artistIds = artistIdsInput.trim().split(',').map(id => id.trim());
         const formData = new FormData();
         formData.append('enterName', enterName);
         formData.append('groupName', groupName);
         formData.append('groupInfo', groupInfo);
         formData.append('file', artistProfilePicture);
-        formData.append('artistIds', artistIds); // 배열을 JSON 문자열로 변환하여 추가
+        formData.append('artistIds', JSON.stringify(artistIds)); // 배열을 JSON 문자열로 변환하여 추가
 
         try {
-            await createArtistGroup(formData);
-            setEnterName('');
-            setGroupName('');
-            setArtistProfilePicture(null);
-            setGroupInfo('');
-            setArtistIdsInput(''); // 입력 초기화
-            fetchArtistGroups(); // 그룹 목록 새로고침
+            const response = await createArtistGroup(formData, token);
+            if (response.ok) {
+                setEnterName('');
+                setGroupName('');
+                setArtistProfilePicture(null);
+                setGroupInfo('');
+                setArtistIdsInput(''); // 입력 초기화
+                fetchArtistGroups(); // 그룹 목록 새로고침
+            } else {
+                throw new Error('엔터 그룹 생성에 실패했습니다.');
+            }
         } catch (error) {
             console.error("Failed to create artist group:", error);
         }
@@ -42,7 +52,9 @@ const ArtistGroupCreatePage = () => {
 
     const fetchArtistGroups = async () => {
         try {
-            const groups = await getAllArtistGroups();
+            const token = window.localStorage.getItem('accessToken');
+            if (!token) throw new Error('로그인이 필요합니다.');
+            const groups = await getAllArtistGroups(token);
             setArtistGroups(groups);
         } catch (error) {
             console.error("Failed to fetch artist groups:", error);
@@ -55,6 +67,7 @@ const ArtistGroupCreatePage = () => {
 
     return (
         <div className="container">
+            <Header /> {/* 헤더 컴포넌트 추가 */}
             <h2>Artist Group Manager</h2>
             <input
                 type="text"

@@ -83,8 +83,16 @@ const GroupPage = () => {
     const handleLike = async (feedId) => {
         try {
             await likeFeed(groupName, feedId);
+
             // 좋아요 수를 다시 가져와서 업데이트
             const likesCount = await fetchFeedLikes(groupName, feedId);
+
+            // 좋아요 상태 수정
+            setLikedFeeds(prevState => ({
+                ...prevState,
+                [feedId]: !prevState[feedId] // 현재 상태를 반전시킴
+            }));
+
             setArtistFeeds(prevFeeds =>
                 prevFeeds.map(feed =>
                     feed.id === feedId ? { ...feed, likesCount } : feed

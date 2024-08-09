@@ -149,3 +149,22 @@ export const likeFeed = async (groupName, artistFeedId) => {
         throw error;
     }
 };
+
+// 댓글 수정
+export const updateComment = async (groupName, feedId, commentId, newComment) => {
+    const response = await axios.put(`${API_BASE_URL}/${groupName}/feed/${feedId}/comment/${commentId}`, {
+        contents: newComment
+    }, {
+        headers: { Authorization:  `${token}` },
+        withCredentials: true});
+    return response.data;
+};
+
+// 댓글 삭제
+export const deleteComment = async (groupName, feedId, commentId) => {
+    const response = await axios.delete(`${API_BASE_URL}/${groupName}/feed/${feedId}/comment/${commentId}`, {
+        headers: { Authorization:  `${token}` },
+        withCredentials: true
+    });
+    return response.data;
+};

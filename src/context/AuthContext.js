@@ -4,9 +4,14 @@ import React, { createContext, useContext, useReducer } from 'react';
 const AuthStateContext = createContext();
 const AuthDispatchContext = createContext();
 
-const initialState = {
+/*const initialState = {
     user: null,
     userRole: null,
+};*/
+
+const initialState = {
+    user: JSON.parse(localStorage.getItem('user'))?.user || null,
+    userRole: JSON.parse(localStorage.getItem('user'))?.userRole || null,
 };
 
 function authReducer(state, action) {
@@ -43,7 +48,7 @@ export function AuthProvider({ children }) {
 export function useAuthState() {
     const context = useContext(AuthStateContext);
     if (context === undefined) {
-        throw new Error('useAuthState must be used within a AuthProvider');
+        throw new Error('useAuthState는 AuthProvider 내에서 사용해야 합니다.');
     }
     return context;
 }
@@ -51,7 +56,7 @@ export function useAuthState() {
 export function useAuthDispatch() {
     const context = useContext(AuthDispatchContext);
     if (context === undefined) {
-        throw new Error('useAuthDispatch must be used within a AuthProvider');
+        throw new Error('useAuthDispatch는 AuthProvider 내에서 사용해야 합니다.');
     }
     return context;
 }

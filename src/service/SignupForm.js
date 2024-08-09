@@ -60,8 +60,8 @@ export const verifyAuthNumber = async (id, email, authNumber) => {
 export const verifyPassword = async (password, checkPassword) => {
   try {
     const response = await axios.post(`${API_URL}/users/checkPassword`
-       , { password, checkPassword }
-       , { withCredentials: true })
+        , { password, checkPassword }
+        , { withCredentials: true })
     return response.data;
   }catch (error){
     throw error.response.data;
