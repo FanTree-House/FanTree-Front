@@ -1,4 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import {useNavigate, useParams} from 'react-router-dom';
 import {fetchArtistFeeds, fetchGroupDetails, likeFeed, subscribeToGroup, cancelSubscribe, getIsSubscribed, fetchFeedLikes, getIsLiked } from '../service/GroupService';
 import './GroupPage.css';
@@ -24,6 +27,7 @@ const GroupPage = () => {
         const loadArtistFeeds = async () => {
             try {
                 const feeds = await fetchArtistFeeds(groupName);
+                console.log("아티스트피드 데이터", feeds);
                 setArtistFeeds(feeds);
                 // 피드의 좋아요 수를 가져오는 추가 로직
                 await Promise.all(feeds.map(async (feed) => {
@@ -143,7 +147,19 @@ const GroupPage = () => {
                                     feed.contents
                                 )}
                             </p>
-                            {feed.imageUrls && <img src={feed.imageUrls} alt="게시물 이미지" />}
+                            {feed.imageUrls && (
+                                feed.imageUrls.length > 1 ? (
+                                    <Slider dots={true} infinite={true} speed={500} slidesToShow={1} slidesToScroll={1}>
+                                        {feed.imageUrls.map((imageUrl, index) => (
+                                            <div key={index}>
+                                                <img src={imageUrl} alt={`게시물 이미지 ${index + 1}`} />
+                                            </div>
+                                        ))}
+                                    </Slider>
+                                ) : (
+                                    <img src={feed.imageUrls[0]} alt="게시물 이미지" style={{ width: '100%', borderRadius: '8px' }} />
+                                )
+                            )}
                         </div>
                         <div className="feed-footer">
                             <button onClick={(e) => {

@@ -17,6 +17,7 @@ const FeedPopup = () => {
         const loadFeed = async () => {
             try {
                 const loadedFeed = await fetchArtistFeed(groupName, feedId);
+                console.log("피드데이터", loadedFeed);
                 setFeedData(loadedFeed);
                 const loadedComments = await fetchFeedComments(groupName, feedId);
                 setComments(loadedComments);
