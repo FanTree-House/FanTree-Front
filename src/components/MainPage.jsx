@@ -19,7 +19,6 @@ const MainPage = () => {
         }
     }, [dispatch]);
 
-
     const [artistGroups, setArtistGroups] = useState([]);
     const [artistProfiles, setArtistProfiles] = useState([]);
 
@@ -48,44 +47,48 @@ const MainPage = () => {
 
     return (
         <div className="main-page">
-            <Header /> {/* 헤더 컴포넌트 추가 */}
-            <div className="ranking-section">
-                <h2>아티스트 그룹 랭킹</h2>
-                <ul className="ranking-list">
-                    <li key={artistGroups[0]?.id} className="ranking-item first">
-                        <span className="ranking-position">1위</span>
-                        <img src={artistGroups[0]?.artistGroupProfileImageUrl} alt={artistGroups[0]?.groupName}
-                             className="artist-image"/>
-                        <span className="group-name">{artistGroups[0]?.groupName}</span>
-                    </li>
-                    {artistGroups.slice(1, 15).map((group, index) => (
-                        <li key={group?.id} className="ranking-item">
-                            <span className="ranking-position">{index + 2}위</span>
-                            <img src={group?.artistGroupProfileImageUrl} alt={group?.groupName} className="artist-image"/>
-                            <span className="group-name">{group?.groupName}</span>
+            <header className="header">
+                <Header />
+            </header>
+            <div className="main-content">
+                <div className="ranking-section">
+                    <h2>아티스트 그룹 랭킹</h2>
+                    <ul className="ranking-list">
+                        <li key={artistGroups[0]?.id} className="ranking-item first">
+                            <span className="ranking-position">1위</span>
+                            <img src={artistGroups[0]?.artistGroupProfileImageUrl} alt={artistGroups[0]?.groupName}
+                                 className="artist-image"/>
+                            <span className="group-name">{artistGroups[0]?.groupName}</span>
                         </li>
-                    ))}
-                </ul>
-            </div>
-            <div className="profile-section">
-                <h2>아티스트 프로필</h2>
-                <ul className="profile-list">
-                    {artistProfiles.length > 0 ? (
-                        artistProfiles.map((artist) => (
-                            <Link
-                                to={`/group/${artist.groupName}`}
-                                key={artist?.id}
-                                className="profile-item"
-                            >
-                                <img src={artist?.artistGroupProfileImageUrl} alt={artist?.artistName}
-                                     className="artist-profile-image"/>
-                                <span className="profile-group-name">{artist?.groupName}</span>
-                            </Link>
-                        ))
-                    ) : (
-                        <li>아티스트 프로필이 없습니다.</li>
-                    )}
-                </ul>
+                        {artistGroups.slice(1, 15).map((group, index) => (
+                            <li key={group?.id} className="ranking-item">
+                                <span className="ranking-position">{index + 2}위</span>
+                                <img src={group?.artistGroupProfileImageUrl} alt={group?.groupName} className="artist-image"/>
+                                <span className="group-name">{group?.groupName}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="profile-section">
+                    <h2>아티스트 프로필</h2>
+                    <ul className="profile-list">
+                        {artistProfiles.length > 0 ? (
+                            artistProfiles.map((artist) => (
+                                <Link
+                                    to={`/group/${artist.groupName}`}
+                                    key={artist?.id}
+                                    className="profile-item"
+                                >
+                                    <img src={artist?.artistGroupProfileImageUrl} alt={artist?.artistName}
+                                         className="artist-profile-image"/>
+                                    <span className="profile-group-name">{artist?.groupName}</span>
+                                </Link>
+                            ))
+                        ) : (
+                            <li>아티스트 프로필이 없습니다.</li>
+                        )}
+                    </ul>
+                </div>
             </div>
         </div>
     );

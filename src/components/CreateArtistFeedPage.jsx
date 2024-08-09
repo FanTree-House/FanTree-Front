@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom'; // 그룹 이름을 URL 파라미터로 받기 위해 사용
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { createFeed } from '../service/FeedService';
-import Header from '../components/Header'; // 헤더 컴포넌트 임포트
+import Header from '../components/Header';
 
 // 스타일 정의
 const Container = styled.div`
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f8f8f8;
+    background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
@@ -25,8 +25,40 @@ const ContentTextArea = styled.textarea`
     resize: none;
 `;
 
-const ImageInput = styled.input`
+const ImageInputContainer = styled.div`
+    width: 100%;
+    padding: 10px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    text-align: center;
     margin-bottom: 20px;
+    box-sizing: border-box;
+`;
+
+const ImagePreviewContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+`;
+
+const ImagePreview = styled.div`
+    width: calc(33.333% - 10px);
+    padding-top: 33.333%;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    cursor: pointer; /* 클릭 가능한 커서 추가 */
+`;
+
+const PreviewImage = styled.img`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `;
 
 const SubmitButton = styled.button`
@@ -45,62 +77,76 @@ const SubmitButton = styled.button`
 `;
 
 const CreateArtistFeedPage = () => {
-    const { groupName } = useParams(); // URL에서 groupName을 가져옴
+    const { groupName } = useParams();
     const [content, setContent] = useState('');
-    const [image, setImage] = useState(null);
+    const [images, setImages] = useState([]);
 
     const handleContentChange = (e) => {
         setContent(e.target.value);
     };
 
     const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
+        const files = Array.from(e.target.files);
+        setImages((prevImages) => [...prevImages, ...files]);
+    };
+
+    const handleImageClick = (index) => {
+        setImages((prevImages) => prevImages.filter((_, i) => i !== index));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // 콘텐츠가 비어있지 않은지 확인
         if (!content.trim()) {
             alert('내용을 입력해 주세요.');
             return;
         }
 
-        // groupName이 유효한지 확인
         if (!groupName) {
-            console.error('groupName is undefined');
             alert('유효한 그룹 이름을 제공해 주세요.');
             return;
         }
 
         try {
-            const response = await createFeed(groupName, content, image);
-            console.log('Feed created successfully:', response);
+            const response = await createFeed(groupName, content, images);
             alert('피드가 성공적으로 작성되었습니다!');
-            setContent(''); // 컨텐츠 초기화
-            setImage(null); // 이미지 초기화
+            setContent('');
+            setImages([]);
         } catch (error) {
-            console.error('There was an error creating the feed:', error);
             alert('피드 작성에 실패했습니다.');
         }
     };
 
     return (
         <div>
-            <Header /> {/* 헤더 컴포넌트 추가 */}
+            <Header />
             <Container>
                 <h2>Create Feed for {groupName}</h2>
                 <form onSubmit={handleSubmit}>
+                    <ImageInputContainer>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            multiple
+                            onChange={handleImageChange}
+                        />
+                        {images.length > 0 && (
+                            <ImagePreviewContainer>
+                                {images.map((image, index) => (
+                                    <ImagePreview key={index} onClick={() => handleImageClick(index)}>
+                                        <PreviewImage
+                                            src={URL.createObjectURL(image)}
+                                            alt={`Preview ${index + 1}`}
+                                        />
+                                    </ImagePreview>
+                                ))}
+                            </ImagePreviewContainer>
+                        )}
+                    </ImageInputContainer>
                     <ContentTextArea
                         placeholder="내용을 입력하세요"
                         value={content}
                         onChange={handleContentChange}
                         required
-                    />
-                    <ImageInput
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
                     />
                     <SubmitButton type="submit">작성하기</SubmitButton>
                 </form>
