@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuthState, useAuthDispatch } from '../context/AuthContext'; // Context import
-import { logout } from '../service/Logout'; // logout 함수 임포트
-import { getArtistGroupName } from '../service/FeedService'; // 그룹 이름 가져오는 함수 임포트
+import { useAuthState, useAuthDispatch } from '../context/AuthContext';
+import { logout } from '../service/Logout';
+import { getArtistGroupName } from '../service/FeedService';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
 import './Header.css';
 
 const Header = () => {
-    const { user, userRole } = useAuthState(); // 권한과 사용자 정보 가져오기
+    const { user, userRole } = useAuthState();
     const dispatch = useAuthDispatch();
     const navigate = useNavigate();
     const [artistGroupName, setArtistGroupName] = useState('');
@@ -15,7 +16,7 @@ const Header = () => {
         try {
             await logout();
             dispatch({ type: 'LOGOUT' });
-            localStorage.removeItem('user'); // 로컬 스토리지에서 사용자 정보만 제거
+            localStorage.removeItem('user');
             navigate('/');
         } catch (error) {
             console.error(error);
@@ -65,10 +66,28 @@ const Header = () => {
             case 'ENTERTAINMENT':
                 return (
                     <>
-                        <button onClick={() => navigate('/create-enter')}>엔터 생성</button>
-                        <button onClick={() => navigate('/create-artist-group')}>그룹 생성</button>
-                        <button onClick={() => navigate('/create-notice')}>공지사항 작성</button>
-                        <button onClick={handleLogout}>로그아웃</button>
+                        <div className="dropdown">
+                            <button className="btn btn-custom dropdown-toggle" type="button" id="entertainmentDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                엔터 생성
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="entertainmentDropdown">
+                                <li><a className="dropdown-item" href="#" onClick={() => navigate('/create-enter')}>엔터 생성</a></li>
+                                <li><a className="dropdown-item" href="#" onClick={() => navigate('/create-artist-group')}>엔터 조회</a></li>
+                            </ul>
+                        </div>
+                        <div className="dropdown">
+                            <button className="btn btn-custom dropdown-toggle" type="button" id="groupDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                그룹
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="groupDropdown">
+                                <li><a className="dropdown-item" href="#"
+                                       onClick={() => navigate('/create-artist-group')}>그룹 생성</a></li>
+                                <li><a className="dropdown-item" href="#"
+                                       onClick={() => navigate('/create-artist-group')}>그룹 조회</a></li>
+                            </ul>
+                        </div>
+                        <button className="btn btn-custom" onClick={() => navigate('/create-notice')}>공지사항 작성</button>
+                        <button className="btn btn-custom" onClick={handleLogout}>로그아웃</button>
                     </>
                 );
             case 'ARTIST':
