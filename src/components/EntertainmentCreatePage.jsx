@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createEntertainment } from '../service/EntertainmentService';
-import './EntertainmentCreatePage.css'; // 스타일 파일 임포트
-import Header from '../components/Header'; // 헤더 컴포넌트 임포트
+import Header from '../components/Header';
+import './EntertainmentCreatePage.css';
 
 const CreateEntertainment = () => {
     const [enterName, setEnterName] = useState('');
@@ -38,7 +38,7 @@ const CreateEntertainment = () => {
 
     return (
         <>
-            <Header /> {/* 헤더 추가 */}
+            <Header />
             <div className="container">
                 <h2>엔터테인먼트 계정 생성</h2>
                 <form onSubmit={handleSubmit} className="form-container">
@@ -66,15 +66,21 @@ const CreateEntertainment = () => {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="file">로고 이미지:</label>
-                        <input
-                            type="file"
-                            id="file"
-                            onChange={(e) => setFile(e.target.files[0])}
-                            className="input-field"
-                            accept="image/*"
-                            required
-                        />
+                        <label htmlFor="file" className="image-upload-label">
+                            {file ? (
+                                <img src={URL.createObjectURL(file)} alt="Logo" className="preview-image" />
+                            ) : (
+                                <div className="image-placeholder">이미지를 클릭하여 추가하세요</div>
+                            )}
+                            <input
+                                type="file"
+                                id="file"
+                                onChange={(e) => setFile(e.target.files[0])}
+                                className="file-input"
+                                accept="image/*"
+                                required
+                            />
+                        </label>
                     </div>
                     <button type="submit" className="submit-button">계정 생성</button>
                 </form>

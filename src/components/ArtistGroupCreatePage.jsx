@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAllArtistGroups, createArtistGroup } from '../service/CreateGroupService';
-import Header from '../components/Header'; // 헤더 컴포넌트 임포트
+import Header from '../components/Header';
 import './ArtistGroupCreatePage.css';
 
 const ArtistGroupCreatePage = () => {
@@ -61,7 +61,7 @@ const ArtistGroupCreatePage = () => {
 
     return (
         <>
-            <Header /> {/* 헤더 컴포넌트 추가 */}
+            <Header />
             <div className="content-container">
                 <h2>Artist Group Manager</h2>
                 <input
@@ -78,12 +78,21 @@ const ArtistGroupCreatePage = () => {
                     onChange={(e) => setGroupName(e.target.value)}
                     className="input-field"
                 />
-                <input
-                    type="file"
-                    onChange={(e) => setArtistProfilePicture(e.target.files[0])}
-                    className="input-field"
-                    accept="image/*"
-                />
+                <div className="image-upload-container">
+                    <label className="image-upload-label">
+                        {artistProfilePicture ? (
+                            <img src={URL.createObjectURL(artistProfilePicture)} alt="Artist" className="preview-image" />
+                        ) : (
+                            <div className="image-placeholder">이미지를 클릭하여 추가하세요</div>
+                        )}
+                        <input
+                            type="file"
+                            onChange={(e) => setArtistProfilePicture(e.target.files[0])}
+                            className="file-input"
+                            accept="image/*"
+                        />
+                    </label>
+                </div>
                 <textarea
                     placeholder="Group Info"
                     value={groupInfo}
