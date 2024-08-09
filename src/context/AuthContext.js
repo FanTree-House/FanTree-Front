@@ -4,9 +4,14 @@ import React, { createContext, useContext, useReducer } from 'react';
 const AuthStateContext = createContext();
 const AuthDispatchContext = createContext();
 
-const initialState = {
+/*const initialState = {
     user: null,
     userRole: null,
+};*/
+
+const initialState = {
+    user: JSON.parse(localStorage.getItem('user'))?.user || null,
+    userRole: JSON.parse(localStorage.getItem('user'))?.userRole || null,
 };
 
 function authReducer(state, action) {

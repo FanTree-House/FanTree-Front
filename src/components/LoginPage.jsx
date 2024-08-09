@@ -1,5 +1,4 @@
 // src/components/LoginPage.js
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { login, kakaoLogin } from '../service/LoginPage';
@@ -14,25 +13,6 @@ function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useAuthDispatch();
 
-/*  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    try {
-      const response = await login(id, password);
-      console.log('로그인 성공:', response);
-      dispatch({
-        type: 'LOGIN',
-        payload: {
-          user: response.data.userId,
-          userRole: response.data.userRole,
-        },
-      });
-      navigate('/');
-    } catch (error) {
-      setError(error.message || '로그인에 실패했습니다.');
-    }
-  };*/
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -40,18 +20,16 @@ function LoginPage() {
       const response = await login(id, password);
       console.log('로그인 성공:', response);
 
-      // 유저 정보 로컬 스토리지에 저장
-      window.localStorage.setItem('user', JSON.stringify({
+      const userData = {
         user: response.data.userId,
         userRole: response.data.userRole,
-      }));
+      };
+
+      localStorage.setItem('user', JSON.stringify(userData));
 
       dispatch({
         type: 'LOGIN',
-        payload: {
-          user: response.data.userId,
-          userRole: response.data.userRole,
-        },
+        payload: userData,
       });
       navigate('/');
     } catch (error) {
@@ -59,16 +37,12 @@ function LoginPage() {
     }
   };
 
+
+
   const handleKakaoLogin = async () => {
-    try {
-      const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=2b0e2842adcacfeb9731a68eb4b42048&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code`;
-      window.location.href = kakaoAuthUrl;
-      const token = 'kakao-token';
-      const response = await kakaoLogin(token);
-      console.log('Kakao 로그인 성공:', response);
-    } catch (error) {
-      setError('Kakao 로그인에 실패했습니다.');
-    }
+    // 카카오 인증 URL을 브라우저에서 열어 인증 처리
+    const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=2b0e2842adcacfeb9731a68eb4b42048&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code`;
+    window.location.href = kakaoAuthUrl;
   };
 
   return (

@@ -1,3 +1,4 @@
+// src/service/LoginPage.js
 import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080';
@@ -13,6 +14,12 @@ export const login = async (id, password) => {
       if (accessToken && refreshToken) {
         window.localStorage.setItem('accessToken', accessToken);
         window.localStorage.setItem('refreshToken', refreshToken);
+
+        // 사용자 정보를 포함하여 로컬 스토리지에 저장
+        window.localStorage.setItem('user', JSON.stringify({
+          user: response.data.userId,
+          userRole: response.data.userRole,
+        }));
       } else {
         throw new Error('토큰이 응답에 없습니다.');
       }
@@ -23,18 +30,6 @@ export const login = async (id, password) => {
     }
   } catch (error) {
     console.error('Login error:', error);
-    throw error;
-  }
-};
-
-// 소셜 로그인을 위한 추가 함수들
-export const kakaoLogin = async (token) => {
-  try {
-    const response = await axios.post(`${API_BASE_URL}/auth/kakao`, { token });
-    // 응답 처리
-    return response.data;
-  } catch (error) {
-    console.error('Kakao login error:', error);
     throw error;
   }
 };

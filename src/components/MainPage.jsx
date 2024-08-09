@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ArtistGroupService from '../service/ArtistGroupService';
-import { logout } from '../service/Logout';
-import { useAuthState, useAuthDispatch } from '../context/AuthContext'; // Context import
+import Header from '../components/Header'; // 헤더 컴포넌트 임포트
+import { useAuthDispatch } from '../context/AuthContext';
 import './MainPage.css';
 
 const MainPage = () => {
-    const [artistGroups, setArtistGroups] = useState([]);
-    const [artistProfiles, setArtistProfiles] = useState([]);
-    const { user, userRole } = useAuthState(); // userRole도 가져옵니다
-    const dispatch = useAuthDispatch(); // Use context dispatch
-    const navigate = useNavigate();
+
+    const dispatch = useAuthDispatch();
 
     useEffect(() => {
-        // 로컬 스토리지에서 유저 정보 복원
-        const savedUser = JSON.parse(window.localStorage.getItem('user'));
-        if (savedUser) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
             dispatch({
                 type: 'LOGIN',
-                payload: {
-                    user: savedUser.user,
-                    userRole: savedUser.userRole,
-                },
+                payload: user,
             });
         }
+    }, [dispatch]);
 
+
+    const [artistGroups, setArtistGroups] = useState([]);
+    const [artistProfiles, setArtistProfiles] = useState([]);
+
+    useEffect(() => {
         const fetchArtistGroups = async () => {
             try {
                 const data = await ArtistGroupService.getArtistGroups('', 0, 15);
@@ -45,78 +44,11 @@ const MainPage = () => {
 
         fetchArtistGroups();
         fetchAllArtistGroups();
-    }, [dispatch]);
-
-    const handleLogout = async () => {
-        try {
-            await logout();
-        } catch (error) {
-            console.error(error);
-        }
-
-        dispatch({ type: 'LOGOUT' }); // Dispatch logout action
-        window.localStorage.clear();  // 로컬 스토리지에서 유저 정보 제거
-        navigate('/'); // Redirect to main page
-    };
-
-    const renderAuthButtons = () => {
-        if (!user) {
-            return (
-                <>
-                    <button className="login-button" onClick={() => navigate('/login')}>로그인</button>
-                    <button className="signup-button" onClick={() => navigate('/signup')}>회원가입</button>
-                </>
-            );
-        }
-
-        switch (userRole) {
-            case 'USER':
-                return (
-                    <>
-                        <button onClick={() => navigate('/mypage')}>마이 페이지</button>
-                        <button onClick={handleLogout}>로그아웃</button>
-                    </>
-                );
-            case 'ADMIN':
-                return (
-                    <>
-                        <button onClick={() => navigate('/admin')}>관리자 버튼</button>
-                        <button onClick={handleLogout}>로그아웃</button>
-                    </>
-                );
-            case 'ENTERTAINMENT':
-                return (
-                    <>
-                        <button onClick={() => navigate('/create-enter')}>엔터 생성</button>
-                        <button onClick={() => navigate('/create-artist-group')}>아티스트 그룹 생성</button>
-                        <button onClick={() => navigate('/create-notice')}>공지사항 작성</button>
-                        <button onClick={handleLogout}>로그아웃</button>
-                    </>
-                );
-            case 'ARTIST':
-                return (
-                    <>
-                        <button onClick={() => navigate('/artistgroup/:groupName/feed')}>게시글 작성</button>
-                        <button onClick={handleLogout}>로그아웃</button>
-                    </>
-                );
-            default:
-                return null;
-        }
-    };
+    }, []);
 
     return (
         <div className="main-page">
-            <header className="header">
-                <div className="logo">FanTree House</div>
-                <div className="search-container">
-                    <input type="text" placeholder="검색..." className="search-input"/>
-                    <button className="search-button">검색</button>
-                </div>
-                <div className="auth-buttons">
-                    {renderAuthButtons()} {/* 권한별 버튼 렌더링 */}
-                </div>
-            </header>
+            <Header /> {/* 헤더 컴포넌트 추가 */}
             <div className="ranking-section">
                 <h2>아티스트 그룹 랭킹</h2>
                 <ul className="ranking-list">

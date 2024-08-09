@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'; // 그룹 이름을 URL 파라미터로 받기 위해 사용
 import styled from 'styled-components';
 import { createFeed } from '../service/FeedService';
+import Header from '../components/Header'; // 헤더 컴포넌트 임포트
 
 // 스타일 정의
 const Container = styled.div`
@@ -85,22 +86,26 @@ const CreateArtistFeedPage = () => {
     };
 
     return (
-        <Container>
-            <form onSubmit={handleSubmit}>
-                <ContentTextArea
-                    placeholder="내용을 입력하세요"
-                    value={content}
-                    onChange={handleContentChange}
-                    required
-                />
-                <ImageInput
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                />
-                <SubmitButton type="submit">작성하기</SubmitButton>
-            </form>
-        </Container>
+        <div>
+            <Header /> {/* 헤더 컴포넌트 추가 */}
+            <Container>
+                <h2>Create Feed for {groupName}</h2>
+                <form onSubmit={handleSubmit}>
+                    <ContentTextArea
+                        placeholder="내용을 입력하세요"
+                        value={content}
+                        onChange={handleContentChange}
+                        required
+                    />
+                    <ImageInput
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                    />
+                    <SubmitButton type="submit">작성하기</SubmitButton>
+                </form>
+            </Container>
+        </div>
     );
 };
 
