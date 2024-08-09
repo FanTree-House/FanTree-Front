@@ -1,9 +1,9 @@
 /* src/components/LoginPage.css */
 .login-container {
-  max-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
-  padding: 20px;
   text-align: center;
+  padding-top: 130px; /* 상단에 공백 추가 */
 }
 
 h1 {
