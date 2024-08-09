@@ -21,7 +21,6 @@ input[type="password"] {
 
 /* 버튼 색상 제거 */
 button {
-  width: 100%;
   padding: 10px;
   border: none;
   border-radius: 4px;
