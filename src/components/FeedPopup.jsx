@@ -53,6 +53,10 @@ const FeedPopup = () => {
         try {
             await likeFeed(groupName, feedId);
             const likesCount = await fetchFeedLikes(groupName, feedId);
+
+            // 좋아요 상태 업데이트
+            setIsLiked(prevIsLiked => !prevIsLiked);
+
             setFeedData(prevFeedData => ({
                 ...prevFeedData,
                 likesCount,
@@ -62,10 +66,10 @@ const FeedPopup = () => {
         }
     };
 
+
     const openEditModal = (comment) => {
         setEditingCommentId(comment.id);
         setEditingCommentContent(comment.contents);
-        console.log("댓글 수정 전", comment);
         setIsModalOpen(true);
     };
 
@@ -77,7 +81,6 @@ const FeedPopup = () => {
         if (editingCommentContent.trim() === '') return;
 
         try {
-            console.log("댓글 수정 할 때", editingCommentId);
             await updateComment(groupName, feedId, editingCommentId, editingCommentContent);
             const loadedComments = await fetchFeedComments(groupName, feedId);
             setComments(loadedComments);
