@@ -20,6 +20,7 @@ const SignupForm = () => {
     checkPassword: '',
     email: '',
     authNumber: '',
+    userRoleEnum: 'USER',
     file: null,
   });
 
@@ -40,13 +41,22 @@ const SignupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (availableId && availableNickname && availableEmail && availablePassword){
+    if (availableId && availableNickname && availableEmail && availablePassword) {
       const formDataToSend = new FormData();
       for (const key in formData) {
-        formDataToSend.append(key, formData[key]);
+        if (key === 'file') {
+          if (formData[key]) {
+            formDataToSend.append(key, formData[key]);
+          } else {
+            // 파일이 없을 경우, 기본 이미지 URL을 문자열로 전송
+            formDataToSend.append('defaultImageUrl', 'https://github.com/user-attachments/assets/0b652401-bde8-4ace-8754-1405cd57b3fa');
+          }
+        } else {
+          formDataToSend.append(key, formData[key]);
+        }
       }
       try {
-      await registerUser(formDataToSend);
+        await registerUser(formDataToSend);
         alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
         navigate('/login');
       } catch (error) {
@@ -54,6 +64,8 @@ const SignupForm = () => {
         setErrors({ ...errors, submit: '회원가입에 실패했습니다. 다시 시도해주세요.' });
       }
     }
+
+
     else if(!availableId) {
       alert('ID 중복확인을 해주세요.') //새로고침 안되게끔
     }
