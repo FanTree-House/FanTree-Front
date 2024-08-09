@@ -38,7 +38,10 @@ const EnterPage = () => {
     const handleCreateNotice = async (newNotice) => {
         try {
             const createdNotice = await createNotice(newNotice);
-            setNotices(prevNotices => [...prevNotices, createdNotice]);
+            setNotices(prevNotices =>{
+                const updateNotice = [...prevNotices, createdNotice];
+                return updateNotice;
+            });
         } catch (error) {
             console.error('Error adding notice:', error);
         }
@@ -47,10 +50,8 @@ const EnterPage = () => {
     const handleCreateSchedule = async (newSchedule) => {
         try {
             const createdSchedule = await createSchedule(newSchedule);
-            console.log("Created schedule:", createdSchedule);  // 추가된 로그
             setSchedules(prevSchedules => {
                 const updatedSchedules = [...prevSchedules, createdSchedule];
-                console.log("Updated schedules:", updatedSchedules);  // 추가된 로그
                 return updatedSchedules;
             });
         } catch (error) {

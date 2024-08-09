@@ -26,8 +26,7 @@ export const createSchedule = async ({enterName, title, contents, date  }) => {
         const response = await axios.post(`${API_URL}/${enterName}/schedule`, {
                 title, contents, date },
             {
-                headers:
-                    {
+                headers: {
                         'Authorization': `${token}`
                     }, withCredentials: true});
         // if (response.status !== 200 && response.status !== 201) {

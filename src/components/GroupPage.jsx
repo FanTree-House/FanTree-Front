@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams, useSearchParams} from 'react-router-dom';
+import Header from '../components/Header';
 import {
     fetchArtistFeeds,
     fetchGroupDetails,
@@ -115,12 +116,8 @@ const GroupPage = () => {
 
     return (
         <div className="group-page">
-            <header className="header">
-                <h1>Fantree House</h1>
-            </header>
+            <Header/>
             <div>
-                {/*<div className="feed" key={feed.id} onClick={() => openFeedPopup(feed.id)}> /!* 클릭 이벤트 추가 *!/*/}
-
                 <div className="nav_btn">
                     <button className="subscript-button" onClick={handleSubscribe}>{isSubscribed ? '구독중' : '구독'}</button>
                     <button className="notice-button" key={enterName} onClick={() => openEnterPage()}>공지사항</button>
