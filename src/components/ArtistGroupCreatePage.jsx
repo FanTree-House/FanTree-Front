@@ -106,7 +106,6 @@ const ArtistGroupCreatePage = () => {
                     className="textarea-field"
                 />
                 <button onClick={handleCreateGroup} className="submit-button">Create Artist Group</button>
-                <h3>Existing Artist Groups</h3>
                 <ul className="group-list">
                     {Array.isArray(artistGroups) && artistGroups.map((group) => (
                         <li key={group.id}>{group.groupName}</li>
