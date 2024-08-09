@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createEntertainment } from '../service/EntertainmentService';
 import Header from '../components/Header';
 import './EntertainmentCreatePage.css';
@@ -8,6 +9,8 @@ const CreateEntertainment = () => {
     const [enterNumber, setEnterNumber] = useState('');
     const [file, setFile] = useState(null);
     const [message, setMessage] = useState('');
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,10 +29,11 @@ const CreateEntertainment = () => {
             };
 
             const response = await createEntertainment(enterData, token);
-            setMessage('엔터테인먼트 계정이 성공적으로 생성되었습니다.');
+            alert('엔터테인먼트 계정이 성공적으로 생성되었습니다.');
             setEnterName('');
             setEnterNumber('');
             setFile(null);
+            navigate('/');
         } catch (error) {
             console.error('엔터테인먼트 계정 생성 실패:', error);
             setMessage('엔터테인먼트 계정 생성에 실패했습니다: ' + error.message);

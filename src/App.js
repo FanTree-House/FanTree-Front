@@ -13,6 +13,7 @@ import ArtistSignup from './components/ArtistSignup';
 import AdminSignup from './components/AdminSignup';
 import { AuthProvider } from './context/AuthContext';
 
+
 const AppRoutes = () => {
     return (
         <Routes>

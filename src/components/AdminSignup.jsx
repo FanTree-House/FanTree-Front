@@ -18,7 +18,7 @@ const SignupForm = () => {
     email: '',
     authNumber: '',
     userRoleEnum: 'ADMIN',
-    file: null,
+    file: null
   });
 
   const [availableEmail,setAvailableEmail] = useState(false)
