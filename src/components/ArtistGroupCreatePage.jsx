@@ -33,7 +33,9 @@ const ArtistGroupCreatePage = () => {
         formData.append('artistIds', artistIds);
 
         try {
-            await createArtistGroup(formData, token);
+            const result = await createArtistGroup(formData, token);
+            alert("아티스트 그룹이 성공적으로 생성되었습니다!");
+
             setEnterName('');
             setGroupName('');
             setArtistProfilePicture(null);
