@@ -20,6 +20,7 @@ const SignupForm = () => {
     checkPassword: '',
     email: '',
     authNumber: '',
+    userRoleEnum: 'USER',
     file: null,
   });
 

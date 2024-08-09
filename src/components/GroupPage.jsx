@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {fetchArtistFeeds, fetchGroupDetails, likeFeed, subscribeToGroup, cancelSubscribe, getIsSubscribed, fetchFeedLikes, getIsLiked } from '../service/GroupService';
+import Header from '../components/Header';
 import './GroupPage.css';
 
 const GroupPage = () => {
@@ -83,8 +84,16 @@ const GroupPage = () => {
     const handleLike = async (feedId) => {
         try {
             await likeFeed(groupName, feedId);
+
             // 좋아요 수를 다시 가져와서 업데이트
             const likesCount = await fetchFeedLikes(groupName, feedId);
+
+            // 좋아요 상태 수정
+            setLikedFeeds(prevState => ({
+                ...prevState,
+                [feedId]: !prevState[feedId] // 현재 상태를 반전시킴
+            }));
+
             setArtistFeeds(prevFeeds =>
                 prevFeeds.map(feed =>
                     feed.id === feedId ? { ...feed, likesCount } : feed
@@ -100,6 +109,7 @@ const GroupPage = () => {
 
     return (
         <div className="group-page">
+            <Header />
             <div className="group-header">
                 <div className="group-image">
                     <img src={groupDetails.artistGroupProfileImageUrl} alt={`${groupDetails.groupName} 이미지`} />

@@ -9,90 +9,86 @@ const CreateEntertainment = () => {
     const [enterNumber, setEnterNumber] = useState('');
     const [file, setFile] = useState(null);
     const [message, setMessage] = useState('');
+
     const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        if (!enterName || !enterNumber || !file) {
-            setMessage('모든 필드를 채워주세요.');
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const token = window.localStorage.getItem('accessToken');
+
+        if (!token) {
+            setMessage('권한이 없습니다. 로그인이 필요합니다.');
             return;
         }
 
         try {
-            const token = window.localStorage.getItem('accessToken');
-            if (!token) {
-                setMessage('로그인이 필요합니다.');
-                return;
-            }
+            const enterData = {
+                enterName,
+                enterNumber: parseInt(enterNumber),
+                file
+            };
 
-            const formData = new FormData();
-            formData.append('enterName', enterName);
-            formData.append('enterNumber', enterNumber);
-            formData.append('file', file);
-
-            const response = await createEntertainment(formData, token);
-            if (response.ok) {
-                setMessage('엔터테인먼트 생성 성공!');
-                setEnterName('');
-                setEnterNumber('');
-                setFile(null);
-                navigate('/artist-group-create');
-            } else {
-                setMessage('엔터테인먼트 생성 실패');
-            }
+            const response = await createEntertainment(enterData, token);
+            alert('엔터테인먼트 계정이 성공적으로 생성되었습니다.');
+            setEnterName('');
+            setEnterNumber('');
+            setFile(null);
+            navigate('/');
         } catch (error) {
-            console.error(error);
-            setMessage('엔터테인먼트 생성 실패');
+            console.error('엔터테인먼트 계정 생성 실패:', error);
+            setMessage('엔터테인먼트 계정 생성에 실패했습니다: ' + error.message);
         }
-    };
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setFile(file);
     };
 
     return (
         <>
             <Header />
             <div className="container">
-                <h2 className="centered-title">Create Entertainment</h2>
-                <form onSubmit={handleSubmit}>
-                    <label className="image-upload-wrapper centered">
-                        {file ? (
-                            <img
-                                src={URL.createObjectURL(file)}
-                                alt="Uploaded"
-                                className="uploaded-image"
-                            />
-                        ) : (
-                            <div className="image-placeholder">이미지를 넣어주세요</div>
-                        )}
+                <h2>엔터테인먼트 계정 생성</h2>
+                <form onSubmit={handleSubmit} className="form-container">
+                    <div className="form-group">
+                        <label htmlFor="enterName">소속사 이름:</label>
                         <input
-                            type="file"
-                            onChange={handleImageChange}
-                            className="image-input"
-                            accept="image/*"
+                            type="text"
+                            id="enterName"
+                            value={enterName}
+                            onChange={(e) => setEnterName(e.target.value)}
+                            className="input-field"
+                            required
+                            maxLength="20"
                         />
-                    </label>
-                    <input
-                        type="text"
-                        placeholder="Enter Name"
-                        value={enterName}
-                        onChange={(e) => setEnterName(e.target.value)}
-                        className="input-field centered"
-                        required
-                    />
-                    <input
-                        type="text"
-                        placeholder="Enter Number"
-                        value={enterNumber}
-                        onChange={(e) => setEnterNumber(e.target.value)}
-                        className="input-field centered"
-                        required
-                    />
-                    <button type="submit" className="submit-button centered">Submit</button>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="enterNumber">사업자 번호:</label>
+                        <input
+                            type="number"
+                            id="enterNumber"
+                            value={enterNumber}
+                            onChange={(e) => setEnterNumber(e.target.value)}
+                            className="input-field"
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="file" className="image-upload-label">
+                            {file ? (
+                                <img src={URL.createObjectURL(file)} alt="Logo" className="preview-image" />
+                            ) : (
+                                <div className="image-placeholder">이미지를 클릭하여 추가하세요</div>
+                            )}
+                            <input
+                                type="file"
+                                id="file"
+                                onChange={(e) => setFile(e.target.files[0])}
+                                className="file-input"
+                                accept="image/*"
+                                required
+                            />
+                        </label>
+                    </div>
+                    <button type="submit" className="submit-button">계정 생성</button>
                 </form>
-                {message && <p className="message centered">{message}</p>}
+                {message && <p>{message}</p>}
             </div>
         </>
     );
