@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createEntertainment } from '../service/EntertainmentService';
+import './EntertainmentCreatePage.css'; // 스타일 파일 임포트
 
 const CreateEntertainment = () => {
     const [enterName, setEnterName] = useState('');
@@ -36,41 +37,44 @@ const CreateEntertainment = () => {
     };
 
     return (
-        <div>
+        <div className="container">
             <h2>엔터테인먼트 계정 생성</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
+            <form onSubmit={handleSubmit} className="form-container">
+                <div className="form-group">
                     <label htmlFor="enterName">소속사 이름:</label>
                     <input
                         type="text"
                         id="enterName"
                         value={enterName}
                         onChange={(e) => setEnterName(e.target.value)}
+                        className="input-field"
                         required
                         maxLength="20"
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label htmlFor="enterNumber">사업자 번호:</label>
                     <input
                         type="number"
                         id="enterNumber"
                         value={enterNumber}
                         onChange={(e) => setEnterNumber(e.target.value)}
+                        className="input-field"
                         required
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label htmlFor="file">로고 이미지:</label>
                     <input
                         type="file"
                         id="file"
                         onChange={(e) => setFile(e.target.files[0])}
+                        className="input-field"
                         accept="image/*"
                         required
                     />
                 </div>
-                <button type="submit">계정 생성</button>
+                <button type="submit" className="submit-button">계정 생성</button>
             </form>
             {message && <p>{message}</p>}
         </div>

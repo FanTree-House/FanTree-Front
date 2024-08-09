@@ -1,10 +1,21 @@
-.form-container {
+/* CreateEntertainment.css */
+.container {
     max-width: 600px;
     margin: auto;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group {
@@ -31,8 +42,15 @@ label {
     padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
+    align-self: center;
 }
 
 .submit-button:hover {
     background-color: #7cc4e0;
+}
+
+p {
+    text-align: center;
+    margin-top: 15px;
+    color: #d9534f; /* 에러 메시지의 경우 붉은 색으로 */
 }
