@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // 페이지 이동을 위한 훅
+import { useNavigate } from 'react-router-dom';
 import { getAllArtistGroups, createArtistGroup } from '../service/CreateGroupService';
-import Header from '../components/Header'; // 헤더 컴포넌트 임포트
+import Header from '../components/Header';
 import './ArtistGroupCreatePage.css';
 
 const ArtistGroupCreatePage = () => {
@@ -9,9 +9,9 @@ const ArtistGroupCreatePage = () => {
     const [groupName, setGroupName] = useState('');
     const [artistProfilePicture, setArtistProfilePicture] = useState(null);
     const [groupInfo, setGroupInfo] = useState('');
-    const [artistIdsInput, setArtistIdsInput] = useState(''); // 쉼표로 구분된 아티스트 ID 입력값
+    const [artistIdsInput, setArtistIdsInput] = useState('');
     const [artistGroups, setArtistGroups] = useState([]);
-    const navigate = useNavigate(); // 페이지 이동을 위한 훅
+    const navigate = useNavigate();
 
     const handleCreateGroup = async () => {
         if (!enterName || !groupName || !artistProfilePicture) {
@@ -31,7 +31,7 @@ const ArtistGroupCreatePage = () => {
         formData.append('groupName', groupName);
         formData.append('groupInfo', groupInfo);
         formData.append('file', artistProfilePicture);
-        formData.append('artistIds', JSON.stringify(artistIds)); // 배열을 JSON 문자열로 변환하여 추가
+        formData.append('artistIds', JSON.stringify(artistIds));
 
         try {
             const response = await createArtistGroup(formData, token);
@@ -40,8 +40,8 @@ const ArtistGroupCreatePage = () => {
                 setGroupName('');
                 setArtistProfilePicture(null);
                 setGroupInfo('');
-                setArtistIdsInput(''); // 입력 초기화
-                fetchArtistGroups(); // 그룹 목록 새로고침
+                setArtistIdsInput('');
+                fetchArtistGroups();
             } else {
                 throw new Error('엔터 그룹 생성에 실패했습니다.');
             }
@@ -65,50 +65,67 @@ const ArtistGroupCreatePage = () => {
         fetchArtistGroups();
     }, []);
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setArtistProfilePicture(file);
+    };
+
     return (
-        <div className="container">
-            <Header /> {/* 헤더 컴포넌트 추가 */}
-            <h2>Artist Group Manager</h2>
-            <input
-                type="text"
-                placeholder="Enter Name"
-                value={enterName}
-                onChange={(e) => setEnterName(e.target.value)}
-                className="input-field"
-            />
-            <input
-                type="text"
-                placeholder="Group Name"
-                value={groupName}
-                onChange={(e) => setGroupName(e.target.value)}
-                className="input-field"
-            />
-            <input
-                type="file"
-                onChange={(e) => setArtistProfilePicture(e.target.files[0])}
-                className="input-field"
-                accept="image/*"
-            />
-            <textarea
-                placeholder="Group Info"
-                value={groupInfo}
-                onChange={(e) => setGroupInfo(e.target.value)}
-                className="textarea-field"
-            />
-            <textarea
-                placeholder="Enter Artist IDs, separated by commas"
-                value={artistIdsInput}
-                onChange={(e) => setArtistIdsInput(e.target.value)}
-                className="textarea-field"
-            />
-            <button onClick={handleCreateGroup} className="submit-button">Create Artist Group</button>
-            <h3>Existing Artist Groups</h3>
-            <ul className="group-list">
-                {Array.isArray(artistGroups) && artistGroups.map((group) => (
-                    <li key={group.id}>{group.groupName}</li>
-                ))}
-            </ul>
-        </div>
+        <>
+            <Header />
+            <div className="container">
+                <h2 className="centered-title">Artist Group Manager</h2>
+                <label className="image-upload-wrapper centered">
+                    {artistProfilePicture ? (
+                        <img
+                            src={URL.createObjectURL(artistProfilePicture)}
+                            alt="Uploaded"
+                            className="uploaded-image"
+                        />
+                    ) : (
+                        <div className="image-placeholder">이미지를 넣어주세요</div>
+                    )}
+                    <input
+                        type="file"
+                        onChange={handleImageChange}
+                        className="image-input"
+                        accept="image/*"
+                    />
+                </label>
+                <input
+                    type="text"
+                    placeholder="Enter Name"
+                    value={enterName}
+                    onChange={(e) => setEnterName(e.target.value)}
+                    className="input-field centered"
+                />
+                <input
+                    type="text"
+                    placeholder="Group Name"
+                    value={groupName}
+                    onChange={(e) => setGroupName(e.target.value)}
+                    className="input-field centered"
+                />
+                <textarea
+                    placeholder="Group Info"
+                    value={groupInfo}
+                    onChange={(e) => setGroupInfo(e.target.value)}
+                    className="textarea-field centered"
+                />
+                <textarea
+                    placeholder="Enter Artist IDs, separated by commas"
+                    value={artistIdsInput}
+                    onChange={(e) => setArtistIdsInput(e.target.value)}
+                    className="textarea-field centered"
+                />
+                <button onClick={handleCreateGroup} className="submit-button centered">Create Artist Group</button>
+                <ul className="group-list centered">
+                    {Array.isArray(artistGroups) && artistGroups.map((group) => (
+                        <li key={group.id}>{group.groupName}</li>
+                    ))}
+                </ul>
+            </div>
+        </>
     );
 };
 

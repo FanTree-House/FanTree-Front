@@ -1,75 +1,17 @@
 /* 메인 페이지 전체 스타일 */
 .main-page {
     font-family: 'Arial', sans-serif;
-    padding: 20px;
+    padding: 0; /* 기본 여백 제거 */
     background-color: #f3f4f6;
+    margin: 0; /* 기본 여백 제거 */
 }
 
-/* 헤더 스타일 */
-.header {
-    display: flex;
-    justify-content: center; /* 헤더의 내용을 가운데 정렬 */
-    align-items: center;
-    background-color: #4a90e2;
-    color: white;
-    padding: 15px 40px; /* 좌우 패딩을 늘려서 안쪽으로 이동 */
-    position: relative; /* 자식 요소의 절대 위치를 기준으로 함 */
-}
 
-.logo {
-    position: absolute; /* 로고를 절대 위치로 설정 */
-    left: 40px; /* 왼쪽 여백을 늘려서 안쪽으로 이동 */
-    font-size: 24px;
-    font-weight: bold;
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    padding: 20px; /* 콘텐츠 여백 추가 */
+    margin-top: 60px; /* 헤더 높이 만큼 여백 추가 */
 }
-
-.search-container {
-    display: flex; /* 플렉스 박스로 설정 */
-    align-items: center; /* 세로 가운데 정렬 */
-    margin-left: 20px; /* 검색창을 오른쪽으로 이동 */
-}
-
-.search-input {
-    width: 150px; /* 검색창 너비 조정 */
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    margin-right: 0; /* 아이콘과 버튼과의 간격 조정 */
-}
-
-.search-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    background-color: #007bff; /* 버튼 색상 */
-    margin-left: 5px; /* 검색창과 버튼 사이의 간격 조정 */
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 10px;
-    position: absolute; /* 인증 버튼을 절대 위치로 설정 */
-    right: 40px; /* 오른쪽 여백을 늘려서 안쪽으로 이동 */
-}
-
-.login-button, .signup-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-}
-
-.login-button {
-    background-color: #007bff;
-}
-
-.signup-button {
-    background-color: #28a745;
-}
-
 
 /* 랭킹 섹션 스타일 */
 .ranking-section {
@@ -77,6 +19,7 @@
     text-align: center; /* 전체 랭킹 섹션 가운데 정렬 */
 }
 
+/* 랭킹 목록 스타일 */
 .ranking-list {
     list-style-type: none;
     padding: 0;
@@ -132,7 +75,6 @@
         margin: 5px 0; /* 세로 간격 조정 */
     }
 }
-
 
 /* 프로필 섹션 스타일 */
 .profile-section {
