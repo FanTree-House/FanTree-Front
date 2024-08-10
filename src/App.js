@@ -12,6 +12,7 @@ import EnterSignup from './components/EnterSignup';
 import ArtistSignup from './components/ArtistSignup';
 import AdminSignup from './components/AdminSignup';
 import { AuthProvider } from './context/AuthContext';
+import MyPage from "./components/mypage/MyPage";
 
 
 const AppRoutes = () => {
@@ -28,6 +29,7 @@ const AppRoutes = () => {
             <Route path="/create-enter" element={<EntertainmentCreatePage />} />
             <Route path="/create-artist-group" element={<ArtistGroupCreatePage />} />
             <Route path="/artistgroup/:groupName/feed" element={<CreateArtistFeedPage />} />
+            <Route path="/mypage" element={<MyPage/>} />
         </Routes>
     );
 };
