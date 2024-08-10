@@ -13,6 +13,7 @@ import ArtistSignup from './components/ArtistSignup';
 import AdminSignup from './components/AdminSignup';
 import { AuthProvider } from './context/AuthContext';
 import EntertainmentEditPage from "./components/EntertainmentEditPage";
+import ArtistGroupManagePage from "./components/ArtistGroupManagePage";
 
 
 const AppRoutes = () => {
@@ -29,7 +30,8 @@ const AppRoutes = () => {
             <Route path="/create-enter" element={<EntertainmentCreatePage />} />
             <Route path="/create-artist-group" element={<ArtistGroupCreatePage />} />
             <Route path="/artistgroup/:groupName/feed" element={<CreateArtistFeedPage />} />
-            <Route path="/edit" element={<EntertainmentEditPage />} />
+            <Route path="/editenter" element={<EntertainmentEditPage />} />
+            <Route path="/editgroup" element={<ArtistGroupManagePage />} />
 
         </Routes>
     );
