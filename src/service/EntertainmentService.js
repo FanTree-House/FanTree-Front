@@ -40,16 +40,17 @@ export const getEntertainment = async (token) => {
 };
 
 // 엔터테인먼트 계정 수정
-export const updateEntertainment = async (enterData, token) => {
+export const updateEntertainment = async (enterName, enterData, token) => {
     try {
         const formData = new FormData();
         formData.append('file', enterData.file);
         formData.append('enterName', enterData.enterName);
         formData.append('enterNumber', enterData.enterNumber);
 
-        const response = await axios.patch(`${API_URL}`, formData, {
+        const response = await axios.patch(`${API_URL}/${enterName}`, formData, {
             headers: {
-                'Authorization': `${token}`
+                'Authorization': `${token}`,
+                'Content-Type': 'multipart/form-data'
             },
         });
         return response.data;
@@ -60,9 +61,9 @@ export const updateEntertainment = async (enterData, token) => {
 };
 
 // 엔터테인먼트 계정 삭제
-export const deleteEntertainment = async (token) => {
+export const deleteEntertainment = async (enterName, token) => {
     try {
-        const response = await axios.delete(`${API_URL}`, {
+        const response = await axios.delete(`${API_URL}/${enterName}`, {
             headers: {
                 'Authorization': `${token}`
             },

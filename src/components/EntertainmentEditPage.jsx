@@ -49,7 +49,7 @@ const EntertainmentEditPage = () => {
                 file
             };
 
-            await updateEntertainment(enterData, token);
+            await updateEntertainment(enterName, enterData, token);
             alert('엔터테인먼트 계정이 성공적으로 수정되었습니다.');
             navigate('/');
         } catch (error) {
@@ -68,7 +68,7 @@ const EntertainmentEditPage = () => {
 
         if (window.confirm('정말로 이 엔터테인먼트를 삭제하시겠습니까?')) {
             try {
-                await deleteEntertainment(token);
+                await deleteEntertainment(enterName, token);
                 alert('엔터테인먼트 계정이 성공적으로 삭제되었습니다.');
                 navigate('/');
             } catch (error) {
@@ -77,7 +77,6 @@ const EntertainmentEditPage = () => {
             }
         }
     };
-
     return (
         <>
             <Header />
