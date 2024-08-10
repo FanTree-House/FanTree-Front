@@ -72,7 +72,7 @@ const Header = () => {
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="entertainmentDropdown">
                                 <li><a className="dropdown-item" href="#" onClick={() => navigate('/create-enter')}>엔터 생성</a></li>
-                                <li><a className="dropdown-item" href="#" onClick={() => navigate('/create-artist-group')}>엔터 조회</a></li>
+                                <li><a className="dropdown-item" href="#" onClick={() => navigate('/edit')}>엔터 수정</a></li>
                             </ul>
                         </div>
                         <div className="dropdown">
