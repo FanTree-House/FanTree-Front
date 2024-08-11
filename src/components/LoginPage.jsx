@@ -37,8 +37,6 @@ function LoginPage() {
     }
   };
 
-
-
   const handleKakaoLogin = async () => {
     // 카카오 인증 URL을 브라우저에서 열어 인증 처리
     const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=2b0e2842adcacfeb9731a68eb4b42048&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code`;
@@ -47,7 +45,7 @@ function LoginPage() {
 
   return (
       <div className="login-container">
-        <Link to="/" style={{ textDecoration: 'none' }}>
+        <Link to="/" style={{textDecoration: 'none'}}>
           <h1>FanTree House</h1>
         </Link>
         {error && <p className="error-message">{error}</p>}
@@ -75,7 +73,12 @@ function LoginPage() {
           <button type="submit" className="submit-button">로그인</button>
         </form>
         <div className="social-login">
-          <button onClick={handleKakaoLogin} className="kakao">K</button>
+          <img
+              src="https://github.com/user-attachments/assets/c91749aa-a7ce-4dac-acf0-21b5daf4bdaf"
+              alt="카카오 로그인"
+              className="kakao"
+              onClick={handleKakaoLogin}
+          />
         </div>
         <div className="links">
           <Link to="/signup">회원가입</Link> | <a href="#">문의하기</a> | <a href="#">아이디 찾기</a> | <a href="#">비밀번호 찾기</a>

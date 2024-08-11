@@ -1,27 +1,42 @@
-import React from 'react';
-import {Link, useNavigate} from 'react-router-dom';
-import {useAuthState, useAuthDispatch} from '../context/AuthContext'; // Context import
-import {logout} from '../service/Logout'; // logout 함수 임포트
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthState, useAuthDispatch } from '../context/AuthContext';
+import { logout } from '../service/Logout';
+import { getArtistGroupName } from '../service/FeedService';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
 import './Header.css';
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-
-
 const Header = () => {
-    const {user, userRole} = useAuthState(); // 권한과 사용자 정보 가져오기
+    const { user, userRole } = useAuthState();
     const dispatch = useAuthDispatch();
     const navigate = useNavigate();
+    const [artistGroupName, setArtistGroupName] = useState('');
 
     const handleLogout = async () => {
         try {
             await logout();
-            dispatch({type: 'LOGOUT'});
-            localStorage.removeItem('user'); // 로컬 스토리지에서 사용자 정보만 제거
+            dispatch({ type: 'LOGOUT' });
+            localStorage.removeItem('user');
             navigate('/');
         } catch (error) {
             console.error(error);
         }
     };
+
+    const fetchArtistGroupName = async () => {
+        try {
+            const groupName = await getArtistGroupName();
+            setArtistGroupName(groupName);
+        } catch (error) {
+            console.error('Failed to fetch artist group name:', error);
+        }
+    };
+
+    useEffect(() => {
+        if (userRole === 'ARTIST') {
+            fetchArtistGroupName();
+        }
+    }, [userRole]);
 
     const renderAuthButtons = () => {
         if (!user) {
@@ -51,16 +66,34 @@ const Header = () => {
             case 'ENTERTAINMENT':
                 return (
                     <>
-                        <button onClick={() => navigate('/create-enter')}>엔터 생성</button>
-                        <button onClick={() => navigate('/create-artist-group')}>그룹 생성 </button>
-                        <button onClick={() => navigate('/create-notice')}>공지사항 작성</button>
-                        <button onClick={handleLogout}>로그아웃</button>
+                        <div className="dropdown">
+                            <button className="btn btn-custom dropdown-toggle" type="button" id="entertainmentDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                엔터 생성
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="entertainmentDropdown">
+                                <li><a className="dropdown-item" href="#" onClick={() => navigate('/create-enter')}>엔터 생성</a></li>
+                                <li><a className="dropdown-item" href="#" onClick={() => navigate('/editenter')}>엔터 조회</a></li>
+                            </ul>
+                        </div>
+                        <div className="dropdown">
+                            <button className="btn btn-custom dropdown-toggle" type="button" id="groupDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                그룹
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="groupDropdown">
+                                <li><a className="dropdown-item" href="#"
+                                       onClick={() => navigate('/create-artist-group')}>그룹 생성</a></li>
+                                <li><a className="dropdown-item" href="#"
+                                       onClick={() => navigate('/editgroup')}>그룹 조회</a></li>
+                            </ul>
+                        </div>
+                        <button className="btn btn-custom" onClick={() => navigate('/create-notice')}>공지사항 작성</button>
+                        <button className="btn btn-custom" onClick={handleLogout}>로그아웃</button>
                     </>
                 );
             case 'ARTIST':
                 return (
                     <>
-                        <button onClick={() => navigate(`/artistgroup/${user.groupName}/feed`)}>게시글 작성</button>
+                        <button onClick={() => navigate(`/artistgroup/${artistGroupName}/feed`)}>게시글 작성</button>
                         <button onClick={handleLogout}>로그아웃</button>
                     </>
                 );
@@ -72,10 +105,14 @@ const Header = () => {
     return (
         <header className="header">
             <Link to="/" className="logo">FanTree House</Link>
-            <div className="search-container">
-                <input type="text" className="search-input" placeholder="검색..."/>
-                <button className="search-button">검색</button>
-            </div>
+            <nav className="navbar navbar-light">
+                <div className="search-container">
+                    <form className="d-flex">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-custom" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
             <div className="auth-buttons">
                 {renderAuthButtons()}
             </div>

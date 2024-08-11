@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import {useNavigate, useParams} from 'react-router-dom';
 import {fetchArtistFeeds, fetchGroupDetails, likeFeed, subscribeToGroup, cancelSubscribe, getIsSubscribed, fetchFeedLikes, getIsLiked } from '../service/GroupService';
+import Header from '../components/Header';
 import './GroupPage.css';
 
 const GroupPage = () => {
@@ -111,6 +112,7 @@ const GroupPage = () => {
 
     return (
         <div className="group-page">
+            <Header />
             <div className="group-header">
                 <div className="group-image">
                     <img src={groupDetails.artistGroupProfileImageUrl} alt={`${groupDetails.groupName} 이미지`} />
