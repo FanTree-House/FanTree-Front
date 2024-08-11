@@ -1,0 +1,83 @@
+/* ArtistGroupManagePage.css */
+
+/* 헤더와 내용 사이에 여백 추가 */
+.header-spacing {
+    margin-bottom: 20px;
+}
+
+.artist-group-manage-container {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* 카드 스타일링 */
+.card {
+    width: 18rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    overflow: hidden;
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    height: 12rem;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.card-text {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.list-group-item {
+    font-size: 0.875rem;
+}
+
+.card-body a {
+    margin-right: 0.5rem;
+}
+
+/* 메시지 스타일 */
+.message {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* 수정 폼 스타일 */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.edit-form input, .edit-form textarea {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    box-sizing: border-box;
+}
+
+.edit-form input[type="file"] {
+    padding: 0;
+}
+
+.edit-form button {
+    margin-top: 10px;
+}
