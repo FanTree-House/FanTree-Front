@@ -26,6 +26,8 @@
     display: flex;
     flex-wrap: wrap; /* 여러 줄로 배치 */
     justify-content: center; /* 항목을 가운데 정렬 */
+    overflow: hidden; /* 넘치는 부분 숨김 */
+    transition: transform 0.5s ease; /* 부드러운 전환 효과 */
 }
 
 /* 항목 기본 스타일 */
@@ -39,6 +41,18 @@
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: calc(40% - 20px); /* 한 줄에 2개씩 나오도록 너비 조정 (40%로 변경) */
+    transition: transform 0.5s ease; /* 부드러운 전환 효과 */
+}
+
+/* 슬라이드 애니메이션 */
+.slide {
+    transform: translateX(-100%); /* 왼쪽으로 슬라이드 */
+}
+
+.subscribe-count {
+    font-size: 14px;
+    color: #666; /* 구독자 수 색상 */
+    margin-left: 10px; /* 간격 추가 */
 }
 
 .artist-image {
