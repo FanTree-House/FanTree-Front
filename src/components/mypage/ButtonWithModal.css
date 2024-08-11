@@ -1,0 +1,43 @@
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%; /* Adjust width as needed */
+    max-width: 1000px; /* Maximum width */
+    height: 100%; /* Adjust height as needed */
+    max-height: 700px; /* Maximum height */
+    overflow: auto;
+}
+
+.modal-iframe {
+    width: 100%;
+    height: 80vh;
+    border: none;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #79a2de;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
