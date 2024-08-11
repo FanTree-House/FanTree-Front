@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState, useAuthDispatch } from '../context/AuthContext';
 import { logout } from '../service/Logout';
 import { getArtistGroupName } from '../service/FeedService';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
+import { searchArtistGroup } from '../service/SearchService';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Header.css';
 
 const Header = () => {
@@ -11,6 +12,8 @@ const Header = () => {
     const dispatch = useAuthDispatch();
     const navigate = useNavigate();
     const [artistGroupName, setArtistGroupName] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     const handleLogout = async () => {
         try {
@@ -22,6 +25,21 @@ const Header = () => {
             console.error(error);
         }
     };
+
+
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        if (searchTerm.trim()) {
+            try {
+                const results = await searchArtistGroup(searchTerm);
+                setSearchResults(results.content);
+                navigate('/search-results', { state: { results: results.content } });
+            } catch (error) {
+                console.error('Search failed:', error);
+            }
+        }
+    };
+
 
     const fetchArtistGroupName = async () => {
         try {
@@ -107,8 +125,15 @@ const Header = () => {
             <Link to="/" className="logo">FanTree House</Link>
             <nav className="navbar navbar-light">
                 <div className="search-container">
-                    <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <form className="d-flex" onSubmit={handleSearch}>
+                        <input
+                            className="form-control me-2"
+                            type="search"
+                            placeholder="아티스트 그룹 검색"
+                            aria-label="Search"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
                         <button className="btn btn-custom" type="submit">Search</button>
                     </form>
                 </div>

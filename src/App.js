@@ -14,6 +14,7 @@ import AdminSignup from './components/AdminSignup';
 import { AuthProvider } from './context/AuthContext';
 import EntertainmentEditPage from "./components/EntertainmentEditPage";
 import ArtistGroupManagePage from "./components/ArtistGroupManagePage";
+import SearchResults from "./components/SearchResults";
 
 
 const AppRoutes = () => {
@@ -32,6 +33,7 @@ const AppRoutes = () => {
             <Route path="/artistgroup/:groupName/feed" element={<CreateArtistFeedPage />} />
             <Route path="/editenter" element={<EntertainmentEditPage />} />
             <Route path="/editgroup" element={<ArtistGroupManagePage />} />
+            <Route path="/search-results" element={<SearchResults />} />
 
         </Routes>
     );
