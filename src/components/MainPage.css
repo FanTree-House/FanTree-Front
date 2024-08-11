@@ -6,7 +6,6 @@
     margin: 0; /* 기본 여백 제거 */
 }
 
-
 /* 메인 콘텐츠 스타일 */
 .main-content {
     padding: 20px; /* 콘텐츠 여백 추가 */
@@ -104,6 +103,7 @@
 }
 
 .profile-item {
+    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -114,6 +114,13 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: calc(33.33% - 20px); /* 3개씩 배치, 간격 고려 */
     box-sizing: border-box; /* 패딩과 마진을 포함하여 너비 계산 */
+    text-decoration: none; /* 기본 텍스트 장식 제거 */
+    transition: all 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+.profile-item:hover {
+    background-color: #f0f8ff; /* 마우스 오버 시 배경색 변경 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
 }
 
 .artist-profile-image {
