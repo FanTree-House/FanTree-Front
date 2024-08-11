@@ -14,6 +14,10 @@ const Profile = () => {
     const [newPassword, setNewPassword] = useState("");
     const [editing, setEditing] = useState(false); // 닉네임, 이메일, 비밀번호 수정 상태
 
+    const [originalNickname, setOriginalNickname] = useState("");
+    const [originalEmail, setOriginalEmail] = useState("");
+    const [originalUserImage, setOriginalUserImage] = useState("holder.js/100x100");
+
     // 정보 불러오기
     useEffect(() => {
         axios.get('http://localhost:8080/users', {
@@ -26,10 +30,15 @@ const Profile = () => {
                 setNickname(response.data.nickname);
                 setEmail(response.data.email);
                 setUserImage(response.data.profileImageUrl || "holder.js/100x100"); // 기본 이미지 유지
+
+                setOriginalNickname(response.data.nickname);
+                setOriginalEmail(response.data.email);
+                setOriginalUserImage(response.data.profileImageUrl || "holder.js/100x100");
             })
             .catch(error => console.error('Error fetching user data:', error));
     }, [accessToken]);
 
+    // 프로필 이미지 변경 처리
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -38,6 +47,25 @@ const Profile = () => {
                 setUserImage(reader.result);
             };
             reader.readAsDataURL(file);
+            saveProfileImage(file); // 파일을 서버에 저장
+        }
+    };
+
+    // 프로필 이미지 저장
+    const saveProfileImage = async (file) => {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const response = await axios.put('http://localhost:8080/users/image', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `${accessToken}`
+                }
+            });
+            console.log('Profile image updated successfully:', response.data);
+        } catch (error) {
+            console.error('Error updating profile image:', error);
         }
     };
 
@@ -66,6 +94,12 @@ const Profile = () => {
             });
             console.log('Profile updated successfully:', response.data);
             setEditing(false);
+
+            // 업데이트된 값들을 original 값으로 설정
+            setOriginalNickname(nickname);
+            setOriginalEmail(email);
+            setOriginalUserImage(userImage);
+
         } catch (error) {
             console.error('Error updating profile:', error);
         }
@@ -73,9 +107,30 @@ const Profile = () => {
 
     const handleSettingsClick = () => {
         if (editing) {
-            document.getElementById('profile-form').requestSubmit(); // 폼 제출 요청
+            const formHasChanges =
+                nickname !== originalNickname ||
+                email !== originalEmail ||
+                password !== "" ||
+                newPassword !== "" ||
+                userImage !== originalUserImage;
+
+            if (formHasChanges) {
+                const confirmSave = window.confirm("저장하시겠습니까?");
+                if (confirmSave) {
+                    document.getElementById('profile-form').requestSubmit(); // 폼 제출 요청
+                } else {
+                    setEditing(false); // 편집 모드 종료
+                    // 변경사항 취소하고 원래 값으로 되돌리기
+                    setNickname(originalNickname);
+                    setEmail(originalEmail);
+                    setUserImage(originalUserImage);
+                }
+            } else {
+                setEditing(false); // 변경사항이 없으면 그냥 편집 모드 종료
+            }
         } else {
-            setEditing(true); // 수정 모드로 전환
+            // 편집 모드로 전환
+            setEditing(true);
         }
     };
 
