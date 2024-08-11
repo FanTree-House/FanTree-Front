@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client'; // 'react-dom/client'에서 createRoot를 임포트합니다.
 import { BrowserRouter } from 'react-router-dom'; // BrowserRouter를 직접 임포트합니다.
 import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 // createRoot를 사용하여 루트 요소를 생성합니다.
 const rootElement = document.getElementById('root');

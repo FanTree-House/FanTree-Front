@@ -7,7 +7,7 @@ import Buttons from './Buttons';
 import {Link} from 'react-router-dom';
 import {FloatingLabel, Button, Form} from 'react-bootstrap';
 
-const FanTreeHouse = () => {
+const MyPage = () => {
 
     const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(false); // 사용자 인증 상태
@@ -55,4 +55,4 @@ const FanTreeHouse = () => {
     );
 };
 
-export default FanTreeHouse;
+export default MyPage;
