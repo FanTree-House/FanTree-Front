@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import './Buttons.css';
-import ButtonWithModal from './ButtonWithModal'; // Modal 컴포넌트를 import
+import ButtonWithModal from './ButtonWithModal';
 import { Link } from 'react-router-dom';
 
 const Buttons = () => {

@@ -14,8 +14,6 @@ const Profile = () => {
     const [newPassword, setNewPassword] = useState("");
     const [editing, setEditing] = useState(false); // 닉네임, 이메일, 비밀번호 수정 상태
 
-    console.log("accessToken retrieved:", accessToken);
-
     // 정보 불러오기
     useEffect(() => {
         axios.get('http://localhost:8080/users', {
