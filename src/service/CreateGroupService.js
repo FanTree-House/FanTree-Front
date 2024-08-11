@@ -60,7 +60,7 @@ export const deleteArtistGroup = async (groupName, token) => {
 // 새로운 함수: 모든 아티스트 가져오기
 export const getAllArtists = async (token) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/artists`, { // 아티스트 API 경로에 맞게 수정
+        const response = await axios.get(`${API_BASE_URL}/artists`, {
             headers: {
                 'Authorization': `${token}`, // 토큰을 헤더에 추가합니다.
             },
