@@ -84,6 +84,10 @@ const Header = () => {
                                        onClick={() => navigate('/create-artist-group')}>그룹 생성</a></li>
                                 <li><a className="dropdown-item" href="#"
                                        onClick={() => navigate('/editgroup')}>그룹 조회</a></li>
+                                {/*<button onClick={() => navigate('/create-enter')}>엔터 생성</button>*/}
+                                {/*<button onClick={() => navigate('/create-artist-group')}>그룹 생성 </button>*/}
+                                {/*<button onClick={() => navigate('/group/:groupName/enter/:enterName/notice')}>공지사항 작성</button>*/}
+                                {/*<button onClick={handleLogout}>로그아웃</button>*/}
                             </ul>
                         </div>
                         <button className="btn btn-custom" onClick={() => navigate('/create-notice')}>공지사항 작성</button>

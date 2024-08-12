@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './components/MainPage';
 import GroupPage from './components/GroupPage';
 import FeedPopup from './components/FeedPopup';
@@ -12,8 +12,13 @@ import EnterSignup from './components/EnterSignup';
 import ArtistSignup from './components/ArtistSignup';
 import AdminSignup from './components/AdminSignup';
 import { AuthProvider } from './context/AuthContext';
+import ArtistCreatePage from './components/ArtistAccount/ArtistCreatePage';
+import EntertainerPage from './components/Enter/EntertainerPage';
+import ArtistProfile from './components/ArtistAccount/ArtistProfile';
 import EntertainmentEditPage from "./components/EntertainmentEditPage";
 import ArtistGroupManagePage from "./components/ArtistGroupManagePage";
+import './App.css';
+
 
 
 const AppRoutes = () => {
@@ -30,18 +35,23 @@ const AppRoutes = () => {
             <Route path="/create-enter" element={<EntertainmentCreatePage />} />
             <Route path="/create-artist-group" element={<ArtistGroupCreatePage />} />
             <Route path="/artistgroup/:groupName/feed" element={<CreateArtistFeedPage />} />
+            <Route path="/create-artist-account" element={<ArtistCreatePage />} />
+            <Route path="/group/:groupName/enter/:enterName" element={<EntertainerPage />} />
+            {/*<Route path="/group/:groupName/enter/:enterName/notice" element={<EntertainerPage />} />*/}
+            <Route path="/artistProfile/:artistId" element={<ArtistProfile />} />
             <Route path="/editenter" element={<EntertainmentEditPage />} />
             <Route path="/editgroup" element={<ArtistGroupManagePage />} />
-
         </Routes>
     );
 };
 
 const App = () => {
     return (
-        <AuthProvider>
-            <AppRoutes />
-        </AuthProvider>
+        <Router>
+            <AuthProvider>
+                <AppRoutes />
+            </AuthProvider>
+        </Router>
     );
 };
 

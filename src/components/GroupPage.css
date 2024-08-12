@@ -7,7 +7,58 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
+.nav_btn {
+
+    margin-top: 45px;
+    margin-left: 600px;
+    display: grid;
+    grid-auto-flow: column; /* 버튼들을 가로 방향으로 배치 */
+    gap: 40px; /* 버튼 사이의 간격 */
+    position: absolute; /* 인증 버튼을 절대 위치로 설정 */
+}
+
+.notice-button {
+    width: 150px;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.community-button{
+    width: 150px;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.subscript-button{
+    width: 150px;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.notice-button {
+    background-color: #007bff;
+}
+
+.subscript-button{
+    background-color: darkred;
+    color: white;
+}
+.community-button {
+    background-color: #28a745;
+}
+
+.h1{
+    margin-bottom: 200px;
+}
 .group-header {
+    margin-top: 100px;
     display: flex;
     align-items: center;
     margin-bottom: 40px; /* 하단 여백 증가 */
