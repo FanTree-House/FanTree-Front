@@ -9,11 +9,11 @@ const Footer = () => {
                     <a href="/" className="footer-link">FANTREEHOUSE</a>
                 </div>
                 <div className="footer-links">
-                    <a href="/info">Info</a>
-                    <a href="/support">Support</a>
-                    <a href="/marketing">Marketing</a>
-                    <a href="/terms">Terms of Use</a>
-                    <a href="/privacy">Privacy Policy</a>
+                    <a href="https://github.com/FanTree-House/FanTree-Back/blob/main/README.md">Info</a>
+                    <a href="">Survey</a>
+                    <a href="https://nbcamp.spartacodingclub.kr/">Support</a>
+                    <a href="https://www.notion.so/teamsparta/67b0dd55fd384f6bbe2f635feb4d0c38">Terms of Use</a>
+                    <a href="https://github.com/FanTree-House">Our Records</a>
                 </div>
                 <p className="footer-copyright">&copy; FanTreeCompany</p>
             </div>
