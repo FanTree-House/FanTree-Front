@@ -109,26 +109,26 @@ const MainPage = () => {
                         ))}
                     </ul>
                 </div>
-                <div className="profile-section">
-                    <h2>아티스트 프로필</h2>
-                    <ul className="profile-list">
-                        {artistProfiles.length > 0 ? (
-                            artistProfiles.map((artist) => (
-                                <Link
-                                    to={`/group/${artist.groupName}`}
-                                    key={artist?.id}
-                                    className="profile-item"
-                                >
-                                    <img src={artist?.artistGroupProfileImageUrl} alt={artist?.artistName}
-                                         className="artist-profile-image"/>
-                                    <span className="profile-group-name">{artist?.groupName}</span>
-                                </Link>
-                            ))
-                        ) : (
-                            <li>아티스트 프로필이 없습니다.</li>
-                        )}
-                    </ul>
-                </div>
+            </div>
+            <div className="profile-section">
+                <h2>아티스트 프로필</h2>
+                <ul className="profile-list">
+                    {artistProfiles.length > 0 ? (
+                        artistProfiles.map((artist) => (
+                            <Link
+                                to={`/group/${artist.groupName}?enter=${artist.enterName}`}
+                                key={artist?.id}
+                                className="profile-item"
+                            >
+                                <img src={artist?.artistGroupProfileImageUrl} alt={artist?.artistName}
+                                     className="artist-profile-image"/>
+                                <span className="profile-group-name">{artist?.groupName}</span>
+                            </Link>
+                        ))
+                    ) : (
+                        <li>아티스트 프로필이 없습니다.</li>
+                    )}
+                </ul>
             </div>
         </div>
     );
