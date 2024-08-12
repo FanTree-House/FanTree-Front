@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ArtistGroupService from '../service/ArtistGroupService';
 import Header from '../components/Header'; // 헤더 컴포넌트 임포트
+import Footer from '../components/Footer'; // 푸터 컴포넌트 임포트
 import { useAuthDispatch } from '../context/AuthContext';
 import './MainPage.css';
 
@@ -112,6 +113,7 @@ const MainPage = () => {
                     )}
                 </ul>
             </div>
+            <Footer /> {/* 푸터를 페이지 맨 아래에 추가 */}
         </div>
     );
 };
