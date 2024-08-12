@@ -7,8 +7,8 @@ import Header from '../components/Header';
 // 스타일 정의
 const Container = styled.div`
     width: 50%;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 20px auto 0; 
+    padding: 130px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
