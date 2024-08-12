@@ -15,8 +15,8 @@ function ScheduleCalendar({schedules: receivedSchedules, onAddSchedule}) {
 
     // schedules가 변경되면 state를 업데이트합니다.
     useEffect(() => {
-        // console.log('print schedules');
-        // console.dir(receivedSchedules);
+        console.log('print schedules');
+        console.dir(receivedSchedules);
         setSchedules(receivedSchedules);
     }, [receivedSchedules]);
     const getSchedulesForDate = (date) => {

@@ -13,6 +13,7 @@
     font-family: Arial, sans-serif;
     min-height: 100px;
     min-width: 2200px;
+    margin-top : 100px;
 }
 
 .header-title {
@@ -26,12 +27,12 @@
 
 }
 
-.Enterpage {
-    width: 2200px;
-    color: white;
-    padding: 15px 40px;
-    position: relative;
-}
+/*.Enterpage {*/
+/*    width: 2200px;*/
+/*    color: white;*/
+/*    padding: 15px 40px;*/
+/*    position: relative;*/
+/*}*/
 
 .logo img {
     width: 400px;
