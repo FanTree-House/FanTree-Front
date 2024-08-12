@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // useNavigate 추가
 import styled from 'styled-components';
-import { createFeed } from '../service/FeedService';
+import { createFeed } from '../service/ArtistFeedService';
 import Header from '../components/Header';
 
 // 스타일 정의

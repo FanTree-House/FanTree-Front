@@ -15,6 +15,7 @@ import { AuthProvider } from './context/AuthContext';
 import EntertainmentEditPage from "./components/EntertainmentEditPage";
 import ArtistGroupManagePage from "./components/ArtistGroupManagePage";
 import SearchResults from "./components/SearchResults";
+import FeedManager from "./components/FeedManager";
 
 
 const AppRoutes = () => {
@@ -34,7 +35,7 @@ const AppRoutes = () => {
             <Route path="/editenter" element={<EntertainmentEditPage />} />
             <Route path="/editgroup" element={<ArtistGroupManagePage />} />
             <Route path="/search-results" element={<SearchResults />} />
-
+            <Route path="/group/:groupName/myfeeds" element={<FeedManager />} />
         </Routes>
     );
 };

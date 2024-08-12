@@ -1,0 +1,45 @@
+.header-spacing {
+    margin-bottom: 80px;
+}
+
+.artist-feeds-page {
+    padding: 20px;
+}
+
+.feeds-container {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.feed {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.feed img {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.feed-content {
+    padding: 15px 0;
+}
+
+.feed-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+}
+
+.delete-confirmation {
+    background-color: #f8d7da;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+}

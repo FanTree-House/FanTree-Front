@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState, useAuthDispatch } from '../context/AuthContext';
 import { logout } from '../service/Logout';
-import { getArtistGroupName } from '../service/FeedService';
+import { getArtistGroupName } from '../service/ArtistFeedService';
 import { searchArtistGroup } from '../service/SearchService';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Header.css';
@@ -112,6 +112,7 @@ const Header = () => {
                 return (
                     <>
                         <button onClick={() => navigate(`/artistgroup/${artistGroupName}/feed`)}>게시글 작성</button>
+                        <button onClick={() => navigate(`/group/${artistGroupName}/myfeeds`)}>게시글 조회</button>
                         <button onClick={handleLogout}>로그아웃</button>
                     </>
                 );

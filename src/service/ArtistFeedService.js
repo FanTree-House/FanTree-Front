@@ -49,3 +49,54 @@ export const createFeed = async (groupName, content, images) => {
         throw error;
     }
 };
+
+// 아티스트의 피드를 가져오는 함수
+export const getArtistFeed = async () => {
+    const token = window.localStorage.getItem('accessToken');
+
+    try {
+        const response = await axios.get(`/${groupName}/feed/${artistFeedId}`, {
+            headers: {
+                'Authorization': `${token}` // 토큰을 Bearer 형식으로 추가
+            },
+        });
+        return response.data.data; // 그룹 이름 반환
+    } catch (error) {
+        console.error('Error fetching artist group name:', error);
+        throw error;
+    }
+};
+
+// 피드 업데이트 함수
+export const updateFeed = async (groupName, artistFeedId, formData) => {
+    const token = window.localStorage.getItem('accessToken');
+
+    try {
+        const response = await axios.patch(`${API_BASE_URL}/${groupName}/feed/${artistFeedId}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `${token}`
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error updating feed:', error);
+        throw error;
+    }
+};
+
+// 피드 삭제 함수
+export const deleteFeed = async (groupName, artistFeedId) => {
+    const token = window.localStorage.getItem('accessToken'); // Add this line
+
+    try {
+        await axios.delete(`${API_BASE_URL}/${groupName}/feed/${artistFeedId}`, {
+            headers: {
+                'Authorization': `${token}` // Fix here
+            },
+        });
+    } catch (error) {
+        console.error('Error deleting feed:', error);
+        throw error;
+    }
+};
