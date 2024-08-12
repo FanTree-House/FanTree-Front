@@ -1,10 +1,8 @@
-import axios from "axios";
-
-const API_BASE_URL = 'http://localhost:8080/artistgroup';
+import apiClient from './apiClient';
 
 export const createArtistGroup = async (groupData, token) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}`, groupData, {
+        const response = await apiClient.post(`/artistgroup`, groupData, {
             headers: {
                 'Authorization': `${token}`, // 토큰을 헤더에 추가합니다.
                 'Content-Type': 'multipart/form-data', // FormData 사용 시 Content-Type을 명시합니다.
@@ -19,7 +17,7 @@ export const createArtistGroup = async (groupData, token) => {
 
 export const getAllArtistGroups = async (token) => {
     try {
-        const response = await axios.get(API_BASE_URL, {
+        const response = await apiClient.get(`/artistgroup`, {
             headers: { 'Authorization': `${token}` }
         });
         return response.data.data;
@@ -31,7 +29,7 @@ export const getAllArtistGroups = async (token) => {
 
 export const updateArtistGroup = async (groupName, groupData, token) => {
     try {
-        const response = await axios.patch(`${API_BASE_URL}/${groupName}`, groupData, {
+        const response = await apiClient.patch(`/artistgroup/${groupName}`, groupData, {
             headers: {
                 'Authorization': `${token}`,
                 'Content-Type': 'multipart/form-data'
@@ -46,7 +44,7 @@ export const updateArtistGroup = async (groupName, groupData, token) => {
 
 export const deleteArtistGroup = async (groupName, token) => {
     try {
-        const response = await axios.delete(`${API_BASE_URL}/${groupName}`, {
+        const response = await apiClient.delete(`/artistgroup/${groupName}`, {
             headers: { 'Authorization': `${token}` }
         });
         return response.data;
@@ -60,7 +58,7 @@ export const deleteArtistGroup = async (groupName, token) => {
 // 새로운 함수: 모든 아티스트 가져오기
 export const getAllArtists = async (token) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/artists`, {
+        const response = await apiClient.get(`/artistgroup/artists`, {
             headers: {
                 'Authorization': `${token}`, // 토큰을 헤더에 추가합니다.
             },
