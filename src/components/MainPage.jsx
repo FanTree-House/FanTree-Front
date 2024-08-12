@@ -11,6 +11,24 @@ const MainPage = () => {
     const dispatch = useAuthDispatch();
 
     useEffect(() => {
+        // 로컬 스토리지에서 새로 고침 여부 확인
+        const hasRefreshed = localStorage.getItem('hasRefreshed');
+
+        if (!hasRefreshed) {
+            // 새로 고침하지 않은 경우, 새로 고침 수행
+            window.location.reload();
+
+            // 로컬 스토리지에 새로 고침 상태 저장
+            localStorage.setItem('hasRefreshed', 'true');
+        }
+
+        // 컴포넌트가 언마운트될 때 로컬 스토리지 초기화 (원하는 경우)
+        return () => {
+            localStorage.removeItem('hasRefreshed');
+        };
+    }, []);
+
+    useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
             dispatch({

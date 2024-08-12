@@ -1,10 +1,9 @@
-import axios from 'axios';
-const API_URL = `http://localhost:8080/feed`;
+import apiClient from './apiClient';
 
 export const createNotice = async ({enterName, title, contents}) => {
     const token = window.localStorage.getItem('accessToken');
     try {
-        const response = await axios.post(`${API_URL}/${enterName}/notice`, {
+        const response = await apiClient.post(`/feed/${enterName}/notice`, {
             title, contents
         }, {
             headers: {
@@ -24,7 +23,7 @@ export const createNotice = async ({enterName, title, contents}) => {
 export const createSchedule = async ({enterName, title, contents, date  }) => {
     const token = window.localStorage.getItem('accessToken');
     try {
-        const response = await axios.post(`${API_URL}/${enterName}/schedule`, {
+        const response = await apiClient.post(`/feed/${enterName}/schedule`, {
                 title, contents, date },
             {
                 headers: {
@@ -43,7 +42,7 @@ export const createSchedule = async ({enterName, title, contents, date  }) => {
 
 export const fetchNotices = async (enterName) => {
     try {
-        const response = await axios.get(`${API_URL}/${enterName}/notice`);
+        const response = await apiClient.get(`/feed/${enterName}/notice`);
         console.log('Server response data:', response.data); // 응답 데이터 확인
         if (Array.isArray(response.data)) {
             return response.data;
@@ -63,7 +62,7 @@ export const fetchNotices = async (enterName) => {
 
 export const fetchSchedule = async (enterName) => {
     try {
-        const response = await axios.get(`${API_URL}/${enterName}/schedule`);
+        const response = await apiClient.get(`/feed/${enterName}/schedule`);
         if (Array.isArray(response.data.data)) {
             return response.data.data;
         } else {
