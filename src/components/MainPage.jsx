@@ -20,12 +20,13 @@ const MainPage = () => {
     }, [dispatch]);
 
     const [artistGroups, setArtistGroups] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [artistProfiles, setArtistProfiles] = useState([]);
 
     useEffect(() => {
         const fetchArtistGroups = async () => {
             try {
-                const data = await ArtistGroupService.getArtistGroups('', 0, 15);
+                const data = await ArtistGroupService.getArtistGroups();
                 setArtistGroups(data);
             } catch (error) {
                 console.error('Error fetching artist groups:', error);
@@ -45,6 +46,24 @@ const MainPage = () => {
         fetchAllArtistGroups();
     }, []);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex(prevIndex => {
+                // 마지막 인덱스를 넘지 않도록 설정
+                if (prevIndex >= Math.floor((artistGroups.length - 2) / 2)) {
+                    return 0; // 처음으로 돌아감
+                }
+                return prevIndex + 1; // 다음 인덱스로 이동
+            });
+        }, 10000); // 10초마다 슬라이드 변경
+
+        return () => clearInterval(interval); // 컴포넌트 언마운트 시 인터벌 클리어
+    }, [artistGroups.length]);
+
+    const getCurrentGroups = () => {
+        return artistGroups.slice(currentIndex * 2 + 1, currentIndex * 2 + 3); // 2위부터 15위까지 2개씩 반환
+    };
+
     return (
         <div className="main-page">
             <header className="header">
@@ -59,12 +78,15 @@ const MainPage = () => {
                             <img src={artistGroups[0]?.artistGroupProfileImageUrl} alt={artistGroups[0]?.groupName}
                                  className="artist-image"/>
                             <span className="group-name">{artistGroups[0]?.groupName}</span>
+                            <span className="subscribe-count">구독자 수 : {artistGroups[0]?.subscribeCount}</span>
                         </li>
-                        {artistGroups.slice(1, 15).map((group, index) => (
+                        {getCurrentGroups().map((group, index) => (
                             <li key={group?.id} className="ranking-item">
-                                <span className="ranking-position">{index + 2}위</span>
-                                <img src={group?.artistGroupProfileImageUrl} alt={group?.groupName} className="artist-image"/>
+                                <span className="ranking-position">{currentIndex * 2 + index + 2}위</span>
+                                <img src={group?.artistGroupProfileImageUrl} alt={group?.groupName}
+                                     className="artist-image"/>
                                 <span className="group-name">{group?.groupName}</span>
+                                <span className="subscribe-count">구독자 수 : {group?.subscribeCount}</span>
                             </li>
                         ))}
                     </ul>

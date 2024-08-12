@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { fetchFeedComments, postComment, likeFeed, fetchArtistFeed, fetchFeedLikes, getIsLiked, updateComment, deleteComment } from '../service/GroupService';
 import './FeedPopup.css';
 import { useParams } from "react-router-dom";
@@ -32,6 +35,14 @@ const FeedPopup = () => {
         loadFeed();
     }, [feedId, groupName]);
 
+    const sliderSettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    };
+
     const handleCommentChange = (e) => {
         setNewComment(e.target.value);
     };
@@ -53,6 +64,10 @@ const FeedPopup = () => {
         try {
             await likeFeed(groupName, feedId);
             const likesCount = await fetchFeedLikes(groupName, feedId);
+
+            // 좋아요 상태 업데이트
+            setIsLiked(prevIsLiked => !prevIsLiked);
+
             setFeedData(prevFeedData => ({
                 ...prevFeedData,
                 likesCount,
@@ -62,10 +77,10 @@ const FeedPopup = () => {
         }
     };
 
+
     const openEditModal = (comment) => {
         setEditingCommentId(comment.id);
         setEditingCommentContent(comment.contents);
-        console.log("댓글 수정 전", comment);
         setIsModalOpen(true);
     };
 
@@ -77,7 +92,6 @@ const FeedPopup = () => {
         if (editingCommentContent.trim() === '') return;
 
         try {
-            console.log("댓글 수정 할 때", editingCommentId);
             await updateComment(groupName, feedId, editingCommentId, editingCommentContent);
             const loadedComments = await fetchFeedComments(groupName, feedId);
             setComments(loadedComments);
@@ -114,7 +128,19 @@ const FeedPopup = () => {
                     <div className="feed-details">
                         <h2>{feedData.artistName}</h2>
                         <p>{feedData.contents}</p>
-                        {feedData.imageUrls && <img src={feedData.imageUrls} alt="게시물 이미지" />}
+                        {feedData.imageUrls && feedData.imageUrls.length > 0 && (
+                            feedData.imageUrls.length > 1 ? (
+                                <Slider {...sliderSettings}>
+                                    {feedData.imageUrls.map((imageUrl, index) => (
+                                        <div key={index}>
+                                            <img src={imageUrl} alt={`게시물 이미지 ${index + 1}`} style={{ width: '100%', borderRadius: '8px' }} />
+                                        </div>
+                                    ))}
+                                </Slider>
+                            ) : (
+                                <img src={feedData.imageUrls[0]} alt="게시물 이미지" style={{ width: '100%', borderRadius: '8px' }} />
+                            )
+                        )}
                         <div className="feed-actions">
                             <button onClick={handleLike}>{isLiked ? '❤️' : '🤍'} {feedData.likesCount}</button>
                         </div>

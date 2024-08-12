@@ -20,6 +20,7 @@ const SignupForm = () => {
     checkPassword: '',
     email: '',
     authNumber: '',
+    userRoleEnum: 'USER',
     file: null,
   });
 
@@ -47,7 +48,6 @@ const SignupForm = () => {
           if (formData[key]) {
             formDataToSend.append(key, formData[key]);
           } else {
-            // 파일이 없을 경우, 기본 이미지 URL을 문자열로 전송
             formDataToSend.append('defaultImageUrl', 'https://github.com/user-attachments/assets/0b652401-bde8-4ace-8754-1405cd57b3fa');
           }
         } else {
@@ -63,10 +63,8 @@ const SignupForm = () => {
         setErrors({ ...errors, submit: '회원가입에 실패했습니다. 다시 시도해주세요.' });
       }
     }
-
-
     else if(!availableId) {
-      alert('ID 중복확인을 해주세요.') //새로고침 안되게끔
+      alert('ID 중복확인을 해주세요.')
     }
     else if (!availableNickname){
       alert('닉네임 중복확인을 해주세요.')
@@ -80,9 +78,14 @@ const SignupForm = () => {
   };
 
   const handleCheckDuplicateId = async () => {
-    // ID 입력값 검증
     if (!formData.id.trim()) {
       alert("ID를 입력해 주세요");
+      return;
+    }
+
+    const regex = /^[A-Za-z0-9]{6,12}$/;
+    if (!regex.test(formData.id)) {
+      alert('아이디는 문자와 숫자를 포함하여 6-12자여야 합니다.');
       return;
     }
 
@@ -96,25 +99,40 @@ const SignupForm = () => {
   };
 
   const handleCheckDuplicateNickname = async () => {
-    // 닉네임 입력값 검증
     if (!formData.nickname.trim()) {
       alert("닉네임을 입력해 주세요");
       return;
     }
 
+    const regex = /^[A-Za-z0-9]{8,12}$/;
+    if (!regex.test(formData.nickname)) {
+      alert('닉네임은 문자와 숫자를 포함하여 8-12자여야 합니다.');
+      return;
+    }
+
     try {
-      const data =  await checkDuplicateNickname(formData.nickname);
-      setAvailableNickname(!data.result)
-      alert(data.message)
+      const data = await checkDuplicateNickname(formData.nickname);
+      if (data.result) {
+        alert('이미 사용 중인 닉네임입니다.');
+        setAvailableNickname(false);
+      } else {
+        alert('사용 가능한 닉네임입니다.');
+        setAvailableNickname(true);
+      }
     } catch (error) {
       alert('서버에서 오류가 발생했습니다. 다시 시도해주세요');
     }
   };
 
-  const handleCheckPassword = async () =>{
-    // 비밀번호 입력값 검증
+  const handleCheckPassword = async () => {
     if (!formData.password.trim() || !formData.checkPassword.trim()) {
       alert("비밀번호와 확인 비밀번호를 입력해 주세요");
+      return;
+    }
+
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
+    if (!regex.test(formData.password)) {
+      alert('비밀번호는 문자, 숫자, 특수문자를 포함하여 8-20자여야 합니다.');
       return;
     }
 
@@ -122,7 +140,7 @@ const SignupForm = () => {
       const data = await verifyPassword(formData.password, formData.checkPassword);
       setAvailavblePassowrd(data.result)
       alert(data.message)
-    }catch (error){
+    } catch (error) {
       alert('서버에서 오류가 발생했습니다. 다시 시도해주세요');
     }
   }
@@ -146,11 +164,10 @@ const SignupForm = () => {
     }
   };
 
-
   return (
       <div className="signup-container">
         <Link to="/" style={{ textDecoration: 'none' }}>
-        <h1>FanTree House</h1>
+          <h1>FanTree House</h1>
         </Link>
         <h2>회원 가입</h2>
         <form onSubmit={handleSubmit} encType="multipart/form-data">

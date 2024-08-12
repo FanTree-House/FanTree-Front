@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { getAllArtistGroups, createArtistGroup } from '../service/CreateGroupService';
 import Header from '../components/Header';
 import './ArtistGroupCreatePage.css';
@@ -11,7 +10,6 @@ const ArtistGroupCreatePage = () => {
     const [groupInfo, setGroupInfo] = useState('');
     const [artistIdsInput, setArtistIdsInput] = useState('');
     const [artistGroups, setArtistGroups] = useState([]);
-    const navigate = useNavigate();
 
     const handleCreateGroup = async () => {
         if (!enterName || !groupName || !artistProfilePicture) {
@@ -25,26 +23,25 @@ const ArtistGroupCreatePage = () => {
             return;
         }
 
-        const artistIds = artistIdsInput.trim().split(',').map(id => id.trim());
+        const artistIds = artistIdsInput.trim();
+
         const formData = new FormData();
         formData.append('enterName', enterName);
         formData.append('groupName', groupName);
         formData.append('groupInfo', groupInfo);
         formData.append('file', artistProfilePicture);
-        formData.append('artistIds', JSON.stringify(artistIds));
+        formData.append('artistIds', artistIds);
 
         try {
-            const response = await createArtistGroup(formData, token);
-            if (response.ok) {
-                setEnterName('');
-                setGroupName('');
-                setArtistProfilePicture(null);
-                setGroupInfo('');
-                setArtistIdsInput('');
-                fetchArtistGroups();
-            } else {
-                throw new Error('엔터 그룹 생성에 실패했습니다.');
-            }
+            const result = await createArtistGroup(formData, token);
+            alert("아티스트 그룹이 성공적으로 생성되었습니다!");
+
+            setEnterName('');
+            setGroupName('');
+            setArtistProfilePicture(null);
+            setGroupInfo('');
+            setArtistIdsInput('');
+            fetchArtistGroups();
         } catch (error) {
             console.error("Failed to create artist group:", error);
         }
@@ -53,7 +50,6 @@ const ArtistGroupCreatePage = () => {
     const fetchArtistGroups = async () => {
         try {
             const token = window.localStorage.getItem('accessToken');
-            if (!token) throw new Error('로그인이 필요합니다.');
             const groups = await getAllArtistGroups(token);
             setArtistGroups(groups);
         } catch (error) {
@@ -65,61 +61,54 @@ const ArtistGroupCreatePage = () => {
         fetchArtistGroups();
     }, []);
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        setArtistProfilePicture(file);
-    };
-
     return (
         <>
             <Header />
-            <div className="container">
-                <h2 className="centered-title">Artist Group Manager</h2>
-                <label className="image-upload-wrapper centered">
-                    {artistProfilePicture ? (
-                        <img
-                            src={URL.createObjectURL(artistProfilePicture)}
-                            alt="Uploaded"
-                            className="uploaded-image"
-                        />
-                    ) : (
-                        <div className="image-placeholder">이미지를 넣어주세요</div>
-                    )}
-                    <input
-                        type="file"
-                        onChange={handleImageChange}
-                        className="image-input"
-                        accept="image/*"
-                    />
-                </label>
+            <div className="content-container">
+                <h2>Artist Group Manager</h2>
                 <input
                     type="text"
                     placeholder="Enter Name"
                     value={enterName}
                     onChange={(e) => setEnterName(e.target.value)}
-                    className="input-field centered"
+                    className="input-field"
                 />
                 <input
                     type="text"
                     placeholder="Group Name"
                     value={groupName}
                     onChange={(e) => setGroupName(e.target.value)}
-                    className="input-field centered"
+                    className="input-field"
                 />
+                <div className="image-upload-container">
+                    <label className="image-upload-label">
+                        {artistProfilePicture ? (
+                            <img src={URL.createObjectURL(artistProfilePicture)} alt="Artist" className="preview-image" />
+                        ) : (
+                            <div className="image-placeholder">이미지를 클릭하여 추가하세요</div>
+                        )}
+                        <input
+                            type="file"
+                            onChange={(e) => setArtistProfilePicture(e.target.files[0])}
+                            className="file-input"
+                            accept="image/*"
+                        />
+                    </label>
+                </div>
                 <textarea
                     placeholder="Group Info"
                     value={groupInfo}
                     onChange={(e) => setGroupInfo(e.target.value)}
-                    className="textarea-field centered"
+                    className="textarea-field"
                 />
                 <textarea
                     placeholder="Enter Artist IDs, separated by commas"
                     value={artistIdsInput}
                     onChange={(e) => setArtistIdsInput(e.target.value)}
-                    className="textarea-field centered"
+                    className="textarea-field"
                 />
-                <button onClick={handleCreateGroup} className="submit-button centered">Create Artist Group</button>
-                <ul className="group-list centered">
+                <button onClick={handleCreateGroup} className="submit-button">Create Artist Group</button>
+                <ul className="group-list">
                     {Array.isArray(artistGroups) && artistGroups.map((group) => (
                         <li key={group.id}>{group.groupName}</li>
                     ))}

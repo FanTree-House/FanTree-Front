@@ -1,8 +1,8 @@
 import axios from 'axios';
 const API_URL = `http://localhost:8080/feed`;
-const token = window.localStorage.getItem('accessToken');
 
 export const createNotice = async ({enterName, title, contents}) => {
+    const token = window.localStorage.getItem('accessToken');
     try {
         const response = await axios.post(`${API_URL}/${enterName}/notice`, {
             title, contents
@@ -22,6 +22,7 @@ export const createNotice = async ({enterName, title, contents}) => {
 }
 
 export const createSchedule = async ({enterName, title, contents, date  }) => {
+    const token = window.localStorage.getItem('accessToken');
     try {
         const response = await axios.post(`${API_URL}/${enterName}/schedule`, {
                 title, contents, date },

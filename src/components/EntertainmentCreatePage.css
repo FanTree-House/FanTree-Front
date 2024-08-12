@@ -1,64 +1,38 @@
-body {
-    background-color: #ffffff;
-}
-
 .container {
-    max-width: 50%;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: auto;
     padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
     border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 100px; /* Adjust this value according to the header height */
 }
 
-.centered-title {
-    text-align: center;
+h2 {
     color: #333;
-}
-
-.image-upload-wrapper {
-    display: block;
-    margin: 0 auto 20px auto;
-    width: 100%;
-    height: 200px;
-    background-color: #f0f0f0;
-    border: 2px dashed #ccc;
-    border-radius: 8px;
     text-align: center;
-    position: relative;
-    cursor: pointer;
 }
 
-.image-placeholder {
-    font-size: 1rem;
-    color: #999;
-    line-height: 200px;
+.form-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.image-input {
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: pointer;
+.form-group {
+    margin-bottom: 15px;
 }
 
-.uploaded-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
 }
 
 .input-field {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
-    display: block;
 }
 
 .submit-button {
@@ -68,17 +42,46 @@ body {
     padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
-    display: block;
-    width: 100%;
-    margin: 10px 0;
+    align-self: center;
 }
 
 .submit-button:hover {
     background-color: #7cc4e0;
 }
 
-.message {
+p {
     text-align: center;
-    color: red;
-    margin-top: 20px;
+    margin-top: 15px;
+    color: #d9534f;
+}
+
+.image-upload-label {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 250px; /* 높이를 250px로 증가 */
+    background-color: #f0f0f0; /* 연한 회색 */
+    border: 2px dashed #ccc;
+    border-radius: 8px; /* 가장자리를 살짝 둥글게 */
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden; /* 이미지가 박스를 넘어가지 않도록 */
+    display: flex; /* 중앙 정렬을 위한 Flexbox 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+}
+
+.preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 박스를 정확히 채우도록 */
+    border-radius: 8px; /* 가장자리를 박스에 맞게 둥글게 */
+}
+
+.image-placeholder {
+    color: #aaa;
+}
+
+.file-input {
+    display: none;
 }
