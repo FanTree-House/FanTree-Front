@@ -1,13 +1,11 @@
-import axios from 'axios';
-
-const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
+import apiClient from './apiClient';
 
 // 아티스트의 그룹 이름을 가져오는 함수
 export const getArtistGroupName = async () => {
     const token = window.localStorage.getItem('accessToken');
 
     try {
-        const response = await axios.get(`${API_BASE_URL}/artist/group`, {
+        const response = await apiClient.get(`/artist/group`, {
             headers: {
                 'Authorization': `${token}` // 토큰을 Bearer 형식으로 추가
             },
@@ -37,7 +35,7 @@ export const createFeed = async (groupName, content, images) => {
     const token = window.localStorage.getItem('accessToken');
 
     try {
-        const response = await axios.post(`${API_BASE_URL}/${groupName}`, formData, {
+        const response = await apiClient.post(`/${groupName}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `${token}` // 토큰을 Bearer 형식으로 추가
