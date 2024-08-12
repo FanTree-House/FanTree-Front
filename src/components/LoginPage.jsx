@@ -1,7 +1,7 @@
 // src/components/LoginPage.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { login, kakaoLogin } from '../service/LoginPage';
+import { login } from '../service/LoginPage';
 import { useAuthDispatch } from '../context/AuthContext';
 import './LoginPage.css';
 
@@ -9,16 +9,31 @@ function LoginPage() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-  const [error, setError] = useState('');
   const navigate = useNavigate();
   const dispatch = useAuthDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+
+    // 아이디가 비어 있는지 체크
+    if (!id) {
+      alert('아이디를 입력해주세요.');
+      return;
+    }
+
+
+    // 비밀번호가 비어 있는지 체크
+    if (!password) {
+      alert('비밀번호를 입력해주세요.');
+      return;
+    }
+
     try {
       const response = await login(id, password);
-      console.log('로그인 성공:', response);
+      if (!response.data || !response.data.userId) {
+        alert('존재하지 않는 아이디입니다. 다시 시도해 주세요.');
+        return;
+      }
 
       const userData = {
         user: response.data.userId,
@@ -33,22 +48,20 @@ function LoginPage() {
       });
       navigate('/');
     } catch (error) {
-      setError(error.message || '로그인에 실패했습니다.');
+      alert('비밀번호가 틀렸습니다. 다시 입력해 주세요.');
     }
   };
 
   const handleKakaoLogin = async () => {
-    // 카카오 인증 URL을 브라우저에서 열어 인증 처리
     const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=2b0e2842adcacfeb9731a68eb4b42048&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code`;
     window.location.href = kakaoAuthUrl;
   };
 
   return (
       <div className="login-container">
-        <Link to="/" style={{textDecoration: 'none'}}>
+        <Link to="/" style={{ textDecoration: 'none' }}>
           <h1>FanTree House</h1>
         </Link>
-        {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleSubmit}>
           <input
               type="text"

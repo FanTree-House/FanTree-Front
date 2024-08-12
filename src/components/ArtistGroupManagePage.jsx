@@ -25,9 +25,10 @@ const ArtistGroupManagePage = () => {
         try {
             const token = window.localStorage.getItem('accessToken');
             const groups = await getAllArtistGroups(token);
-            setArtistGroups(groups);
+            setArtistGroups(groups || []);  // 데이터가 없을 경우 빈 배열로 초기화
         } catch (error) {
             setMessage('아티스트 그룹을 불러오는데 실패했습니다.');
+            setArtistGroups([]);  // 실패했을 경우에도 빈 배열로 초기화
         }
     };
 
@@ -116,86 +117,90 @@ const ArtistGroupManagePage = () => {
             <div className="header-spacing" />
             <div className="artist-group-manage-container">
                 {message && <p className="message">{message}</p>}
-                {artistGroups.map((group) => (
-                    <div key={group.id} className="card">
-                        {editingGroup && editingGroup.id === group.id ? (
-                            <div className="edit-form">
-                                <input
-                                    type="text"
-                                    value={newGroupName}
-                                    onChange={(e) => setNewGroupName(e.target.value)}
-                                    placeholder="그룹 이름"
-                                />
-                                <input
-                                    type="text"
-                                    value={newEnterName}
-                                    onChange={(e) => setNewEnterName(e.target.value)}
-                                    placeholder="엔터테인먼트 이름"
-                                />
-                                <textarea
-                                    value={newGroupInfo}
-                                    onChange={(e) => setNewGroupInfo(e.target.value)}
-                                    placeholder="그룹 정보"
-                                />
-                                <input
-                                    type="file"
-                                    onChange={(e) => setNewFile(e.target.files[0])}
-                                />
-                                <div>
-                                    <h5>그룹 아티스트:</h5>
-                                    <ul>
-                                        {newArtistIds.map(artistId => (
-                                            <li key={artistId}>
-                                                아티스트 ID: {artistId}
-                                                <button
-                                                    className="btn btn-danger btn-sm"
-                                                    onClick={() => handleRemoveArtist(artistId)}
-                                                >
-                                                    제거
-                                                </button>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h5>아티스트 추가:</h5>
+                {artistGroups.length > 0 ? (
+                    artistGroups.map((group) => (
+                        <div key={group.id} className="card">
+                            {editingGroup && editingGroup.id === group.id ? (
+                                <div className="edit-form">
                                     <input
                                         type="text"
-                                        value={newArtistId}
-                                        onChange={(e) => setNewArtistId(e.target.value)}
-                                        placeholder="아티스트 ID 입력"
+                                        value={newGroupName}
+                                        onChange={(e) => setNewGroupName(e.target.value)}
+                                        placeholder="그룹 이름"
                                     />
-                                    <button
-                                        className="btn btn-success"
-                                        onClick={handleAddArtist}
-                                    >
-                                        추가
-                                    </button>
+                                    <input
+                                        type="text"
+                                        value={newEnterName}
+                                        onChange={(e) => setNewEnterName(e.target.value)}
+                                        placeholder="엔터테인먼트 이름"
+                                    />
+                                    <textarea
+                                        value={newGroupInfo}
+                                        onChange={(e) => setNewGroupInfo(e.target.value)}
+                                        placeholder="그룹 정보"
+                                    />
+                                    <input
+                                        type="file"
+                                        onChange={(e) => setNewFile(e.target.files[0])}
+                                    />
+                                    <div>
+                                        <h5>그룹 아티스트:</h5>
+                                        <ul>
+                                            {newArtistIds.map(artistId => (
+                                                <li key={artistId}>
+                                                    아티스트 ID: {artistId}
+                                                    <button
+                                                        className="btn btn-danger btn-sm"
+                                                        onClick={() => handleRemoveArtist(artistId)}
+                                                    >
+                                                        제거
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5>아티스트 추가:</h5>
+                                        <input
+                                            type="text"
+                                            value={newArtistId}
+                                            onChange={(e) => setNewArtistId(e.target.value)}
+                                            placeholder="아티스트 ID 입력"
+                                        />
+                                        <button
+                                            className="btn btn-success"
+                                            onClick={handleAddArtist}
+                                        >
+                                            추가
+                                        </button>
+                                    </div>
+                                    <button className="btn btn-primary" onClick={handleUpdate}>저장</button>
+                                    <button className="btn btn-secondary" onClick={handleCancelEdit}>취소</button>
                                 </div>
-                                <button className="btn btn-primary" onClick={handleUpdate}>저장</button>
-                                <button className="btn btn-secondary" onClick={handleCancelEdit}>취소</button>
-                            </div>
-                        ) : (
-                            <>
-                                <img src={group.artistGroupProfileImageUrl} className="card-img-top" alt={group.groupName} />
-                                <div className="card-body">
-                                    <h5 className="card-title">{group.groupName}</h5>
-                                    <p className="card-text">엔터테인먼트: {group.enterName}</p>
-                                    <p className="card-text">정보: {group.groupInfo}</p>
-                                </div>
-                                <ul className="list-group list-group-flush">
-                                    {group.artistDtos.map(artist => (
-                                        <li key={artist.id} className="list-group-item">아티스트 ID: {artist.id}</li>
-                                    ))}
-                                </ul>
-                                <div className="card-body">
-                                    <button className="btn btn-primary" onClick={() => handleEdit(group)}>수정</button>
-                                    <button className="btn btn-danger" onClick={() => handleDelete(group.groupName)}>삭제</button>
-                                </div>
-                            </>
-                        )}
-                    </div>
-                ))}
+                            ) : (
+                                <>
+                                    <img src={group.artistGroupProfileImageUrl} className="card-img-top" alt={group.groupName} />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{group.groupName}</h5>
+                                        <p className="card-text">엔터테인먼트: {group.enterName}</p>
+                                        <p className="card-text">정보: {group.groupInfo}</p>
+                                    </div>
+                                    <ul className="list-group list-group-flush">
+                                        {group.artistDtos.map(artist => (
+                                            <li key={artist.id} className="list-group-item">아티스트 ID: {artist.id}</li>
+                                        ))}
+                                    </ul>
+                                    <div className="card-body">
+                                        <button className="btn btn-primary" onClick={() => handleEdit(group)}>수정</button>
+                                        <button className="btn btn-danger" onClick={() => handleDelete(group.groupName)}>삭제</button>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    ))
+                ) : (
+                    <p>아티스트 그룹이 없습니다.</p>
+                )}
             </div>
         </>
     );

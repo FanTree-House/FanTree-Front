@@ -17,6 +17,7 @@ import EntertainerPage from './components/Enter/EntertainerPage';
 import ArtistProfile from './components/ArtistAccount/ArtistProfile';
 import EntertainmentEditPage from "./components/EntertainmentEditPage";
 import ArtistGroupManagePage from "./components/ArtistGroupManagePage";
+import SearchResults from "./components/SearchResults";
 import './App.css';
 
 
@@ -41,6 +42,7 @@ const AppRoutes = () => {
             <Route path="/artistProfile/:artistId" element={<ArtistProfile />} />
             <Route path="/editenter" element={<EntertainmentEditPage />} />
             <Route path="/editgroup" element={<ArtistGroupManagePage />} />
+            <Route path="/search-results" element={<SearchResults />} />
         </Routes>
     );
 };
