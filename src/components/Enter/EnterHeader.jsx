@@ -1,28 +1,24 @@
-// src/components/EnterHeader.js
-import React, { useEffect, useState } from 'react';
-import './EntertainerPage.css'; // CSS 파일 임포트
+// src/components/Enter/EnterHeader.jsx
+import React from 'react';
+import './EntertainerPage.css';
 
 function EnterHeader({ Entertainment }) {
-    const [imageURL, setImageURL] = useState('');
+    // 로딩 중 상태 처리
+    if (!Entertainment) {
+        return <div>Loading...</div>;
+    }
 
-    useEffect(() => {
-        if (Entertainment?.file) {
-            const url = URL.createObjectURL(Entertainment.file);
-            setImageURL(url);
-            return () => URL.revokeObjectURL(url); // Clean up URL object when component unmounts
-        }
-    }, [Entertainment?.file]);
+    // Entertainment 객체에서 file이 있는지 확인
+    console.log('Entertainment file:', Entertainment.file);
 
     return (
         <header className="Enterheader">
             <div className="logo">
-                <img src="/path-to-your-logo.png" alt="Entertainment Logo" />
+                {Entertainment.file && (
+                    <img src={Entertainment.file} alt="Logo" className="preview-image" />)}
             </div>
             <div className="company-intro">
-                <h1>{Entertainment?.enterName || '엔터테인먼트 회사명'}</h1>
-                {imageURL && (
-                    <img src={imageURL} alt="Entertainment Logo" className="preview-image" />
-                )}
+                <h1>{Entertainment.enterName || '엔터테인먼트 회사명'}</h1>
             </div>
         </header>
     );

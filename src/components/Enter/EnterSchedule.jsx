@@ -87,7 +87,7 @@ function ScheduleCalendar({schedules: receivedSchedules, onAddSchedule}) {
                         const schedulesForDate = getSchedulesForDate(date);
                         return (
                             <div className="schedule-dot-container"
-                                 onMouseOver={(event) => {
+                                 onMouseEnter={(event) => {
                                      setIsTooltipShown(true);
                                      showTooltip(date, event)
                                  }}
@@ -110,20 +110,24 @@ function ScheduleCalendar({schedules: receivedSchedules, onAddSchedule}) {
                 }}
             />
             {
-                isTooltipShown && tooltipContent && (<div style={{
+                isTooltipShown && tooltipContent && (
+                    <div style={{
                         position: 'absolute',
-                        width : '150px',
-                        height : '100px',
-                        top: "150px",
-                        left: "100px",
-                        fontSize : '13px',
+                        top: tooltipCoords.top,
+                        left: tooltipCoords.left,
+                        width: '150px',
+                        height: '100px',
+                        fontSize: '13px',
                         zIndex: 2000,
-                        background: 'white'
-                    }} className="tooltip"
-                    >
+                        background: 'white',
+                        border: '1px solid #ddd',
+                        padding: '10px',
+                        boxShadow: '0 0 10px rgba(0,0,0,0.1)'
+                    }} className="tooltip">
                         {tooltipContent}
                     </div>
-                )}
+                )
+            }
             <button className="add-schedule-btn" onClick={() => setIsModalOpen(true)}>
                 스케줄 생성하기
             </button>

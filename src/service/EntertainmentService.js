@@ -22,21 +22,6 @@ export const createEntertainment = async (enterData, token) => {
     }
 };
 
-// 엔터테인먼트 계정 조회
-export const getEntertainment = async (token) => {
-    try {
-        const response = await apiClient.get(`/enter/my`, {
-            headers: {
-                'Authorization': `${token}`
-            },
-        });
-        return response.data.data; // ResponseDataDto 구조에 맞춰 수정
-    } catch (error) {
-        console.error('Error fetching entertainment:', error);
-        throw error;
-    }
-};
-
 // 엔터테인먼트 계정 수정
 export const updateEntertainment = async (enterName, enterData, token) => {
     try {
@@ -69,6 +54,20 @@ export const deleteEntertainment = async (enterName, token) => {
         return response.data;
     } catch (error) {
         console.error('Error deleting entertainment:', error);
+        throw error;
+    }
+};
+// 엔터테인먼트 계정 조회
+export const getEntertainment = async (token) => {
+    try {
+        const response = await apiClient.get('/enter/my', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+        });
+        return response.data.data; // Adjust based on actual response structure
+    } catch (error) {
+        console.error('Error fetching entertainment:', error);
         throw error;
     }
 };

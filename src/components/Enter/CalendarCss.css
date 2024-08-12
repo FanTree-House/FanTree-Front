@@ -73,14 +73,25 @@
     transform: translate(50%, 50%);
 }
 
-/* 툴팁 스타일 */
+/*!* 툴팁 스타일 *!*/
+/*.tooltip {*/
+/*    background: #333;*/
+/*    padding: 5px;*/
+/*    border-radius: 4px;*/
+/*    position: absolute;*/
+/*    z-index: 2000;*/
+/*    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);*/
+/*}*/
+
 .tooltip {
-    background: #333;
-    padding: 10px;
-    border-radius: 4px;
     position: absolute;
-    z-index: 2000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 150px;
+    height: 100px;
+    z-index: 2000; /* 높게 설정 */
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 /* 모달 스타일 */

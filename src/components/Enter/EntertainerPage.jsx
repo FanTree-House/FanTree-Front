@@ -1,13 +1,14 @@
+// src/components/Enter/EntertainerPage.jsx
 import React, { useState, useEffect } from 'react';
-import { createSchedule, createNotice, fetchSchedule, fetchNotices } from '../../service/Entertainer';
-import EnterHeader from './EnterHeader'; // 엔터헤더 컴포넌트 import
+import {  getEntertainment } from '../../service/EntertainmentService';
+import { createSchedule, createNotice, fetchSchedule, fetchNotices} from '../../service/Entertainer';
 import Notices from './EnterNotice';
-import ScheduleCalendar from './EnterSchedule'; // 실제 파일 이름에 맞게 수정
-import Header from '../../components/Header'; // 헤더 컴포넌트 import
+import ScheduleCalendar from './EnterSchedule';
+import Header from '../../components/Header';
+import EnterHeader from './EnterHeader'; // 수정된 import
 import '../../components/Header.css';
 import './EntertainerPage.css';
 import { useParams } from "react-router-dom";
-import { getEntertainment } from '../../service/entertainmentService'; // 엔터테인먼트 서비스 import
 
 const EnterPage = () => {
     const [notices, setNotices] = useState([]);
@@ -37,8 +38,10 @@ const EnterPage = () => {
 
         const fetchEntertainmentData = async () => {
             try {
-                const data = await getEntertainment(token);
-                setEntertainment(data);
+                if (token) {
+                    const data = await getEntertainment(token);
+                    setEntertainment(data);
+                }
             } catch (error) {
                 console.error('Error fetching entertainment:', error);
             }
@@ -46,14 +49,12 @@ const EnterPage = () => {
 
         loadNotices();
         loadSchedules();
-        if (token) {
-            fetchEntertainmentData();
-        }
+        fetchEntertainmentData(); // 엔터테인먼트 데이터 로드
     }, [enterName, token]);
 
     const handleCreateNotice = async (newNotice) => {
         try {
-            const createdNotice = await createNotice({ enterName, ...newNotice });
+            const createdNotice = await createNotice({ ...newNotice, enterName });
             setNotices(prevNotices => [...prevNotices, createdNotice]);
         } catch (error) {
             console.error('Error adding notice:', error);
@@ -62,7 +63,7 @@ const EnterPage = () => {
 
     const handleCreateSchedule = async (newSchedule) => {
         try {
-            const createdSchedule = await createSchedule({ enterName, ...newSchedule });
+            const createdSchedule = await createSchedule({ ...newSchedule, enterName });
             setSchedules(prevSchedules => [...prevSchedules, createdSchedule]);
         } catch (error) {
             console.error('Error creating schedule:', error);
@@ -71,7 +72,7 @@ const EnterPage = () => {
 
     return (
         <div className="EnterPage">
-            <Header /> {/* Header 컴포넌트 추가 */}
+            <Header />
             <EnterHeader Entertainment={entertainment} />
             <Notices notices={notices} onAddNotice={handleCreateNotice} />
             <ScheduleCalendar
