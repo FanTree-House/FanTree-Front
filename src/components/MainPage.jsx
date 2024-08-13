@@ -68,6 +68,18 @@ const MainPage = () => {
         return artistGroups.slice(start, start + 2);
     };
 
+    const handlePrevClick = () => {
+        setCurrentIndex((prevIndex) =>
+            (prevIndex - 2 + artistGroups.length) % artistGroups.length
+        );
+    };
+
+    const handleNextClick = () => {
+        setCurrentIndex((prevIndex) =>
+            (prevIndex + 2) % artistGroups.length
+        );
+    };
+
     return (
         <div className="main-page">
             <header className="header">
@@ -75,6 +87,7 @@ const MainPage = () => {
             </header>
             <div className="main-content">
                 <div className="ranking-section">
+                    <button className="nav-button prev-button" onClick={handlePrevClick}>&lt;</button>
                     <div className="ranking-grid">
                         {getCurrentGroups().map((group, index) => (
                             <Link
@@ -82,7 +95,8 @@ const MainPage = () => {
                                 key={group?.id}
                                 className="ranking-item"
                             >
-                                <img src={group?.artistGroupProfileImageUrl} alt={group?.groupName} className="artist-image"/>
+                                <img src={group?.artistGroupProfileImageUrl} alt={group?.groupName}
+                                     className="artist-image"/>
                                 <div className="ranking-info">
                                     <span className="ranking-number">
                                         {String(Math.floor(currentIndex / 2) * 2 + index + 1).padStart(2, '0')}
@@ -93,6 +107,7 @@ const MainPage = () => {
                             </Link>
                         ))}
                     </div>
+                    <button className="nav-button next-button" onClick={handleNextClick}>&gt;</button>
                 </div>
                 <div className="profile-section">
                     <h2>아티스트 프로필</h2>

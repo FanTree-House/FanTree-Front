@@ -17,6 +17,8 @@
     position: relative;
     padding: 40px;
     background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
 }
 
 .ranking-grid {
@@ -24,6 +26,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     height: 600px;
+    width: 100%;
 }
 
 .ranking-item {
@@ -122,11 +125,11 @@
 }
 
 .ranking-item:hover .ranking-info {
-    transform: translateY(10%); /* 중앙으로 이동 */
-    align-items: center; /* 중앙 정렬 */
+    transform: translateY(10%);
+    align-items: center;
     justify-content: center;
-    text-align: center; /* 중앙 정렬 */
-    top: 30%; /* 상단 여백 조정 */
+    text-align: center;
+    top: 30%;
     bottom: auto; /* 하단 초기화 */
 }
 
@@ -153,9 +156,38 @@
     transform: translateX(-10%);
 }
 
-/* 버튼 스타일 제거 */
-.next-btn {
-    display: none;
+.nav-button {
+    color: cornflowerblue;
+    border: none;
+    font-size: 50px;
+    padding: 15px 15px;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease, background 0.3s ease, text-shadow 0.3s ease;
+    background: transparent;
+    opacity: 0; /* 기본적으로 숨김 */
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+.prev-button {
+    position: absolute;
+    left: -20px;
+}
+
+.next-button {
+    position: absolute;
+    right: -20px;
+}
+
+/* 랭킹 섹션에 마우스를 올렸을 때 버튼 표시 */
+.ranking-section:hover .nav-button {
+    opacity: 1;
 }
 
 /* 프로필 섹션 스타일 */
