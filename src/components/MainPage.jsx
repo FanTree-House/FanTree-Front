@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import ArtistGroupService from '../service/ArtistGroupService';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { useAuthDispatch } from '../context/AuthContext';
-import './MainPage.css';
+import React, { useEffect, useState } from 'react'; // Import React hooks
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import ArtistGroupService from '../service/ArtistGroupService'; // Import the service
+import Header from '../components/Header'; // Import Header component
+import Footer from '../components/Footer'; // Import Footer component
+import { useAuthDispatch } from '../context/AuthContext'; // Import useAuthDispatch from your context
+import './MainPage.css'; // Import CSS
 
 const MainPage = () => {
     const dispatch = useAuthDispatch();
@@ -63,20 +63,24 @@ const MainPage = () => {
         return () => clearInterval(interval);
     }, [artistGroups]);
 
+    const getTopGroup = () => {
+        return artistGroups[0];
+    };
+
     const getCurrentGroups = () => {
-        const start = currentIndex;
+        const start = currentIndex + 1; // 2위부터 시작
         return artistGroups.slice(start, start + 2);
     };
 
     const handlePrevClick = () => {
         setCurrentIndex((prevIndex) =>
-            (prevIndex - 2 + artistGroups.length) % artistGroups.length
+            (prevIndex - 2 + artistGroups.length) % (artistGroups.length - 1)
         );
     };
 
     const handleNextClick = () => {
         setCurrentIndex((prevIndex) =>
-            (prevIndex + 2) % artistGroups.length
+            (prevIndex + 2) % (artistGroups.length - 1)
         );
     };
 
@@ -86,23 +90,42 @@ const MainPage = () => {
                 <Header />
             </header>
             <div className="main-content">
+                <div className="top-group-section">
+                    <div className="top-group">
+                        {getTopGroup() && (
+                            <Link
+                                to={`/group/${getTopGroup().groupName}`}
+                                key={getTopGroup().id}
+                                className="top-group-item"
+                            >
+                                <img src={getTopGroup().artistGroupProfileImageUrl} alt={getTopGroup().groupName}
+                                     className="top-group-image"/>
+                                <div className="top-group-info">
+                                    <span className="top-ranking-number">01</span>
+                                    <h3 className="top-group-name">{getTopGroup().groupName}</h3>
+                                    <span className="top-subscribe-count">구독자 수: {getTopGroup().subscribeCount}</span>
+                                </div>
+                            </Link>
+                        )}
+                    </div>
+                </div>
                 <div className="ranking-section">
                     <button className="nav-button prev-button" onClick={handlePrevClick}>&lt;</button>
                     <div className="ranking-grid">
                         {getCurrentGroups().map((group, index) => (
                             <Link
                                 to={`/group/${group.groupName}`}
-                                key={group?.id}
+                                key={group.id}
                                 className="ranking-item"
                             >
-                                <img src={group?.artistGroupProfileImageUrl} alt={group?.groupName}
+                                <img src={group.artistGroupProfileImageUrl} alt={group.groupName}
                                      className="artist-image"/>
                                 <div className="ranking-info">
                                     <span className="ranking-number">
-                                        {String(Math.floor(currentIndex / 2) * 2 + index + 1).padStart(2, '0')}
+                                        {String(Math.floor(currentIndex / 2) * 2 + index + 2).padStart(2, '0')}
                                     </span>
-                                    <h3 className="group-name">{group?.groupName}</h3>
-                                    <span className="subscribe-count">구독자 수 : {group?.subscribeCount}</span>
+                                    <h3 className="group-name">{group.groupName}</h3>
+                                    <span className="subscribe-count">구독자 수 : {group.subscribeCount}</span>
                                 </div>
                             </Link>
                         ))}
@@ -116,11 +139,12 @@ const MainPage = () => {
                             artistProfiles.map((artist) => (
                                 <Link
                                     to={`/group/${artist.groupName}?enter=${artist.enterName}`}
-                                    key={artist?.id}
+                                    key={artist.id}
                                     className="profile-item"
                                 >
-                                    <img src={artist?.artistGroupProfileImageUrl} alt={artist?.artistName} className="artist-profile-image"/>
-                                    <span className="profile-group-name">{artist?.groupName}</span>
+                                    <img src={artist.artistGroupProfileImageUrl} alt={artist.artistName}
+                                         className="artist-profile-image"/>
+                                    <span className="profile-group-name">{artist.groupName}</span>
                                 </Link>
                             ))
                         ) : (
@@ -129,7 +153,7 @@ const MainPage = () => {
                     </ul>
                 </div>
             </div>
-            <Footer />
+            <Footer/>
         </div>
     );
 };
