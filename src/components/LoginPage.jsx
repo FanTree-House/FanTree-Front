@@ -75,14 +75,6 @@ function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
           />
-          <label>
-            <input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-            />
-            로그인 상태 유지
-          </label>
           <button type="submit" className="submit-button">로그인</button>
         </form>
         <div className="social-login">
