@@ -5,24 +5,9 @@ import './EntertainerPage.css';
 import { fetchNotices } from '../../service/Entertainer';
 import {useParams} from "react-router-dom"; // 경로 확인
 
-function Notices() {
-    const [notices, setNotices] = useState([]);
+function Notices({ notices, onAddNotice, isVisible }) { // isVisible prop 추가
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedNotice, setSelectedNotice] = useState(null);
-    const {enterName} = useParams()
-
-    useEffect(() => {
-        loadNotices();
-    }, [enterName]);
-
-    const loadNotices = async () => {
-        try {
-            const noticesData = await fetchNotices(enterName);
-            setNotices(noticesData);
-        } catch (error) {
-            console.error('Error fetching notices:', error);
-        }
-    };
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -32,8 +17,8 @@ function Notices() {
     };
 
     const handleAddNotice = (newNotice) => {
-        setNotices(prevNotices => [...prevNotices, newNotice]);
-        closeModal(); // 모달을 닫습니다
+        onAddNotice(newNotice);
+        closeModal();
     };
 
     if (!Array.isArray(notices)) {
@@ -44,7 +29,9 @@ function Notices() {
         <section className="notices">
             <div className="notices-header">
                 <h2>공지사항</h2>
-                <button onClick={openModal} className="add-notice-btn">공지사항 작성</button>
+                {isVisible && (
+                    <button onClick={openModal} className="add-notice-btn">공지사항 작성</button>
+                )}
             </div>
             <ul>
                 {notices.length === 0 ? (

@@ -85,8 +85,8 @@
 
 .tooltip {
     position: absolute;
-    width: 150px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
     z-index: 2000; /* 높게 설정 */
     background: white;
     border: 1px solid #ddd;

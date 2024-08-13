@@ -27,6 +27,7 @@
 .company-intro {
     flex-grow: 1;
     margin-top: 150px;
+    margin-left: 700px;
 }
 
 .preview-image {
@@ -86,11 +87,12 @@
 }
 
 .notice-item h3 {
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 5px;
 }
 
 .notice-item p {
+    text-align: left;
     font-size: 14px;
     margin: 0;
 }

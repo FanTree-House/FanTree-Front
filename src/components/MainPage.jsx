@@ -2,22 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ArtistGroupService from '../service/ArtistGroupService';
 import Header from '../components/Header';
-// import Footer from '../components/Footer';
+import Footer from '../components/Footer';
 import { useAuthDispatch } from '../context/AuthContext';
 import './MainPage.css';
 
 const MainPage = () => {
+
     const dispatch = useAuthDispatch();
     const [artistGroups, setArtistGroups] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [artistProfiles, setArtistProfiles] = useState([]);
 
     useEffect(() => {
+        // 로컬 스토리지에서 새로 고침 여부 확인
         const hasRefreshed = localStorage.getItem('hasRefreshed');
+
         if (!hasRefreshed) {
+            // 새로 고침하지 않은 경우, 새로 고침 수행
             window.location.reload();
+
+            // 로컬 스토리지에 새로 고침 상태 저장
             localStorage.setItem('hasRefreshed', 'true');
         }
+
+        // 컴포넌트가 언마운트될 때 로컬 스토리지 초기화 (원하는 경우)
         return () => {
             localStorage.removeItem('hasRefreshed');
         };
@@ -121,7 +129,7 @@ const MainPage = () => {
                     )}
                 </ul>
             </div>
-            {/*<Footer />*/}
+            <Footer />
         </div>
     );
 };
