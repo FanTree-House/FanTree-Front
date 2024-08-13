@@ -1,28 +1,30 @@
 // src/components/AddPostPage.jsx
 import React, { useState } from 'react';
 import { createFeed } from '../../service/communityApi'; // createFeed 함수 임포트
-import './AddPostPage.css'; // CSS 파일 임포트
+import './AddPostPage.css';
+import {useParams} from "react-router-dom"; // CSS 파일 임포트
 
 const AddPostPage = () => {
-    const [file, setFile] = useState(null);
-    const [content, setContent] = useState('');
-    const groupName = "aespa"; // 그룹 이름 설정  -> 이거 URL로 받도록 수정하기
+    const [files, setFiles] = useState(null);
+    const [contents, setContents] = useState('');
+    const {groupName} = useParams();
+
 
     const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
+        const files = Array.from(e.target.files);
+        setFiles((prevImages) => [...prevImages, ...files]);
     };
 
-    const handleContentChange = (e) => {
-        setContent(e.target.value);
-    };
+    const handleContentChange = (e) => {setContents(e.target.value);};
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData();
-        const requestDto = JSON.stringify({ contents: content });
-        formData.append('requestDto', new Blob([requestDto], { type: 'application/json' }));
-        formData.append('file', file);
+        // const requestDto = JSON.stringify({ contents : content });
+        // formData.append('requestDto', new Blob([requestDto], { type: 'application/json' }));
+        formData.append('contents', contents)
+        formData.append('file', files);
 
         try {
             const newFeed = await createFeed(groupName, formData);
@@ -43,13 +45,13 @@ const AddPostPage = () => {
             <form className="add-post-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label className="form-label">파일 업로드:</label>
-                    <input type="file" className="form-input" onChange={handleFileChange} />
+                    <input type="files" className="form-input" onChange={handleFileChange} />
                 </div>
                 <div className="form-group">
                     <label className="form-label">내용:</label>
                     <textarea
                         className="form-textarea"
-                        value={content}
+                        value={contents}
                         onChange={handleContentChange}
                         placeholder="내용을 입력하세요..."
                     />

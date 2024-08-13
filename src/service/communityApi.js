@@ -13,7 +13,6 @@ export const fetchAllFeeds = async (groupName) => {
             withCredentials: true
         });
 
-
         return response.data;
     } catch (error) {
         console.error('Error fetching feeds:', error);
@@ -25,8 +24,11 @@ export const fetchAllFeeds = async (groupName) => {
 export const createFeed = async (groupName, feedData) => {
     try {
         console.log("폼데이터", feedData.get("requestDto"));
+
         const response = await apiClient.post(`/artist/${groupName}/feeds`, feedData, {
-            headers: { Authorization: `${token}` },
+            headers: {
+                Authorization: `${token}` }
+            ,
             withCredentials: true
         });
         return response.data;
