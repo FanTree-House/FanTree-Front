@@ -13,6 +13,7 @@ function CreateNotice({ isOpen, onClose, onSubmit }) {
     const handleNoticeTitle = (e) => { setTitle(e.target.value); };
     const handleContents = (e) => { setContents(e.target.value); };
     const handleCategory = (e) => { setCategory(e.target.value); };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -21,6 +22,7 @@ function CreateNotice({ isOpen, onClose, onSubmit }) {
             // 제출 후 모달을 닫고, 부모 컴포넌트의 공지사항 목록을 새로고침합니다.
             onSubmit(newNotice);
             onClose();
+            window.location.reload();
         } catch (error) {
             setMessage('공지사항 등록에 실패했습니다.');
         }

@@ -42,11 +42,10 @@ const AppRoutes = () => {
             <Route path="/artistgroup/:groupName/feed" element={<CreateArtistFeedPage />} />
             <Route path="/create-artist-account" element={<ArtistCreatePage />} />
             <Route path="/group/:groupName/enter/:enterName" element={<EntertainerPage />} />
-            {/*<Route path="/group/:groupName/enter/:enterName/notice" element={<EntertainerPage />} />*/}
             <Route path="/artistProfile/:artistId" element={<ArtistProfile />} />
-            <Route path="/editenter" element={<EntertainmentEditPage />} />
-            <Route path="/editgroup" element={<ArtistGroupManagePage />} />
-            <Route path="/search-results" element={<SearchResults />} />
+            <Route path="/editenter" element={<EntertainmentEditPage/>} />
+            <Route path="/editgroup" element={<ArtistGroupManagePage/>} />
+            <Route path="/search-results" element={<SearchResults/>} />
             <Route path="/community" element={
                 <div>
                     <CreateCommunityFeed />

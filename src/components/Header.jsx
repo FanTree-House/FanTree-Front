@@ -108,7 +108,7 @@ const Header = () => {
                                 {/*<button onClick={handleLogout}>로그아웃</button>*/}
                             </ul>
                         </div>
-                        <button className="btn btn-custom" onClick={() => navigate('/create-notice')}>공지사항 작성</button>
+                        <button className="btn btn-custom" onClick={() => navigate('/group/:groupName/enter/:enterName')}>공지사항 작성</button>
                         <button className="btn btn-custom" onClick={handleLogout}>로그아웃</button>
                     </>
                 );
