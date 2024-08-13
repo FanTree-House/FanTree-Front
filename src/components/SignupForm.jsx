@@ -146,6 +146,7 @@ const SignupForm = () => {
   }
 
   const handleSendEmailVerification = async () => {
+    alert('메일 발송까지 최대 30초 이상 소요될 수 있습니다. (아래의 확인 버튼을 눌러주세요!)');
     try {
       await sendEmailVerification(formData.id, formData.email);
       alert('인증 번호가 이메일로 전송되었습니다.');
