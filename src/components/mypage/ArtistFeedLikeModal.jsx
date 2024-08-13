@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './ButtonWithModal.css'; // 기존 CSS 파일을 사용할 수 있습니다.
+import './ButtonWithModal.css'; // 기존 CSS 파일 재사용
+import './ArtistFeedLikeModal.css';
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +12,7 @@ const ArtistFeedLikeModal = ({ postId, onClose }) => {
     const [error, setError] = useState(null);
     const [liked, setLiked] = useState({});
     const [updatedLikes, setUpdatedLikes] = useState({});
+    const [expandedPostIds, setExpandedPostIds] = useState(new Set()); // 게시글 확장 상태
     const accessToken = localStorage.getItem('accessToken'); // 로컬 스토리지에서 토큰 가져오기
 
     useEffect(() => {
@@ -43,6 +45,18 @@ const ArtistFeedLikeModal = ({ postId, onClose }) => {
 
         fetchPosts();
     }, [accessToken]);
+
+    const toggleExpandPost = (postId) => {
+        setExpandedPostIds(prevExpandedPostIds => {
+            const newExpandedPostIds = new Set(prevExpandedPostIds);
+            if (newExpandedPostIds.has(postId)) {
+                newExpandedPostIds.delete(postId);
+            } else {
+                newExpandedPostIds.add(postId);
+            }
+            return newExpandedPostIds;
+        });
+    };
 
     // 좋아요 상태를 토글하는 함수 (서버로 즉시 전송하지 않음)
     const handleLikeToggle = (artistFeedId) => {
@@ -112,67 +126,81 @@ const ArtistFeedLikeModal = ({ postId, onClose }) => {
     }
 
     return (
-        <div className="modal-overlay" onClick={(e) => e.stopPropagation()}> {/* 모달 창 클릭 시 닫히지 않도록 수정 */}
-            <div className="modal-content">
-                {posts.length > 0 ? (
-                    <>
-                        <table className="posts-table">
-                            <thead>
-                            <tr>
-                                <th>Artist Name</th>
-                                <th>Images</th>
-                                <th>Like Count</th>
-                                <th>Content</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {posts.map((post, index) => (
-                                <tr key={index}>
-                                    <td>{post.artistName}</td>
-                                    <td>
-                                        <Carousel
-                                            controls={true} // <---- 변경된 부분: 컨트롤 표시
-                                            indicators={false} // <---- 변경된 부분: 인디케이터 숨기기
-                                            interval={null} // <---- 변경된 부분: 자동 슬라이드 비활성화
-                                            prevIcon={<span className="carousel-control-prev-icon" aria-hidden="true" />} // <---- 변경된 부분: 좌측 버튼 아이콘
-                                            nextIcon={<span className="carousel-control-next-icon" aria-hidden="true" />} // <---- 변경된 부분: 우측 버튼 아이콘
-                                        >
-                                            {post.imageUrls.map((image, imgIndex) => (
-                                                <Carousel.Item key={imgIndex}>
-                                                    <img
-                                                        className="d-block w-100 post-image"
-                                                        src={image}
-                                                        alt={`Slide ${imgIndex}`}
-                                                    />
-                                                </Carousel.Item>
-                                            ))}
-                                        </Carousel>
-                                    </td>
-                                    <td>{post.likeCount}</td>
-                                    <td>{post.content}</td>
-                                    <td>
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <button className="modal-close" onClick={handleClose}>Close</button>
+                <div className="modal-body">
+                    {posts.length > 0 ? (
+                        posts.map((post) => (
+                            <div key={post.id} className="modal-post">
+                                <h3 className="post-artist-name">{post.artistName}</h3>
+                                <Carousel
+                                    controls={true} // 컨트롤 표시
+                                    touch={true}
+                                    indicators={false} // 인디케이터 표시
+                                    interval={null} // 자동 슬라이드 비활성화
+                                    prevIcon={<span className="carousel-control-prev-icon"
+                                                    aria-hidden="true"/>} // 좌측 버튼 아이콘
+                                    nextIcon={<span className="carousel-control-next-icon"
+                                                    aria-hidden="true"/>} // 우측 버튼 아이콘
+                                >
+                                    {post.imageUrls.map((image, imgIndex) => (
+                                        <Carousel.Item key={imgIndex}>
+                                            <img
+                                                className="d-block w-100 post-image"
+                                                src={image}
+                                                alt={`Slide ${imgIndex}`}
+                                            />
+                                        </Carousel.Item>
+                                    ))}
+                                </Carousel>
+                                <div className="like-and-indicator-container">
+                                    <div className="like-container">
                                         <button
                                             className="like-button"
-                                            onClick={() => handleLikeToggle(post.id)} // 좋아요 토글
+                                            onClick={() => handleLikeToggle(post.id)}
                                         >
-
                                             <FontAwesomeIcon
-                                                icon={faHeartSolid} // 상태에 따라 하트 아이콘 변경
-                                                size="lg"
-                                                style={{color: liked[post.id] ? "#ccc" : "#c70000"}}  // 하트 색상 변경
+                                                icon={faHeartSolid}
+                                                size="2x"
+                                                style={{color: liked[post.id] ? "#ccc" : "#c70000"}}
                                             />
                                         </button>
-                                    </td>
-                                </tr>
-                            ))}
-                            </tbody>
-                        </table>
-                    </>
-                ) : (
-                    <p>좋아요한 게시글이 없습니다.</p>
-                )}
-                <button className="modal-close" onClick={handleClose}>Close</button>
+                                        <span className="like-count">{post.likeCount}</span>
+                                    </div>
+                                    <div className="carousel-indicators">
+                                        {post.imageUrls.map((_, idx) => (
+                                            <span key={idx} className="indicator-dot"></span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="post-contents">
+                                    {expandedPostIds.has(post.id) ? (
+                                        <p>{post.contents}</p> // 전체 내용 표시
+                                    ) : (
+                                        <p>
+                                            {post.contents.length > 30 ? (
+                                                <>
+                                                    {post.contents.slice(0, 100)}...
+                                                    <button
+                                                        className="more-button"
+                                                        onClick={() => toggleExpandPost(post.id)}
+                                                    >
+                                                        ...더 보기
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                post.contents
+                                            )}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p>좋아요한 게시글이 없습니다.</p>
+                    )}
+                </div>
             </div>
         </div>
     );

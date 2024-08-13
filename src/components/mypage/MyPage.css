@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #dae6f1;
     margin: 0;
     padding: 20px;
 }
@@ -31,13 +31,13 @@ body {
 
 .input-search {
     flex: 1; /* 검색 입력란이 가능한 공간을 차지하도록 설정 */
-    margin-right: 10px; /* 버튼과의 간격 조정 */
-    height: 60px;
+    margin-right: 5px; /* 버튼과의 간격 조정 */
+    height: 50px;
     width: 80px;
 }
 
 .input-search > floatingSearch {
-    height: 60px;
+    height: 50px;
     width: 80px;
 }
 

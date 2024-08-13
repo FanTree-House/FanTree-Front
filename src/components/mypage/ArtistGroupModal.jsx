@@ -131,7 +131,9 @@ const ArtistGroupModal = ({onClose}) => {
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <h2>구독한 아티스트 그룹</h2>
                 {artistGroups.length === 0 ? (
+                    <div className="no-subscriptions-message">
                     <p>구독한 그룹이 없습니다</p>
+                    </div>
                 ) : (
                     <table className="artist-group-table">
                         <thead>

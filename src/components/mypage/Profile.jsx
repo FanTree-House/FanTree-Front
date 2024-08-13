@@ -59,7 +59,7 @@ const Profile = () => {
         try {
             const response = await axios.put('http://localhost:8080/users/image', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    // 'Content-Type': 'multipart/form-data',
                     'Authorization': `${accessToken}`
                 }
             });

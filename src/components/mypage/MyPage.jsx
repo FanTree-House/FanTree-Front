@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import './MyPage.css';
-import ArtistFeeds from './ArtistFeeds'; // ArtistFeeds 컴포넌트를 import
 import Profile from './Profile';
 import Buttons from './Buttons';
 import {Link} from 'react-router-dom';
@@ -49,8 +48,6 @@ const MyPage = () => {
 
             <Buttons/>
 
-            {/*/!* 아티스트 피드 *!/*/}
-            {/*<ArtistFeeds/>*/}
         </div>
     );
 };

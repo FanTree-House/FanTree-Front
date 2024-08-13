@@ -94,3 +94,10 @@
     padding: 10px;
     cursor: pointer;
 }
+.no-subscriptions-message {
+    text-align: center;
+    padding: 50px 0; /* 중앙 정렬을 위한 패딩 조정 */
+    font-size: 1.5em;
+    color: #2a2d88;
+}
+
