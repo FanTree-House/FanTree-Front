@@ -86,7 +86,7 @@ function LoginPage() {
           />
         </div>
         <div className="links">
-          <Link to="/signup">회원가입</Link> | <a href="#">문의하기</a> | <a href="#">아이디 찾기</a> | <a href="#">비밀번호 찾기</a>
+          <Link to="/signup">회원가입</Link> | <Link to="/">문의하기</Link> | <Link to="https://www.notion.so/teamsparta/ID-5a77ff084e224d408d2f1b00560f89c1">아이디 찾기</Link>
         </div>
       </div>
   );
