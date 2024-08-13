@@ -88,7 +88,7 @@ const MainPage = () => {
                                         {String(Math.floor(currentIndex / 2) * 2 + index + 1).padStart(2, '0')}
                                     </span>
                                     <h3 className="group-name">{group?.groupName}</h3>
-{/*                                    <div className="subscribe-message">그룹 보러가기</div>*/}
+                                    <span className="subscribe-count">구독자 수 : {group?.subscribeCount}</span>
                                 </div>
                             </Link>
                         ))}

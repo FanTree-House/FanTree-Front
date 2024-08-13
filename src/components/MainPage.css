@@ -44,15 +44,39 @@
 /* 순위와 그룹 이름을 이미지 상단에 위치 */
 .ranking-info {
     position: absolute;
-    top: 20px; /* 상단 여백 설정 */
-    left: 20px; /* 좌측 여백 설정 */
-    right: 20px; /* 우측 여백 설정 */
+    top: 20px;
+    left: 20px;
+    right: 20px;
     color: white;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* 왼쪽 정렬 */
+    align-items: flex-start;
     justify-content: flex-start;
-    transition: transform 0.3s ease; /* 이동 애니메이션 추가 */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+.subscribe-count {
+    font-size: 1.2em;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ranking-item:hover .ranking-info {
+    transform: translateY(-50%);
+    top: 50%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.ranking-item:hover .subscribe-count {
+    opacity: 1;
+}
+
+.ranking-item:hover .artist-image {
+    filter: brightness(0.3);
 }
 
 /* 순위 스타일 */
