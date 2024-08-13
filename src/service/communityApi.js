@@ -3,11 +3,13 @@ import apiClient from './apiClient';
 
 const API_URL = 'http://localhost:8080'; // 기본 URL
 
+const token = window.localStorage.getItem('accessToken');
+
 // 모든 피드 조회
 export const fetchAllFeeds = async (groupName) => {
     try {
         const response = await apiClient.get(`/artist/${groupName}/feeds`, {
-            headers: { Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIiLCJhdXRoIjoiVVNFUiIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIyNDIwMTcxLCJpYXQiOjE3MjI0MTgzNzF9.orupaEiXfJ5j8XpA5pZkoshCXR1s04zRN4nq64b3iFo" },
+            headers: { Authorization: `${token}` },
             withCredentials: true
         });
 
@@ -22,7 +24,11 @@ export const fetchAllFeeds = async (groupName) => {
 // 피드 생성
 export const createFeed = async (groupName, feedData) => {
     try {
-        const response = await apiClient.post(`/artist/${groupName}/feeds`, feedData);
+        console.log("폼데이터", feedData.get("requestDto"));
+        const response = await apiClient.post(`/artist/${groupName}/feeds`, feedData, {
+            headers: { Authorization: `${token}` },
+            withCredentials: true
+        });
         return response.data;
     } catch (error) {
         console.error('Error creating feed:', error);
@@ -31,9 +37,12 @@ export const createFeed = async (groupName, feedData) => {
 };
 
 // 피드 선택 조회
-export const fetchFeed = async (groupName, feedId) => {
+export const fetchFeedDetail = async (groupName, feedId) => {
     try {
-        const response = await apiClient.get(`/artist/${groupName}/feeds/${feedId}`);
+        const response = await apiClient.get(`/artist/${groupName}/feeds/${feedId}`, {
+            headers: { Authorization: `${token}` },
+            withCredentials: true
+        });
         return response.data;
     } catch (error) {
         console.error('Error fetching feed:', error);
@@ -44,7 +53,10 @@ export const fetchFeed = async (groupName, feedId) => {
 // 피드 수정
 export const updateFeed = async (groupName, feedId, feedData) => {
     try {
-        const response = await apiClient.patch(`/artist/${groupName}/feeds/${feedId}`, feedData);
+        const response = await apiClient.patch(`/artist/${groupName}/feeds/${feedId}`, feedData, {
+            headers: { Authorization: `${token}` },
+            withCredentials: true
+        });
         return response.data;
     } catch (error) {
         console.error('Error updating feed:', error);
@@ -55,10 +67,30 @@ export const updateFeed = async (groupName, feedId, feedData) => {
 // 피드 삭제
 export const deleteFeed = async (groupName, feedId) => {
     try {
-        const response = await apiClient.delete(`/artist/${groupName}/feeds/${feedId}`);
+        const response = await apiClient.delete(`/artist/${groupName}/feeds/${feedId}`, {
+            headers: { Authorization: `${token}` },
+            withCredentials: true
+        });
         return response.data;
     } catch (error) {
         console.error('Error deleting feed:', error);
         throw error;
     }
+};
+
+// 댓글 조회
+export const fetchComments = async (groupName, feedId) => {
+    const response = await apiClient.get(`${API_URL}/${groupName}/feeds/${feedId}/comments`, {
+        headers: { Authorization: `${token}` },
+        withCredentials: true
+    });
+    return response.data; // 반환된 댓글 데이터
+};
+
+// 댓글 생성
+export const createComment = async (groupName, feedId, commentData) => {
+    await apiClient.post(`${API_URL}/${groupName}/feeds/${feedId}/comments`, commentData, {
+        headers: { Authorization: `${token}` },
+        withCredentials: true
+    });
 };
