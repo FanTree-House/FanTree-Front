@@ -73,7 +73,7 @@ export const postComment = async (groupName, feedId, newComment) => {
 
 // 좋아요 수 반환
 export const fetchFeedLikes = async (groupName, artistFeedId) => {
-    const response = await apiClient.get(`/${groupName}/feed/${artistFeedId}/likes`);
+    const response = await apiClient.get(`/feed/${artistFeedId}/likes`);
     return response.data; // 서버에서 반환된 좋아요 수
 };
 
@@ -101,7 +101,7 @@ export const getIsSubscribed = async (groupName) => {
 
 // 좋아요 여부
 export const getIsLiked = async (groupName, artistFeedId) => {
-    const response = await apiClient.get(`/${groupName}/feed/${artistFeedId}/check`, {
+    const response = await apiClient.get(`/feed/${artistFeedId}/check`, {
         headers: { Authorization: `${token}` },
         withCredentials: true
     });
@@ -139,7 +139,7 @@ export const cancelSubscribe = async (groupName) => {
 // 좋아요 or 좋아요 취소
 export const likeFeed = async (groupName, artistFeedId) => {
     try {
-        await apiClient.post(`/${groupName}/feed/${artistFeedId}`,{}, {
+        await apiClient.post(`/feed/${artistFeedId}`,{}, {
             headers: { Authorization:  `${token}` },
             withCredentials: true
         });
