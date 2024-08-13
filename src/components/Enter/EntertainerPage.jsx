@@ -1,17 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import {createSchedule, createNotice, fetchSchedule, fetchNotices} from '../../service/Entertainer';
+import React, { useState, useEffect } from 'react';
+import { createSchedule, createNotice, fetchSchedule, fetchNotices } from '../../service/Entertainer';
 import Notices from './EnterNotice';
 import ScheduleCalendar from './EnterSchedule'; // 실제 파일 이름에 맞게 수정
-import EnterHeader from './EnterHeader';
-// import Header from '../../components/Header'
-import '../../components/Header.css'
+import Header from '../../components/Header'; // 헤더 컴포넌트 import
+import '../../components/Header.css';
 import './EntertainerPage.css';
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const EnterPage = () => {
     const [notices, setNotices] = useState([]);
     const [schedules, setSchedules] = useState([]);
-    const {enterName} = useParams();
+    const { enterName } = useParams();
 
     useEffect(() => {
         const loadNotices = async () => {
@@ -38,9 +37,9 @@ const EnterPage = () => {
     const handleCreateNotice = async (newNotice) => {
         try {
             const createdNotice = await createNotice(newNotice);
-            setNotices(prevNotices =>{
-                const updateNotice = [...prevNotices, createdNotice];
-                return updateNotice;
+            setNotices(prevNotices => {
+                const updatedNotice = [...prevNotices, createdNotice];
+                return updatedNotice;
             });
         } catch (error) {
             console.error('Error adding notice:', error);
@@ -61,10 +60,7 @@ const EnterPage = () => {
 
     return (
         <div className="EnterPage">
-            <header className="header">
-                <h1 className="header-title">FanTree House</h1> {/* 클래스 추가 */}
-            </header>
-            <EnterHeader/>
+            <Header /> {/* Header 컴포넌트 추가 */}
             <Notices notices={notices} onAddNotice={handleCreateNotice}/>
             <ScheduleCalendar
                 schedules={schedules}

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // useNavigate 추가
 import styled from 'styled-components';
-import { createFeed } from '../service/FeedService';
+import { createFeed } from '../service/ArtistFeedService';
 import Header from '../components/Header';
 
 // 스타일 정의
 const Container = styled.div`
     width: 50%;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 20px auto 0; 
+    padding: 130px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

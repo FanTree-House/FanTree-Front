@@ -1,93 +1,193 @@
 /* 메인 페이지 전체 스타일 */
 .main-page {
-    font-family: 'Arial', sans-serif;
-    padding: 0; /* 기본 여백 제거 */
+    font-family: "Noto Sans KR", sans-serif;
+    padding: 0;
     background-color: #f3f4f6;
-    margin: 0; /* 기본 여백 제거 */
+    margin: 0;
 }
 
 /* 메인 콘텐츠 스타일 */
 .main-content {
-    padding: 20px; /* 콘텐츠 여백 추가 */
-    margin-top: 60px; /* 헤더 높이 만큼 여백 추가 */
+    padding: 20px;
+    margin-top: 80px; /* 헤더와 겹치지 않도록 충분한 여백 추가 */
 }
-
 
 /* 랭킹 섹션 스타일 */
 .ranking-section {
-    margin: 20px 0;
-    text-align: center; /* 전체 랭킹 섹션 가운데 정렬 */
-}
-
-/* 랭킹 목록 스타일 */
-.ranking-list {
-    list-style-type: none;
-    padding: 0;
+    position: relative;
+    padding: 40px;
+    background-color: #f5f5f5;
     display: flex;
-    flex-wrap: wrap; /* 여러 줄로 배치 */
-    justify-content: center; /* 항목을 가운데 정렬 */
-    overflow: hidden; /* 넘치는 부분 숨김 */
-    transition: transform 0.5s ease; /* 부드러운 전환 효과 */
-}
-
-/* 항목 기본 스타일 */
-.ranking-item {
-    display: flex;
-    flex-direction: column; /* 세로로 배치 */
     align-items: center;
-    background-color: #ffffff;
-    padding: 10px;
-    margin: 10px; /* 간격 조정 */
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: calc(40% - 20px); /* 한 줄에 2개씩 나오도록 너비 조정 (40%로 변경) */
-    transition: transform 0.5s ease; /* 부드러운 전환 효과 */
 }
 
-/* 슬라이드 애니메이션 */
-.slide {
-    transform: translateX(-100%); /* 왼쪽으로 슬라이드 */
+.ranking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: 600px;
+    width: 100%;
+}
+
+.ranking-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 아티스트 이미지 스타일 */
+.artist-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s ease; /* 필터 전환 효과 */
+}
+
+/* 순위와 그룹 이름을 이미지 상단에 위치 */
+.ranking-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
 }
 
 .subscribe-count {
-    font-size: 14px;
-    color: #666; /* 구독자 수 색상 */
-    margin-left: 10px; /* 간격 추가 */
+    font-size: 1.2em;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.artist-image {
-    width: 100%; /* 기본 이미지가 화면의 가로를 꽉 차게 */
-    height: auto; /* 비율 유지 */
-    border-radius: 5px; /* 네모 형태 */
+.ranking-item:hover .ranking-info {
+    transform: translateY(-50%);
+    top: 50%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.ranking-item.first .artist-image {
-    width: 100%; /* 1위의 사진은 화면 가로를 꽉 차게 */
+.ranking-item:hover .subscribe-count {
+    opacity: 1;
 }
 
-.ranking-position {
-    font-size: 1.5em; /* 기본 글씨 크기 조정 */
+.ranking-item:hover .artist-image {
+    filter: brightness(0.3);
+}
+
+/* 순위 스타일 */
+.ranking-number {
+    font-size: 2.5em;
     font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 5px; /* 그룹 이름과의 간격 조정 */
 }
 
+/* 그룹 이름 스타일 */
 .group-name {
-    font-size: 1.2em; /* 그룹 이름 글씨 크기 조정 */
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-/* 1위 스타일 */
-.ranking-item.first {
-    font-size: 2em; /* 1위 글씨 크기 조정 */
-    background-color: #f0f8ff; /* 배경색 변경 */
-    border: 2px solid #008b8b; /* 테두리 색상 변경 */
-    width: 100%; /* 1위 항목은 화면 가로를 꽉 차게 */
+/* 중앙에 나타나는 멘트 스타일 */
+.subscribe-message {
+    position: absolute;
+    bottom: 20px; /* 하단 여백 설정 */
+    left: 50%;
+    transform: translateX(-50%); /* 수평 중앙 정렬 */
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+    opacity: 0; /* 기본적으로 숨김 */
+    transition: opacity 0.3s ease;
+    padding: 10px; /* 패딩 추가 */
+    background: rgba(0, 0, 0, 0.6); /* 배경 추가 */
+    border-radius: 8px; /* 둥근 모서리 추가 */
 }
 
-/* 반응형 디자인 */
-@media (max-width: 600px) {
-    .ranking-item {
-        width: 100%; /* 작은 화면에서는 가로폭을 100%로 */
-        margin: 5px 0; /* 세로 간격 조정 */
-    }
+/* 랭킹 아이템에 마우스를 올렸을 때 효과 */
+.ranking-item:hover .artist-image {
+    filter: brightness(0.5); /* 이미지 어둡게 */
+}
+
+.ranking-item:hover .subscribe-message {
+    opacity: 1; /* 마우스 올렸을 때 텍스트 표시 */
+}
+
+.ranking-item:hover .ranking-info {
+    transform: translateY(10%);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    top: 30%;
+    bottom: auto; /* 하단 초기화 */
+}
+
+/* 랭킹 정보의 하위 요소 스타일 */
+.ranking-info > * {
+    margin: 5px 0; /* 요소 간의 간격을 조정 */
+}
+
+/* 그룹 이름과 순위 사이의 간격 조정 */
+.ranking-item:hover .ranking-info .ranking-number,
+.ranking-item:hover .ranking-info .group-name {
+    margin-bottom: 10px;
+}
+
+/* 다음 미리보기 스타일 */
+.next-preview {
+    overflow: visible;
+}
+
+.next-preview .artist-image {
+    width: 120%;
+    height: 120%;
+    object-fit: cover;
+    transform: translateX(-10%);
+}
+
+.nav-button {
+    color: cornflowerblue;
+    border: none;
+    font-size: 50px;
+    padding: 15px 15px;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease, background 0.3s ease, text-shadow 0.3s ease;
+    background: transparent;
+    opacity: 0; /* 기본적으로 숨김 */
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+.prev-button {
+    position: absolute;
+    left: -20px;
+}
+
+.next-button {
+    position: absolute;
+    right: -20px;
+}
+
+/* 랭킹 섹션에 마우스를 올렸을 때 버튼 표시 */
+.ranking-section:hover .nav-button {
+    opacity: 1;
 }
 
 /* 프로필 섹션 스타일 */
@@ -99,46 +199,49 @@
     list-style-type: none;
     padding: 0;
     display: flex;
-    flex-wrap: wrap; /* 여러 줄로 배치 */
-    justify-content: space-between; /* 항목 간격 조정 */
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
+/* 아티스트 프로필 카드 스타일 */
 .profile-item {
-    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #ffffff;
-    padding: 10px;
-    margin: 10px; /* 간격 조정 */
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: calc(33.33% - 20px); /* 3개씩 배치, 간격 고려 */
-    box-sizing: border-box; /* 패딩과 마진을 포함하여 너비 계산 */
-    text-decoration: none; /* 기본 텍스트 장식 제거 */
-    transition: all 0.3s ease; /* 부드러운 전환 효과 */
+    padding: 0; /* 패딩 제거 */
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 20px);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    overflow: hidden;
 }
 
 .profile-item:hover {
-    background-color: #f0f8ff; /* 마우스 오버 시 배경색 변경 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .artist-profile-image {
-    width: 70px; /* 프로필 사진 크기 조정 */
-    height: 70px; /* 프로필 사진 크기 조정 */
-    border-radius: 5px; /* 네모 형태 */
-    margin-bottom: 5px;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-bottom: 1px solid #ccc; /* 이미지와 텍스트 사이에 경계선 추가 */
 }
 
 .profile-group-name {
-    text-align: center; /* 그룹 이름 중앙 정렬 */
+    font-weight: bold;
+    color: #000000; /* 검정 글씨로 설정 */
+    margin: 10px 0;
+    text-align: center; /* 중앙 정렬 */
+    font-size: 1.2em;
 }
 
 /* 반응형 디자인 */
 @media (max-width: 600px) {
     .profile-item {
-        width: 100%; /* 작은 화면에서는 가로폭을 100%로 */
-        margin: 5px 0; /* 세로 간격 조정 */
+        width: 100%;
+        margin: 10px 0;
     }
 }
