@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {useNavigate, useParams} from 'react-router-dom';
+import {useNavigate, useParams, useSearchParams} from 'react-router-dom';
 import {fetchArtistFeeds, fetchGroupDetails, likeFeed, subscribeToGroup, cancelSubscribe, getIsSubscribed, fetchFeedLikes, getIsLiked } from '../service/GroupService';
 import Header from '../components/Header';
 import './GroupPage.css';
@@ -10,6 +10,8 @@ import './GroupPage.css';
 const GroupPage = () => {
     const navigate = useNavigate();
     const { groupName } = useParams();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [enterName, setEnterName] = useState('');
     const [groupDetails, setGroupDetails] = useState(null);
     const [artistFeeds, setArtistFeeds] = useState([]);
     const [isSubscribed, setIsSubscribed] = useState(false);
@@ -60,12 +62,17 @@ const GroupPage = () => {
         loadGroupDetails();
         loadArtistFeeds();
         checkSubscriptionStatus();
+        setEnterName(searchParams.get('enter'))
     }, [groupName]);
 
     // Feed 상세 페이지
     const openFeedPopup = (feedId) => {
         navigate(`/group/${groupName}/feed/${feedId}`); // 피드 ID에 따라 URL 변경
     };
+
+    // Enter 페이지로
+    const openEnterPage = () =>
+        navigate(`/group/${groupName}/enter/${enterName}`);
 
     // 구독버튼
     const handleSubscribe = async () => {
@@ -112,16 +119,20 @@ const GroupPage = () => {
 
     return (
         <div className="group-page">
-            <Header />
+            <Header/>
+            <div>
+                <div className="nav_btn">
+                    <button className="subscript-button" onClick={handleSubscribe}>{isSubscribed ? '구독중' : '구독'}</button>
+                    <button className="notice-button" key={enterName} onClick={() => openEnterPage()}>공지사항</button>
+                    <button className="community-button" onClick={() => navigate('/signup')}>커뮤니티</button>
+                </div>
+            </div>
             <div className="group-header">
                 <div className="group-image">
-                    <img src={groupDetails.artistGroupProfileImageUrl} alt={`${groupDetails.groupName} 이미지`} />
+                    <img src={groupDetails.artistGroupProfileImageUrl} alt={`${groupDetails.groupName} 이미지`}/>
                 </div>
                 <div className="group-info">
                     <h1>{groupDetails.name}</h1>
-                    <button onClick={handleSubscribe} >
-                        {isSubscribed ? '구독중' : '구독'}
-                    </button>
                     <p>{groupDetails.info}</p>
                     <ul>
                         {groupDetails.artistDtos.map((artist) => (

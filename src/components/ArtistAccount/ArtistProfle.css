@@ -1,0 +1,10 @@
+.artist-profile {
+    text-align: center;
+}
+
+.artist-profile img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-top: 20px;
+}

@@ -1,7 +1,5 @@
 // src/services/entertainmentService.js
-import axios from 'axios';
-
-const API_URL = 'http://localhost:8080/enter';
+import apiClient from './apiClient';
 
 // 엔터테인먼트 계정 생성
 export const createEntertainment = async (enterData, token) => {
@@ -11,30 +9,16 @@ export const createEntertainment = async (enterData, token) => {
         formData.append('enterName', enterData.enterName);
         formData.append('enterNumber', enterData.enterNumber);
 
-        const response = await axios.post(API_URL, formData, {
+        const response = await apiClient.post(`/enter`, formData, {
             headers: {
-                'Authorization': `${token}`
+                'Authorization': `${token}`,
+                'Content-Type': 'multipart/form-data'
             },
         });
 
         return response.data;
     } catch (error) {
         console.error('Error creating entertainment:', error);
-        throw error;
-    }
-};
-
-// 엔터테인먼트 계정 조회
-export const getEntertainment = async (token) => {
-    try {
-        const response = await axios.get(`${API_URL}/my`, {
-            headers: {
-                'Authorization': `${token}`
-            },
-        });
-        return response.data.data; // ResponseDataDto 구조에 맞춰 수정
-    } catch (error) {
-        console.error('Error fetching entertainment:', error);
         throw error;
     }
 };
@@ -47,7 +31,7 @@ export const updateEntertainment = async (enterName, enterData, token) => {
         formData.append('enterName', enterData.enterName);
         formData.append('enterNumber', enterData.enterNumber);
 
-        const response = await axios.patch(`${API_URL}/${enterName}`, formData, {
+        const response = await apiClient.patch(`/enter/${enterName}`, formData, {
             headers: {
                 'Authorization': `${token}`,
                 'Content-Type': 'multipart/form-data'
@@ -63,7 +47,7 @@ export const updateEntertainment = async (enterName, enterData, token) => {
 // 엔터테인먼트 계정 삭제
 export const deleteEntertainment = async (enterName, token) => {
     try {
-        const response = await axios.delete(`${API_URL}/${enterName}`, {
+        const response = await apiClient.delete(`/enter/${enterName}`, {
             headers: {
                 'Authorization': `${token}`
             },
@@ -71,6 +55,20 @@ export const deleteEntertainment = async (enterName, token) => {
         return response.data;
     } catch (error) {
         console.error('Error deleting entertainment:', error);
+        throw error;
+    }
+};
+// 엔터테인먼트 계정 조회
+export const getEntertainment = async (token) => {
+    try {
+        const response = await apiClient.get('/enter/my', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+        });
+        return response.data.data; // Adjust based on actual response structure
+    } catch (error) {
+        console.error('Error fetching entertainment:', error);
         throw error;
     }
 };
