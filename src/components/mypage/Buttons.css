@@ -106,49 +106,73 @@
 
 .pastel1:hover {
     background-color: #fde0ff; /* Very Light Pastel Pink */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .pastel2:hover {
     background-color: #cce6ff; /* Very Light Pastel Blue */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .pastel3:hover {
     background-color: #d1f8e0; /* Very Light Pastel Green */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .pastel4:hover {
     background-color: #ffe0e0; /* Very Light Pastel Yellow */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .pastel5:hover {
     background-color: #e7e0ff; /* Very Light Pastel Purple */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .pastel6:hover {
     background-color: #dcd9d6; /* Very Light Pastel Orange */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .pastel7:hover {
     background-color: #e6f0ff; /* Very Light Pastel Light Blue */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .pastel8:hover {
     background-color: #e6ffec; /* Very Light Pastel Mint */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .pastel9:hover {
     background-color: #fde6ff; /* Very Light Pastel Light Pink */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .pastel10:hover {
     background-color: #e0f4f4; /* Very Light Pastel Teal */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .pastel11:hover {
     background-color: #ffffe6; /* Very Light Pastel Lime */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .pastel12:hover {
     background-color: #ffe6e6; /* Very Light Pastel Rose */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
