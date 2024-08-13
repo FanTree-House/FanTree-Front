@@ -5,7 +5,7 @@ const CreateCommunityFeed = () => {
     const navigate = useNavigate();
 
     const handleAddPost = () => {
-        navigate('/add-post'); // 버튼 클릭 시 다른 페이지로 이동
+        navigate('/community/add-post'); // 버튼 클릭 시 다른 페이지로 이동
     };
 
     return (
