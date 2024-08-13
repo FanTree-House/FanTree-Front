@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import ArtistGroupService from '../service/ArtistGroupService';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { useAuthDispatch } from '../context/AuthContext';
-import './MainPage.css';
+import React, { useEffect, useState } from 'react'; // Import React hooks
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import ArtistGroupService from '../service/ArtistGroupService'; // Import the service
+import Header from '../components/Header'; // Import Header component
+import Footer from '../components/Footer'; // Import Footer component
+import { useAuthDispatch } from '../context/AuthContext'; // Import useAuthDispatch from your context
+import './MainPage.css'; // Import CSS
 
 const MainPage = () => {
 
@@ -63,21 +63,33 @@ const MainPage = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex(prevIndex => {
-                if (artistGroups.length === 0) return 0; // Prevent updating if no groups
-                if (prevIndex >= Math.floor((artistGroups.length - 2) / 2)) {
-                    return 0;
-                }
-                return prevIndex + 1;
-            });
-        }, 10000);
+            setCurrentIndex((prevIndex) =>
+                (prevIndex + 2) % artistGroups.length
+            );
+        }, 5000); // Change slide every 5 seconds
 
         return () => clearInterval(interval);
     }, [artistGroups]);
 
+    const getTopGroup = () => {
+        return artistGroups[0];
+    };
+
     const getCurrentGroups = () => {
-        const start = currentIndex * 2;
+        const start = currentIndex + 1; // 2위부터 시작
         return artistGroups.slice(start, start + 2);
+    };
+
+    const handlePrevClick = () => {
+        setCurrentIndex((prevIndex) =>
+            (prevIndex - 2 + artistGroups.length) % (artistGroups.length - 1)
+        );
+    };
+
+    const handleNextClick = () => {
+        setCurrentIndex((prevIndex) =>
+            (prevIndex + 2) % (artistGroups.length - 1)
+        );
     };
 
     return (
@@ -86,50 +98,70 @@ const MainPage = () => {
                 <Header />
             </header>
             <div className="main-content">
+                <div className="top-group-section">
+                    <div className="top-group">
+                        {getTopGroup() && (
+                            <Link
+                                to={`/group/${getTopGroup().groupName}`}
+                                key={getTopGroup().id}
+                                className="top-group-item"
+                            >
+                                <img src={getTopGroup().artistGroupProfileImageUrl} alt={getTopGroup().groupName}
+                                     className="top-group-image"/>
+                                <div className="top-group-info">
+                                    <span className="top-ranking-number">01</span>
+                                    <h3 className="top-group-name">{getTopGroup().groupName}</h3>
+                                    <span className="top-subscribe-count">구독자 수: {getTopGroup().subscribeCount}</span>
+                                </div>
+                            </Link>
+                        )}
+                    </div>
+                </div>
                 <div className="ranking-section">
-                    <h2>아티스트 그룹 랭킹</h2>
-                    <ul className="ranking-list">
-                        {artistGroups.length > 0 && (
-                            <>
-                                <li key={artistGroups[0]?.id} className="ranking-item first">
-                                    <span className="ranking-position">1위</span>
-                                    <img src={artistGroups[0]?.artistGroupProfileImageUrl} alt={artistGroups[0]?.groupName} className="artist-image"/>
-                                    <span className="group-name">{artistGroups[0]?.groupName}</span>
-                                    <span className="subscribe-count">구독자 수 : {artistGroups[0]?.subscribeCount}</span>
-                                </li>
-                                {getCurrentGroups().map((group, index) => (
-                                    <li key={group?.id} className="ranking-item">
-                                        <span className="ranking-position">{currentIndex * 2 + index + 2}위</span>
-                                        <img src={group?.artistGroupProfileImageUrl} alt={group?.groupName} className="artist-image"/>
-                                        <span className="group-name">{group?.groupName}</span>
-                                        <span className="subscribe-count">구독자 수 : {group?.subscribeCount}</span>
-                                    </li>
-                                ))}
-                            </>
+                    <button className="nav-button prev-button" onClick={handlePrevClick}>&lt;</button>
+                    <div className="ranking-grid">
+                        {getCurrentGroups().map((group, index) => (
+                            <Link
+                                to={`/group/${group.groupName}`}
+                                key={group.id}
+                                className="ranking-item"
+                            >
+                                <img src={group.artistGroupProfileImageUrl} alt={group.groupName}
+                                     className="artist-image"/>
+                                <div className="ranking-info">
+                                    <span className="ranking-number">
+                                        {String(Math.floor(currentIndex / 2) * 2 + index + 2).padStart(2, '0')}
+                                    </span>
+                                    <h3 className="group-name">{group.groupName}</h3>
+                                    <span className="subscribe-count">구독자 수 : {group.subscribeCount}</span>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                    <button className="nav-button next-button" onClick={handleNextClick}>&gt;</button>
+                </div>
+                <div className="profile-section">
+                    <h2>아티스트 프로필</h2>
+                    <ul className="profile-list">
+                        {artistProfiles.length > 0 ? (
+                            artistProfiles.map((artist) => (
+                                <Link
+                                    to={`/group/${artist.groupName}?enter=${artist.enterName}`}
+                                    key={artist.id}
+                                    className="profile-item"
+                                >
+                                    <img src={artist.artistGroupProfileImageUrl} alt={artist.artistName}
+                                         className="artist-profile-image"/>
+                                    <span className="profile-group-name">{artist.groupName}</span>
+                                </Link>
+                            ))
+                        ) : (
+                            <li>아티스트 프로필이 없습니다.</li>
                         )}
                     </ul>
                 </div>
             </div>
-            <div className="profile-section">
-                <h2>아티스트 프로필</h2>
-                <ul className="profile-list">
-                    {artistProfiles.length > 0 ? (
-                        artistProfiles.map((artist) => (
-                            <Link
-                                to={`/group/${artist.groupName}?enter=${artist.enterName}`}
-                                key={artist?.id}
-                                className="profile-item"
-                            >
-                                <img src={artist?.artistGroupProfileImageUrl} alt={artist?.artistName} className="artist-profile-image"/>
-                                <span className="profile-group-name">{artist?.groupName}</span>
-                            </Link>
-                        ))
-                    ) : (
-                        <li>아티스트 프로필이 없습니다.</li>
-                    )}
-                </ul>
-            </div>
-            <Footer />
+            <Footer/>
         </div>
     );
 };

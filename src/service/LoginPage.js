@@ -8,6 +8,7 @@ const API_BASE_URL = 'http://localhost:8080';
 export const login = async (id, password) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/users/login`, { id, password });
+    console.log("로그인 후", response);
 
     if (response.status === 200) { // 상태 코드 체크
       const accessToken = response.headers['authorization']; // 헤더에서 'authorization'를 읽어옴

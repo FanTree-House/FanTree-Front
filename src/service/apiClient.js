@@ -19,12 +19,15 @@ apiClient.interceptors.request.use(
             const now = Date.now();
 
             // AccessToken이 만료되었는지 확인
-            if (expiresAt && now >= expiresAt) {
+            if (now >= expiresAt) {
                 // RefreshToken을 사용하여 AccessToken 재발급
                 return refreshAccessToken().then(newAccessToken => {
                     if (newAccessToken) {
                         config.headers['Authorization'] = `${newAccessToken}`;
                         return config;
+                    } else {
+                        // 새로 발급받은 AccessToken이 없으면 에러를 던짐
+                        return Promise.reject(new Error('Unable to refresh access token'));
                     }
                 });
             }
@@ -50,7 +53,7 @@ const refreshAccessToken = async () => {
                 'Refresh_token': refreshToken,
             },
         });
-        const newAccessToken = response.headers['authorization'];
+        const newAccessToken = response.data.data;
 
         if (newAccessToken) {
             window.localStorage.setItem('accessToken', newAccessToken);
@@ -64,9 +67,9 @@ const refreshAccessToken = async () => {
             return newAccessToken;
         }
     } catch (error) {
-        console.error('Failed to refresh access token:', error);
-        // 로그아웃 처리 또는 다른 오류 처리
+        console.error('Failed to refresh access token:', error.response ? error.response.data : error.message);
     }
+
     return null;
 };
 
