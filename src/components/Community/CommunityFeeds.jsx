@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAllFeeds } from '../service/communityApi';
+import { fetchAllFeeds } from '../../service/communityApi';
 import CommunityFeed from './CommunityFeed';
 
 const CommunityFeeds = () => {
