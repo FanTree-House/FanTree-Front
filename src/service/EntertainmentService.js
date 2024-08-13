@@ -11,7 +11,8 @@ export const createEntertainment = async (enterData, token) => {
 
         const response = await apiClient.post(`/enter`, formData, {
             headers: {
-                'Authorization': `${token}`
+                'Authorization': `${token}`,
+                'Content-Type': 'multipart/form-data'
             },
         });
 
