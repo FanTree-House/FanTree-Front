@@ -77,6 +77,13 @@ export const fetchFeedLikes = async (groupName, artistFeedId) => {
     return response.data; // 서버에서 반환된 좋아요 수
 };
 
+// 댓글 좋아요 수 반환
+export const fetchCommentLikes = async (artistFeedId) => {
+    const response = await apiClient.get(`/feed/comment/${artistFeedId}/LikeCount`);
+    console.log("댓글 좋아요 수", response);
+    return response.data; // 서버에서 반환된 좋아요 수
+};
+
 export const getAllArtistGroups = async () => {
     try {
         const response = await apiClient.get(`/artistgroup`, {
@@ -146,6 +153,43 @@ export const likeFeed = async (groupName, artistFeedId) => {
     } catch (error) {
         console.error('Error liking feed:', error);
         throw error;
+    }
+};
+
+
+// 댓글 좋아요 or 취소
+export const likeComment = async (groupName,  feedId, commentId) => {
+    try {
+        const response = await apiClient.post(`/${groupName}/feed/${feedId}/comment/${commentId}`, {}, {
+            headers: {Authorization: `${token}`},
+            withCredentials: true
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error liking comment:', error);
+        throw error;
+    }
+};
+
+// 댓글 좋아요수
+export const getCommentLikeCount = async (commentId) => {
+    try {
+        const response = await apiClient.get(`/feed/comment/${commentId}/LikeCount`);
+        return response.data; // 응답 데이터 반환
+    } catch (error) {
+        console.error('Error fetching like count:', error);
+        throw error; // 에러 처리
+    }
+};
+
+// 댓글 좋아요 상태
+export const getCommentIsLiked = async (commentId) => {
+    try {
+        const response = await apiClient.get(`/feed/comment/${commentId}/like`);
+        return response.data; // 응답 데이터 반환
+    } catch (error) {
+        console.error('Error fetching like status:', error);
+        throw error; // 에러 처리
     }
 };
 
