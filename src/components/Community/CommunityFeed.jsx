@@ -15,7 +15,7 @@ const CommunityFeed = ({ feed }) => {
     const [newComment, setNewComment] = useState(''); // 새로운 댓글 상태
     const { groupName } = useParams();
 
-    // 모달 열릴 때 댓글을 불러오는 useEffect
+    // 모달 열릴 때 댓글을 불러오는 useEffect 댓글창 바로바로조회가능
     useEffect(() => {
         if (isModalOpen) {
             const loadComments = async () => {
