@@ -1,11 +1,14 @@
 // src/service/LoginPage.js
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+
 
 const API_BASE_URL = 'http://localhost:8080';
 
 export const login = async (id, password) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/users/login`, { id, password });
+    console.log("로그인 후", response);
 
     if (response.status === 200) { // 상태 코드 체크
       const accessToken = response.headers['authorization']; // 헤더에서 'authorization'를 읽어옴
@@ -14,6 +17,11 @@ export const login = async (id, password) => {
       if (accessToken && refreshToken) {
         window.localStorage.setItem('accessToken', accessToken);
         window.localStorage.setItem('refreshToken', refreshToken);
+
+        // AccessToken의 만료 시간을 로컬 스토리지에 저장
+        const decodedToken = jwtDecode(accessToken.split(' ')[1]);
+        const expiresAt = decodedToken.exp * 1000; // 만료 시간을 밀리초로 변환
+        window.localStorage.setItem('expiresAt', expiresAt);
 
         // 사용자 정보를 포함하여 로컬 스토리지에 저장
         window.localStorage.setItem('user', JSON.stringify({

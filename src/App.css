@@ -7,6 +7,15 @@
   pointer-events: none;
 }
 
+
+.home-container {
+    margin-top: 20px;
+}
+
+.App {
+    text-align: center;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -14,7 +23,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  /*background-color: #282c34;*/
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,10 +37,10 @@
   color: #61dafb;
 }
 
-.navbar {
-  background-color: #333;
-  overflow: hidden;
-}
+/*.navbar {*/
+/*  background-color: #333;*/
+/*  overflow: hidden;*/
+/*}*/
 
 .navbar ul {
   list-style-type: none;
@@ -66,4 +75,39 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.notices-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-notice-btn {
+    background-color: #007BFF;
+    width: 200px;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-notice-btn:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
