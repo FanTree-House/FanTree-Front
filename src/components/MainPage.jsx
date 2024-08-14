@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react'; // Import React hooks
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import ArtistGroupService from '../service/ArtistGroupService'; // Import the service
-import Header from '../components/Header'; // Import Header component
-import Footer from '../components/Footer'; // Import Footer component
-import { useAuthDispatch } from '../context/AuthContext'; // Import useAuthDispatch from your context
-import './MainPage.css'; // Import CSS
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import ArtistGroupService from '../service/ArtistGroupService';
+import Header from './Header';
+import Footer from './Footer';
+import { useAuthDispatch } from '../context/AuthContext';
+import IntroPopup from './IntroPopup';
+import './MainPage.css';
 
 const MainPage = () => {
-
     const dispatch = useAuthDispatch();
     const [artistGroups, setArtistGroups] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [artistProfiles, setArtistProfiles] = useState([]);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         // 로컬 스토리지에서 새로 고침 여부 확인
@@ -25,7 +26,7 @@ const MainPage = () => {
             localStorage.setItem('hasRefreshed', 'true');
         }
 
-        // 컴포넌트가 언마운트될 때 로컬 스토리지 초기화 (원하는 경우)
+        // 컴포넌트가 언마운트될 때 로컬 스토리지 초기화
         return () => {
             localStorage.removeItem('hasRefreshed');
         };
@@ -36,13 +37,21 @@ const MainPage = () => {
         if (user) {
             dispatch({ type: 'LOGIN', payload: user });
         }
+
+        // 팝업 표시 여부 확인
+        const lastPopupDate = localStorage.getItem('lastPopupDate');
+        const today = new Date().toDateString();
+        if (lastPopupDate !== today) {
+            setShowPopup(true);
+        }
     }, [dispatch]);
+
 
     useEffect(() => {
         const fetchArtistGroups = async () => {
             try {
                 const data = await ArtistGroupService.getArtistGroups();
-                setArtistGroups(data || []); // Ensure data is an array
+                setArtistGroups(data || []);
             } catch (error) {
                 console.error('Error fetching artist groups:', error);
             }
@@ -51,7 +60,7 @@ const MainPage = () => {
         const fetchAllArtistGroups = async () => {
             try {
                 const data = await ArtistGroupService.getAllArtistGroups();
-                setArtistProfiles(data || []); // Ensure data is an array
+                setArtistProfiles(data || []);
             } catch (error) {
                 console.error('Error fetching all artist groups:', error);
             }
@@ -66,7 +75,7 @@ const MainPage = () => {
             setCurrentIndex((prevIndex) =>
                 (prevIndex + 2) % artistGroups.length
             );
-        }, 5000); // Change slide every 5 seconds
+        }, 5000);
 
         return () => clearInterval(interval);
     }, [artistGroups]);
@@ -76,7 +85,7 @@ const MainPage = () => {
     };
 
     const getCurrentGroups = () => {
-        const start = currentIndex + 1; // 2위부터 시작
+        const start = currentIndex + 1;
         return artistGroups.slice(start, start + 2);
     };
 
@@ -90,6 +99,17 @@ const MainPage = () => {
         setCurrentIndex((prevIndex) =>
             (prevIndex + 2) % (artistGroups.length - 1)
         );
+    };
+
+
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };
+
+    const handleHidePopupForDay = () => {
+        const today = new Date().toDateString();
+        localStorage.setItem('lastPopupDate', today);
+        setShowPopup(false);
     };
 
     return (
@@ -162,6 +182,12 @@ const MainPage = () => {
                 </div>
             </div>
             <Footer/>
+            {showPopup && (
+                <IntroPopup
+                    onClose={handleClosePopup}
+                    onHideForDay={handleHidePopupForDay}
+                />
+            )}
         </div>
     );
 };
