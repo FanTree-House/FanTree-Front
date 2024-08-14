@@ -5,70 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[Conflict] Conflict #1">
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/fantreefront.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fantreefron.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/.idea/public.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/configuration.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/src.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/ArtistFeedLikeModal.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/ArtistFeedLikeModal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/ArtistGroupModal.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/ArtistGroupModal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/ButtonWithModal.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/ButtonWithModal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/Buttons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/Buttons.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/CommunityFeedLikeModal.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/CommunityFeedLikeModal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/EnterFeedNoticeModal.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/EnterFeedNoticeModal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/EnterFeedScheduleModal.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/EnterFeedScheduleModal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/MyCommunityFeedModal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/MyPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/MyPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mypage/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AdminSignup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AdminSignup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ArtistAccount/ArtistCreatePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ArtistAccount/ArtistCreatePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Community/AddPostPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Community/AddPostPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Community/AddPostPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Community/AddPostPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Community/CommunityFeed.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Community/CommunityFeed.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Community/CommunityFeed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Community/CommunityFeed.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Community/CommunityFeeds.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Community/CommunityFeeds.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Community/CommunityFeeds.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Community/CommunityFeeds.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Community/CreateCommunityFeed.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Community/CreateCommunityFeed.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Community/CreateCommunityFeed.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Community/CreateCommunityFeed.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Community/FeedDetailPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Community/FeedDetailPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Community/FeedDetailPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Community/FeedDetailPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Enter/HomePage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EntertainmentCreatePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EntertainmentCreatePage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GroupPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GroupPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/IntroPopup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/IntroPopup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/ArtistFeedService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ArtistFeedService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/communityApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/communityApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/LoginPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/SignupForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FeedPopup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FeedPopup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FeedPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FeedPopup.jsx" afterDir="false" />
     </list>
     <list id="bfd980c6-5a4f-4905-aa8d-bb0b51bfa6c5" name="Changes by jaychoi" comment="[feature] 스케줄 이벤트 구현 #4" />
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +66,7 @@
     "Node.js.Myprofile.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging feature/woojin2",
+    "git-widget-placeholder": "feature/woojin2",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/NBC/fantreefron",
     "list.type.of.created.stylesheet": "CSS",
@@ -446,7 +385,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723631592933</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="[Conflict] Conflict #1">
+      <option name="closed" value="true" />
+      <created>1723643213573</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1723643213573</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -49,7 +49,6 @@ const FeedPopup = () => {
                         isLiked: isLikedResponse.data.isLiked,
                     };
                 }));
-
                 setComments(commentsWithLikes);
 
                 // 좋아요 상태 가져오기
@@ -212,12 +211,16 @@ const FeedPopup = () => {
                     <h3>Comments</h3>
                     {comments.map((comment) => (
                         <div key={comment.id} className="comment">
-                            <p>{comment.contents}</p>
-                            <div>
+                            <div className="comment-header">
+                                <img src={comment.profileImageUrl} alt="Profile" className="profile-image"/>
+                                <div className="nickname">{comment.nickName}</div>
+                            </div>
+                            <p className="comment-content">{comment.contents}</p>
+                            <div className="comment-actions">
                                 <button onClick={() => openEditModal(comment)}>수정</button>
                                 <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
                             </div>
-                            <div>
+                            <div className="comment-like">
                                 <button onClick={() => handleCommnetLike(comment.id)}>
                                     {comment.isLiked ? '❤️' : '🤍'} {comment.likeCount}
                                 </button>
