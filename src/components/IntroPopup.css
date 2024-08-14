@@ -34,6 +34,7 @@
     color: #333; /* 본문 색상 조정 */
     margin: 10px 0; /* 문단 간격 조정 */
     font-size: 16px; /* 본문 글자 크기 조정 */
+    text-align: center; /* 중앙 정렬 */
 }
 
 .intro-popup .survey-mention {
