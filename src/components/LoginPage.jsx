@@ -75,7 +75,7 @@ function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit" className="submit-button">로그인</button>
+          <button type="submit" className="submitt-button">로그인</button>
         </form>
         <div className="social-login">
           <img
