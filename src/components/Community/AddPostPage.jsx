@@ -1,27 +1,30 @@
 // src/components/AddPostPage.jsx
 import React, { useState } from 'react';
 import { createFeed } from '../../service/communityApi'; // createFeed 함수 임포트
-import './AddPostPage.css'; // CSS 파일 임포트
+import './AddPostPage.css';
+import  './CreateCommunityFeed.css'
+import {useParams} from "react-router-dom"; // CSS 파일 임포트
+import Header from "../../components/Header";
 
 const AddPostPage = () => {
     const [file, setFile] = useState(null);
-    const [content, setContent] = useState('');
-    const groupName = "aespa"; // 그룹 이름 설정  -> 이거 URL로 받도록 수정하기
+    const [contents, setContents] = useState('');
+    const {groupName} = useParams();
+
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
     };
 
-    const handleContentChange = (e) => {
-        setContent(e.target.value);
-    };
+    const handleContentChange = (e) => {setContents(e.target.value);};
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData();
-        const requestDto = JSON.stringify({ contents: content });
-        formData.append('requestDto', new Blob([requestDto], { type: 'application/json' }));
+        // const requestDto = JSON.stringify({ contents : contents });
+        // formData.append('requestDto', new Blob([requestDto], { type: 'application/json' }));
+        formData.append('contents', contents)
         formData.append('file', file);
 
         try {
@@ -39,6 +42,7 @@ const AddPostPage = () => {
 
     return (
         <div className="add-post-container">
+            <Header/>
             <h2 className="add-post-title">게시글 추가</h2>
             <form className="add-post-form" onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -49,7 +53,7 @@ const AddPostPage = () => {
                     <label className="form-label">내용:</label>
                     <textarea
                         className="form-textarea"
-                        value={content}
+                        value={contents}
                         onChange={handleContentChange}
                         placeholder="내용을 입력하세요..."
                     />

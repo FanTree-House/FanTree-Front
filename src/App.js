@@ -24,6 +24,7 @@ import CommunityFeeds from "./components/Community/CommunityFeeds";
 import AddPostPage from "./components/Community/AddPostPage";
 import FeedDetailPage from "./components/Community/FeedDetailPage";
 
+import MyPage from "./components/mypage/MyPage";
 
 
 const AppRoutes = () => {
@@ -46,14 +47,15 @@ const AppRoutes = () => {
             <Route path="/editenter" element={<EntertainmentEditPage/>} />
             <Route path="/editgroup" element={<ArtistGroupManagePage/>} />
             <Route path="/search-results" element={<SearchResults/>} />
-            <Route path="/community" element={
+            <Route path="/mypage" element={<MyPage/>} />
+            <Route path="/group/:groupName/community/addpost" element={<AddPostPage />} /> {/* 새 경로 추가 */}
+            <Route path="/group/:groupName/community/:communityFeedId" element={<FeedDetailPage />} /> {/* 상세 페이지 라우트 추가 */}
+            <Route path="/group/:groupName/community" element={
                 <div>
                     <CreateCommunityFeed />
                     <CommunityFeeds />
                 </div>
             } />
-            <Route path="/community/add-post" element={<AddPostPage />} /> {/* 새 경로 추가 */}
-            <Route path="/community/feed/:groupName/:feedId" element={<FeedDetailPage />} /> {/* 상세 페이지 라우트 추가 */}
         </Routes>
     );
 };
