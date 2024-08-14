@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[refactor] 커뮤니티피드 완성 #4" />
+    <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[refactor] 커뮤니티피드 완성 및 병합 #4" />
     <list id="bfd980c6-5a4f-4905-aa8d-bb0b51bfa6c5" name="Changes by jaychoi" comment="[feature] 스케줄 이벤트 구현 #4" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +61,7 @@
   "keyToString": {
     "Node.js.Myprofile.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/wooseok",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/NBC/fantreefron",
     "list.type.of.created.stylesheet": "CSS",
@@ -129,7 +130,7 @@
       <workItem from="1723168965315" duration="23913000" />
       <workItem from="1723271316621" duration="26902000" />
       <workItem from="1723514354641" duration="20901000" />
-      <workItem from="1723594936972" duration="18041000" />
+      <workItem from="1723594936972" duration="18361000" />
     </task>
     <task id="LOCAL-00001" summary="리액트 연동 #3">
       <option name="closed" value="true" />
@@ -347,7 +348,23 @@
       <option name="project" value="LOCAL" />
       <updated>1723630782139</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="[refactor] 커뮤니티피드 완성 및 병합 #4">
+      <option name="closed" value="true" />
+      <created>1723631081651</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1723631081651</updated>
+    </task>
+    <task id="LOCAL-00029" summary="[refactor] 커뮤니티피드 완성 및 병합 #4">
+      <option name="closed" value="true" />
+      <created>1723631327533</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1723631327533</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,6 +406,7 @@
     <MESSAGE value="[refactor] 리팩토링 #4" />
     <MESSAGE value="[refactor] 커뮤니티피드 URL 받아옴 #4" />
     <MESSAGE value="[refactor] 커뮤니티피드 완성 #4" />
-    <option name="LAST_COMMIT_MESSAGE" value="[refactor] 커뮤니티피드 완성 #4" />
+    <MESSAGE value="[refactor] 커뮤니티피드 완성 및 병합 #4" />
+    <option name="LAST_COMMIT_MESSAGE" value="[refactor] 커뮤니티피드 완성 및 병합 #4" />
   </component>
 </project>
