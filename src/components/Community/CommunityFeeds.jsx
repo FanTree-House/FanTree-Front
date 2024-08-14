@@ -3,6 +3,8 @@ import { fetchAllFeeds } from '../../service/communityApi';
 import CommunityFeed from './CommunityFeed';
 import {useParams} from "react-router-dom";
 import communityFeed from "./CommunityFeed";
+import Header from "../../components/Header";
+
 
 const CommunityFeeds = () => {
     const [feeds, setFeeds] = useState([]);
@@ -22,14 +24,18 @@ const CommunityFeeds = () => {
 
     return (
         <div>
-            <h1>Community Feeds</h1>
-            {feeds.length > 0 ? (
-                feeds.map(feed => (
-                    <CommunityFeed key={communityFeed.id} feed={feed} />
-                ))
-            ) : (
-                <p>피드가 없습니다.</p> // 피드가 없을 때 메시지 표시
-            )}
+            <div>
+                <Header/>
+            </div>
+            <div className={'feedList'}>
+                {feeds.length > 0 ? (
+                    feeds.map((feed) => (
+                        <CommunityFeed key={`community-feed_${feed.id}`} feed={feed}/>
+                    ))
+                ) : (
+                    <p>피드가 없습니다.</p> // 피드가 없을 때 메시지 표시
+                )}
+            </div>
         </div>
     );
 };

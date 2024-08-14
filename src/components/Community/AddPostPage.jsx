@@ -2,17 +2,18 @@
 import React, { useState } from 'react';
 import { createFeed } from '../../service/communityApi'; // createFeed 함수 임포트
 import './AddPostPage.css';
+import  './CreateCommunityFeed.css'
 import {useParams} from "react-router-dom"; // CSS 파일 임포트
+import Header from "../../components/Header";
 
 const AddPostPage = () => {
-    const [files, setFiles] = useState(null);
+    const [file, setFile] = useState(null);
     const [contents, setContents] = useState('');
     const {groupName} = useParams();
 
 
     const handleFileChange = (e) => {
-        const files = Array.from(e.target.files);
-        setFiles((prevImages) => [...prevImages, ...files]);
+        setFile(e.target.files[0]);
     };
 
     const handleContentChange = (e) => {setContents(e.target.value);};
@@ -21,10 +22,10 @@ const AddPostPage = () => {
         e.preventDefault();
 
         const formData = new FormData();
-        // const requestDto = JSON.stringify({ contents : content });
+        // const requestDto = JSON.stringify({ contents : contents });
         // formData.append('requestDto', new Blob([requestDto], { type: 'application/json' }));
         formData.append('contents', contents)
-        formData.append('file', files);
+        formData.append('file', file);
 
         try {
             const newFeed = await createFeed(groupName, formData);
@@ -41,11 +42,12 @@ const AddPostPage = () => {
 
     return (
         <div className="add-post-container">
+            <Header/>
             <h2 className="add-post-title">게시글 추가</h2>
             <form className="add-post-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label className="form-label">파일 업로드:</label>
-                    <input type="files" className="form-input" onChange={handleFileChange} />
+                    <input type="file" className="form-input" onChange={handleFileChange} />
                 </div>
                 <div className="form-group">
                     <label className="form-label">내용:</label>

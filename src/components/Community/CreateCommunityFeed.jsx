@@ -1,5 +1,7 @@
 import React from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
+import './CreateCommunityFeed.css'
+import Header from "../../components/Header";
 
 const CreateCommunityFeed = () => {
     const {groupName} = useParams()
@@ -10,8 +12,9 @@ const CreateCommunityFeed = () => {
 
     return (
         <div>
-            <h2>게시글 추가하기</h2>
-            <button  onClick={() => openAddPostPage()}>+</button> {/* "+" 버튼 */}
+            <header/>
+            <button className={"add-post-button"} onClick={() => openAddPostPage()}>게시글 추가하기</button>
+            {/*<button  onClick={() => openAddPostPage()}>+</button> /!* "+" 버튼 *!/*/}
         </div>
     );
 };

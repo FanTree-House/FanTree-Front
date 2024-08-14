@@ -49,7 +49,7 @@ const AppRoutes = () => {
             <Route path="/group/:groupName/community/addpost" element={<AddPostPage />} /> {/* 새 경로 추가 */}
             <Route path="/group/:groupName/community/:communityFeedId" element={<FeedDetailPage />} /> {/* 상세 페이지 라우트 추가 */}
             <Route path="/group/:groupName/community" element={
-            <div>
+                <div>
                     <CreateCommunityFeed />
                     <CommunityFeeds />
                 </div>
