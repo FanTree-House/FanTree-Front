@@ -1,0 +1,130 @@
+/* SignupForm.css */
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.signup-container {
+  max-width: 500px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #5bc0de;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.email-input {
+  display: flex;
+  align-items: center;
+}
+
+.email-input input {
+  flex: 1;
+}
+
+.email-input span {
+  margin: 0 10px;
+}
+
+.check-button {
+  background-color: #5bc0de;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.submitt-button {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #5bc0de;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.check-button:hover,
+.submit-button:hover {
+  background-color: #46b8da;
+}
+
+/* 프로필 이미지 관련 */
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 600px) {
+  .signup-container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .check-button {
+    margin-top: 10px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .email-input {
+    flex-direction: column;
+  }
+
+  .email-input input {
+    margin-bottom: 10px;
+  }
+}

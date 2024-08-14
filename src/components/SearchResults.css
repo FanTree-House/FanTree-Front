@@ -1,0 +1,27 @@
+.search-results-container {
+    padding-top: 80px;  /* Header와의 간격 */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.search-results-title {
+    margin-bottom: 30px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-img-top {
+    height: 200px;  /* 이미지 높이 고정 */
+    object-fit: cover;  /* 이미지 비율 유지 */
+}
