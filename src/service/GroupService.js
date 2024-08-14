@@ -96,7 +96,7 @@ export const getIsSubscribed = async (groupName) => {
         headers: { Authorization: `${token}` },
         withCredentials: true
     });
-    return response.data;
+    return response.data.data.isSubscribe;
 };
 
 // 좋아요 여부
