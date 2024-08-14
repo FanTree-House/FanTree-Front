@@ -1,0 +1,101 @@
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background: #fff;
+    border-radius: 8px;
+    padding: 80px;
+    width: 60%; /* Adjust width as needed */
+    max-width: 1000px; /* Maximum width */
+    height: 100%; /* Adjust height as needed */
+    max-height: 780px; /* Maximum height */
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-iframe {
+    width: 100%;
+    height: 80vh;
+    border: none;
+}
+
+.modal-close {
+    position: fixed;
+    top: 2%;
+    right: 1%;
+    background-color: rgba(179, 165, 234, 0.24);
+    border: 1px solid #ccc;
+    border-radius: 50%; /* 원형 버튼 */
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; /* 클릭 가능한 커서 */
+    z-index: 1001; /* 모달 내용 위에 표시 */
+}
+
+.modal-close:hover {
+    background-color: rgba(109, 29, 197, 0.85); /* 호버 시 배경색 변경 */
+    color: rgb(192, 195, 248);
+    font-weight: bold;
+    font-style: italic;
+    transform: scale(1.1);
+    transition: background-color 0.3s ease;
+}
+
+/*.post-contents {*/
+/*    color: #494444;*/
+/*    font-size: 1em;*/
+/*    margin-top: 8px;*/
+/*    overflow: auto; !* 넘치는 콘텐츠에 스크롤 추가 *!*/
+/*    text-align: left; !* 텍스트 왼쪽 정렬 *!*/
+/*}*/
+
+
+.modal-post {
+    border-bottom: 1px solid #e0e0e0; /* 연한 회색 경계선 추가 */
+    padding-bottom: 15px; /* 경계선 위의 공간 확보 */
+    margin-bottom: 15px; /* 경계선 아래의 공간 확보 */
+}
+
+.modal-body {
+    overflow-y: auto; /* 내용이 길어질 때 스크롤 가능 */
+    padding: 5px;
+    max-height: calc(80vh - 40px); /* 모달의 최대 높이에서 버튼 높이만큼 제외 */
+}
+
+
+/* 스크롤바 스타일링 (WebKit 기반 브라우저용) */
+.modal-body::-webkit-scrollbar {
+    width: 8px; /* 스크롤바의 너비 */
+    transition: width 0.3s ease; /* 부드러운 너비 변경 애니메이션 */
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: rgba(248, 248, 255, 0); /* 스크롤바 트랙의 배경색 */
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: rgba(202, 207, 253, 0.82); /* 스크롤바의 색상 */
+    border-radius: 6px; /* 스크롤바의 둥근 모서리 */
+    transition: background 0.3s ease, width 0.3s ease;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(114, 109, 246, 0.85); /* 스크롤바를 호버했을 때 색상 */
+    width: 12px;
+}
