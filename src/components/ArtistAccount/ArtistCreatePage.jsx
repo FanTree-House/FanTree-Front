@@ -5,7 +5,7 @@ import './ArtistCreatePageCss.css'; // CSS 파일을 import 합니다.
 const ArtistCreatePage = () => {
     const [artistName, setArtistName] = useState('');
     const [introduction, setIntroduction] = useState('');
-    const [photo, setPhoto] = useState(null);
+    const [file, setFile] = useState(null);
     const [message, setMessage] = useState('');
 
 
@@ -18,7 +18,7 @@ const ArtistCreatePage = () => {
     }
 
     const handlePhotoChange = (e) => {
-        setPhoto(e.target.files[0]);
+        setFile(e.target.files[0]);
     };
 
     const handleSubmit = async (e) => {
@@ -26,7 +26,7 @@ const ArtistCreatePage = () => {
         const formData = new FormData();
         formData.append("artistName", artistName);
         formData.append("introduction", introduction )
-        formData.append('file', photo);
+        formData.append('file', file);
 
         try {
             const responseMessage = await createArtist(formData);

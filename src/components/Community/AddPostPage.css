@@ -2,7 +2,8 @@
 
 .add-post-container {
     max-width: 600px; /* 최대 너비 설정 */
-    margin: 0 auto; /* 중앙 정렬 */
+    margin: 0 auto  ; /* 중앙 정렬 */
+    margin-top: 250px;
     padding: 20px; /* 여백 */
     border: 1px solid #ddd; /* 테두리 */
     border-radius: 8px; /* 둥글게 */

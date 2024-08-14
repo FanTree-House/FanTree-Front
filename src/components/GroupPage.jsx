@@ -74,6 +74,9 @@ const GroupPage = () => {
     const openEnterPage = () =>
         navigate(`/group/${groupName}/enter/${enterName}`);
 
+    const openCommunityPage = () =>
+        navigate(`/group/${groupName}/community`)
+
     // 구독버튼
     const handleSubscribe = async () => {
         try {
@@ -124,7 +127,7 @@ const GroupPage = () => {
                 <div className="nav_btn">
                     <button className="subscript-button" onClick={handleSubscribe}>{isSubscribed ? '구독중' : '구독'}</button>
                     <button className="notice-button" key={enterName} onClick={() => openEnterPage()}>공지사항</button>
-                    <button className="community-button" onClick={() => navigate('/signup')}>커뮤니티</button>
+                    <button className="community-button" onClick={() => openCommunityPage()}>커뮤니티</button>
                 </div>
             </div>
             <div className="group-header">

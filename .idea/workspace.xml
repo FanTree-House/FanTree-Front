@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[refactor] 커뮤니티피드 완성 및 병합 #4">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <list id="bfd980c6-5a4f-4905-aa8d-bb0b51bfa6c5" name="Changes by jaychoi" comment="[feature] 스케줄 이벤트 구현 #4" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSX File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/wooseok" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2jzdXROMeyVfw2Qk09qlFlY7X7y" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.Myprofile.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/wooseok",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/NBC/fantreefron",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.npm start.executor": "Run",
+    "npm.npm.executor": "Run",
+    "npm.start.executor": "Run",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\NBC\fantreefron\src\components\ArtistAccount" />
+      <recent name="C:\NBC\fantreefron\src\service" />
+      <recent name="C:\NBC\fantreefron\src\components" />
+      <recent name="C:\NBC\fantreefron\src\components\Enter" />
+      <recent name="C:\NBC\fantreefron\src\services" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="" />
+      <created>1722393878889</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1722393878889</updated>
+      <workItem from="1722393879963" duration="1311000" />
+      <workItem from="1722405298139" duration="2957000" />
+      <workItem from="1722411577274" duration="22833000" />
+      <workItem from="1722472713363" duration="54473000" />
+      <workItem from="1722816171535" duration="2319000" />
+      <workItem from="1722842182113" duration="24805000" />
+      <workItem from="1722902649445" duration="22850000" />
+      <workItem from="1722989612912" duration="26563000" />
+      <workItem from="1723075939947" duration="11655000" />
+      <workItem from="1723168965315" duration="23913000" />
+      <workItem from="1723271316621" duration="26902000" />
+      <workItem from="1723514354641" duration="20901000" />
+      <workItem from="1723594936972" duration="18965000" />
+    </task>
+    <task id="LOCAL-00001" summary="리액트 연동 #3">
+      <option name="closed" value="true" />
+      <created>1722394498504</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722394498504</updated>
+    </task>
+    <task id="LOCAL-00002" summary="리액트 연동 #3">
+      <option name="closed" value="true" />
+      <created>1722394565600</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1722394565600</updated>
+    </task>
+    <task id="LOCAL-00003" summary="리액트 연동 #3">
+      <option name="closed" value="true" />
+      <created>1722394608407</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722394608407</updated>
+    </task>
+    <task id="LOCAL-00004" summary="리액트 연동 #3">
+      <option name="closed" value="true" />
+      <created>1722394840874</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722394840874</updated>
+    </task>
+    <task id="LOCAL-00005" summary="리액트 연동 #3">
+      <option name="closed" value="true" />
+      <created>1722424582946</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722424582946</updated>
+    </task>
+    <task id="LOCAL-00006" summary="아티스트계정생성 Layer생성 #4">
+      <option name="closed" value="true" />
+      <created>1722425460570</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1722425460570</updated>
+    </task>
+    <task id="LOCAL-00007" summary="아티스트계정생성, 엔터화면 출력 #4">
+      <option name="closed" value="true" />
+      <created>1722443492998</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1722443492999</updated>
+    </task>
+    <task id="LOCAL-00008" summary="아티스트프로필 조회화면 출력 #4">
+      <option name="closed" value="true" />
+      <created>1722444064369</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1722444064369</updated>
+    </task>
+    <task id="LOCAL-00009" summary="아티스트계정생성구현 및 엔터테이너먼트 화면 출력 #4">
+      <option name="closed" value="true" />
+      <created>1722495028445</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1722495028445</updated>
+    </task>
+    <task id="LOCAL-00010" summary="엔터테이너먼트 공지사항 화면 출력 #4">
+      <option name="closed" value="true" />
+      <created>1722520650805</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1722520650805</updated>
+    </task>
+    <task id="LOCAL-00011" summary="엔터테이너먼트 스케줄등록 조회 미완성 #4">
+      <option name="closed" value="true" />
+      <created>1722864433140</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1722864433140</updated>
+    </task>
+    <task id="LOCAL-00012" summary="[fix] 오류충돌해결, 공지사항생성시 id오류 발생 #4">
+      <option name="closed" value="true" />
+      <created>1722877699425</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1722877699425</updated>
+    </task>
+    <task id="LOCAL-00013" summary="[feature] 스케줄기능 완성 #4">
+      <option name="closed" value="true" />
+      <created>1722945562711</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1722945562712</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Changes by jaychoi">
+      <option name="closed" value="true" />
+      <created>1722945569900</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1722945569900</updated>
+    </task>
+    <task id="LOCAL-00015" summary="[refactor] 폴더정리 #4">
+      <option name="closed" value="true" />
+      <created>1723008792362</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1723008792362</updated>
+    </task>
+    <task id="LOCAL-00016" summary="[refactor] Account 폴더정리 #4">
+      <option name="closed" value="true" />
+      <created>1723008887856</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1723008887856</updated>
+    </task>
+    <task id="LOCAL-00017" summary="[refactor] 엔터테이너먼트 공지사항 연결 #4">
+      <option name="closed" value="true" />
+      <created>1723033169914</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1723033169914</updated>
+    </task>
+    <task id="LOCAL-00018" summary="[refactor] 엔터테이너먼트 공지사항 아티스트 그룹과 연결 #4">
+      <option name="closed" value="true" />
+      <created>1723188985493</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1723188985493</updated>
+    </task>
+    <task id="LOCAL-00019" summary="[refactor] LocalStorage 토큰변경 #4">
+      <option name="closed" value="true" />
+      <created>1723192379839</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1723192379839</updated>
+    </task>
+    <task id="LOCAL-00020" summary="[refactor] 헤더변경중 #4">
+      <option name="closed" value="true" />
+      <created>1723196281306</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1723196281306</updated>
+    </task>
+    <task id="LOCAL-00021" summary="[refactor] 병합 및 버튼위치조정 #4">
+      <option name="closed" value="true" />
+      <created>1723432723749</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1723432723749</updated>
+    </task>
+    <task id="LOCAL-00022" summary="[refactor] 엔터페이지 헤더수정 #4">
+      <option name="closed" value="true" />
+      <created>1723445523708</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1723445523708</updated>
+    </task>
+    <task id="LOCAL-00023" summary="[refactor] 엔터페이지 로고출력 #4">
+      <option name="closed" value="true" />
+      <created>1723461499890</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1723461499890</updated>
+    </task>
+    <task id="LOCAL-00024" summary="[fix] 엔터페이지 권한설정 및 이벤트수리 #4">
+      <option name="closed" value="true" />
+      <created>1723521643217</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1723521643217</updated>
+    </task>
+    <task id="LOCAL-00025" summary="[refactor] 리팩토링 #4">
+      <option name="closed" value="true" />
+      <created>1723539408680</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1723539408680</updated>
+    </task>
+    <task id="LOCAL-00026" summary="[refactor] 커뮤니티피드 URL 받아옴 #4">
+      <option name="closed" value="true" />
+      <created>1723568373177</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1723568373177</updated>
+    </task>
+    <task id="LOCAL-00027" summary="[refactor] 커뮤니티피드 완성 #4">
+      <option name="closed" value="true" />
+      <created>1723630782139</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1723630782139</updated>
+    </task>
+    <task id="LOCAL-00028" summary="[refactor] 커뮤니티피드 완성 및 병합 #4">
+      <option name="closed" value="true" />
+      <created>1723631081651</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1723631081651</updated>
+    </task>
+    <task id="LOCAL-00029" summary="[refactor] 커뮤니티피드 완성 및 병합 #4">
+      <option name="closed" value="true" />
+      <created>1723631327533</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1723631327533</updated>
+    </task>
+    <task id="LOCAL-00030" summary="[refactor] 커뮤니티피드 완성 및 병합 #4">
+      <option name="closed" value="true" />
+      <created>1723631470462</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1723631470462</updated>
+    </task>
+    <task id="LOCAL-00031" summary="[refactor] 커뮤니티피드 완성 및 병합 #4">
+      <option name="closed" value="true" />
+      <created>1723631592933</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1723631592933</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="리액트 연동 #3" />
+    <MESSAGE value="아티스트계정생성 Layer생성 #4" />
+    <MESSAGE value="아티스트계정생성, 엔터화면 출력 #4" />
+    <MESSAGE value="아티스트프로필 조회화면 출력 #4" />
+    <MESSAGE value="아티스트계정생성구현 및 엔터테이너먼트 화면 출력 #4" />
+    <MESSAGE value="엔터테이너먼트 공지사항 화면 출력 #4" />
+    <MESSAGE value="엔터테이너먼트 스케줄등록 조회 미완성 #4" />
+    <MESSAGE value="[fix] 오류충돌해결, 공지사항생성시 id오류 발생 #4" />
+    <MESSAGE value="[feature] 스케줄 이벤트 구현 #4" />
+    <MESSAGE value="[feature] 스케줄기능 완성 #4" />
+    <MESSAGE value="[feature] 스케줄 이벤트 구현 #4" />
+    <MESSAGE value="[refactor] 폴더정리 #4" />
+    <MESSAGE value="[refactor] Account 폴더정리 #4" />
+    <MESSAGE value="[refactor] 엔터테이너먼트 공지사항 연결 #4" />
+    <MESSAGE value="[refactor] 엔터테이너먼트 공지사항 아티스트 그룹과 연결 #4" />
+    <MESSAGE value="[refactor] LocalStorage 토큰변경 #4" />
+    <MESSAGE value="[refactor] 헤더변경중 #4" />
+    <MESSAGE value="[refactor] 병합 및 버튼위치조정 #4" />
+    <MESSAGE value="[refactor] 엔터페이지 헤더수정 #4" />
+    <MESSAGE value="[refactor] 엔터페이지 로고출력 #4" />
+    <MESSAGE value="[fix] 엔터페이지 권한설정 및 이벤트수리 #4" />
+    <MESSAGE value="[refactor] 리팩토링 #4" />
+    <MESSAGE value="[refactor] 커뮤니티피드 URL 받아옴 #4" />
+    <MESSAGE value="[refactor] 커뮤니티피드 완성 #4" />
+    <MESSAGE value="[refactor] 커뮤니티피드 완성 및 병합 #4" />
+    <option name="LAST_COMMIT_MESSAGE" value="[refactor] 커뮤니티피드 완성 및 병합 #4" />
+  </component>
+</project>
