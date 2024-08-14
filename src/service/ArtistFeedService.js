@@ -20,15 +20,10 @@ export const getArtistGroupName = async () => {
 // 피드 생성 함수
 export const createFeed = async (groupName, content, images) => {
     const formData = new FormData();
-
-    // CreateFeedRequestDto를 위한 JSON 객체 생성
-    const requestDto = JSON.stringify({ contents: content });
-
-    // requestDto를 Blob으로 변환하여 FormData에 추가
-    formData.append('requestDto', new Blob([requestDto], { type: 'application/json' }));
+    formData.append('contents', content);
 
     images.forEach((image, index) => {
-        formData.append(`file${index}`, image); // 여러 파일을 위한 키 이름을 다르게 설정
+        formData.append(`file`, image); // 여러 파일을 위한 키 이름을 다르게 설정
     });
 
     // 로컬 스토리지에서 JWT 토큰을 가져옵니다.
