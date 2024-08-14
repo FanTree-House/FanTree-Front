@@ -25,7 +25,6 @@ const ArtistGroupModal = ({onClose}) => {
 
                 const groups = response.data;
 
-                // 그룹 이름을 포함하여 각 그룹의 이미지 URL을 가져오기 위한 API 호출
                 const groupsWithImages = await Promise.all(groups.map(async (group) => {
                     try {
                         const imageResponse = await apiClient.get(`/artistgroup/${group.group_name}`);
@@ -42,7 +41,6 @@ const ArtistGroupModal = ({onClose}) => {
                     }
                 }));
 
-                // 설정: 모든 그룹을 구독 상태로 표시
                 setArtistGroups(groupsWithImages);
                 const initialSubscriptionState = {};
                 groupsWithImages.forEach(group => {
