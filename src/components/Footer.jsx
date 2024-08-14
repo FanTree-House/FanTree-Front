@@ -10,7 +10,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-links">
                     <a href="https://github.com/FanTree-House/FanTree-Back/blob/main/README.md">Info</a>
-                    <a href="">Survey</a>
+                    <a href="https://forms.gle/Uk1qPKahSLLB42m66">Survey</a>
                     <a href="https://nbcamp.spartacodingclub.kr/">Support</a>
                     <a href="https://www.notion.so/teamsparta/67b0dd55fd384f6bbe2f635feb4d0c38">Terms of Use</a>
                     <a href="https://github.com/FanTree-House">Our Records</a>

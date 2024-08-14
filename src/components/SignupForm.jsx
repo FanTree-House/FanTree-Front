@@ -306,7 +306,7 @@ const SignupForm = () => {
             </button>
           </div>
 
-          <button type="submit" className="submit-button">가입하기</button>
+          <button type="submit" className="submitt-button">가입하기</button>
         </form>
       </div>
   );
