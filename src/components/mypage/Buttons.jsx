@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import './Buttons.css';
 import ButtonWithModal from './ButtonWithModal';
 import { Link } from 'react-router-dom';
-import ArtistGroupModal from './ArtistGroupModal'; // Import the ArtistGroupModal component
+import ArtistGroupModal from './ArtistGroupModal';
 import ArtistFeedLikeModal from './ArtistFeedLikeModal'
 import MyCommunityFeedModal from './MyCommunityFeedModal';
 import CommunityFeedLikeModal from "./CommunityFeedLikeModal";
+import EnterFeedNoticeModal from "./EnterFeedNoticeModal";
+import EnterFeedScheduleModal from "./EnterFeedScheduleModal";
 
 const Buttons = () => {
     const [modalContent, setModalContent] = useState(null);
@@ -20,10 +22,10 @@ const Buttons = () => {
         // { text: '구독 그룹(아티스트) 게시글', link: '/link6' },
         { text: '아티스트 게시글 좋아요', link: '/artistFeedLike' },
         // { text: '', link: '/' },
-        { text: '구독 그룹 공지', link: '/link9' },
+        { text: '구독 그룹 공지', link: '/notice' },
         // { text: '10', link: '/link10' },
         // { text: '11', link: '/link11' },
-        { text: '구독 그룹 스케줄', link: '/link12' },
+        { text: '구독 그룹 스케줄', link: '/schedule' },
     ];
 
     const openModal = (link) => {
@@ -45,6 +47,10 @@ const Buttons = () => {
                 return <ArtistFeedLikeModal postId={123} onClose={closeModal} />;
             case '/commuFeedLike':
                 return <CommunityFeedLikeModal postId={100} onClose={closeModal} />;
+            case '/notice':
+                return <EnterFeedNoticeModal postId={33} onClose={closeModal} />
+            case '/schedule':
+                return <EnterFeedScheduleModal postId={55} onClose={closeModal} />
             default:
                 return null;
         }

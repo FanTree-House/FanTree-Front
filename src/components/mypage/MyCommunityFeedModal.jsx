@@ -29,6 +29,25 @@ const MyCommunityFeedModal = ({onClose}) => {
                     setError("등록한 커뮤니티 게시글이 없습니다.");
                 } else {
                     setPosts(data);
+
+                    // 각각의 포스트에 대한 좋아요 상태를 가져오는 추가 코드
+                    const likedStatuses = await Promise.all(data.map(async (post) => {
+                        try {
+                            const likedResponse = await axios.get(`http://localhost:8080/check/${post.id}`, {
+                                headers: {
+                                    'Authorization': `${accessToken}`
+                                }
+                            });
+                            return { [post.id]: likedResponse.data };
+                        } catch (error) {
+                            console.error(`Error fetching liked status for post ${post.id}:`, error);
+                            return { [post.id]: false }; // 에러 발생 시 기본 값으로 false 설정
+                        }
+                    }));
+
+                    const likedMap = likedStatuses.reduce((acc, curr) => ({ ...acc, ...curr }), {});
+                    setLiked(prev => ({ ...prev, ...likedMap }));
+
                 }
             } catch (fetchError) {
                 console.error('Error fetching community posts:', fetchError);
@@ -72,22 +91,32 @@ const MyCommunityFeedModal = ({onClose}) => {
         }));
 
         // 상태 업데이트를 위한 객체에 추가 (홀수번 클릭 시 변경된 상태를 서버로 전송하지 않음)
-        setUpdatedLikes(prevUpdatedLikes => ({
-            ...prevUpdatedLikes,
-            [communityFeedId]: newLikedState ? currentLikedState : null // 상태를 null로 설정하면 서버 전송에서 제외
-        }));
+        // setUpdatedLikes(prevUpdatedLikes => ({
+        //     ...prevUpdatedLikes,
+        //     [communityFeedId]: newLikedState ? currentLikedState : null // 상태를 null로 설정하면 서버 전송에서 제외
+        // }));
     };
 
     // 모달을 닫을 때 좋아요 상태를 서버로 전송하는 함수
     const handleClose = async () => {
         try {
             const updates = Object.keys(updatedLikes).map(async communityFeedId => {
-                const endpoint = `http://localhost:8080/feed/${communityFeedId}`;
                 const likedStatus = updatedLikes[communityFeedId];
+                const endpoint = likedStatus === true
+                    ? `http://localhost:8080/artist/addLike/${communityFeedId}`
+                    : `http://localhost:8080/artist/cancelLike/${communityFeedId}`;
 
-                // 상태가 null이 아닐 때만 서버로 전송
-                if (likedStatus !== null) {
-                    return axios.post(endpoint, {liked: likedStatus}, {
+                if (likedStatus === true) {
+                    // 좋아요 추가 요청 (POST)
+                    return axios.post(endpoint, {}, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `${accessToken}`
+                        }
+                    });
+                } else if (likedStatus === false) {
+                    // 좋아요 취소 요청 (DELETE)
+                    return axios.delete(endpoint, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `${accessToken}`
@@ -166,9 +195,9 @@ const MyCommunityFeedModal = ({onClose}) => {
                                             >
 
                                                 <FontAwesomeIcon
-                                                    icon={faHeartSolid} // 상태에 따라 하트 아이콘 변경
+                                                    icon={faHeartSolid}
                                                     size="2x"
-                                                    style={{color: liked[post.id] ? "#ccc" : "#c70000"}}  // 하트 색상 변경
+                                                    style={{color: liked[post.id] ? "#c70000" : "#ccc"}}
                                                 />
                                             </button>
                                             <span className="like-count">{post.likeCount}</span> {/* 좋아요 갯수 표시 */}

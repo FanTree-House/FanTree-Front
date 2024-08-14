@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import Carousel from 'react-bootstrap/Carousel';
 
+
 const ArtistFeedLikeModal = ({ postId, onClose }) => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -166,7 +167,7 @@ const ArtistFeedLikeModal = ({ postId, onClose }) => {
                                                 style={{color: liked[post.id] ? "#ccc" : "#c70000"}}
                                             />
                                         </button>
-                                        <span className="like-count">{post.likeCount}</span>
+                                        <span className="like-count">{post.likesCount}</span>
                                     </div>
                                     <div className="carousel-indicators">
                                         {post.imageUrls.map((_, idx) => (
