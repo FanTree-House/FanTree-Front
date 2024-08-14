@@ -2,7 +2,19 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { fetchFeedComments, postComment, likeFeed, fetchArtistFeed, fetchFeedLikes, getIsLiked, updateComment, deleteComment } from '../service/GroupService';
+import {
+    fetchFeedComments,
+    postComment,
+    likeFeed,
+    fetchArtistFeed,
+    fetchFeedLikes,
+    getIsLiked,
+    updateComment,
+    deleteComment,
+    likeComment,
+    getCommentIsLiked,
+    getCommentLikeCount,
+} from '../service/GroupService';
 import './FeedPopup.css';
 import { useParams } from "react-router-dom";
 
@@ -15,14 +27,30 @@ const FeedPopup = () => {
     const [editingCommentId, setEditingCommentId] = useState(null);
     const [editingCommentContent, setEditingCommentContent] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [likedComments, setLikedComments] = useState({}); // 댓글 좋아요 상태를 저장할 객체
 
     useEffect(() => {
         const loadFeed = async () => {
             try {
+                // 피드 데이터 불러오기
                 const loadedFeed = await fetchArtistFeed(groupName, feedId);
                 setFeedData(loadedFeed);
+
+                // 댓글 데이터 불러오기
                 const loadedComments = await fetchFeedComments(groupName, feedId);
-                setComments(loadedComments);
+
+                // 댓글에 좋아요 상태와 개수 추가하기
+                const commentsWithLikes = await Promise.all(loadedComments.map(async (comment) => {
+                    const likeCountResponse = await getCommentLikeCount(comment.id);
+                    const isLikedResponse = await getCommentIsLiked(comment.id);
+                    return {
+                        ...comment,
+                        likeCount: likeCountResponse.data.likeCount,
+                        isLiked: isLikedResponse.data.isLiked,
+                    };
+                }));
+
+                setComments(commentsWithLikes);
 
                 // 좋아요 상태 가져오기
                 const liked = await getIsLiked(groupName, feedId);
@@ -34,6 +62,7 @@ const FeedPopup = () => {
 
         loadFeed();
     }, [feedId, groupName]);
+
 
     const sliderSettings = {
         dots: true,
@@ -53,8 +82,8 @@ const FeedPopup = () => {
         try {
             await postComment(groupName, feedId, newComment);
             setNewComment('');
-            const loadedComments = await fetchFeedComments(groupName, feedId);
-            setComments(loadedComments);
+            const Comments = await fetchFeedComments(groupName, feedId);
+            setComments(Comments);
         } catch (error) {
             console.error('Error posting comment:', error);
         }
@@ -74,6 +103,37 @@ const FeedPopup = () => {
             }));
         } catch (error) {
             console.error('Error liking feed:', error);
+        }
+    };
+
+    const handleCommnetLike = async (commentId) => {
+        try {
+            // 현재 좋아요 상태 조회
+            const isLikedResponse = await getCommentIsLiked(commentId);
+            const newIsLiked = !isLikedResponse.data.isLiked; // 현재 상태 반전
+
+            // 좋아요 API 호출
+            await likeComment(groupName, feedId, commentId);
+
+            // 좋아요 개수 조회
+            const likeCountResponse = await getCommentLikeCount(commentId);
+            console.log("좋아요 수", likeCountResponse);
+
+            // 댓글의 좋아요 개수와 상태 업데이트
+            setComments(prevComments =>
+                prevComments.map(comment =>
+                    comment.id === commentId
+                        ? {
+                            ...comment,
+                            likeCount: likeCountResponse.data.likeCount,
+                            isLiked: newIsLiked
+                        }
+                        : comment
+                )
+            );
+
+        } catch (error) {
+            console.error('Error liking comment:', error);
         }
     };
 
@@ -156,6 +216,11 @@ const FeedPopup = () => {
                             <div>
                                 <button onClick={() => openEditModal(comment)}>수정</button>
                                 <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
+                            </div>
+                            <div>
+                                <button onClick={() => handleCommnetLike(comment.id)}>
+                                    {comment.isLiked ? '❤️' : '🤍'} {comment.likeCount}
+                                </button>
                             </div>
                         </div>
                     ))}

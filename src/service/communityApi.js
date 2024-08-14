@@ -12,6 +12,7 @@ export const fetchAllFeeds = async (groupName) => {
             headers: { Authorization: `${token}` },
             withCredentials: true
         });
+        console.log("피드 조회 데이터", response);
 
 
         return response.data;
