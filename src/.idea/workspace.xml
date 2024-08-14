@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="89a85e29-208b-42c8-8a5d-f86eeeaa73d9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fantreefront.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AdminSignup.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ArtistAccount/ArtistCreatePage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ArtistAccount/ArtistCreatePageCss.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ArtistAccount/ArtistProfile.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ArtistAccount/ArtistProfle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ArtistFeedsPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ArtistGroupCreatePage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ArtistGroupCreatePage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ArtistGroupManagePage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ArtistGroupManagePage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ArtistSignup.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Community/AddPostPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Community/AddPostPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Community/CommunityFeed.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Community/CommunityFeed.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Community/CommunityFeeds.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Community/CommunityFeeds.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Community/CreateCommunityFeed.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Community/CreateCommunityFeed.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Community/FeedDetailPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Community/FeedDetailPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CreateArtistFeedPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/CalendarCss.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/CreateNotice.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/CreateSchedule.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/EnterHeader.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/EnterNotice.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/EnterSchedule.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/EntertainerPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/EntertainerPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/HomePage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/NoticeModalCss.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/NoticePopup.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Enter/NoticePopupCss.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/EnterSignup.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/EntertainmentCreatePage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/EntertainmentCreatePage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/EntertainmentEditPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/FeedPopup.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/FeedPopup.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Footer.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Footer.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/GroupPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/GroupPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/IntroPopup.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/IntroPopup.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/LoginPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/LoginPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MainPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MainPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SearchResults.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SearchResults.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SignupForm.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SignupForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/ArtistFeedLikeModal.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/ArtistGroupModal.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/ArtistGroupModal.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/ButtonWithModal.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/ButtonWithModal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/Buttons.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/Buttons.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/CommunityFeedLikeModal.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/CommunityFeedLikeModal.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/EnterFeedNoticeModal.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/EnterFeedNoticeModal.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/EnterFeedScheduleModal.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/EnterFeedScheduleModal.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/MyCommunityFeedModal.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/MyPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/MyPage.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/mypage/Profile.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/context/AuthContext.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/ArtistAccount.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/ArtistFeedService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/ArtistGroupService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/AxiosInstance.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/CreateGroupService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/Entertainer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/EntertainmentService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/GroupService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/LoginPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/Logout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/SearchService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/SignupForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/apiClient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/communityApi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/setupTests.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2kdOENLOTckrVZXeqWKYUSqUTqM" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/mypage",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/HO13YAA/Desktop/Sparta_projects/FanTreeHouseFront/src",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-22-openjdk-22-4caba194b151-f504ca98" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="89a85e29-208b-42c8-8a5d-f86eeeaa73d9" name="Changes" comment="" />
+      <created>1723609874981</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723609874981</updated>
+      <workItem from="1723609877052" duration="223000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/mypage" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

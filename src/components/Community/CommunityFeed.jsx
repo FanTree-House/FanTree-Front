@@ -3,6 +3,12 @@ import './CommunityFeed.css';
 import { createComment, fetchComments } from '../../service/communityApi';
 import { useParams } from 'react-router-dom';
 
+/**
+ *
+ * @param feed
+ * @returns {Element}
+ * @constructor
+ */
 const CommunityFeed = ({ feed }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [contents, setContents] = useState([]); // 댓글 상태

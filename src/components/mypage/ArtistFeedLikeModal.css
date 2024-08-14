@@ -1,0 +1,86 @@
+.post-artist-name {
+    font-size: 1em;
+    /*margin: 5px;*/
+    color: #333; /* 글자 색상 (원하는 색상으로 조정 가능) */
+}
+.post-author-name {
+    font-size: 1em;
+    margin: 5px;
+    color: #333; /* 글자 색상 (원하는 색상으로 조정 가능) */
+}
+
+/* 인디케이터의 기본 스타일 */
+.carousel-indicators {
+    bottom: 10px; /* 슬라이드 하단에서의 위치 조정 */
+}
+
+.carousel-indicators li {
+    width: 14px; /* 인디케이터 원의 크기 */
+    height: 14px; /* 인디케이터 원의 높이 */
+    background-color: rgba(64, 116, 248, 0.67); /* 비활성 상태의 색상 */
+    border-radius: 50%; /* 원형 모양 */
+    margin: 0 4px; /* 인디케이터 간의 간격 */
+    transition: background-color 0.6s ease; /* 색상 변화 시 부드러운 전환 */
+}
+
+.carousel-indicators .active {
+    background-color: rgba(184, 246, 255, 0.63); /* 활성 상태의 색상 */
+}
+
+.indicator-dot {
+    width: 8px; /* 너비 */
+    height: 8px; /* 높이 */
+    background-color: #ccc; /* 기본 배경색 */
+    border-radius: 50%; /* 원형으로 만들기 */
+    margin-left: 5px; /* 점 간의 간격 */
+    transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+    cursor: pointer; /* 커서 모양 */
+}
+
+/* 현재 활성화된 슬라이드의 점을 강조 */
+.indicator-dot.active {
+    background-color: #1c73b2; /* 활성화된 점의 색상 */
+    transform: scale(1.2); /* 크기를 약간 키워 강조 */
+}
+
+/* 점을 마우스 오버했을 때 효과 */
+.indicator-dot:hover {
+    background-color: #888; /* 호버 시 배경색 */
+}
+
+.carousel-control-next-icon {
+
+}
+
+.post-image {
+    width: 300px;
+    height: auto; /* 높이는 비율에 맞게 자동 조정 */
+    margin: 0 auto; /* 이미지를 중앙에 배치 */
+    display: block; /* 이미지를 블록 요소로 표시 */
+    max-height: 700px; /* 최대 높이를 설정 */
+    object-fit: cover; /* 이미지 비율을 유지하며 크기에 맞게 잘라냄 */
+    border-radius: 8px; /* 모서리를 둥글게 처리 */
+}
+.like-container {
+    height: 43px;
+}
+
+.post-contents {
+    color: #494444; /* 텍스트 색상 설정 */
+    font-size: 0.98em; /* 글자 크기 설정 */
+    margin-top: 8px; /* 상단 여백 설정 */
+    max-height: none; /* 높이 제한을 없애기 위해 */
+    overflow: visible; /* 넘치는 콘텐츠를 보여주도록 설정 */
+    word-wrap: break-word; /* 긴 단어가 있을 경우 줄바꿈 */
+    white-space: normal; /* 텍스트 줄바꿈 설정 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+.no-posts-message {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    display: block; /* 블록처럼 처리 */
+    margin: 20px 0;
+    text-align: center;
+}
