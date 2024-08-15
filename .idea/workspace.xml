@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[Feat] 댓글 유저 표시 #1">
+    <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[fix] apiClient 수정 #1">
+      <change afterPath="$PROJECT_DIR$/.env.production" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/gradle.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/LoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/SearchService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/SearchService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/SignupForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/SignupForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/apiClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/apiClient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/communityApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/communityApi.js" afterDir="false" />
     </list>
     <list id="bfd980c6-5a4f-4905-aa8d-bb0b51bfa6c5" name="Changes by jaychoi" comment="[feature] 스케줄 이벤트 구현 #4" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,6 +96,19 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="fantreefront" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="fantreefront" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="npm start" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -405,7 +414,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723653653052</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="[fix] apiClient 수정 #1">
+      <option name="closed" value="true" />
+      <created>1723726964990</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1723726964990</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,7 +440,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="아티스트계정생성, 엔터화면 출력 #4" />
     <MESSAGE value="아티스트프로필 조회화면 출력 #4" />
     <MESSAGE value="아티스트계정생성구현 및 엔터테이너먼트 화면 출력 #4" />
     <MESSAGE value="엔터테이너먼트 공지사항 화면 출력 #4" />
@@ -448,6 +464,7 @@
     <MESSAGE value="[refactor] 커뮤니티피드 완성 및 병합 #4" />
     <MESSAGE value="[Conflict] Conflict #1" />
     <MESSAGE value="[Feat] 댓글 유저 표시 #1" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feat] 댓글 유저 표시 #1" />
+    <MESSAGE value="[fix] apiClient 수정 #1" />
+    <option name="LAST_COMMIT_MESSAGE" value="[fix] apiClient 수정 #1" />
   </component>
 </project>
