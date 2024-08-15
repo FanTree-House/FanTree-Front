@@ -4,6 +4,7 @@ on:
     branches: [ dev ]
 env:
   DOCKER_IMAGE_TAG_NAME: fantree-house
+  CI: false
 jobs:
   build-and-docker-push:
     runs-on: ubuntu-20.04
