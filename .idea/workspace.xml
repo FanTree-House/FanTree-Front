@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4aa7876c-abb5-4178-9abd-3c46f3e50112" name="변경" comment="[Chore] 팝업 글자 위치 수정">
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/CreateGroupService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/CreateGroupService.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="new" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;gaeun7&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="recentNewPullRequestHead">
+      <RepoCoordinatesHolder>
+        <option name="owner" value="FanTree-House" />
+        <option name="repository" value="FanTree-Front" />
+      </RepoCoordinatesHolder>
+    </option>
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="c7e66b64-987c-4e1e-9b19-3ee07cebaaa9" />
+        <option name="url" value="https://github.com/FanTree-House/FanTree-Front.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2jv3A3I91oB3TLLvtV0SYF7iBCs" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.SignupForm.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.axiosInstance.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.groupService.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/main+sign+login&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/intelliJ/fantreefront&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\IntelliJ IDEA 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\intelliJ\fantreefront\src\service" />
+      <recent name="C:\intelliJ\fantreefront\src\components" />
+      <recent name="C:\intelliJ\fantreefront\src\services" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="4aa7876c-abb5-4178-9abd-3c46f3e50112" name="변경" comment="" />
+      <created>1722253577822</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1722253577822</updated>
+      <workItem from="1722253579396" duration="87000" />
+      <workItem from="1722253680866" duration="954000" />
+      <workItem from="1722305682870" duration="4239000" />
+      <workItem from="1722317087262" duration="553000" />
+      <workItem from="1722324369396" duration="3434000" />
+      <workItem from="1722332100051" duration="802000" />
+      <workItem from="1722341192305" duration="5585000" />
+      <workItem from="1722383278464" duration="41000" />
+      <workItem from="1722384465849" duration="5713000" />
+      <workItem from="1722402409824" duration="20074000" />
+      <workItem from="1722458870285" duration="5929000" />
+      <workItem from="1722469511691" duration="11118000" />
+      <workItem from="1722488390868" duration="27733000" />
+      <workItem from="1722557994000" duration="8797000" />
+      <workItem from="1722576202407" duration="1803000" />
+      <workItem from="1722600017986" duration="5000" />
+      <workItem from="1722606262751" duration="121000" />
+      <workItem from="1722609227268" duration="170000" />
+      <workItem from="1722672792551" duration="4311000" />
+      <workItem from="1722678821135" duration="25000" />
+      <workItem from="1722759221850" duration="77000" />
+      <workItem from="1722846798265" duration="1114000" />
+      <workItem from="1722858991279" duration="765000" />
+      <workItem from="1722859853299" duration="5910000" />
+      <workItem from="1722893622809" duration="13084000" />
+      <workItem from="1722923310153" duration="12742000" />
+      <workItem from="1722983050878" duration="2517000" />
+      <workItem from="1722991775067" duration="598000" />
+      <workItem from="1722994697456" duration="7586000" />
+      <workItem from="1723009520132" duration="4124000" />
+      <workItem from="1723016820295" duration="2497000" />
+      <workItem from="1723025470695" duration="4735000" />
+      <workItem from="1723075604720" duration="5978000" />
+      <workItem from="1723093915540" duration="10979000" />
+      <workItem from="1723111409584" duration="10140000" />
+      <workItem from="1723162275982" duration="11034000" />
+      <workItem from="1723181031032" duration="29647000" />
+      <workItem from="1723213961150" duration="12000" />
+      <workItem from="1723295167001" duration="1918000" />
+      <workItem from="1723297350285" duration="42000" />
+      <workItem from="1723297505102" duration="3640000" />
+      <workItem from="1723325582947" duration="1770000" />
+      <workItem from="1723379395667" duration="9179000" />
+      <workItem from="1723418621763" duration="10943000" />
+      <workItem from="1723439201245" duration="11051000" />
+      <workItem from="1723451467029" duration="761000" />
+      <workItem from="1723457048494" duration="13087000" />
+      <workItem from="1723506315148" duration="2713000" />
+      <workItem from="1723509745430" duration="935000" />
+      <workItem from="1723510699029" duration="504000" />
+      <workItem from="1723515286624" duration="1536000" />
+      <workItem from="1723519690351" duration="987000" />
+      <workItem from="1723538134079" duration="2161000" />
+      <workItem from="1723543453674" duration="273000" />
+      <workItem from="1723543764965" duration="1409000" />
+      <workItem from="1723545575265" duration="23000" />
+      <workItem from="1723557734078" duration="883000" />
+      <workItem from="1723559653997" duration="644000" />
+      <workItem from="1723592193346" duration="6331000" />
+      <workItem from="1723602656976" duration="610000" />
+      <workItem from="1723614883349" duration="1930000" />
+      <workItem from="1723619060530" duration="931000" />
+      <workItem from="1723622812235" duration="1065000" />
+      <workItem from="1723625028230" duration="377000" />
+      <workItem from="1723625937414" duration="3846000" />
+      <workItem from="1723632796260" duration="592000" />
+      <workItem from="1723637853366" duration="3346000" />
+      <workItem from="1723674104735" duration="2166000" />
+    </task>
+    <task id="LOCAL-00041" summary="[Chore] 카카오 로그인 이미지 수정">
+      <option name="closed" value="true" />
+      <created>1723190844712</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1723190844712</updated>
+    </task>
+    <task id="LOCAL-00042" summary="[Chore] 헤더 검색바 수정">
+      <option name="closed" value="true" />
+      <created>1723194865432</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1723194865433</updated>
+    </task>
+    <task id="LOCAL-00043" summary="[Chore] 로그인 css 수정">
+      <option name="closed" value="true" />
+      <created>1723195530081</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1723195530081</updated>
+    </task>
+    <task id="LOCAL-00044" summary="[Chore] 생성 페이지 수정">
+      <option name="closed" value="true" />
+      <created>1723197083604</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1723197083604</updated>
+    </task>
+    <task id="LOCAL-00045" summary="[Chore] 생성 페이지 수정">
+      <option name="closed" value="true" />
+      <created>1723197683364</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1723197683364</updated>
+    </task>
+    <task id="LOCAL-00046" summary="[Chore] 생성 페이지 수정">
+      <option name="closed" value="true" />
+      <created>1723198966221</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1723198966222</updated>
+    </task>
+    <task id="LOCAL-00047" summary="[Chore] 헤더 아티스트 피드 생성 버튼 url 관련 수정">
+      <option name="closed" value="true" />
+      <created>1723202010658</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1723202010658</updated>
+    </task>
+    <task id="LOCAL-00048" summary="[Chore] 피드 성공적으로 작성하면 작성한 그룹 페이지로 이동">
+      <option name="closed" value="true" />
+      <created>1723202562964</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1723202562964</updated>
+    </task>
+    <task id="LOCAL-00049" summary="[Chore] 그룹 생성 성공 시 alert">
+      <option name="closed" value="true" />
+      <created>1723206533118</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1723206533118</updated>
+    </task>
+    <task id="LOCAL-00050" summary="[Chore] 회원가입 권한 관련 수정">
+      <option name="closed" value="true" />
+      <created>1723207191304</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1723207191306</updated>
+    </task>
+    <task id="LOCAL-00051" summary="[Chore] 그룹 생성 시 alert">
+      <option name="closed" value="true" />
+      <created>1723208361654</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1723208361655</updated>
+    </task>
+    <task id="LOCAL-00052" summary="[Chore] 헤더 수정">
+      <option name="closed" value="true" />
+      <created>1723209779541</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1723209779541</updated>
+    </task>
+    <task id="LOCAL-00053" summary="[Chore] dev1">
+      <option name="closed" value="true" />
+      <created>1723213051833</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1723213051834</updated>
+    </task>
+    <task id="LOCAL-00054" summary="[Chore] 엔터 조회, 수정, 삭제">
+      <option name="closed" value="true" />
+      <created>1723299541956</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1723299541956</updated>
+    </task>
+    <task id="LOCAL-00055" summary="[Chore] 엔터 조회, 수정, 삭제">
+      <option name="closed" value="true" />
+      <created>1723300199774</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1723300199774</updated>
+    </task>
+    <task id="LOCAL-00056" summary="[Chore] 그룹 전체 조회, 삭제 / 수정은 아직 제대로 안 됨..">
+      <option name="closed" value="true" />
+      <created>1723301140271</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1723301140272</updated>
+    </task>
+    <task id="LOCAL-00057" summary="[Chore] 그룹 전체 조회, 삭제 / 수정은 아직 제대로 안 됨..">
+      <option name="closed" value="true" />
+      <created>1723379480644</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1723379480645</updated>
+    </task>
+    <task id="LOCAL-00058" summary="[Chore] 그룹 수정 (소속된 아티스트 수정 불가..)">
+      <option name="closed" value="true" />
+      <created>1723381044121</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1723381044121</updated>
+    </task>
+    <task id="LOCAL-00059" summary="[Chore] 그룹에 소속된 아티스트 수정">
+      <option name="closed" value="true" />
+      <created>1723382374753</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1723382374753</updated>
+    </task>
+    <task id="LOCAL-00060" summary="[Chore] 일반 유저 회원가입 시 형식이 올바르지 않을 때  alert">
+      <option name="closed" value="true" />
+      <created>1723383153450</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1723383153450</updated>
+    </task>
+    <task id="LOCAL-00061" summary="[Chore] 검색">
+      <option name="closed" value="true" />
+      <created>1723386289908</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1723386289908</updated>
+    </task>
+    <task id="LOCAL-00062" summary="[Chore] 검색">
+      <option name="closed" value="true" />
+      <created>1723420513349</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1723420513349</updated>
+    </task>
+    <task id="LOCAL-00063" summary="[Chore] 그룹 조회, 수정, 삭제 관련 null 처리">
+      <option name="closed" value="true" />
+      <created>1723420804030</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1723420804031</updated>
+    </task>
+    <task id="LOCAL-00064" summary="[Chore] 로그인 alert 추가">
+      <option name="closed" value="true" />
+      <created>1723421392205</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1723421392206</updated>
+    </task>
+    <task id="LOCAL-00065" summary="[Chore] 피드 생성 페이지 css">
+      <option name="closed" value="true" />
+      <created>1723422881914</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1723422881914</updated>
+    </task>
+    <task id="LOCAL-00066" summary="[Chore] 잠깐 저장">
+      <option name="closed" value="true" />
+      <created>1723441880046</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1723441880046</updated>
+    </task>
+    <task id="LOCAL-00067" summary="[Chore] 푸터">
+      <option name="closed" value="true" />
+      <created>1723445942685</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1723445942686</updated>
+    </task>
+    <task id="LOCAL-00068" summary="[Chore] 엔터 헤더">
+      <option name="closed" value="true" />
+      <created>1723446023206</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1723446023207</updated>
+    </task>
+    <task id="LOCAL-00069" summary="[Chore] 피드 수정, 삭제 제거">
+      <option name="closed" value="true" />
+      <created>1723446622135</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1723446622136</updated>
+    </task>
+    <task id="LOCAL-00070" summary="[Chore] 메인 에러 해결">
+      <option name="closed" value="true" />
+      <created>1723450424055</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1723450424055</updated>
+    </task>
+    <task id="LOCAL-00071" summary="[Chore] 푸터 수정">
+      <option name="closed" value="true" />
+      <created>1723459492188</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1723459492188</updated>
+    </task>
+    <task id="LOCAL-00072" summary="[Chore] 메인 디자인 및 폰트 수정">
+      <option name="closed" value="true" />
+      <created>1723461125581</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1723461125581</updated>
+    </task>
+    <task id="LOCAL-00073" summary="[Chore] 폰트 수정">
+      <option name="closed" value="true" />
+      <created>1723471300449</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1723471300451</updated>
+    </task>
+    <task id="LOCAL-00074" summary="[Chore] 1차 랭킹 디자인 수정">
+      <option name="closed" value="true" />
+      <created>1723471327892</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1723471327893</updated>
+    </task>
+    <task id="LOCAL-00075" summary="[Chore] 1차 랭킹 디자인 수정">
+      <option name="closed" value="true" />
+      <created>1723471522406</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1723471522406</updated>
+    </task>
+    <task id="LOCAL-00076" summary="[Chore] 엔터 생성 관련 코드 추가">
+      <option name="closed" value="true" />
+      <created>1723508262329</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1723508262330</updated>
+    </task>
+    <task id="LOCAL-00077" summary="[Chore] 랭킹 구독자 수 포함">
+      <option name="closed" value="true" />
+      <created>1723508732502</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1723508732502</updated>
+    </task>
+    <task id="LOCAL-00078" summary="[Chore] 랭킹 이동 화살표 추가">
+      <option name="closed" value="true" />
+      <created>1723509416806</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1723509416806</updated>
+    </task>
+    <task id="LOCAL-00079" summary="[Chore] 로그인 상태 유지 체크박스 삭제">
+      <option name="closed" value="true" />
+      <created>1723509894578</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1723509894578</updated>
+    </task>
+    <task id="LOCAL-00080" summary="[Chore] 로그인 관련 링크 수정">
+      <option name="closed" value="true" />
+      <created>1723510522571</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1723510522571</updated>
+    </task>
+    <task id="LOCAL-00081" summary="[Chore] 메인 랭킹 1위 수정">
+      <option name="closed" value="true" />
+      <created>1723516427002</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1723516427003</updated>
+    </task>
+    <task id="LOCAL-00082" summary="[Chore] 이메일 인증 관련 Alert">
+      <option name="closed" value="true" />
+      <created>1723558025963</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1723558025964</updated>
+    </task>
+    <task id="LOCAL-00083" summary="[Chore] 서비스 소개 팝업 1차">
+      <option name="closed" value="true" />
+      <created>1723593213998</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1723593213998</updated>
+    </task>
+    <task id="LOCAL-00084" summary="[Chore] 서비스 소개 팝업">
+      <option name="closed" value="true" />
+      <created>1723594633263</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1723594633263</updated>
+    </task>
+    <task id="LOCAL-00085" summary="[Chore] 설문폼 연결">
+      <option name="closed" value="true" />
+      <created>1723594846062</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1723594846063</updated>
+    </task>
+    <task id="LOCAL-00086" summary="[Chore] 서비스 소개 팝업 멘트 추가">
+      <option name="closed" value="true" />
+      <created>1723595933743</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1723595933744</updated>
+    </task>
+    <task id="LOCAL-00087" summary="[Chore] 회원가입, 로그인 버튼 이름 및 색상 변경">
+      <option name="closed" value="true" />
+      <created>1723597856072</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1723597856072</updated>
+    </task>
+    <task id="LOCAL-00088" summary="[Chore] 팝업 글자 위치 수정">
+      <option name="closed" value="true" />
+      <created>1723631339410</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1723631339423</updated>
+    </task>
+    <task id="LOCAL-00089" summary="[Chore] 팝업 글자 위치 수정">
+      <option name="closed" value="true" />
+      <created>1723631439216</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1723631439216</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[Chore] 그룹 조회, 수정, 삭제 관련 null 처리" />
+    <MESSAGE value="[Chore] 로그인 alert 추가" />
+    <MESSAGE value="[Chore] 피드 생성 페이지 css" />
+    <MESSAGE value="[Chore] 잠깐 저장" />
+    <MESSAGE value="[Chore] 푸터" />
+    <MESSAGE value="[Chore] 엔터 헤더" />
+    <MESSAGE value="[Chore] 피드 수정, 삭제 제거" />
+    <MESSAGE value="[Chore] 메인 에러 해결" />
+    <MESSAGE value="[Chore] 푸터 수정" />
+    <MESSAGE value="[Chore] 메인 디자인 및 폰트 수정" />
+    <MESSAGE value="[Chore] 폰트 수정" />
+    <MESSAGE value="[Chore] 1차 랭킹 디자인 수정" />
+    <MESSAGE value="[Chore] 엔터 생성 관련 코드 추가" />
+    <MESSAGE value="[Chore] 랭킹 구독자 수 포함" />
+    <MESSAGE value="[Chore] 랭킹 이동 화살표 추가" />
+    <MESSAGE value="[Chore] 로그인 상태 유지 체크박스 삭제" />
+    <MESSAGE value="[Chore] 로그인 관련 링크 수정" />
+    <MESSAGE value="[Chore] 메인 랭킹 1위 수정" />
+    <MESSAGE value="[Chore] 이메일 인증 관련 Alert" />
+    <MESSAGE value="[Chore] 서비스 소개 팝업 1차" />
+    <MESSAGE value="[Chore] 서비스 소개 팝업" />
+    <MESSAGE value="[Chore] 설문폼 연결" />
+    <MESSAGE value="[Chore] 서비스 소개 팝업 멘트 추가" />
+    <MESSAGE value="[Chore] 회원가입, 로그인 버튼 이름 및 색상 변경" />
+    <MESSAGE value="[Chore] 팝업 글자 위치 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Chore] 팝업 글자 위치 수정" />
+  </component>
+</project>
