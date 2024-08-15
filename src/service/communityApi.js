@@ -12,6 +12,7 @@ export const fetchAllFeeds = async (groupName) => {
             headers: { Authorization: `${token}` },
             withCredentials: true
         });
+        console.log("피드 조회 데이터", response);
 
 
         return response.data;
@@ -24,9 +25,11 @@ export const fetchAllFeeds = async (groupName) => {
 // 피드 생성
 export const createFeed = async (groupName, feedData) => {
     try {
-        console.log("폼데이터", feedData.get("requestDto"));
+        console.log("폼데이터", feedData.get("file"));
         const response = await apiClient.post(`/artist/${groupName}/feeds`, feedData, {
-            headers: { Authorization: `${token}` },
+            headers: {
+                Authorization: `${token}`, 'Content-Type': 'multipart/form-data' }
+            ,
             withCredentials: true
         });
         return response.data;
@@ -80,7 +83,7 @@ export const deleteFeed = async (groupName, feedId) => {
 
 // 댓글 조회
 export const fetchComments = async (groupName, feedId) => {
-    const response = await apiClient.get(`${API_URL}/${groupName}/feeds/${feedId}/comments`, {
+    const response = await apiClient.get(`/artist/${groupName}/feeds/${feedId}/comments`, {
         headers: { Authorization: `${token}` },
         withCredentials: true
     });
@@ -88,8 +91,9 @@ export const fetchComments = async (groupName, feedId) => {
 };
 
 // 댓글 생성
-export const createComment = async (groupName, feedId, commentData) => {
-    await apiClient.post(`${API_URL}/${groupName}/feeds/${feedId}/comments`, commentData, {
+export const createComment = async (contents, groupName, feedId) => {
+    const data = JSON.stringify({ contents: contents });
+    await apiClient.post(`/artist/${groupName}/feeds/${feedId}/comments`, data,{
         headers: { Authorization: `${token}` },
         withCredentials: true
     });

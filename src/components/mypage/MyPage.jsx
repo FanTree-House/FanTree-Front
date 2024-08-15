@@ -33,23 +33,20 @@ const MyPage = () => {
         <div className="fan-tree-house_container">
             <header className="mypage-header">
                 <Header/>
-                {/*<Link to="/" style={{textDecoration: 'none', color: 'inherit', flex: '1', textAlign: 'left'}}>*/}
-                {/*    <h1 style={{margin: '0'}}>FanTree House</h1>*/}
-                {/*</Link>*/}
-                {/*<div style={{display: 'flex', alignItems: 'center', flex: '2', marginLeft: '300px'}}>*/}
-                {/*    <FloatingLabel controlId="floatingSearch" className="input-search" label="검색어를 입력해주세요">*/}
-                {/*        <Form.Control type="text" placeholder="검색..."/>*/}
-                {/*    </FloatingLabel>*/}
-                {/*    <Button variant="info" className="mypage-search-button">검색</Button>*/}
-                {/*</div>*/}
+                <Link to="/" style={{textDecoration: 'none', color: 'inherit', flex: '1', textAlign: 'left'}}>
+                    <h1 style={{margin: '0'}}>FanTree House</h1>
+                </Link>
+                <div style={{display: 'flex', alignItems: 'center', flex: '2', marginLeft: '300px'}}>
+                    <FloatingLabel controlId="floatingSearch" className="input-search" label="검색어를 입력해주세요">
+                        <Form.Control type="text" placeholder="검색..."/>
+                    </FloatingLabel>
+                    <Button variant="info" className="mypage-search-button">검색</Button>
+                </div>
             </header>
 
             {/* 개인 간략 프로필 */}
             <Profile />
-
-
             <Buttons/>
-
         </div>
     );
 };
