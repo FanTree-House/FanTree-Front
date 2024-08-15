@@ -1,0 +1,40 @@
+/* CommunityFeed.css */
+.feed-container {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin: 16px 0;
+}
+
+.feed-image-container {
+    flex-shrink: 0;
+    max-height: 20px;
+    margin-right: 16px;
+}
+
+.feed-image {
+    width: 100px; /* 사진의 크기를 설정합니다. */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.feed-content {
+    flex: 1;
+}
+
+.feed-content h2 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.feed-nickname {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+    text-align: right;
+}
