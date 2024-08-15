@@ -3,7 +3,7 @@ FROM node:20 AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
-COPY docker ./docker
+COPY . ./
 RUN npm run build
 # Step 2: Serve the app with Nginx
 FROM nginx:alpine
