@@ -5,7 +5,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import Carousel from 'react-bootstrap/Carousel';
-import apiClient from "../../service/apiClient";
+import apiClient from '../../service/apiClient';
 
 
 const ArtistFeedLikeModal = ({ postId, onClose }) => {
@@ -39,7 +39,7 @@ const ArtistFeedLikeModal = ({ postId, onClose }) => {
 
             } catch (fetchError) {
                 console.error('Error fetching post:', fetchError);
-                setError('Failed to fetch post data');
+                setError('좋아요를 누른 게시글이 없습니다.');
             } finally {
                 setLoading(false);
             }
@@ -107,8 +107,8 @@ const ArtistFeedLikeModal = ({ postId, onClose }) => {
 
     if (loading) {
         return (
-            <div className="modal-overlay" onClick={onClose}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-overlay">
+                <div className="modal-content" >
                     <h2>Loading...</h2>
                 </div>
             </div>
@@ -117,8 +117,8 @@ const ArtistFeedLikeModal = ({ postId, onClose }) => {
 
     if (error) {
         return (
-            <div className="modal-overlay" onClick={onClose}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-overlay" >
+                <div className="modal-content" >
                     <h2>Error</h2>
                     <p>{error}</p>
                     <button className="modal-close" onClick={onClose}>Close</button>
@@ -128,8 +128,8 @@ const ArtistFeedLikeModal = ({ postId, onClose }) => {
     }
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay">
+            <div className="modal-content">
                 <button className="modal-close" onClick={handleClose}>Close</button>
                 <div className="modal-body">
                     {posts.length > 0 ? (

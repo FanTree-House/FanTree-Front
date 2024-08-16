@@ -75,8 +75,8 @@ const EnterFeedNoticeModal = ({onClose}) => {
         // 로딩 중일 때 로딩 메시지 표시
         if (loading) {
             return (
-                <div className="modal-overlay" onClick={onClose}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-overlay" >
+                    <div className="modal-content">
                         <h2>Loading...</h2>
                     </div>
                 </div>
@@ -86,8 +86,8 @@ const EnterFeedNoticeModal = ({onClose}) => {
         // 에러 발생 시 에러 메시지 표시
         if (error) {
             return (
-                <div className="modal-overlay" onClick={onClose}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-overlay">
+                    <div className="modal-content" >
                         <div className="error-message">{error}</div>
                         <button className="modal-close" onClick={onClose}>Close</button>
                     </div>
@@ -97,8 +97,8 @@ const EnterFeedNoticeModal = ({onClose}) => {
 
         // 공지사항 목록을 표시하는 UI
         return (
-            <div className="modal-overlay" onClick={onClose}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-overlay" >
+                <div className="modal-content" >
                     <button className="modal-close" onClick={onClose}>Close</button>
                     {/* 닫기 버튼 */}
                     <h2>공지사항</h2>
