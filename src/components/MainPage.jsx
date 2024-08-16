@@ -122,7 +122,7 @@ const MainPage = () => {
                     <div className="top-group">
                         {getTopGroup() && (
                             <Link
-                                to={`/group/${getTopGroup().groupName}`}
+                                to={`/group/${getTopGroup().groupName}?enter=${getTopGroup().entertainmentDto.enterName}`}
                                 key={getTopGroup().id}
                                 className="top-group-item"
                             >
@@ -142,7 +142,7 @@ const MainPage = () => {
                     <div className="ranking-grid">
                         {getCurrentGroups().map((group, index) => (
                             <Link
-                                to={`/group/${group.groupName}`}
+                                to={`/group/${group.groupName}?enter=${group.enterName}`}
                                 key={group.id}
                                 className="ranking-item"
                             >
@@ -166,7 +166,7 @@ const MainPage = () => {
                         {artistProfiles.length > 0 ? (
                             artistProfiles.map((artist) => (
                                 <Link
-                                    to={`/group/${artist.groupName}?enter=${artist.enterName}`}
+                                    to={`/group/${artist.groupName}?enter=${artist.entertainmentDto.enterName}`}
                                     key={artist.id}
                                     className="profile-item"
                                 >

@@ -64,6 +64,7 @@ const GroupPage = () => {
         loadArtistFeeds();
         checkSubscriptionStatus();
         setEnterName(searchParams.get('enter'))
+        console.log("enterName : " )
     }, [groupName]);
 
     // Feed 상세 페이지
