@@ -68,7 +68,11 @@ const GroupPage = () => {
 
     // Feed 상세 페이지
     const openFeedPopup = (feedId) => {
-        navigate(`/group/${groupName}/feed/${feedId}`); // 피드 ID에 따라 URL 변경
+        if (null == window.localStorage.getItem('accessToken')){
+            alert("로그인 후 이용해주세요.")
+        } else {
+            navigate(`/group/${groupName}/feed/${feedId}`); // 피드 ID에 따라 URL 변경
+        }
     };
 
     // Enter 페이지로
