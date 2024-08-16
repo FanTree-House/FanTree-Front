@@ -106,7 +106,7 @@ const SignupForm = () => {
 
     const regex = /^[A-Za-z0-9가-힣]+$/;
     if (!regex.test(formData.nickname)) {
-      alert('닉네임은 한글, 문자 또는 숫자로 구성되어야 합니다.');
+      alert('닉네임을 입력해 주세요.');
       return;
     }
 
@@ -232,7 +232,7 @@ const SignupForm = () => {
                 name="nickname"
                 value={formData.nickname}
                 onChange={handleChange}
-                placeholder="닉네임 입력 (문자, 숫자 포함 8자-12자)"
+                placeholder="닉네임 입력 "
                 required
             />
             <button
