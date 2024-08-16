@@ -76,8 +76,8 @@ const EnterFeedScheduleModal = ({onClose}) => {
     // 로딩 중일 때 로딩 메시지 표시
     if (loading) {
         return (
-            <div className="modal-overlay" onClick={onClose}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-overlay">
+                <div className="modal-content" >
                     <h2>Loading...</h2>
                 </div>
             </div>
@@ -87,8 +87,8 @@ const EnterFeedScheduleModal = ({onClose}) => {
     // 에러 발생 시 에러 메시지 표시
     if (error) {
         return (
-            <div className="modal-overlay" onClick={onClose}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-overlay">
+                <div className="modal-content">
                     <div className="error-message">{error}</div>
                     <button className="modal-close" onClick={onClose}>Close</button>
                 </div>
@@ -98,8 +98,8 @@ const EnterFeedScheduleModal = ({onClose}) => {
 
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay">
+            <div className="modal-content">
                 <button className="modal-close" onClick={onClose}>Close</button>
                 {/* 닫기 버튼 */}
                 <h2>구독한 그룹 스케줄</h2>

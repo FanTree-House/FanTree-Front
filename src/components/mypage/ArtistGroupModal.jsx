@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './ButtonWithModal.css';
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
-import apiClient from "../../service/apiClient";
+import apiClient from '../../service/apiClient';
 
-const ArtistGroupModal = ({onClose}) => {
+const ArtistGroupModal = ({ onClose }) => {
     const [artistGroups, setArtistGroups] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -25,6 +25,7 @@ const ArtistGroupModal = ({onClose}) => {
 
                 const groups = response.data;
 
+                // 그룹 이름을 포함하여 각 그룹의 이미지 URL을 가져오기 위한 API 호출
                 const groupsWithImages = await Promise.all(groups.map(async (group) => {
                     try {
                         const imageResponse = await apiClient.get(`/artistgroup/${group.group_name}`);
@@ -41,16 +42,18 @@ const ArtistGroupModal = ({onClose}) => {
                     }
                 }));
 
-                setArtistGroups(groupsWithImages);
+                // 초기 구독 상태 설정
                 const initialSubscriptionState = {};
                 groupsWithImages.forEach(group => {
-                    initialSubscriptionState[group.group_name] = true; // 모든 그룹을 기본적으로 구독 상태로 설정
+                    initialSubscriptionState[group.group_name] = true; // 기본적으로 구독 상태로 설정
                 });
+
                 setSubscriptions(initialSubscriptionState);
+                setArtistGroups(groupsWithImages);
 
             } catch (fetchError) {
                 console.error('Error fetching artist groups:', fetchError);
-                setError('Failed to fetch data');
+                setError('구독하고 있는 그룹이 없습니다.');
             } finally {
                 setLoading(false);
             }
@@ -60,34 +63,34 @@ const ArtistGroupModal = ({onClose}) => {
     }, [accessToken]);
 
     const handleSubscriptionToggle = (groupName) => {
-        const currentSubscribedState = subscriptions[groupName];
-        const newSubscribedState = !currentSubscribedState;
+        const isCurrentlySubscribed = subscriptions[groupName];
+        const newSubscriptionState = !isCurrentlySubscribed;
 
-        // 상태를 변경하고 서버에 전송할 필요가 없는 상태 업데이트 객체에 추가
+        // 상태 변경 및 업데이트를 위한 상태 객체에 추가
         setSubscriptions(prevSubscriptions => ({
             ...prevSubscriptions,
-            [groupName]: newSubscribedState
+            [groupName]: newSubscriptionState
         }));
 
-        // 상태 업데이트를 위한 객체에 추가 (홀수번 클릭 시 변경된 상태를 서버로 전송하지 않음)
+        // 구독 취소 요청을 위한 업데이트 상태 객체에 추가
         setUpdatedSubscriptions(prevUpdatedSubscriptions => ({
             ...prevUpdatedSubscriptions,
-            [groupName]: newSubscribedState ? currentSubscribedState : null // 상태를 null로 설정하면 서버 전송에서 제외
+            [groupName]: newSubscriptionState ? null : isCurrentlySubscribed // 구독 취소 상태를 null로 설정
         }));
     };
 
+    // 모달을 닫을 때 구독 상태를 서버로 전송하는 함수
     const handleClose = async () => {
         try {
             const updates = Object.keys(updatedSubscriptions).map(async groupName => {
-                const endpoint = `http://localhost:8080/artistGroup/subscript/${groupName}`;
-                const isSubscribed = updatedSubscriptions[groupName];
+                const shouldUnsubscribe = updatedSubscriptions[groupName] !== null;
 
-                // 상태가 null이 아닐 때만 서버로 전송
-                if (isSubscribed !== null) {
-                    return axios.delete(endpoint, { subscribed: isSubscribed }, {
+                if (shouldUnsubscribe) {
+                    const endpoint = `http://localhost:8080/artistGroup/subscript/${groupName}`;
+                    return axios.delete(endpoint, {
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${accessToken}`
+                            'Authorization': `${accessToken}`
                         }
                     });
                 }
@@ -104,8 +107,8 @@ const ArtistGroupModal = ({onClose}) => {
 
     if (loading) {
         return (
-            <div className="modal-overlay" onClick={onClose}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-overlay">
+                <div className="modal-content">
                     <h2>구독한 아티스트 그룹</h2>
                     <p>Loading...</p>
                 </div>
@@ -115,8 +118,8 @@ const ArtistGroupModal = ({onClose}) => {
 
     if (error) {
         return (
-            <div className="modal-overlay" onClick={onClose}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-overlay" >
+                <div className="modal-content" >
                     <h2>구독한 아티스트 그룹</h2>
                     <p>{error}</p>
                     <button className="modal-close" onClick={onClose}>Close</button>
@@ -126,12 +129,12 @@ const ArtistGroupModal = ({onClose}) => {
     }
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay" >
+            <div className="modal-content" >
                 <h2>구독한 아티스트 그룹</h2>
                 {artistGroups.length === 0 ? (
                     <div className="no-subscriptions-message">
-                    <p>구독한 그룹이 없습니다</p>
+                        <p>구독한 그룹이 없습니다</p>
                     </div>
                 ) : (
                     <table className="artist-group-table">
@@ -159,7 +162,7 @@ const ArtistGroupModal = ({onClose}) => {
                                 </td>
                                 <td>
                                     {group.imageUrl ? (
-                                        <img src={group.imageUrl} alt={group.group_name} className="artist-group-image"/>
+                                        <img src={group.imageUrl} alt={group.group_name} className="artist-group-image" />
                                     ) : (
                                         <div className="artist-group-placeholder">No Image</div>
                                     )}
