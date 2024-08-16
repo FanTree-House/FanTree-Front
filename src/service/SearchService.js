@@ -1,9 +1,8 @@
-// src/service/SearchService.js
-import axios from 'axios';
+import apiClient from './apiClient';
 
 export const searchArtistGroup = async (groupName) => {
     try {
-        const response = await axios.get('http://localhost:8080/artistgroup/search', {
+        const response = await apiClient.get('/artistgroup/search', {
             params: { groupName }
         });
         return response.data.data;

@@ -1,8 +1,6 @@
 // src/services/communityApi.js
 import apiClient from './apiClient';
 
-const API_URL = 'http://localhost:8080'; // 기본 URL
-
 const token = window.localStorage.getItem('accessToken');
 
 // 모든 피드 조회

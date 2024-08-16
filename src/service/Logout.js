@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080';
+const API_BASE_URL = 'http://3.34.53.57:8080';
 const token = window.localStorage.getItem('accessToken'); // JWT 토큰
 
 export const logout = async () => {
