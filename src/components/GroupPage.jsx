@@ -47,6 +47,7 @@ const GroupPage = () => {
                 alert(error.message);
             }
         };
+
         // 구독 유무
         const checkSubscriptionStatus = async () => {
             try {
@@ -149,10 +150,12 @@ const GroupPage = () => {
                 {artistFeeds.map((feed) => (
                     <div className="feed" key={feed.id} onClick={() => openFeedPopup(feed.id)}> {/* 클릭 이벤트 추가 */}
                         <div className="feed-header">
+                            <img src={feed.profileUrl} alt="Profile" className="profile-image"/>
+                            <div className="nickname">{feed.artistName}</div>
                         </div>
                         <div className="feed-content">
                             <p>
-                            {feed.contents.length > 100 ? (
+                                {feed.contents.length > 100 ? (
                                     <>
                                         {feed.contents.substring(0, 100)}...
                                         <span className="more">더보기</span>
@@ -171,7 +174,7 @@ const GroupPage = () => {
                                         ))}
                                     </Slider>
                                 ) : (
-                                    <img src={feed.imageUrls[0]} alt="게시물 이미지" style={{ width: '100%', borderRadius: '8px' }} />
+                                    <img src={feed.imageUrls[0]} alt="게시물 이미지" style={{ width: '100%', borderRadius: '8px' , maxHeight: '500px'}} />
                                 )
                             )}
                         </div>

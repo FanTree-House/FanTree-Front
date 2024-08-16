@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[fix] 엔터테이너먼트 이름못받는거 해결">
+    <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[refactor] 리팩토링">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FeedPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FeedPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GroupPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GroupPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/GroupPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GroupPage.jsx" afterDir="false" />
     </list>
     <list id="bfd980c6-5a4f-4905-aa8d-bb0b51bfa6c5" name="Changes by jaychoi" comment="[feature] 스케줄 이벤트 구현 #4" />
@@ -65,7 +67,7 @@
     "Node.js.Myprofile.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "feature/wooseok",
+    "git-widget-placeholder": "Merging feature/wooseok",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/NBC/fantreefron",
     "list.type.of.created.stylesheet": "CSS",
@@ -134,8 +136,7 @@
       <workItem from="1723168965315" duration="23913000" />
       <workItem from="1723271316621" duration="26902000" />
       <workItem from="1723514354641" duration="20901000" />
-      <workItem from="1723594936972" duration="25912000" />
-      <workItem from="1723766608275" duration="432000" />
+      <workItem from="1723594936972" duration="18965000" />
     </task>
     <task id="LOCAL-00001" summary="리액트 연동 #3">
       <option name="closed" value="true" />
@@ -459,6 +460,7 @@
     <MESSAGE value="[refactor] 엔터페이지 헤더수정 #4" />
     <MESSAGE value="[refactor] 엔터페이지 로고출력 #4" />
     <MESSAGE value="[fix] 엔터페이지 권한설정 및 이벤트수리 #4" />
+    <MESSAGE value="[refactor] 리팩토링 #4" />
     <MESSAGE value="[refactor] 커뮤니티피드 URL 받아옴 #4" />
     <MESSAGE value="[refactor] 커뮤니티피드 완성 #4" />
     <MESSAGE value="[refactor] 커뮤니티피드 완성 및 병합 #4" />
@@ -466,8 +468,7 @@
     <MESSAGE value="[Feat] 댓글 유저 표시 #1" />
     <MESSAGE value="[fix] apiClient 수정 #1" />
     <MESSAGE value="[Feat] 배포" />
-    <MESSAGE value="[refactor] 리팩토링 #4" />
-    <MESSAGE value="[fix] 엔터테이너먼트 이름못받는거 해결" />
-    <option name="LAST_COMMIT_MESSAGE" value="[fix] 엔터테이너먼트 이름못받는거 해결" />
+    <MESSAGE value="[refactor] 리팩토링" />
+    <option name="LAST_COMMIT_MESSAGE" value="[refactor] 리팩토링" />
   </component>
 </project>
