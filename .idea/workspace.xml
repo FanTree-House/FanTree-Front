@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4aa7876c-abb5-4178-9abd-3c46f3e50112" name="변경" comment="[Chore] json">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,15 +178,7 @@
       <workItem from="1723637853366" duration="3346000" />
       <workItem from="1723674104735" duration="2166000" />
       <workItem from="1723708495672" duration="1317000" />
-      <workItem from="1723767029426" duration="645000" />
-    </task>
-    <task id="LOCAL-00044" summary="[Chore] 생성 페이지 수정">
-      <option name="closed" value="true" />
-      <created>1723197083604</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1723197083604</updated>
+      <workItem from="1723767029426" duration="2566000" />
     </task>
     <task id="LOCAL-00045" summary="[Chore] 생성 페이지 수정">
       <option name="closed" value="true" />
@@ -572,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723708816266</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="[Chore] json">
+      <option name="closed" value="true" />
+      <created>1723771164655</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1723771164656</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
