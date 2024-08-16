@@ -47,7 +47,6 @@ const GroupPage = () => {
                 alert(error.message);
             }
         };
-
         // 구독 유무
         const checkSubscriptionStatus = async () => {
             try {
@@ -150,11 +149,10 @@ const GroupPage = () => {
                 {artistFeeds.map((feed) => (
                     <div className="feed" key={feed.id} onClick={() => openFeedPopup(feed.id)}> {/* 클릭 이벤트 추가 */}
                         <div className="feed-header">
-                            {/* 피드 헤더 내용 */}
                         </div>
                         <div className="feed-content">
                             <p>
-                                {feed.contents.length > 100 ? (
+                            {feed.contents.length > 100 ? (
                                     <>
                                         {feed.contents.substring(0, 100)}...
                                         <span className="more">더보기</span>

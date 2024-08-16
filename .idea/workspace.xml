@@ -4,28 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[refactor] 리팩토링 #4">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/gradle.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/fantreefront.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nginx.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[fix] 엔터테이너먼트 이름못받는거 해결">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Enter/EntertainerPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Enter/EntertainerPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FeedPopup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FeedPopup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FeedPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FeedPopup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/GroupPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GroupPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/GroupService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/GroupService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/LoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/SearchService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/SearchService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/SignupForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/SignupForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/apiClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/apiClient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/communityApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/communityApi.js" afterDir="false" />
     </list>
     <list id="bfd980c6-5a4f-4905-aa8d-bb0b51bfa6c5" name="Changes by jaychoi" comment="[feature] 스케줄 이벤트 구현 #4" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +65,7 @@
     "Node.js.Myprofile.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Merging feature/wooseok",
+    "git-widget-placeholder": "feature/wooseok",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/NBC/fantreefron",
     "list.type.of.created.stylesheet": "CSS",
@@ -436,7 +417,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723736236577</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="[fix] 엔터테이너먼트 이름못받는거 해결">
+      <option name="closed" value="true" />
+      <created>1723770174226</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1723770174226</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,7 +443,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="아티스트계정생성구현 및 엔터테이너먼트 화면 출력 #4" />
     <MESSAGE value="엔터테이너먼트 공지사항 화면 출력 #4" />
     <MESSAGE value="엔터테이너먼트 스케줄등록 조회 미완성 #4" />
     <MESSAGE value="[fix] 오류충돌해결, 공지사항생성시 id오류 발생 #4" />
@@ -479,6 +467,7 @@
     <MESSAGE value="[fix] apiClient 수정 #1" />
     <MESSAGE value="[Feat] 배포" />
     <MESSAGE value="[refactor] 리팩토링 #4" />
-    <option name="LAST_COMMIT_MESSAGE" value="[refactor] 리팩토링 #4" />
+    <MESSAGE value="[fix] 엔터테이너먼트 이름못받는거 해결" />
+    <option name="LAST_COMMIT_MESSAGE" value="[fix] 엔터테이너먼트 이름못받는거 해결" />
   </component>
 </project>
