@@ -23,7 +23,7 @@ const GroupPage = () => {
                 const details = await fetchGroupDetails(groupName);
                 setGroupDetails(details);
             } catch (error) {
-                alert(error.message);
+                console.log(error.message);
             }
         };
 
@@ -44,7 +44,7 @@ const GroupPage = () => {
                     }));
                 }));
             } catch (error) {
-                alert(error.message);
+                console.log(error.message);
             }
         };
 
@@ -54,7 +54,7 @@ const GroupPage = () => {
                 const subscribed = await getIsSubscribed(groupName);
                 setIsSubscribed(subscribed);
             } catch (error) {
-                alert(error.message);
+                console.log(error.message);
             }
         };
 
@@ -90,7 +90,7 @@ const GroupPage = () => {
             const subscribed = await getIsSubscribed(groupName);
             setIsSubscribed(subscribed);
         } catch (error) {
-            alert(error.message);
+            alert("로그인 후 이용해주세요.");
         }
     };
 
@@ -115,7 +115,7 @@ const GroupPage = () => {
             );
 
         } catch (error) {
-            alert(error.message);
+            alert("로그인 후 이용해주세요.");
         }
     };
 
