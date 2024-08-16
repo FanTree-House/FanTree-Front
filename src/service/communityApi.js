@@ -1,8 +1,6 @@
 // src/services/communityApi.js
 import apiClient from './apiClient';
 
-// const API_URL = 'http://localhost:8080'; // 기본 URL
-
 const token = window.localStorage.getItem('accessToken');
 
 // 모든 피드 조회
@@ -11,7 +9,9 @@ export const fetchAllFeeds = async (groupName) => {
         const response = await apiClient.get(`/artist/${groupName}/feeds`, {
             headers: { Authorization: `${token}` },
             withCredentials: true
-        });console.log("피드데이터", response)
+        });
+        console.log("피드 조회 데이터", response);
+
 
         return response.data;
     } catch (error) {

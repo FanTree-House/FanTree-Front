@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/fantreefron.iml" filepath="$PROJECT_DIR$/fantreefron.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fantreefront.iml" filepath="$PROJECT_DIR$/.idea/modules/fantreefront.iml" />
     </modules>
   </component>
 </project>
