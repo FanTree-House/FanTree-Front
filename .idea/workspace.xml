@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[Feat] 배포" />
+    <list default="true" id="ad02da20-b7b8-479d-9ba2-2bf6d6107d72" name="Changes" comment="[Feat] 배포">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <list id="bfd980c6-5a4f-4905-aa8d-bb0b51bfa6c5" name="Changes by jaychoi" comment="[feature] 스케줄 이벤트 구현 #4" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +64,7 @@
     "Node.js.Myprofile.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "feature/woojin2",
+    "git-widget-placeholder": "feature/main+sign+login",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/NBC/fantreefron",
     "list.type.of.created.stylesheet": "CSS",
@@ -92,19 +94,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="fantreefront" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="fantreefront" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="npm start" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -444,7 +433,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="아티스트계정생성구현 및 엔터테이너먼트 화면 출력 #4" />
     <MESSAGE value="엔터테이너먼트 공지사항 화면 출력 #4" />
     <MESSAGE value="엔터테이너먼트 스케줄등록 조회 미완성 #4" />
     <MESSAGE value="[fix] 오류충돌해결, 공지사항생성시 id오류 발생 #4" />
@@ -469,6 +457,7 @@
     <MESSAGE value="[Feat] 댓글 유저 표시 #1" />
     <MESSAGE value="[fix] apiClient 수정 #1" />
     <MESSAGE value="[Feat] 배포" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feat] 배포" />
+    <MESSAGE value="[Chore] json" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Chore] json" />
   </component>
 </project>
