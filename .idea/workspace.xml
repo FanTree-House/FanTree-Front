@@ -4,15 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4aa7876c-abb5-4178-9abd-3c46f3e50112" name="변경" comment="[Chore] 팝업 글자 위치 수정">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/CreateGroupService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/CreateGroupService.js" afterDir="false" />
+    <list default="true" id="4aa7876c-abb5-4178-9abd-3c46f3e50112" name="변경" comment="[Chore] json">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -166,30 +177,8 @@
       <workItem from="1723632796260" duration="592000" />
       <workItem from="1723637853366" duration="3346000" />
       <workItem from="1723674104735" duration="2166000" />
-    </task>
-    <task id="LOCAL-00041" summary="[Chore] 카카오 로그인 이미지 수정">
-      <option name="closed" value="true" />
-      <created>1723190844712</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1723190844712</updated>
-    </task>
-    <task id="LOCAL-00042" summary="[Chore] 헤더 검색바 수정">
-      <option name="closed" value="true" />
-      <created>1723194865432</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1723194865433</updated>
-    </task>
-    <task id="LOCAL-00043" summary="[Chore] 로그인 css 수정">
-      <option name="closed" value="true" />
-      <created>1723195530081</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1723195530081</updated>
+      <workItem from="1723708495672" duration="1317000" />
+      <workItem from="1723767029426" duration="645000" />
     </task>
     <task id="LOCAL-00044" summary="[Chore] 생성 페이지 수정">
       <option name="closed" value="true" />
@@ -559,7 +548,31 @@
       <option name="project" value="LOCAL" />
       <updated>1723631439216</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="[Chore] json">
+      <option name="closed" value="true" />
+      <created>1723708697932</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1723708697933</updated>
+    </task>
+    <task id="LOCAL-00091" summary="[Chore] json">
+      <option name="closed" value="true" />
+      <created>1723708810787</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1723708810787</updated>
+    </task>
+    <task id="LOCAL-00092" summary="[Chore] json">
+      <option name="closed" value="true" />
+      <created>1723708816265</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1723708816266</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +590,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[Chore] 그룹 조회, 수정, 삭제 관련 null 처리" />
     <MESSAGE value="[Chore] 로그인 alert 추가" />
     <MESSAGE value="[Chore] 피드 생성 페이지 css" />
     <MESSAGE value="[Chore] 잠깐 저장" />
@@ -602,6 +614,7 @@
     <MESSAGE value="[Chore] 서비스 소개 팝업 멘트 추가" />
     <MESSAGE value="[Chore] 회원가입, 로그인 버튼 이름 및 색상 변경" />
     <MESSAGE value="[Chore] 팝업 글자 위치 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Chore] 팝업 글자 위치 수정" />
+    <MESSAGE value="[Chore] json" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Chore] json" />
   </component>
 </project>
