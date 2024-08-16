@@ -169,7 +169,7 @@ const GroupPage = () => {
                                     <Slider dots={true} infinite={true} speed={500} slidesToShow={1} slidesToScroll={1}>
                                         {feed.imageUrls.map((imageUrl, index) => (
                                             <div key={index}>
-                                                <img src={imageUrl} alt={`게시물 이미지 ${index + 1}`} />
+                                                <img src={imageUrl} alt={`게시물 이미지 ${index + 1}`} style={{width: '100%', borderRadius: '8px'}}/>
                                             </div>
                                         ))}
                                     </Slider>
