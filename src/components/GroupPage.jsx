@@ -30,7 +30,6 @@ const GroupPage = () => {
         const loadArtistFeeds = async () => {
             try {
                 const feeds = await fetchArtistFeeds(groupName);
-                console.log("피드데이터", feeds);
                 setArtistFeeds(feeds);
                 // 피드의 좋아요 수를 가져오는 추가 로직
                 await Promise.all(feeds.map(async (feed) => {
