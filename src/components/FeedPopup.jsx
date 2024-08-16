@@ -101,7 +101,7 @@ const FeedPopup = () => {
                 likesCount,
             }));
         } catch (error) {
-            console.error('Error liking feed:', error);
+            alert('로그인 후 이용해주세요.');
         }
     };
 
