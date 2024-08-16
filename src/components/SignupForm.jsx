@@ -104,9 +104,9 @@ const SignupForm = () => {
       return;
     }
 
-    const regex = /^[A-Za-z0-9]{8,12}$/;
+    const regex = /^[A-Za-z0-9가-힣]+$/;
     if (!regex.test(formData.nickname)) {
-      alert('닉네임은 문자와 숫자를 포함하여 8-12자여야 합니다.');
+      alert('닉네임은 한글, 문자 또는 숫자로 구성되어야 합니다.');
       return;
     }
 
