@@ -185,7 +185,8 @@ const FeedPopup = () => {
             <div className="popup-content">
                 {feedData ? (
                     <div className="feed-details">
-                        <h2>{feedData.artistName}</h2>
+                        <img src={feedData.profileUrl} alt="Profile" className="profile-image"/>
+                        <div className="nickname">{feedData.artistName}</div>
                         <p>{feedData.contents}</p>
                         {feedData.imageUrls && feedData.imageUrls.length > 0 && (
                             feedData.imageUrls.length > 1 ? (

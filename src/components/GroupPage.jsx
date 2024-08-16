@@ -150,7 +150,8 @@ const GroupPage = () => {
                 {artistFeeds.map((feed) => (
                     <div className="feed" key={feed.id} onClick={() => openFeedPopup(feed.id)}> {/* 클릭 이벤트 추가 */}
                         <div className="feed-header">
-                            {/* 피드 헤더 내용 */}
+                            <img src={feed.profileUrl} alt="Profile" className="profile-image"/>
+                            <div className="nickname">{feed.artistName}</div>
                         </div>
                         <div className="feed-content">
                             <p>
