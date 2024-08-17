@@ -81,7 +81,7 @@ const CommunityFeedLikeModal = ({onClose}) => {
     const handleClose = async () => {
         try {
             const updates = Object.keys(updatedLikes).map(async communityFeedId => {
-                const endpoint = `http://localhost:8080/artist/cancelLike/${communityFeedId}`;
+                const endpoint = `/cancelLike/${communityFeedId}`;
                 const likedStatus = updatedLikes[communityFeedId];
 
                 // 상태가 null이 아닐 때만 서버로 전송

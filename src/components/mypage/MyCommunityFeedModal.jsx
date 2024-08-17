@@ -105,8 +105,8 @@ const MyCommunityFeedModal = ({onClose}) => {
             const updates = Object.keys(updatedLikes).map(async communityFeedId => {
                 const likedStatus = updatedLikes[communityFeedId];
                 const endpoint = likedStatus === true
-                    ? `http://localhost:8080/artist/addLike/${communityFeedId}`
-                    : `http://localhost:8080/artist/cancelLike/${communityFeedId}`;
+                    ? `/artist/addLike/${communityFeedId}`
+                    : `/artist/cancelLike/${communityFeedId}`;
 
                 if (likedStatus === true) {
                     // 좋아요 추가 요청 (POST)

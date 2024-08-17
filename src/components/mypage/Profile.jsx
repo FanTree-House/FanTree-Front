@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Image } from 'react-bootstrap';
+import React, {useEffect, useState} from "react";
+import {Image} from 'react-bootstrap';
 import axios from 'axios';
-import './MyPage.css';
+// import './MyPage.css';
 import apiClient from "../../service/apiClient";
+import './Profile.css';
 
 
 const Profile = () => {
@@ -117,7 +118,14 @@ const Profile = () => {
             if (formHasChanges) {
                 const confirmSave = window.confirm("저장하시겠습니까?");
                 if (confirmSave) {
-                    document.getElementById('profile-form').requestSubmit(); // 폼 제출 요청
+                    // 폼 제출 요청
+                    const form = document.getElementById('mypage-profile-form');
+                    if (form) {
+                        form.submit(); // 폼 직접 제출
+                    }
+                    // 상태 업데이트를 폼 제출 후로 이동
+                    // 폼 제출 이후에 상태를 업데이트해야 올바르게 동작
+                    setTimeout(() => setEditing(false), 0); // 상태 업데이트를 다음 이벤트 루프에서 실행
                 } else {
                     setEditing(false); // 편집 모드 종료
                     // 변경사항 취소하고 원래 값으로 되돌리기
@@ -136,53 +144,71 @@ const Profile = () => {
 
     return (
         <div className="status-message"
-             style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+             style={{
+                 display: 'flex',
+                 alignItems: 'center',
+                 justifyContent: 'space-between',
+                 minHeight: '100px', // 컨테이너의 최소 높이
+                 height: '230px', // 컨테이너의 고정 높이
+                 overflow: 'hidden',
+             }}>
 
             {/* 왼쪽: 프로필 이미지 */}
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{display: 'flex', alignItems: 'center'}}>
                 <label htmlFor="image-upload" className="image-upload">
-                    <Image src={userImage} roundedCircle className="user-image" />
+                    <Image src={userImage} roundedCircle className="user-image"/>
                 </label>
                 <input
                     id="image-upload"
                     type="file"
                     accept="image/*"
                     onChange={handleImageChange}
-                    style={{ display: 'none' }}
+                    style={{display: 'none'}}
                 />
             </div>
 
             {/* 가운데: 상태 메시지, 닉네임, 이메일 */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
                 {editing ? (
-                    <form id="profile-form" onSubmit={handleSubmit}> {/* 폼 태그 추가 및 onSubmit 이벤트에 handleSubmit 연결 */}
-                        <input
-                            type="text"
-                            value={nickname}
-                            onChange={(e) => setNickname(e.target.value)}
-                            style={{marginTop: '10px'}}
-                        />
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            style={{marginTop: '10px'}}
-                        />
+                    <form id="mypage-profile-form"
+                          onSubmit={handleSubmit}> {/* 폼 태그 추가 및 onSubmit 이벤트에 handleSubmit 연결 */}
+                        <label htmlFor="nickname-input" className="simple-profile-label">
+                            nickname:
+                            <input
+                                id="nickname-input"
+                                type="text"
+                                value={nickname}
+                                onChange={(e) => setNickname(e.target.value)}
+                                placeholder="닉네임을 입력하세요"
+                                className="simple-profile-input-field"
+                            />
+                        </label>
+                        <label htmlFor="nickname-input" className="simple-profile-label">
+                            email:
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="simple-profile-input-field"
+                            />
+                        </label>
+
                         <input
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            style={{marginTop: '10px'}}
+                            className="simple-profile-input-field-password"
                             placeholder="비밀번호를 입력하세요"
                         />
                         <input
                             type="password"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
-                            style={{marginTop: '10px'}}
+                            className="simple-profile-input-field-password"
                             placeholder="새 비밀번호를 입력하세요"
                         />
-                        <button type="submit" style={{ display: 'none' }}>Save</button> {/* 숨겨진 제출 버튼 */}
+                        <button type="submit" style={{display: 'none'}}>Save</button>
+                        {/* 숨겨진 제출 버튼 */}
                     </form>
                 ) : (
                     <>
@@ -192,11 +218,12 @@ const Profile = () => {
                 )}
             </div>
 
-            {/* 오른쪽: 설정 아이콘 */}
+            {/* 오른쪽: "프로필 편집" 버튼 */}
             <div style={{alignSelf: 'flex-start'}}>
                 <button onClick={handleSettingsClick}
-                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-                    <img src="/configuration.png" alt="Settings" style={{ width: '30px', height: '30px' }} />
+                        className="simple-profile-custom-button"
+                        >
+                    프로필 편집
                 </button>
             </div>
         </div>
