@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Image } from 'react-bootstrap';
 import axios from 'axios';
 import './MyPage.css';
-import axiosInstance from "../../service/AxiosInstance";
 import apiClient from "../../service/apiClient";
 
 
@@ -21,7 +20,7 @@ const Profile = () => {
 
     // 정보 불러오기
     useEffect(() => {
-        axios.get('http://localhost:8080/users', {
+        apiClient.get('/users', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `${accessToken}`
@@ -30,7 +29,7 @@ const Profile = () => {
             .then(response => {
                 setNickname(response.data.nickname);
                 setEmail(response.data.email);
-                setUserImage(response.data.profileImageUrl || "holder.js/100x100"); // 기본 이미지 유지
+                setUserImage(response.data.profileImageUrl || "holder.js/100x100");
 
                 setOriginalNickname(response.data.nickname);
                 setOriginalEmail(response.data.email);
@@ -60,7 +59,7 @@ const Profile = () => {
         try {
             const response = await apiClient.put('/users/image', formData, {
                 headers: {
-                    // 'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'multipart/form-data',
                     'Authorization': `${accessToken}`
                 }
             });
