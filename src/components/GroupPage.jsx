@@ -23,7 +23,7 @@ const GroupPage = () => {
                 const details = await fetchGroupDetails(groupName);
                 setGroupDetails(details);
             } catch (error) {
-                alert(error.message);
+                console.log(error.message);
             }
         };
 
@@ -44,7 +44,7 @@ const GroupPage = () => {
                     }));
                 }));
             } catch (error) {
-                alert(error.message);
+                console.log(error.message);
             }
         };
 
@@ -54,7 +54,7 @@ const GroupPage = () => {
                 const subscribed = await getIsSubscribed(groupName);
                 setIsSubscribed(subscribed);
             } catch (error) {
-                alert(error.message);
+                console.log(error.message);
             }
         };
 
@@ -68,7 +68,11 @@ const GroupPage = () => {
 
     // Feed 상세 페이지
     const openFeedPopup = (feedId) => {
-        navigate(`/group/${groupName}/feed/${feedId}`); // 피드 ID에 따라 URL 변경
+        if (null == window.localStorage.getItem('accessToken')){
+            alert("로그인 후 이용해주세요.")
+        } else {
+            navigate(`/group/${groupName}/feed/${feedId}`); // 피드 ID에 따라 URL 변경
+        }
     };
 
     // Enter 페이지로
@@ -90,7 +94,7 @@ const GroupPage = () => {
             const subscribed = await getIsSubscribed(groupName);
             setIsSubscribed(subscribed);
         } catch (error) {
-            alert(error.message);
+            alert("로그인 후 이용해주세요.");
         }
     };
 
@@ -115,7 +119,7 @@ const GroupPage = () => {
             );
 
         } catch (error) {
-            alert(error.message);
+            alert("로그인 후 이용해주세요.");
         }
     };
 
@@ -169,7 +173,7 @@ const GroupPage = () => {
                                     <Slider dots={true} infinite={true} speed={500} slidesToShow={1} slidesToScroll={1}>
                                         {feed.imageUrls.map((imageUrl, index) => (
                                             <div key={index}>
-                                                <img src={imageUrl} alt={`게시물 이미지 ${index + 1}`} />
+                                                <img src={imageUrl} alt={`게시물 이미지 ${index + 1}`} style={{width: '100%', borderRadius: '8px'}}/>
                                             </div>
                                         ))}
                                     </Slider>
