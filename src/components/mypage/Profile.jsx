@@ -74,10 +74,16 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // 현재 비밀번호가 없으면 저장하지 않도록 처리
+        if (password === "") {
+            alert("현재 비밀번호를 입력해야 합니다.");
+            return;
+        }
+
         const formData = new FormData();
         formData.append('nickname', nickname || nickname);
         formData.append('email', email || email);
-        formData.append('password', password || password);
+        formData.append('password', password);
         formData.append('newPassword', newPassword || newPassword);
 
         const fileInput = document.getElementById('image-upload');
@@ -119,22 +125,20 @@ const Profile = () => {
                 const confirmSave = window.confirm("저장하시겠습니까?");
                 if (confirmSave) {
                     // 폼 제출 요청
-                    const form = document.getElementById('mypage-profile-form');
-                    if (form) {
-                        form.submit(); // 폼 직접 제출
-                    }
-                    // 상태 업데이트를 폼 제출 후로 이동
-                    // 폼 제출 이후에 상태를 업데이트해야 올바르게 동작
-                    setTimeout(() => setEditing(false), 0); // 상태 업데이트를 다음 이벤트 루프에서 실행
+                    document.getElementById('mypage-profile-form').requestSubmit();
                 } else {
                     setEditing(false); // 편집 모드 종료
                     // 변경사항 취소하고 원래 값으로 되돌리기
                     setNickname(originalNickname);
                     setEmail(originalEmail);
                     setUserImage(originalUserImage);
+                    setPassword(""); // 비밀번호 필드 초기화
+                    setNewPassword(""); // 새 비밀번호 필드 초기화
                 }
             } else {
                 setEditing(false); // 변경사항이 없으면 그냥 편집 모드 종료
+                setPassword(""); // 비밀번호 필드 초기화
+                setNewPassword(""); // 새 비밀번호 필드 초기화
             }
         } else {
             // 편집 모드로 전환

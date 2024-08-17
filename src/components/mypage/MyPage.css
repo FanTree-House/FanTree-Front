@@ -17,8 +17,8 @@ body {
 }
 
 .user-image {
-    width: 150px; /* 이미지 크기 조정 */
-    height: 150px; /* 이미지 크기 조정 */
+    width: 200px; /* 이미지 크기 조정 */
+    height: 200px; /* 이미지 크기 조정 */
     margin-right: 10px; /* 텍스트와의 간격 조정 */
     cursor: pointer;
 }

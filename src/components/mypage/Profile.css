@@ -1,7 +1,8 @@
 .simple-profile-input-field {
     margin-right: 10px;
     margin-left: 10px;
-    border-radius: 5px;
+    margin-bottom: 5px;
+    border-radius: 7px;
     width : 300px !important;
     height: 45px;
     border: 1px solid #e2e2fd !important;
@@ -15,16 +16,14 @@
 }
 .simple-profile-input-field-password:hover {
     border-color: #95c3ff;
-
 }
 
 .simple-profile-label {
     display: block;
     margin-right: 20px;
-    /*margin-bottom: 10px;*/
     font-size: 16px; /* 텍스트 크기 */
-    /*font-weight: bold; !* 글자 굵기 *!*/
     color: #676b73; /* 텍스트 색상 */
+    /*margin-bottom: 2px;*/
 }
 .simple-profile-custom-button{
     background-color: rgb(255, 255, 255);

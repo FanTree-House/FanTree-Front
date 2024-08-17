@@ -21,11 +21,6 @@ const Buttons = () => {
         { text: '구독 그룹 공지', link: '/notice' },
         { text: '구독 그룹 스케줄', link: '/schedule' },
         // { text: '2', link: '/link2' },
-        // { text: '5', link: '/link5' },
-        // { text: '구독 그룹(아티스트) 게시글', link: '/link6' },
-        // { text: '', link: '/' },
-        // { text: '10', link: '/link10' },
-        // { text: '11', link: '/link11' },
     ];
 
     const openModal = (link) => {

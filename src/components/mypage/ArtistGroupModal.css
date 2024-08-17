@@ -47,6 +47,7 @@
     justify-content: space-between; /* Space between name and buttons */
     flex-grow: 1; /* Take available space */
     width: 50px;
+    text-align: center;
 }
 
 .group-modal-buttons {
@@ -96,7 +97,8 @@
 }
 
 .artist-group-name {
-    margin-left: 5px; /* 그룹 이름과 이미지 간의 간격 조정 */
+    margin-left: 10px; /* 그룹 이름과 이미지 간의 간격 조정 */
+    font-family: 'Courier New', monospace;
 }
 
 .modal-close {

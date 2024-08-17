@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faComments, faStar as faStarSolid} from '@fortawesome/free-solid-svg-icons';
 import apiClient from '../../service/apiClient';
 
+
 const ArtistGroupModal = ({ onClose }) => {
     const [artistGroups, setArtistGroups] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -27,15 +28,20 @@ const ArtistGroupModal = ({ onClose }) => {
 
 
                 // 그룹 이름을 포함하여 각 그룹의 이미지 URL을 가져오기 위한 API 호출
-                const groupsWithImages = await Promise.all(groups.map(async (group) => {
+                const groupsWithImages = await Promise.all(groups.flatMap(async (group) => {
                     try {
-                        const imageResponse = await apiClient.get(`/artistgroup/${group.group_name}`);
+                        const imageResponse = await apiClient.get(`/artistgroup/${group.group_name}`,{
+                            headers: {
+                                'Authorization': `${accessToken}`
+                            }
+                            });
+
                         return {
                             ...group,
                             artistGroupProfileImageUrl: imageResponse.data.artistGroupProfileImageUrl
                         };
                     } catch (imageError) {
-                        console.error(`Error fetching image for ${group.group_name}:`, imageError);
+                        console.error(`Error fetching image for ${group.groupName}:`, imageError);
                         return {
                             ...group,
                             artistGroupProfileImageUrl: null
@@ -139,8 +145,8 @@ const ArtistGroupModal = ({ onClose }) => {
                     </div>
                 ) : (
                     <div className="artist-group-container">
-                        {artistGroups.map((group, index) => (
-                            <div key={index} className="artist-group-card">
+                        {artistGroups.map((group) => (
+                            <div key={group.id} className="artist-group-card">
                                 <a href={`/group/${group.group_name}?enter=${group.enterName}`} className="artist-group-link">
                                     <div className="artist-group-image-container">
                                         {group.artistGroupProfileImageUrl ? (
