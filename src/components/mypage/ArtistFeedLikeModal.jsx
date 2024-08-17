@@ -82,12 +82,12 @@ const ArtistFeedLikeModal = ({ postId, onClose }) => {
     const handleClose = async () => {
         try {
             const updates = Object.keys(updatedLikes).map(async artistFeedId => {
-                const endpoint = `http://localhost:8080/feed/${artistFeedId}`;
+                const endpoint = `/feed/${artistFeedId}`;
                 const likedStatus = updatedLikes[artistFeedId];
 
                 // 상태가 null이 아닐 때만 서버로 전송
                 if (likedStatus !== null) {
-                    return axios.post(endpoint, { liked: likedStatus }, {
+                    return apiClient.post(endpoint, { liked: likedStatus }, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `${accessToken}`

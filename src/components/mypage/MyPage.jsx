@@ -3,8 +3,6 @@ import {useNavigate} from 'react-router-dom';
 import './MyPage.css';
 import Profile from './Profile';
 import Buttons from './Buttons';
-import {Link} from 'react-router-dom';
-import {FloatingLabel, Button, Form} from 'react-bootstrap';
 import Header from "../Header";
 
 const MyPage = () => {

@@ -1,0 +1,45 @@
+.simple-profile-input-field {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    border-radius: 7px;
+    width : 300px !important;
+    height: 45px;
+    border: 1px solid #e2e2fd !important;
+}
+
+.simple-profile-input-field:hover {
+    border-color: #95c3ff !important;
+}
+.simple-profile-input-field-password {
+
+}
+.simple-profile-input-field-password:hover {
+    border-color: #95c3ff;
+}
+
+.simple-profile-label {
+    display: block;
+    margin-right: 20px;
+    font-size: 16px; /* 텍스트 크기 */
+    color: #676b73; /* 텍스트 색상 */
+    /*margin-bottom: 2px;*/
+}
+.simple-profile-custom-button{
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #a9c8ea;
+    border-radius: 5px;
+    color: #3e3e49;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    width: 100px;
+    height: 35px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.simple-profile-custom-button:hover {
+    background-color: #dde1ec; /* 마우스를 올렸을 때 버튼 배경색 변경 */
+    border-color: #d4d8de; /* 마우스를 올렸을 때 테두리 색상 변경 */
+    color: #3e3e49; /* 마우스를 올렸을 때 글자 색상 변경 */
+}
