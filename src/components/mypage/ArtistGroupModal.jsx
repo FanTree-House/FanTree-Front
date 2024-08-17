@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './ButtonWithModal.css';
+import './ArtistGroupModal.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
+import {faComments, faStar as faStarSolid} from '@fortawesome/free-solid-svg-icons';
 import apiClient from '../../service/apiClient';
 
 const ArtistGroupModal = ({ onClose }) => {
@@ -24,19 +25,20 @@ const ArtistGroupModal = ({ onClose }) => {
 
                 const groups = response.data;
 
+
                 // 그룹 이름을 포함하여 각 그룹의 이미지 URL을 가져오기 위한 API 호출
                 const groupsWithImages = await Promise.all(groups.map(async (group) => {
                     try {
                         const imageResponse = await apiClient.get(`/artistgroup/${group.group_name}`);
                         return {
                             ...group,
-                            imageUrl: imageResponse.data.imageUrl
+                            artistGroupProfileImageUrl: imageResponse.data.artistGroupProfileImageUrl
                         };
                     } catch (imageError) {
                         console.error(`Error fetching image for ${group.group_name}:`, imageError);
                         return {
                             ...group,
-                            imageUrl: null
+                            artistGroupProfileImageUrl: null
                         };
                     }
                 }));
@@ -128,49 +130,61 @@ const ArtistGroupModal = ({ onClose }) => {
     }
 
     return (
-        <div className="modal-overlay" >
-            <div className="modal-content" >
+        <div className="modal-overlay">
+            <div className="modal-content">
                 <h2>구독한 아티스트 그룹</h2>
                 {artistGroups.length === 0 ? (
                     <div className="no-subscriptions-message">
                         <p>구독한 그룹이 없습니다</p>
                     </div>
                 ) : (
-                    <table className="artist-group-table">
-                        <thead>
-                        <tr>
-                            <th className="subscription-col">Subscription</th>
-                            <th className="image-col">Group Image</th>
-                            <th className="name-col">Group Name</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                    <div className="artist-group-container">
                         {artistGroups.map((group, index) => (
-                            <tr key={index}>
-                                <td>
-                                    <button
-                                        className={`subscription-button ${subscriptions[group.group_name] ? 'subscribed' : 'not-subscribed'}`}
-                                        onClick={() => handleSubscriptionToggle(group.group_name)}
-                                    >
-                                        <FontAwesomeIcon
-                                            icon={faStarSolid}
-                                            size="lg"
-                                            style={{ color: subscriptions[group.group_name] ? "#82dbf6" : "#d3d3d3" }} // 색상 변경
-                                        />
-                                    </button>
-                                </td>
-                                <td>
-                                    {group.imageUrl ? (
-                                        <img src={group.imageUrl} alt={group.group_name} className="artist-group-image" />
-                                    ) : (
-                                        <div className="artist-group-placeholder">No Image</div>
-                                    )}
-                                </td>
-                                <td>{group.group_name}</td>
-                            </tr>
+                            <div key={index} className="artist-group-card">
+                                <a href={`/group/${group.group_name}?enter=${group.enterName}`} className="artist-group-link">
+                                    <div className="artist-group-image-container">
+                                        {group.artistGroupProfileImageUrl ? (
+                                            <img
+                                                src={group.artistGroupProfileImageUrl}
+                                                alt={group.group_name}
+                                                className="artist-group-image"
+                                            />
+                                        ) : (
+                                            <div className="artist-group-placeholder">No Image</div>
+                                        )}
+                                    </div>
+                                </a>
+                                <div className="artist-group-details">
+                                    <div className="artist-group-name">
+                                        {group.group_name}
+                                    </div>
+                                    <div className="group-modal-buttons">
+                                        <button
+                                            className={`subscription-button ${subscriptions[group.group_name] ? 'subscribed' : 'not-subscribed'}`}
+                                            onClick={() => handleSubscriptionToggle(group.group_name)}
+                                        >
+                                            <FontAwesomeIcon
+                                                icon={faStarSolid}
+                                                size="lg"
+                                                style={{ color: subscriptions[group.group_name] ? "#51d5fd" : "#d3d3d3" }}
+                                            />
+                                        </button>
+                                        <button
+                                            className="community-button"
+                                            onClick={() => window.location.href = `/group/${group.group_name}/community`}
+                                            title={`${group.group_name} 커뮤니티로 이동`}
+                                        >
+                                            <FontAwesomeIcon
+                                                icon={faComments}
+                                                size="lg"
+                                                style={{ color: "#7341ff" }}
+                                            />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         ))}
-                        </tbody>
-                    </table>
+                    </div>
                 )}
                 <button className="modal-close" onClick={handleClose}>Close</button>
             </div>
