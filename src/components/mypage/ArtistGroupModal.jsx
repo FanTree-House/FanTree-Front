@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './ButtonWithModal.css';
-import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import apiClient from '../../service/apiClient';
@@ -86,8 +85,8 @@ const ArtistGroupModal = ({ onClose }) => {
                 const shouldUnsubscribe = updatedSubscriptions[groupName] !== null;
 
                 if (shouldUnsubscribe) {
-                    const endpoint = `http://localhost:8080/artistGroup/subscript/${groupName}`;
-                    return axios.delete(endpoint, {
+                    const endpoint = `/artistGroup/subscript/${groupName}`;
+                    return apiClient.delete(endpoint, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `${accessToken}`

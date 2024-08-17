@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './ButtonWithModal.css'; // 기존 CSS 파일 재사용
 import './ArtistFeedLikeModal.css'; // 모달 CSS 재사용
-import axios from "axios";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faHeart as faHeartSolid} from '@fortawesome/free-solid-svg-icons';
 import Carousel from 'react-bootstrap/Carousel';
@@ -87,7 +86,7 @@ const CommunityFeedLikeModal = ({onClose}) => {
 
                 // 상태가 null이 아닐 때만 서버로 전송
                 if (likedStatus !== null) {
-                    return axios.post(endpoint, {liked: likedStatus}, {
+                    return apiClient.post(endpoint, {liked: likedStatus}, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `${accessToken}`
