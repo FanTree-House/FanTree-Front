@@ -13,7 +13,7 @@ import {
     deleteComment,
     likeComment,
     getCommentIsLiked,
-    getCommentLikeCount,
+    getCommentLikeCount, deleteFeed,
 } from '../service/GroupService';
 import './FeedPopup.css';
 import { useParams } from "react-router-dom";
@@ -28,6 +28,8 @@ const FeedPopup = () => {
     const [editingCommentContent, setEditingCommentContent] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [likedComments, setLikedComments] = useState({}); // 댓글 좋아요 상태를 저장할 객체
+    const [showModal, setShowModal] = useState(false); // 모달 표시 여부 상태
+    const [feedToDelete, setFeedToDelete] = useState(null); // 삭제할 피드 ID
 
     useEffect(() => {
         const loadFeed = async () => {
@@ -101,7 +103,7 @@ const FeedPopup = () => {
                 likesCount,
             }));
         } catch (error) {
-            console.error('Error liking feed:', error);
+            alert('로그인 후 이용해주세요.');
         }
     };
 
@@ -179,6 +181,31 @@ const FeedPopup = () => {
             }
         }
     };
+    //
+    // // 피드 삭제 처리
+    // const handleDeleteFeed = async () => {try {
+    //         if (feedToDelete) {
+    //             await deleteFeed(groupName, feedToDelete);
+    //             feedData(prevFeeds => prevFeeds.filter(feed => feed.id !== feedToDelete));
+    //             setShowModal(false);
+    //             setFeedToDelete(null); // 삭제 후 피드 ID 초기화
+    //         }
+    //     } catch (error) {
+    //     window.location.replace("/group/:groupName")
+    // }
+    // };
+    // 삭제 모달 열기
+    // const openDeleteModal = (feedId) => {
+    //     setFeedToDelete(feedId);
+    //     setShowModal(true);
+    // };
+    //
+    // // 삭제 모달 닫기
+    // const closeDeleteModal = () => {
+    //     setShowModal(false);
+    //     setFeedToDelete(null);
+    // };
+
 
     return (
         <div className="feed-popup">
@@ -186,7 +213,13 @@ const FeedPopup = () => {
                 {feedData ? (
                     <div className="feed-details">
                         <img src={feedData.profileUrl} alt="Profile" className="profile-image"/>
-                        <div className="nickname">{feedData.artistName}</div>
+                        <div className="nickname">{feedData.artistName}
+                            {/*<button className="delete-btn" onClick={(e) => {*/}
+                            {/*    e.stopPropagation();*/}
+                            {/*    openDeleteModal(feedData.id); // 삭제 모달 열기*/}
+                            {/*}}>삭제*/}
+                            {/*</button>*/}
+                        </div>
                         <p>{feedData.contents}</p>
                         {feedData.imageUrls && feedData.imageUrls.length > 0 && (
                             feedData.imageUrls.length > 1 ? (
@@ -238,6 +271,17 @@ const FeedPopup = () => {
                     </div>
                 </div>
             </div>
+            {/*/!* 삭제 확인 모달 *!/*/}
+            {/*/!*{showModal && (*!/*/}
+            {/*/!*    <div className="modal-overlay">*!/*/}
+            {/*/!*        <div className="modal">*!/*/}
+            {/*/!*            <p>정말로 삭제하시겠습니까?</p>*!/*/}
+            {/*/!*            <button onClick={handleDeleteFeed}>삭제</button>*!/*/}
+            {/*/!*            <button onClick={closeDeleteModal}>취소</button>*!/*/}
+            {/*/!*        </div>*!/*/}
+            {/*    </div>*/}
+            {/*)}*/}
+
             {isModalOpen && (
                 <div className="modal">
                     <div className="modal-content">

@@ -99,11 +99,16 @@ export const getAllArtistGroups = async () => {
 
 // 현재 그룹에 대한 구독 여부
 export const getIsSubscribed = async (groupName) => {
-    const response = await apiClient.get(`/artistGroup/subscript/${groupName}`, {
-        headers: { Authorization: `${token}` },
-        withCredentials: true
-    });
-    return response.data.data.isSubscribe;
+    try {
+        const response = await apiClient.get(`/artistGroup/subscript/${groupName}`, {
+            headers: { Authorization: `${token}` },
+            withCredentials: true
+        });
+        return response.data.data.isSubscribe;
+    } catch (e) {
+        console.error("구독 여부 불러오기 실패", e);
+    }
+
 };
 
 // 좋아요 여부
@@ -210,4 +215,17 @@ export const deleteComment = async (groupName, feedId, commentId) => {
         withCredentials: true
     });
     return response.data;
+};
+
+// 피드 삭제
+export const deleteFeed = async (groupName, artistFeedId) => {
+    try {
+        await apiClient.delete(`/${groupName}/feed/${artistFeedId}`, {
+            headers: { Authorization: `${token}` },
+            withCredentials: true
+        });
+    } catch (error) {
+        console.error('Error deleting feed:', error);
+        throw error;
+    }
 };

@@ -1,9 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {useNavigate, useParams, useSearchParams} from 'react-router-dom';
-import {fetchArtistFeeds, fetchGroupDetails, likeFeed, subscribeToGroup, cancelSubscribe, getIsSubscribed, fetchFeedLikes, getIsLiked } from '../service/GroupService';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import {
+    fetchArtistFeeds,
+    fetchGroupDetails,
+    likeFeed,
+    subscribeToGroup,
+    cancelSubscribe,
+    getIsSubscribed,
+    fetchFeedLikes,
+    getIsLiked,
+    deleteFeed // 추가된 deleteFeed 함수 import
+} from '../service/GroupService';
 import Header from '../components/Header';
 import './GroupPage.css';
 
@@ -16,6 +26,8 @@ const GroupPage = () => {
     const [artistFeeds, setArtistFeeds] = useState([]);
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [likedFeeds, setLikedFeeds] = useState({}); // 좋아요 상태를 저장할 객체
+    const [showModal, setShowModal] = useState(false); // 모달 표시 여부 상태
+    const [feedToDelete, setFeedToDelete] = useState(null); // 삭제할 피드 ID
 
     useEffect(() => {
         const loadGroupDetails = async () => {
@@ -23,7 +35,7 @@ const GroupPage = () => {
                 const details = await fetchGroupDetails(groupName);
                 setGroupDetails(details);
             } catch (error) {
-                alert(error.message);
+                console.log(error.message);
             }
         };
 
@@ -44,7 +56,7 @@ const GroupPage = () => {
                     }));
                 }));
             } catch (error) {
-                alert(error.message);
+                console.log(error.message);
             }
         };
 
@@ -54,16 +66,14 @@ const GroupPage = () => {
                 const subscribed = await getIsSubscribed(groupName);
                 setIsSubscribed(subscribed);
             } catch (error) {
-                alert(error.message);
+                console.log(error.message);
             }
         };
-
 
         loadGroupDetails();
         loadArtistFeeds();
         checkSubscriptionStatus();
-        setEnterName(searchParams.get('enter'))
-        console.log("enterName : " )
+        setEnterName(searchParams.get('enter'));
     }, [groupName]);
 
     // Feed 상세 페이지
@@ -75,13 +85,14 @@ const GroupPage = () => {
     const openEnterPage = () =>
         navigate(`/group/${groupName}/enter/${enterName}`);
 
+    // Community 페이지로
     const openCommunityPage = () =>
-        navigate(`/group/${groupName}/community`)
+        navigate(`/group/${groupName}/community`);
 
     // 구독버튼
     const handleSubscribe = async () => {
         try {
-            if (!isSubscribed){
+            if (!isSubscribed) {
                 await subscribeToGroup(groupName);
             } else {
                 await cancelSubscribe(groupName);
@@ -90,7 +101,7 @@ const GroupPage = () => {
             const subscribed = await getIsSubscribed(groupName);
             setIsSubscribed(subscribed);
         } catch (error) {
-            alert(error.message);
+            alert("로그인 후 이용해주세요.");
         }
     };
 
@@ -113,27 +124,52 @@ const GroupPage = () => {
                     feed.id === feedId ? { ...feed, likesCount } : feed
                 )
             );
-
         } catch (error) {
-            alert(error.message);
+            alert("로그인 후 이용해주세요.");
         }
+    };
+
+    // 피드 삭제 처리
+    const handleDeleteFeed = async () => {
+        try {
+            if (feedToDelete) {
+                await deleteFeed(groupName, feedToDelete);
+                setArtistFeeds(prevFeeds => prevFeeds.filter(feed => feed.id !== feedToDelete));
+                setShowModal(false);
+                setFeedToDelete(null); // 삭제 후 피드 ID 초기화
+            }
+        } catch (error) {
+            alert("피드 삭제에 실패했습니다.");
+        }
+    };
+
+    // 삭제 모달 열기
+    const openDeleteModal = (feedId) => {
+        setFeedToDelete(feedId);
+        setShowModal(true);
+    };
+
+    // 삭제 모달 닫기
+    const closeDeleteModal = () => {
+        setShowModal(false);
+        setFeedToDelete(null);
     };
 
     if (!groupDetails) return <div>Loading...</div>;
 
     return (
         <div className="group-page">
-            <Header/>
+            <Header />
             <div>
                 <div className="nav_btn">
                     <button className="subscript-button" onClick={handleSubscribe}>{isSubscribed ? '구독중' : '구독'}</button>
-                    <button className="notice-button" key={enterName} onClick={() => openEnterPage()}>공지사항</button>
-                    <button className="community-button" onClick={() => openCommunityPage()}>커뮤니티</button>
+                    <button className="notice-button" key={enterName} onClick={openEnterPage}>공지사항</button>
+                    <button className="community-button" onClick={openCommunityPage}>커뮤니티</button>
                 </div>
             </div>
             <div className="group-header">
                 <div className="group-image">
-                    <img src={groupDetails.artistGroupProfileImageUrl} alt={`${groupDetails.groupName} 이미지`}/>
+                    <img src={groupDetails.artistGroupProfileImageUrl} alt={`${groupDetails.groupName} 이미지`} />
                 </div>
                 <div className="group-info">
                     <h1>{groupDetails.name}</h1>
@@ -150,8 +186,12 @@ const GroupPage = () => {
                 {artistFeeds.map((feed) => (
                     <div className="feed" key={feed.id} onClick={() => openFeedPopup(feed.id)}> {/* 클릭 이벤트 추가 */}
                         <div className="feed-header">
-                            <img src={feed.profileUrl} alt="Profile" className="profile-image"/>
+                            <img src={feed.profileUrl} alt="Profile" className="profile-image" />
                             <div className="nickname">{feed.artistName}</div>
+                            <button className="delete-button" onClick={(e) => {
+                                e.stopPropagation();
+                                openDeleteModal(feed.id); // 삭제 모달 열기
+                            }}>삭제</button>
                         </div>
                         <div className="feed-content">
                             <p>
@@ -169,12 +209,12 @@ const GroupPage = () => {
                                     <Slider dots={true} infinite={true} speed={500} slidesToShow={1} slidesToScroll={1}>
                                         {feed.imageUrls.map((imageUrl, index) => (
                                             <div key={index}>
-                                                <img src={imageUrl} alt={`게시물 이미지 ${index + 1}`} />
+                                                <img src={imageUrl} alt={`게시물 이미지 ${index + 1}`} style={{ width: '100%', borderRadius: '8px' }} />
                                             </div>
                                         ))}
                                     </Slider>
                                 ) : (
-                                    <img src={feed.imageUrls[0]} alt="게시물 이미지" style={{ width: '100%', borderRadius: '8px' , maxHeight: '500px'}} />
+                                    <img src={feed.imageUrls[0]} alt="게시물 이미지" style={{ width: '100%', borderRadius: '8px', maxHeight: '500px' }} />
                                 )
                             )}
                         </div>
@@ -186,11 +226,21 @@ const GroupPage = () => {
                                 {likedFeeds[feed.id] ? '❤️' : '🤍'} {feed.likesCount}
                             </button>
                             <span>💬 {feed.commentCount}</span>
-                            {/*<button onClick={(e) => { e.stopPropagation(); handleLike(feed.id); }}>좋아요</button>*/}
                         </div>
                     </div>
                 ))}
             </div>
+
+            {/* 삭제 확인 모달 */}
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <p>정말로 삭제하시겠습니까?</p>
+                        <button onClick={handleDeleteFeed}>삭제</button>
+                        <button onClick={closeDeleteModal}>취소</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
