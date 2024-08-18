@@ -32,37 +32,23 @@
 }
 
 .pastel1 {
-    border-top: 1px solid #ffffff; /* White border on top */
-    border-left: 1px solid #ffffff; /* White border on left */
     border-bottom: 1px solid #ffffff; /* White border on bottom */
 
 }
 
 .pastel2 {
-    border-top: 1px solid #ffffff; /* White border on top */
     border-right: 1px solid #ffffff; /* White border on right */
     border-bottom: 1px solid #ffffff; /* White border on bottom */
     border-left: 1px solid #ffffff; /* White border on left */
 }
 
 .pastel3 {
-    border-top: 1px solid #ffffff; /* White border on top */
-    border-right: 1px solid #ffffff; /* White border on right */
     border-bottom: 1px solid #ffffff; /* White border on bottom */
-}
-
-.pastel4 {
-    border-left: 1px solid #ffffff; /* White border on left */
-
 }
 
 .pastel5 {
     border-right: 1px solid #ffffff; /* White border on right */
     border-left: 1px solid #ffffff; /* White border on left */
-}
-
-.pastel6 {
-    border-right: 1px solid #ffffff; /* White border on right */
 }
 
 .pastel7 {

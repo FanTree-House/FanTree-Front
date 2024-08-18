@@ -18,8 +18,8 @@ const Buttons = () => {
         { text: '내 커뮤니티 게시글', link: '/communityFeed', icon: faComment },
         { text: '커뮤니티 게시글 좋아요', link: '/commuFeedLike', icon: faHeart },
         { text: '구독 그룹 관리', link: '/subscription', icon: faStar },
-        { text: '구독 그룹 공지', link: '/notice', icon: faBullhorn },
-        { text: '구독 그룹 스케줄', link: '/schedule', icon: faCalendar },
+        { text: '구독 그룹의 엔터 공지', link: '/notice', icon: faBullhorn },
+        { text: '구독 그룹의 엔터의 스케줄 공지', link: '/schedule', icon: faCalendar },
         // { text: '2', link: '/link2' },
     ];
 
