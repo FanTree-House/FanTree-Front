@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './EnterFeedNoticeModal.css';
-import axios from 'axios';
 import apiClient from "../../service/apiClient";
 
-const EnterFeedNoticeModal = ({onClose}) => {
+const EnterFeedNoticeModal = ({ onClose }) => {
     const [notices, setNotices] = useState([]); // 공지사항 목록을 담을 상태 변수
     const [expandedNoticeIndex, setExpandedNoticeIndex] = useState(null);
     const [loading, setLoading] = useState(true); // 로딩 상태를 표시하기 위한 상태 변수
@@ -45,8 +44,16 @@ const EnterFeedNoticeModal = ({onClose}) => {
                 const allNotices = await Promise.all(noticePromises); // 모든 그룹의 공지사항을 비동기적으로 가져옴
                 const flatNotices = allNotices.flat(); // 공지사항 리스트를 평탄화
 
-                // 공지사항을 createdAt 기준으로 내림차순 정렬
-                const sortedNotices = flatNotices.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                // Map을 사용하여 enterName 기준으로 중복 제거
+                const uniqueNotices = new Map();
+                flatNotices.forEach(notice => {
+                    if (!uniqueNotices.has(notice.enterName)) {
+                        uniqueNotices.set(notice.enterName, notice);
+                    }
+                });
+
+                // Map을 Array로 변환하고, createdAt 기준으로 내림차순 정렬
+                const sortedNotices = Array.from(uniqueNotices.values()).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
                 setNotices(sortedNotices); // 상태에 정렬된 공지사항 설정
             } catch (error) {
@@ -57,84 +64,85 @@ const EnterFeedNoticeModal = ({onClose}) => {
             }
         };
 
-            const loadNotices = async () => {
-                const groupNames = await fetchGroupNames(); // 그룹 이름을 먼저 가져옴
-                if (groupNames.length > 0) {
-                    fetchNotices(groupNames); // 그룹 이름이 존재하면 공지사항을 가져옴
-                }
-            };
-
-            loadNotices(); // 컴포넌트가 마운트될 때 공지사항을 로드
-        }, [accessToken]);
-
-        // 공지사항 제목 클릭 시 내용을 토글하는 함수
-        const toggleNoticeContent = (index) => {
-            setExpandedNoticeIndex(expandedNoticeIndex === index ? null : index);
+        const loadNotices = async () => {
+            const groupNames = await fetchGroupNames(); // 그룹 이름을 먼저 가져옴
+            if (groupNames.length > 0) {
+                fetchNotices(groupNames); // 그룹 이름이 존재하면 공지사항을 가져옴
+            }
         };
 
-        // 로딩 중일 때 로딩 메시지 표시
-        if (loading) {
-            return (
-                <div className="modal-overlay" >
-                    <div className="modal-content">
-                        <h2>Loading...</h2>
-                    </div>
-                </div>
-            );
-        }
+        loadNotices(); // 컴포넌트가 마운트될 때 공지사항을 로드
+    }, [accessToken]);
 
-        // 에러 발생 시 에러 메시지 표시
-        if (error) {
-            return (
-                <div className="modal-overlay">
-                    <div className="modal-content" >
-                        <div className="error-message">{error}</div>
-                        <button className="modal-close" onClick={onClose}>Close</button>
-                    </div>
-                </div>
-            );
-        }
+    // 공지사항 제목 클릭 시 내용을 토글하는 함수
+    const toggleNoticeContent = (index) => {
+        setExpandedNoticeIndex(expandedNoticeIndex === index ? null : index);
+    };
 
-        // 공지사항 목록을 표시하는 UI
+    // 로딩 중일 때 로딩 메시지 표시
+    if (loading) {
         return (
-            <div className="modal-overlay" >
-                <div className="modal-content" >
-                    <button className="modal-close" onClick={onClose}>Close</button>
-                    {/* 닫기 버튼 */}
-                    <h2>공지사항</h2>
-                    <div className="notices-container">
-                        {notices.length === 0 ? (
-                            <p>등록된 공지사항이 없습니다.</p> // 공지사항이 없을 경우 메시지 표시
-                        ) : (
-                            <ul>
-                                {notices.map((notice, index) => (
-                                    <li key={index} className="notice-item">
-                                        <div className="notice-header">
-                                            <span className="notice-group">{notice.groupName}</span>
-                                            <h3
-                                                className="notice-title"
-                                                onClick={() => toggleNoticeContent(index)}
-                                            >
-                                                {notice.title}
-                                                <span
-                                                    className={`arrow ${expandedNoticeIndex === index ? 'up' : 'down'}`}>&#9660;</span>
-                                            </h3>
-                                            <span
-                                                className="notice-date">{new Date(notice.createdAt).toLocaleString()}</span>
-                                        </div>
-                                        {expandedNoticeIndex === index && (
-                                            <div className="notice-content">
-                                                <p>{notice.contents}</p>
-                                            </div>
-                                        )}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
+            <div className="modal-overlay">
+                <div className="modal-content">
+                    <h2>Loading...</h2>
                 </div>
             </div>
         );
-    };
+    }
 
-    export default EnterFeedNoticeModal;
+    // 에러 발생 시 에러 메시지 표시
+    if (error) {
+        return (
+            <div className="modal-overlay">
+                <div className="modal-content">
+                    <div className="error-message">{error}</div>
+                    <button className="modal-close" onClick={onClose}>Close</button>
+                </div>
+            </div>
+        );
+    }
+
+    // 공지사항 목록을 표시하는 UI
+    return (
+        <div className="modal-overlay">
+            <div className="modal-content">
+                <button className="modal-close" onClick={onClose}>Close</button>
+                {/* 닫기 버튼 */}
+                <h2>공지사항</h2>
+                <div className="notices-container">
+                    {notices.length === 0 ? (
+                        <p>등록된 공지사항이 없습니다.</p> // 공지사항이 없을 경우 메시지 표시
+                    ) : (
+                        <ul>
+                            {notices.map((notice, index) => (
+                                <li key={index} className="notice-item">
+                                    <div className="notice-header">
+                                        <span className="notice-group">{notice.enterName}</span> {/* groupName 대신 enterName 사용 */}
+                                        <h3
+                                            className="notice-title"
+                                            onClick={() => toggleNoticeContent(index)}
+                                        >
+                                            {notice.title}
+                                            <span
+                                                className={`arrow ${expandedNoticeIndex === index ? 'up' : 'down'}`}>&#9660;</span>
+                                        </h3>
+                                        <span className="notice-date">
+                                            {new Date(notice.createdAt).toLocaleDateString()} {/* 초 단위 제거 */}
+                                        </span>
+                                    </div>
+                                    {expandedNoticeIndex === index && (
+                                        <div className="notice-content">
+                                            <p>{notice.contents}</p>
+                                        </div>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default EnterFeedNoticeModal;

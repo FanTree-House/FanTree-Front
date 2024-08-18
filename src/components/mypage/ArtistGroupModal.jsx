@@ -35,13 +35,14 @@ const ArtistGroupModal = ({ onClose }) => {
                                 'Authorization': `${accessToken}`
                             }
                             });
+                        console.log(imageResponse);
 
                         return {
                             ...group,
-                            artistGroupProfileImageUrl: imageResponse.data.artistGroupProfileImageUrl
+                            artistGroupProfileImageUrl: imageResponse.data.data.artistGroupProfileImageUrl
                         };
                     } catch (imageError) {
-                        console.error(`Error fetching image for ${group.groupName}:`, imageError);
+                        console.error(`Error fetching image for ${group.group_name}:`, imageError);
                         return {
                             ...group,
                             artistGroupProfileImageUrl: null
@@ -66,7 +67,9 @@ const ArtistGroupModal = ({ onClose }) => {
             }
         };
 
-        fetchArtistGroups();
+        fetchArtistGroups().catch(error => {
+            console.error('Error fetching artist groups:', error);
+        });
     }, [accessToken]);
 
     const handleSubscriptionToggle = (groupName) => {
@@ -168,6 +171,7 @@ const ArtistGroupModal = ({ onClose }) => {
                                         <button
                                             className={`subscription-button ${subscriptions[group.group_name] ? 'subscribed' : 'not-subscribed'}`}
                                             onClick={() => handleSubscriptionToggle(group.group_name)}
+                                            title={`하늘색: 구독중, 회색: 구독 취소` }
                                         >
                                             <FontAwesomeIcon
                                                 icon={faStarSolid}

@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import './Buttons.css';
-import ButtonWithModal from './ButtonWithModal';
-import { Link } from 'react-router-dom';
 import ArtistGroupModal from './ArtistGroupModal';
 import ArtistFeedLikeModal from './ArtistFeedLikeModal'
 import MyCommunityFeedModal from './MyCommunityFeedModal';
 import CommunityFeedLikeModal from "./CommunityFeedLikeModal";
 import EnterFeedNoticeModal from "./EnterFeedNoticeModal";
 import EnterFeedScheduleModal from "./EnterFeedScheduleModal";
-import apiClient from "../../service/apiClient";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
+import { faBullhorn, faStar, faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
 
 const Buttons = () => {
     const [modalContent, setModalContent] = useState(null);
 
     const buttons = [
-        { text: '아티스트 게시글 좋아요', link: '/artistFeedLike' },
-        { text: '내 커뮤니티 게시글', link: '/communityFeed' },
-        { text: '커뮤니티 게시글 좋아요', link: '/commuFeedLike' },
-        { text: '그룹 구독 관리', link: '/subscription' },
-        { text: '구독 그룹 공지', link: '/notice' },
-        { text: '구독 그룹 스케줄', link: '/schedule' },
+        { text: '아티스트 게시글 좋아요', link: '/artistFeedLike', icon: faHeart },
+        { text: '내 커뮤니티 게시글', link: '/communityFeed', icon: faComment },
+        { text: '커뮤니티 게시글 좋아요', link: '/commuFeedLike', icon: faHeart },
+        { text: '구독 그룹 관리', link: '/subscription', icon: faStar },
+        { text: '구독 그룹의 엔터 공지', link: '/notice', icon: faBullhorn },
+        { text: '구독 그룹의 엔터의 스케줄 공지', link: '/schedule', icon: faCalendar },
         // { text: '2', link: '/link2' },
     ];
 
@@ -59,6 +59,15 @@ const Buttons = () => {
                         onClick={() => openModal(button.link)}
                         className={`buttons-button pastel${index + 1}`}
                     >
+                        {/* 아이콘이 있는 경우 아이콘을 먼저 렌더링 */}
+                        {button.icon && (
+                            <FontAwesomeIcon
+                                icon={button.icon}
+                                size="1x"
+                                style={{ marginRight: '15px', color: "#184b83" }}
+                                className="button-icon"
+                            />
+                        )}
                         {button.text}
                     </button>
                 ))}

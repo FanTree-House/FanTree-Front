@@ -8,8 +8,6 @@
     border-right: 1px solid #ffffff; /* White border on right */
     border-bottom: 1px solid #ffffff; /* White border on bottom */
     border-left: 1px solid #ffffff; /* White border on left */
-
-
 }
 
 .buttons-button {
@@ -34,37 +32,23 @@
 }
 
 .pastel1 {
-    border-top: 1px solid #ffffff; /* White border on top */
-    border-left: 1px solid #ffffff; /* White border on left */
     border-bottom: 1px solid #ffffff; /* White border on bottom */
 
 }
 
 .pastel2 {
-    border-top: 1px solid #ffffff; /* White border on top */
     border-right: 1px solid #ffffff; /* White border on right */
     border-bottom: 1px solid #ffffff; /* White border on bottom */
     border-left: 1px solid #ffffff; /* White border on left */
 }
 
 .pastel3 {
-    border-top: 1px solid #ffffff; /* White border on top */
-    border-right: 1px solid #ffffff; /* White border on right */
     border-bottom: 1px solid #ffffff; /* White border on bottom */
-}
-
-.pastel4 {
-    border-left: 1px solid #ffffff; /* White border on left */
-
 }
 
 .pastel5 {
     border-right: 1px solid #ffffff; /* White border on right */
     border-left: 1px solid #ffffff; /* White border on left */
-}
-
-.pastel6 {
-    border-right: 1px solid #ffffff; /* White border on right */
 }
 
 .pastel7 {
@@ -103,76 +87,31 @@
 }
 
 /*호버시 색상변경*/
-
-.pastel1:hover {
-    background-color: #fde0ff; /* Very Light Pastel Pink */
+.buttons-button:hover {
+    background-color: #cce6ff; /* 호버 시 약간 더 어두운 색상 */
     transition: background-color 0.3s ease;
     font-weight: bold;
 }
 
-.pastel2:hover {
-    background-color: #cce6ff; /* Very Light Pastel Blue */
-    transition: background-color 0.3s ease;
-    font-weight: bold;
+.button-icon {
+    transition: transform 0.3s ease;
+    font-size: 1.3rem;
 }
 
-.pastel3:hover {
-    background-color: #d1f8e0; /* Very Light Pastel Green */
-    transition: background-color 0.3s ease;
-    font-weight: bold;
+.buttons-button:hover .button-icon {
+    animation: bounce 1s; /* 마우스 호버 시 bounce 애니메이션 적용 */
+    animation-iteration-count: 5;
 }
 
-.pastel4:hover {
-    background-color: #ffe0e0; /* Very Light Pastel Yellow */
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-}
-
-.pastel5:hover {
-    background-color: #e7e0ff; /* Very Light Pastel Purple */
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-}
-
-.pastel6:hover {
-    background-color: #dcd9d6; /* Very Light Pastel Orange */
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-}
-
-.pastel7:hover {
-    background-color: #e6f0ff; /* Very Light Pastel Light Blue */
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-}
-
-.pastel8:hover {
-    background-color: #e6ffec; /* Very Light Pastel Mint */
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-}
-
-.pastel9:hover {
-    background-color: #fde6ff; /* Very Light Pastel Light Pink */
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-}
-
-.pastel10:hover {
-    background-color: #e0f4f4; /* Very Light Pastel Teal */
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-}
-
-.pastel11:hover {
-    background-color: #ffffe6; /* Very Light Pastel Lime */
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-}
-
-.pastel12:hover {
-    background-color: #ffe6e6; /* Very Light Pastel Rose */
-    transition: background-color 0.3s ease;
-    font-weight: bold;
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px);
+    }
+    60% {
+        transform: translateY(-7px);
+    }
 }
 
