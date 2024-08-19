@@ -1,10 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './EnterFeedScheduleModal.css';
-import axios from 'axios';
 import apiClient from "../../service/apiClient";
 
-
-const EnterFeedScheduleModal = ({onClose}) => {
+const EnterFeedScheduleModal = ({ onClose }) => {
     const [schedules, setSchedules] = useState([]); // 스케줄 목록을 담을 상태 변수
     const [expandedNoticeIndex, setExpandedNoticeIndex] = useState(null);
     const [loading, setLoading] = useState(true); // 로딩 상태를 표시하기 위한 상태 변수
@@ -46,8 +44,16 @@ const EnterFeedScheduleModal = ({onClose}) => {
                 const allSchedules = await Promise.all(schedulePromises);
                 const flatSchedules = allSchedules.flat();
 
-                // reated_at 기준으로 내림차순 정렬
-                const sortedSchedules = flatSchedules.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                // Map을 사용하여 entertainmentId 기준으로 중복 제거
+                const uniqueSchedules = new Map();
+                flatSchedules.forEach(schedule => {
+                    if (!uniqueSchedules.has(schedule.entertainmentId)) {
+                        uniqueSchedules.set(schedule.entertainmentId, schedule);
+                    }
+                });
+
+                // Map을 Array로 변환하고, created_at 기준으로 내림차순 정렬
+                const sortedSchedules = Array.from(uniqueSchedules.values()).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
                 setSchedules(sortedSchedules);
             } catch (error) {
@@ -77,7 +83,7 @@ const EnterFeedScheduleModal = ({onClose}) => {
     if (loading) {
         return (
             <div className="modal-overlay">
-                <div className="modal-content" >
+                <div className="modal-content">
                     <h2>Loading...</h2>
                 </div>
             </div>
@@ -96,7 +102,6 @@ const EnterFeedScheduleModal = ({onClose}) => {
         );
     }
 
-
     return (
         <div className="modal-overlay">
             <div className="modal-content">
@@ -111,7 +116,7 @@ const EnterFeedScheduleModal = ({onClose}) => {
                             {schedules.map((schedule, index) => (
                                 <li key={index} className="schedule-item">
                                     <div className="schedule-header">
-                                        <span className="schedule-group">{schedule.groupName}</span>
+                                        <span className="schedule-group">{schedule.enterName}</span> {/* groupName 대신 enterName 사용 */}
                                         <h3
                                             className="schedule-title"
                                             onClick={() => toggleNoticeContent(index)}
@@ -120,8 +125,9 @@ const EnterFeedScheduleModal = ({onClose}) => {
                                             <span
                                                 className={`arrow ${expandedNoticeIndex === index ? 'up' : 'down'}`}>&#9660;</span>
                                         </h3>
-                                        <span
-                                            className="schedule-date">{new Date(schedule.createdAt).toLocaleString()}</span>
+                                        <span className="schedule-date">
+                                            {new Date(schedule.createdAt).toLocaleDateString()} {/* 초 단위 제거 */}
+                                        </span>
                                     </div>
                                     {expandedNoticeIndex === index && (
                                         <div className="schedule-content">
