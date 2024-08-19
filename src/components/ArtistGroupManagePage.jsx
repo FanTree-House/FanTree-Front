@@ -57,7 +57,7 @@ const ArtistGroupManagePage = () => {
             setEditingGroup(null);
             fetchArtistGroups();
         } catch (error) {
-            alert('그룹 수정에 실패했습니다.');
+            alert(error.response.data.message);
         }
     };
 
@@ -69,7 +69,7 @@ const ArtistGroupManagePage = () => {
                 alert('그룹이 성공적으로 삭제되었습니다.');
                 fetchArtistGroups();
             } catch (error) {
-                alert('그룹 삭제에 실패했습니다.');
+                alert(error.response.data.message);
             }
         }
     };
@@ -91,7 +91,7 @@ const ArtistGroupManagePage = () => {
                 alert('아티스트가 성공적으로 그룹에서 제거되었습니다.');
                 setNewArtistIds(newArtistIds.filter(id => id !== artistId)); // 제거된 아티스트를 목록에서 제외
             } catch (error) {
-                alert('아티스트 제거에 실패했습니다.');
+                alert(error.response.data.message);
             }
         }
     };

@@ -57,7 +57,7 @@ const FeedPopup = () => {
                 const liked = await getIsLiked(groupName, feedId);
                 setIsLiked(liked);
             } catch (error) {
-                console.error('Error fetching feed:', error);
+                alert(error.response.data.message);
             }
         };
 
@@ -134,7 +134,7 @@ const FeedPopup = () => {
             );
 
         } catch (error) {
-            console.error('Error liking comment:', error);
+            alert(error.response.data.message);
         }
     };
 
@@ -160,7 +160,7 @@ const FeedPopup = () => {
             setEditingCommentId(null);
             setEditingCommentContent('');
         } catch (error) {
-            console.error('Error editing comment:', error);
+            alert(error.response.data.message);
         }
     };
 
@@ -177,7 +177,7 @@ const FeedPopup = () => {
                 const loadedComments = await fetchFeedComments(groupName, feedId);
                 setComments(loadedComments);
             } catch (error) {
-                console.error('Error deleting comment:', error);
+                alert(error.response.data.message);
             }
         }
     };
