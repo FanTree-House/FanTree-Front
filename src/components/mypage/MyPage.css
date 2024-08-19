@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #dae6f1;
+    background-color: rgb(226, 238, 255);
     margin: 0;
     padding: 20px;
 }
@@ -16,36 +16,9 @@ body {
     margin-top: 75px;
 }
 
-.mypage-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 0px;
-    width: 100%;
-}
-
-/*.header > div {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    flex: 2; !* 검색 입력란과 버튼 영역이 가능한 공간을 차지하도록 설정 *!*/
-/*    margin-left: 10px; !* 제목과 검색 영역 간의 여백 조정 *!*/
-/*}*/
-
-.input-search {
-    flex: 1; /* 검색 입력란이 가능한 공간을 차지하도록 설정 */
-    margin-right: 5px; /* 버튼과의 간격 조정 */
-    height: 50px;
-    width: 80px;
-}
-
-.input-search > floatingSearch {
-    height: 50px;
-    width: 80px;
-}
-
 .user-image {
-    width: 150px; /* 이미지 크기 조정 */
-    height: 150px; /* 이미지 크기 조정 */
+    width: 200px; /* 이미지 크기 조정 */
+    height: 200px; /* 이미지 크기 조정 */
     margin-right: 10px; /* 텍스트와의 간격 조정 */
     cursor: pointer;
 }
@@ -54,35 +27,16 @@ body {
 .status-message {
     margin: 20px 0;
     padding: 15px;
-    background-color: #732222;
     border-radius: 10px;
-    border: 1px solid rgba(87, 17, 145, 0.63);
+    border: 1px solid rgba(75, 127, 224, 0.41);
     display: flex;
     align-items: center;
-}
-
-.status-message {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #eefdfc;
+    background-color: #f7fdff;
 }
 
 .artist-feeds {
     flex: 2;
     margin-left: 20px;
-}
-
-.mypage-search-button {
-    padding: 5px 10px;
-    background-color: #83ddff;
-    color: rgba(28, 2, 2, 0.85);
-    border: 1px solid #6184bb;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 0.3 3 5%;
-    min-width: 10px;
-    box-sizing: border-box;
-    margin: 1px;
 }
 
 .shortcut {
@@ -98,9 +52,6 @@ body {
     margin: 2px;
     background: linear-gradient(to right, rgb(152, 236, 255), rgb(255, 255, 255));
 }
-/*.btn:hover {*/
-/*    background-color: #8996f1;*/
-/*}*/
 
 .features {
     display: flex;
@@ -116,3 +67,6 @@ body {
 .feature i {
     margin-right: 5px;
 }
+
+
+

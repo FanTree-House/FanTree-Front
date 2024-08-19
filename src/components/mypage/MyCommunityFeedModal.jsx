@@ -105,8 +105,8 @@ const MyCommunityFeedModal = ({onClose}) => {
             const updates = Object.keys(updatedLikes).map(async communityFeedId => {
                 const likedStatus = updatedLikes[communityFeedId];
                 const endpoint = likedStatus === true
-                    ? `http://localhost:8080/artist/addLike/${communityFeedId}`
-                    : `http://localhost:8080/artist/cancelLike/${communityFeedId}`;
+                    ? `/artist/addLike/${communityFeedId}`
+                    : `/artist/cancelLike/${communityFeedId}`;
 
                 if (likedStatus === true) {
                     // 좋아요 추가 요청 (POST)
@@ -138,8 +138,8 @@ const MyCommunityFeedModal = ({onClose}) => {
 
     if (loading) {
         return (
-            <div className="modal-overlay" onClick={onClose}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-overlay" >
+                <div className="modal-content">
                     <h2>Loading...</h2>
                 </div>
             </div>
@@ -148,8 +148,8 @@ const MyCommunityFeedModal = ({onClose}) => {
 
     if (error || posts.length === 0) {
         return (
-            <div className="modal-overlay" onClick={onClose}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-overlay" >
+                <div className="modal-content">
                     <div className="no-posts-message"> 작성한 커뮤니티 게시글이 없습니다.</div>
                     <button className="modal-close" onClick={onClose}>Close</button>
                 </div>
@@ -158,8 +158,8 @@ const MyCommunityFeedModal = ({onClose}) => {
     }
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay">
+            <div className="modal-content">
                 <button className="modal-close" onClick={handleClose}>Close</button>
                 <div className="modal-body">
                     {posts.length === 0 ? (

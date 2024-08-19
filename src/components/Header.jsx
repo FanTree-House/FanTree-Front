@@ -66,11 +66,19 @@ const Header = () => {
             );
         }
 
+        const handleMyPageClick = () => {
+            if (window.location.pathname === '/mypage') {
+                window.location.reload(); // Force a full page reload
+            } else {
+                navigate('/mypage'); // Navigate to /mypage
+            }
+        };
+
         switch (userRole) {
             case 'USER':
                 return (
                     <>
-                        <button onClick={() => navigate('/mypage')}>마이 페이지</button>
+                        <button onClick={handleMyPageClick}>마이 페이지</button>
                         <button onClick={handleLogout}>로그아웃</button>
                     </>
                 );
