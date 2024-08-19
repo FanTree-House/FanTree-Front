@@ -123,12 +123,13 @@ export const getIsLiked = async (groupName, artistFeedId) => {
 // 구독하기
 export const subscribeToGroup = async (groupName) => {
     try {
-        await apiClient.post(`/artistGroup/subscript/${groupName}`, {}, {
+        const response = await apiClient.post(`/artistGroup/subscript/${groupName}`, {}, {
             headers: {
                 'Authorization': `${token}`
             },
             withCredentials: true
         });
+        alert(response.data.message);
     } catch (error) {
         console.error('Error subscribing to group:', error);
         throw error;
@@ -138,10 +139,11 @@ export const subscribeToGroup = async (groupName) => {
 // 구독 취소
 export const cancelSubscribe = async (groupName) => {
     try {
-        await apiClient.delete(`/artistGroup/subscript/${groupName}`, {
+        const response = await apiClient.delete(`/artistGroup/subscript/${groupName}`, {
             headers: { Authorization: `${token}` },
             withCredentials: true
         });
+        alert(response.data.message);
     } catch (error) {
         console.error('Error subscribing to group:', error);
         throw error;
@@ -151,7 +153,7 @@ export const cancelSubscribe = async (groupName) => {
 // 좋아요 or 좋아요 취소
 export const likeFeed = async (groupName, artistFeedId) => {
     try {
-        await apiClient.post(`/feed/${artistFeedId}`,{}, {
+        const response = await apiClient.post(`/feed/${artistFeedId}`,{}, {
             headers: { Authorization:  `${token}` },
             withCredentials: true
         });
