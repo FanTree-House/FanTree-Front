@@ -18,11 +18,12 @@ const Header = () => {
     const handleLogout = async () => {
         try {
             await logout();
+            alert("로그아웃 되었습니다.");
             dispatch({ type: 'LOGOUT' });
             localStorage.removeItem('user');
             navigate('/');
         } catch (error) {
-            console.error(error);
+            alert(error.response.data.message);
         }
     };
 
@@ -35,7 +36,7 @@ const Header = () => {
                 setSearchResults(results.content);
                 navigate('/search-results', { state: { results: results.content } });
             } catch (error) {
-                console.error('Search failed:', error);
+                alert(error.response.data.message);
             }
         }
     };
@@ -46,7 +47,7 @@ const Header = () => {
             const groupName = await getArtistGroupName();
             setArtistGroupName(groupName);
         } catch (error) {
-            console.error('Failed to fetch artist group name:', error);
+            alert(error.response.data.message);
         }
     };
 

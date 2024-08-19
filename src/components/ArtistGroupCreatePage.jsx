@@ -43,7 +43,7 @@ const ArtistGroupCreatePage = () => {
             setArtistIdsInput('');
             fetchArtistGroups();
         } catch (error) {
-            console.error("Failed to create artist group:", error);
+            alert(error.response.data.message);
         }
     };
 
@@ -53,7 +53,7 @@ const ArtistGroupCreatePage = () => {
             const groups = await getAllArtistGroups(token);
             setArtistGroups(groups);
         } catch (error) {
-            console.error("Failed to fetch artist groups:", error);
+            alert(error.response.data.message);
         }
     };
 
