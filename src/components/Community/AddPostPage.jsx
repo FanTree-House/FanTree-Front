@@ -32,7 +32,7 @@ const AddPostPage = () => {
             console.log('피드 생성 성공:', newFeed);
             window.history.back();
         } catch (error) {
-            console.error('피드 생성 실패:', error);
+            alert(error.response.data.message);
         }
     };
 

@@ -67,7 +67,7 @@ function ScheduleCalendar({ schedules: receivedSchedules, onAddSchedule, isVisib
             await onAddSchedule(newSchedule); // 부모에서 전달받은 함수를 호출
             setIsModalOpen(false); // 스케줄 추가 후 모달 닫기
         } catch (error) {
-            console.error('Error creating schedule:', error);
+            alert(error.response.data.message);
         }
     };
 

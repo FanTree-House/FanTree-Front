@@ -35,7 +35,7 @@ const CreateEntertainment = () => {
             setFile(null);
             navigate('/');
         } catch (error) {
-            console.error('엔터테인먼트 계정 생성 실패:', error);
+            alert(error.response.data.message);
             setMessage('엔터테인먼트 계정 생성에 실패했습니다: ' + error.message);
         }
     };

@@ -114,7 +114,7 @@ const CreateArtistFeedPage = () => {
             setImages([]);
             navigate(`/group/${groupName}`); // 그룹 페이지로 이동
         } catch (error) {
-            alert('피드 작성에 실패했습니다.');
+            alert(error.response.data.message);
         }
     };
 

@@ -47,7 +47,7 @@ const SignupForm = () => {
         alert('회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
         navigate('/login');
       } catch (error) {
-        console.error('Registration failed:', error);
+        alert(error.response.data.message);
         setErrors({ ...errors, submit: '회원가입에 실패했습니다. 다시 시도해주세요.' });
       }
     }
