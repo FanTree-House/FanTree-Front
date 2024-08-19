@@ -16,7 +16,7 @@ const CommunityFeeds = () => {
                 const data = await fetchAllFeeds(groupName);
                 setFeeds(data);
             } catch (error) {
-                console.error('Error fetching feeds:', error);
+                alert(error.response.data.message);
             }
         };
         getFeeds();

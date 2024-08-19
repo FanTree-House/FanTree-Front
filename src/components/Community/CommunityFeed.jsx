@@ -23,7 +23,7 @@ const CommunityFeed = ({ feed }) => {
                     const loadedComments = await fetchComments(groupName, feed.id);
                     setContents(loadedComments);
                 } catch (error) {
-                    console.error('Error fetching comments:', error);
+                    alert(error.response.data.message);
                 }
             };
             loadComments();
@@ -50,7 +50,7 @@ const CommunityFeed = ({ feed }) => {
             const loadedComments = await fetchComments(groupName, feed.id);
             setContents(loadedComments);
         } catch (error) {
-            console.error('Error posting comment:', error);
+            alert(error.response.data.message);
         }
     };
 

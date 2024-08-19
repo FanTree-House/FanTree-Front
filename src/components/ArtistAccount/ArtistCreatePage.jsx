@@ -32,6 +32,7 @@ const ArtistCreatePage = () => {
             const responseMessage = await createArtist(formData);
             setMessage(responseMessage);
         } catch (error) {
+            alert(error.response.data.message);
             setMessage(error.message);
         }
     };

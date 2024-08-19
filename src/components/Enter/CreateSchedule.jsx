@@ -50,6 +50,7 @@ function AddScheduleModal({ selectedDate, onClose }) {
             onClose(); // 스케줄 추가 후 모달 닫기
             window.location.reload();
         } catch (error) {
+            alert(error.response.data.message);
             setMessage(error.message || '알 수 없는 오류가 발생했습니다.');
         }
     };
