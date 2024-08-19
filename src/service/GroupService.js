@@ -216,3 +216,16 @@ export const deleteComment = async (groupName, feedId, commentId) => {
     });
     return response.data;
 };
+
+// 피드 삭제
+export const deleteFeed = async (groupName, artistFeedId) => {
+    try {
+        await apiClient.delete(`/${groupName}/feed/${artistFeedId}`, {
+            headers: { Authorization: `${token}` },
+            withCredentials: true
+        });
+    } catch (error) {
+        console.error('Error deleting feed:', error);
+        throw error;
+    }
+};
