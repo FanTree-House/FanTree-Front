@@ -86,7 +86,7 @@ const FeedPopup = () => {
             const Comments = await fetchFeedComments(groupName, feedId);
             setComments(Comments);
         } catch (error) {
-            console.error('Error posting comment:', error);
+            alert(error.response.data.message);
         }
     };
 
@@ -267,7 +267,7 @@ const FeedPopup = () => {
                             onChange={handleCommentChange}
                             placeholder="Write a comment..."
                         />
-                        <button onClick={handleCommentSubmit}>게시글 작성</button>
+                        <button onClick={handleCommentSubmit}>댓글 작성</button>
                     </div>
                 </div>
             </div>
