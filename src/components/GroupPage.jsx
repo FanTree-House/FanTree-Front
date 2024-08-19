@@ -35,7 +35,7 @@ const GroupPage = () => {
                 const details = await fetchGroupDetails(groupName);
                 setGroupDetails(details);
             } catch (error) {
-                alert(error.response.data.message);
+                console.log("그룹정보 못 불러옴");
             }
         };
 
@@ -56,7 +56,7 @@ const GroupPage = () => {
                     }));
                 }));
             } catch (error) {
-                alert(error.response.data.message);
+                console.log("피드정보 못 불러옴");
             }
         };
 
@@ -66,7 +66,7 @@ const GroupPage = () => {
                 const subscribed = await getIsSubscribed(groupName);
                 setIsSubscribed(subscribed);
             } catch (error) {
-                alert(error.response.data.message);
+                console.log("구독안함");
             }
         };
 
