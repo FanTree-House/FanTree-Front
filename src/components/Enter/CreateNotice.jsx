@@ -24,6 +24,7 @@ function CreateNotice({ isOpen, onClose, onSubmit }) {
             onClose();
             window.location.reload();
         } catch (error) {
+            alert(error.response.data.message);
             setMessage('공지사항 등록에 실패했습니다.');
         }
     };

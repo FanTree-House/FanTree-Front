@@ -43,7 +43,7 @@ const Profile = () => {
                 setOriginalEmail(response.data.email);
                 setOriginalUserImage(response.data.profileImageUrl || "holder.js/100x100");
             })
-            .catch(error => console.error('Error fetching user data:', error));
+            .catch(error => alert(error.response.data.message));
     };
 
     const handleImageChange = (event) => {
@@ -72,7 +72,7 @@ const Profile = () => {
             });
             console.log('Profile image updated successfully:', response.data);
         } catch (error) {
-            console.error('Error updating profile image:', error);
+            alert(error.response.data.message);
         }
     };
 
@@ -116,7 +116,7 @@ const Profile = () => {
             getUserData();  // 여기서 업데이트된 사용자 데이터를 다시 불러옵니다.
             resetEditingState();
         } catch (error) {
-            console.error('Error updating profile:', error);
+            alert(error.response.data.message);
         }
     };
 
@@ -134,7 +134,7 @@ const Profile = () => {
                 alert("현재 비밀번호가 올바르지 않습니다."); // 비밀번호가 올바르지 않은 경우
             }
         } catch (error) {
-            console.error('Error verifying password:', error);
+            alert(error.response.data.message);
         }
     };
 

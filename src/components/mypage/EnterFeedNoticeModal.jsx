@@ -22,7 +22,7 @@ const EnterFeedNoticeModal = ({ onClose }) => {
                 const groupNames = response.data.map(group => group.group_name); // 그룹 이름 리스트 추출
                 return groupNames;
             } catch (error) {
-                console.error('Error fetching group names:', error);
+                alert(error.response.data.message);
                 setError('Failed to fetch group names'); // 그룹 이름을 가져오는데 실패한 경우
                 setLoading(false);
                 return [];
@@ -57,7 +57,7 @@ const EnterFeedNoticeModal = ({ onClose }) => {
 
                 setNotices(sortedNotices); // 상태에 정렬된 공지사항 설정
             } catch (error) {
-                console.error('Error fetching notices:', error);
+                alert(error.response.data.message);
                 setError('Failed to fetch notices');
             } finally {
                 setLoading(false);

@@ -38,7 +38,7 @@ const ArtistFeedLikeModal = ({ postId, onClose }) => {
                 setLiked(initialLikedState);
 
             } catch (fetchError) {
-                console.error('Error fetching post:', fetchError);
+                alert(error.response.data.message);
                 setError('좋아요를 누른 게시글이 없습니다.');
             } finally {
                 setLoading(false);
@@ -99,7 +99,7 @@ const ArtistFeedLikeModal = ({ postId, onClose }) => {
             await Promise.all(updates.filter(update => update)); // null 값 필터링
 
         } catch (error) {
-            console.error('Error updating like statuses:', error);
+            alert(error.response.data.message);
         } finally {
             onClose(); // 모달 닫기
         }
