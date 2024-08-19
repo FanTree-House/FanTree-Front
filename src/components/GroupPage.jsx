@@ -192,6 +192,7 @@ const GroupPage = () => {
                         <div className="feed-header">
                             <img src={feed.profileUrl} alt="Profile" className="profile-image" />
                             <div className="nickname">{feed.artistName}</div>
+                            {/*// 삭제 버튼*/}
                             <button className="delete-button" onClick={(e) => {
                                 e.stopPropagation();
                                 openDeleteModal(feed.id); // 삭제 모달 열기
