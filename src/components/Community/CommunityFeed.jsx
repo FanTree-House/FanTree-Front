@@ -61,7 +61,7 @@ const CommunityFeed = ({ feed }) => {
                     <img src={feed.imageUrls} alt="Feed" className="feed-image" />
                 </div>
                 <div className="feed-content">
-                    <h2>{feed.contents}</h2>
+                    <h2 className={'feed-contents'}>{feed.contents}</h2>
                     <p className="feed-nickname">{feed.nickname}</p>
                 </div>
             </div>
@@ -91,8 +91,8 @@ const CommunityFeed = ({ feed }) => {
                             {contents.length > 0 ? (
                                 contents.map((comment, index) => (
                                     <div key={`comment-item_${index}`} className="comment-item">
-                                        <p>{comment.nickname}</p>
-                                        <p>{comment.contents}</p>
+                                        <div className={'comment-contents'}><p>{comment.contents}</p></div>
+                                        <div className={'comment-nickname'}><p>{comment.nickname}</p></div>
                                     </div>
                                 ))
                             ) : (

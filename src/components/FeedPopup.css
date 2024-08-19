@@ -221,3 +221,14 @@
 .modal-actions button:hover {
     background-color: #0056b3;
 }
+
+nickname.delete-btn{
+    background-color: #007bff;
+    width: 50px;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-left: 500px;
+}
