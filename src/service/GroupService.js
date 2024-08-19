@@ -106,7 +106,7 @@ export const getIsSubscribed = async (groupName) => {
         });
         return response.data.data.isSubscribe;
     } catch (e) {
-        console.error("구독 여부 불러오기 실패", e);
+        console.error("구독 여부 불러오기 실패");
     }
 
 };
