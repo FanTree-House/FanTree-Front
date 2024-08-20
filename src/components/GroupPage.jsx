@@ -90,8 +90,14 @@ const GroupPage = () => {
         navigate(`/group/${groupName}/enter/${enterName}`);
 
     // Community 페이지로
-    const openCommunityPage = () =>
-        navigate(`/group/${groupName}/community`);
+    const openCommunityPage = () => {
+        if (null == window.localStorage.getItem('accessToken')){
+            alert("로그인 후 이용해주세요.")
+        } else {
+            navigate(`/group/${groupName}/community`);
+        }
+
+    }
 
     // 구독버튼
     const handleSubscribe = async () => {
