@@ -16,7 +16,10 @@ const CommunityFeeds = () => {
                 const data = await fetchAllFeeds(groupName);
                 setFeeds(data);
             } catch (error) {
-                alert(error.response.data.message);
+                if (error.response.data.errorType == "ARTIST_NOT_SUBSCRIBED") {
+                    window.history.back()
+                }
+                console.log(error.response.data.message);
             }
         };
         getFeeds();
