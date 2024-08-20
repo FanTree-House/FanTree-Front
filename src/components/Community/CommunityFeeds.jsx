@@ -19,7 +19,7 @@ const CommunityFeeds = () => {
                 if (error.response.data.errorType == "ARTIST_NOT_SUBSCRIBED") {
                     window.history.back()
                 }
-                alert(error.response.data.message);
+                console.log(error.response.data.message);
             }
         };
         getFeeds();
