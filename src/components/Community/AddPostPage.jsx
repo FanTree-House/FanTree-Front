@@ -25,7 +25,10 @@ const AddPostPage = () => {
         // const requestDto = JSON.stringify({ contents : contents });
         // formData.append('requestDto', new Blob([requestDto], { type: 'application/json' }));
         formData.append('contents', contents)
-        formData.append('file', file);
+        // 파일이 null이 아닌 경우에만 formData에 추가
+        if (file) {
+            formData.append('file', file);
+        }
 
         try {
             const newFeed = await createFeed(groupName, formData);
