@@ -1,0 +1,17 @@
+Index: src/services/feedService.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import axios from 'axios';\r\n\r\nconst API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL\r\nconst token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnRpc3QxIiwiYXV0aCI6IkFSVElTVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIyNjgwNDIxLCJpYXQiOjE3MjI2Nzg2MjF9.AEcUcnb-eMbzXR_OZSqTeGYSm1w5mzFXyQ3YjDFtA_g';\r\n\r\n// 피드 생성\r\nexport const createFeed = async (groupName, content, image) => {\r\n    const formData = new FormData();\r\n\r\n    // CreateFeedRequestDto를 위한 JSON 객체 생성\r\n    const requestDto = JSON.stringify({ contents: content });\r\n\r\n    // requestDto를 Blob으로 변환하여 FormData에 추가\r\n    formData.append('requestDto', new Blob([requestDto], { type: 'application/json' }));\r\n\r\n    if (image) {\r\n        formData.append('file', image);\r\n    }\r\n\r\n    try {\r\n        const response = await axios.post(`${API_BASE_URL}/${groupName}`, formData, {\r\n            headers: {\r\n                'Content-Type': 'multipart/form-data',\r\n                'Authorization': `Bearer ${token}`\r\n            },\r\n        });\r\n        return response.data;\r\n    } catch (error) {\r\n        console.error('Error creating feed:', error);\r\n        throw error;\r\n    }\r\n};
+===================================================================
+diff --git a/src/services/feedService.js b/src/services/feedService.js
+--- a/src/services/feedService.js	
++++ b/src/services/feedService.js	
+@@ -1,7 +1,7 @@
+ import axios from 'axios';
+ 
+ const API_BASE_URL = 'http://localhost:8080'; // 백엔드 API의 기본 URL
+-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnRpc3QxIiwiYXV0aCI6IkFSVElTVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIyNjgwNDIxLCJpYXQiOjE3MjI2Nzg2MjF9.AEcUcnb-eMbzXR_OZSqTeGYSm1w5mzFXyQ3YjDFtA_g';
++const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnRpc3QxIiwiYXV0aCI6IkFSVElTVCIsInN0YXR1cyI6IkFDVElWRV9VU0VSIiwiZXhwIjoxNzIyODY2Mzc2LCJpYXQiOjE3MjI4NjQ1NzZ9.4VXwofIDVPbItHVLs0x8vNWQIt6bbVllGsKncc0Ehmc';
+ 
+ // 피드 생성
+ export const createFeed = async (groupName, content, image) => {

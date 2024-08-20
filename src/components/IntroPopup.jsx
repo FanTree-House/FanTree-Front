@@ -1,8 +1,26 @@
-// IntroPopup.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import './IntroPopup.css';
 
 const IntroPopup = ({ onClose, onHideForDay }) => {
+    // 로컬 스토리지에서 팝업 상태 체크
+    useEffect(() => {
+        const hideForDay = window.localStorage.getItem('hideIntroPopupForDay');
+        if (hideForDay) {
+            onClose(); // 이미 설정되어 있다면 팝업을 닫음
+        }
+    }, [onClose]);
+
+    const handleHideForDay = () => {
+        const currentDate = new Date();
+        const expireDate = new Date(currentDate);
+        expireDate.setHours(23, 59, 59, 999); // 오늘의 끝 시간으로 설정
+
+        // 팝업을 하루 동안 숨기도록 로컬 스토리지에 설정
+        window.localStorage.setItem('hideIntroPopupForDay', expireDate.getTime());
+
+        onClose();
+    };
+
     return (
         <div className="intro-popup-overlay">
             <div className="intro-popup">
@@ -24,7 +42,7 @@ const IntroPopup = ({ onClose, onHideForDay }) => {
                     추첨을 통해 선물을 드립니다. 많은 참여 부탁드립니다!
                 </p>
                 <div className="intro-popup-buttons">
-                    <button onClick={onHideForDay}>오늘 하루 동안 안 보기</button>
+                    <button onClick={handleHideForDay}>오늘 하루 동안 안 보기</button>
                     <button onClick={onClose}>닫기</button>
                 </div>
             </div>

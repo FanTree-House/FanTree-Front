@@ -1,0 +1,20 @@
+Index: src/service/SearchService.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// src/service/SearchService.js\r\nimport axios from 'axios';\r\n\r\nexport const searchArtistGroup = async (groupName) => {\r\n    try {\r\n        const response = await axios.get('http://localhost:8080/artistgroup/search', {\r\n            params: { groupName }\r\n        });\r\n        return response.data.data;\r\n    } catch (error) {\r\n        console.error('Error searching artist group:', error);\r\n        throw error;\r\n    }\r\n};
+===================================================================
+diff --git a/src/service/SearchService.js b/src/service/SearchService.js
+--- a/src/service/SearchService.js	
++++ b/src/service/SearchService.js	
+@@ -1,9 +1,9 @@
+ // src/service/SearchService.js
+-import axios from 'axios';
++import apiClient from './apiClient';
+ 
+ export const searchArtistGroup = async (groupName) => {
+     try {
+-        const response = await axios.get('http://localhost:8080/artistgroup/search', {
++        const response = await apiClient.get('/artistgroup/search', {
+             params: { groupName }
+         });
+         return response.data.data;
