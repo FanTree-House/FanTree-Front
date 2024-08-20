@@ -18,7 +18,8 @@ const ArtistProfile = () => {
                 } else {
                     setError('아티스트를 찾을 수 없습니다.');
                 }
-            } catch (err) {
+            } catch (error) {
+                alert(error.response.data.message);
                 setError('아티스트 정보를 불러오는 중 오류가 발생했습니다.');
             } finally {
                 setLoading(false);

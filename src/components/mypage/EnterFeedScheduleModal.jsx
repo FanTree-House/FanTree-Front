@@ -22,7 +22,7 @@ const EnterFeedScheduleModal = ({ onClose }) => {
                 return groupNames;
 
             } catch (error) {
-                console.error('Error fetching group names:', error);
+                alert(error.response.data.message);
                 setError('Failed to fetch group names'); // 그룹 이름을 가져오는데 실패한 경우
                 setLoading(false);
                 return [];
@@ -57,7 +57,7 @@ const EnterFeedScheduleModal = ({ onClose }) => {
 
                 setSchedules(sortedSchedules);
             } catch (error) {
-                console.error('Error fetching schedules:', error);
+                alert(error.response.data.message);
                 setError('Failed to fetch schedules');
             } finally {
                 setLoading(false);

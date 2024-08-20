@@ -24,7 +24,7 @@ const EnterPage = () => {
                 const data = await fetchNotices(enterName);
                 setNotices(data);
             } catch (error) {
-                console.error('Error loading notices:', error);
+                alert(error.response.data.message);
             }
         };
 
@@ -33,7 +33,7 @@ const EnterPage = () => {
                 const data = await fetchSchedule(enterName);
                 setSchedules(data);
             } catch (error) {
-                console.error('Error loading schedules:', error);
+                alert(error.response.data.message);
             }
         };
 
@@ -44,7 +44,7 @@ const EnterPage = () => {
                     setEntertainment(data);
                 }
             } catch (error) {
-                console.error('Error fetching entertainment:', error);
+                alert(error.response.data.message);
             }
         };
 
@@ -61,7 +61,7 @@ const EnterPage = () => {
                 return updatedNotice;
             });
         } catch (error) {
-            console.error('Error adding notice:', error);
+            alert(error.response.data.message);
         }
     };
 
@@ -73,7 +73,7 @@ const EnterPage = () => {
                 return updatedSchedules;
             });
         } catch (error) {
-            console.error('Error creating schedule:', error);
+            alert(error.response.data.message);
         }
     };
 
