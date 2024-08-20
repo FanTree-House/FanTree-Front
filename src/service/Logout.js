@@ -11,8 +11,11 @@ export const logout = async () => {
             },
             withCredentials: true
         });
-        if (response.status === 200) { // 상태 코드를 체크하도록 수정
-            window.localStorage.clear();
+        if (response.status === 200) {
+            window.localStorage.removeItem('accessToken');
+            window.localStorage.removeItem('refreshToken');
+            window.localStorage.removeItem('expiresAt');
+            window.localStorage.removeItem('user');
             return response.data;
         } else {
             throw new Error(response.data.message || '로그아웃 실패');
