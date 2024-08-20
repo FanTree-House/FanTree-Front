@@ -68,7 +68,7 @@ export const getEntertainment = async (token) => {
         });
         return response.data.data; // Adjust based on actual response structure
     } catch (error) {
-        console.error('Error fetching entertainment:', error);
+        console.error('Error fetching entertainment');
         throw error;
     }
 };

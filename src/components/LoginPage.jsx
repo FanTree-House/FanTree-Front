@@ -53,7 +53,7 @@ function LoginPage() {
   };
 
   const handleKakaoLogin = async () => {
-    const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=2b0e2842adcacfeb9731a68eb4b42048&redirect_uri=http://localhost:8080/user/kakao/callback&response_type=code`;
+    const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=2b0e2842adcacfeb9731a68eb4b42048&redirect_uri=http://3.34.53.57:8080/user/kakao/callback&response_type=code`;
     window.location.href = kakaoAuthUrl;
   };
 
