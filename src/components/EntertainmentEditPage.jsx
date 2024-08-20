@@ -27,6 +27,7 @@ const EntertainmentEditPage = () => {
                 setEnterNumber(data.enterNumber);
                 // 로고 이미지 가져오는 로직 추가 가능
             } catch (error) {
+                alert(error.response.data.message);
                 setMessage('엔터 정보를 가져오는데 실패했습니다: ' + error.message);
             }
         };

@@ -35,7 +35,7 @@ const GroupPage = () => {
                 const details = await fetchGroupDetails(groupName);
                 setGroupDetails(details);
             } catch (error) {
-                console.log(error.message);
+                alert(error.response.data.message);
             }
         };
 
@@ -56,7 +56,7 @@ const GroupPage = () => {
                     }));
                 }));
             } catch (error) {
-                console.log(error.message);
+                alert(error.response.data.message);
             }
         };
 
@@ -66,7 +66,7 @@ const GroupPage = () => {
                 const subscribed = await getIsSubscribed(groupName);
                 setIsSubscribed(subscribed);
             } catch (error) {
-                console.log(error.message);
+                alert(error.response.data.message);
             }
         };
 

@@ -25,14 +25,17 @@ const AddPostPage = () => {
         // const requestDto = JSON.stringify({ contents : contents });
         // formData.append('requestDto', new Blob([requestDto], { type: 'application/json' }));
         formData.append('contents', contents)
-        formData.append('file', file);
+        // 파일이 null이 아닌 경우에만 formData에 추가
+        if (file) {
+            formData.append('file', file);
+        }
 
         try {
             const newFeed = await createFeed(groupName, formData);
             console.log('피드 생성 성공:', newFeed);
             window.history.back();
         } catch (error) {
-            console.error('피드 생성 실패:', error);
+            alert(error.response.data.message);
         }
     };
 

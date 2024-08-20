@@ -53,7 +53,7 @@ const MainPage = () => {
                 const data = await ArtistGroupService.getArtistGroups();
                 setArtistGroups(data || []);
             } catch (error) {
-                console.error('Error fetching artist groups:', error);
+                alert(error.response.data.message);
             }
         };
 
@@ -62,7 +62,7 @@ const MainPage = () => {
                 const data = await ArtistGroupService.getAllArtistGroups();
                 setArtistProfiles(data || []);
             } catch (error) {
-                console.error('Error fetching all artist groups:', error);
+                alert(error.response.data.message);
             }
         };
 

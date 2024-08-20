@@ -39,7 +39,7 @@ const CommunityFeedLikeModal = ({onClose}) => {
                 setLiked(initialLikedState);
 
             } catch (fetchError) {
-                console.error('Error fetching post data:', fetchError);
+                alert(fetchError.response.data.message);
                 setError('Failed to fetch post data');
             } finally {
                 setLoading(false);
@@ -98,7 +98,7 @@ const CommunityFeedLikeModal = ({onClose}) => {
             await Promise.all(updates.filter(update => update)); // null 값 필터링
 
         } catch (error) {
-            console.error('Error updating like statuses:', error);
+            alert(error.response.data.message);
         } finally {
             onClose(); // 모달 닫기
         }

@@ -52,7 +52,7 @@ const MyCommunityFeedModal = ({onClose}) => {
 
                 }
             } catch (fetchError) {
-                console.error('Error fetching community posts:', fetchError);
+                alert(fetchError.response.data.message);
 
                 if (fetchError.response && fetchError.response.status === 404) {
                     setError("구독하신 아티스트의 커뮤니티에 작성하신 게시글이 없습니다");

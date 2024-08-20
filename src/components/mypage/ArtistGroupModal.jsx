@@ -60,7 +60,7 @@ const ArtistGroupModal = ({ onClose }) => {
                 setArtistGroups(groupsWithImages);
 
             } catch (fetchError) {
-                console.error('Error fetching artist groups:', fetchError);
+                alert(fetchError.response.data.message);
                 setError('구독하고 있는 그룹이 없습니다.');
             } finally {
                 setLoading(false);
