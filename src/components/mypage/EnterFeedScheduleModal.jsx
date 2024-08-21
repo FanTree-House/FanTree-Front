@@ -41,19 +41,12 @@ const EnterFeedScheduleModal = ({ onClose }) => {
                     return response.data.data;
                 });
 
+
                 const allSchedules = await Promise.all(schedulePromises);
                 const flatSchedules = allSchedules.flat();
 
-                // Map을 사용하여 entertainmentId 기준으로 중복 제거
-                const uniqueSchedules = new Map();
-                flatSchedules.forEach(schedule => {
-                    if (!uniqueSchedules.has(schedule.entertainmentId)) {
-                        uniqueSchedules.set(schedule.entertainmentId, schedule);
-                    }
-                });
-
-                // Map을 Array로 변환하고, created_at 기준으로 내림차순 정렬
-                const sortedSchedules = Array.from(uniqueSchedules.values()).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                // created_at 기준으로 내림차순 정렬
+                const sortedSchedules = flatSchedules.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
                 setSchedules(sortedSchedules);
             } catch (error) {
@@ -114,7 +107,7 @@ const EnterFeedScheduleModal = ({ onClose }) => {
                     ) : (
                         <ul>
                             {schedules.map((schedule, index) => (
-                                <li key={index} className="schedule-item">
+                                <li key={`schedule-item-${index}`} className="schedule-item">
                                     <div className="schedule-header">
                                         <span className="schedule-group">{schedule.enterName}</span> {/* groupName 대신 enterName 사용 */}
                                         <h3
